@@ -1,26 +1,14 @@
 package TTs.TTsGames.Resources;
 
+import static TTs.TTsGames.Main.jsonReader;
+
 public class Translations {
     public static final String[] QuestionsKeys = {
             "animal_master.questions1", "animal_master.questions2", "animal_master.questions3", "animal_master.questions4",
             "animal_master.questions5", "animal_master.questions6", "animal_master.questions7", "animal_master.questions8",
             "animal_master.questions9", "animal_master.questions10", "animal_master.questions11", "animal_master.questions12", "animal_master.questions13"
     };
-    public static final String[] AnswerButtonsKeys = {
-            "animal_master.answer.elefant", "animal_master.answer.brachiosaurus", "animal_master.answer.giraffe",
-            "animal_master.answer.löwe", "animal_master.answer.tiger", "animal_master.answer.katze",
-            "animal_master.answer.kakadu", "animal_master.answer.pinguin", "animal_master.answer.fledermaus",
-            "animal_master.answer.panda", "animal_master.answer.pinguin", "animal_master.answer.eisbär",
-            "animal_master.answer.elefant", "animal_master.answer.schmetterling", "animal_master.answer.hummel",
-            "animal_master.answer.delfin", "animal_master.answer.tigerhai", "animal_master.answer.fächerfisch",
-            "animal_master.answer.leopard", "animal_master.answer.gepard", "animal_master.answer.pferd",
-            "animal_master.answer.pottwal", "animal_master.answer.brachiosaurus", "animal_master.answer.blauwal",
-            "animal_master.answer.seewespe", "animal_master.answer.inlandtaipan", "animal_master.answer.steinfisch",
-            "animal_master.answer.tsetsefliege", "animal_master.answer.raubwanze", "animal_master.answer.moskitos",
-            "animal_master.answer.assel", "animal_master.answer.tausendfüßer", "animal_master.answer.hundertfüßer",
-            "animal_master.answer.islandmuschel", "animal_master.answer.riesenschwamm", "animal_master.answer.grönlandhai",
-            "animal_master.answer.fruchtfliege", "animal_master.answer.gastrotrichen", "animal_master.answer.eintagsfliege"
-    };
+    public static final String[] AnswerButtonsKeys = jsonReader.AnswerTranslationKeys();
     public static final String[] KomplimenteKeys = {
             "animal_master.komplinemte1", "animal_master.komplinemte2", "animal_master.komplinemte3", "animal_master.komplinemte4", "animal_master.komplinemte5",
             "animal_master.komplinemte6", "animal_master.komplinemte7", "animal_master.komplinemte8", "animal_master.komplinemte9", "animal_master.komplinemte10"

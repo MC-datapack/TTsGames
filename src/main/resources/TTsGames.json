@@ -70,5 +70,6 @@
   "unallowed_usernames": "data/username/unallowed.json5",
   "animal_master_button_colors": "data/animal_master/colors.json",
   "animal_master_correct": "data/animal_master/correct.json",
-  "animal_master_selected": "data/animal_master/selected_animal.json"
+  "animal_master_selected": "data/animal_master/selected_animal.json",
+  "animal_master_answer_trans_key": "data/animal_master/answer_translation_keys.json"
 }

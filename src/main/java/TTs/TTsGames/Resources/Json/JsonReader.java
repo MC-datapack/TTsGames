@@ -58,6 +58,9 @@ public class JsonReader {
     public int[] AMSelectedAnimal() {
         return ValuesStandard("values", AMSelectedPath(), int[].class);
     }
+    public String[] AnswerTranslationKeys() {
+        return ValuesStandard("values", AMTranslationKeyPath(), String[].class);
+    }
 
     public TTsGamesJSONFormat readJsonFile(String filePath) {
         try (InputStream inputStream = JsonReader.class.getClassLoader().getResourceAsStream(filePath);
@@ -177,5 +180,9 @@ public class JsonReader {
 
     public String AMSelectedPath() {
         return tTsGamesJSONFormat.getAnimal_master_selected();
+    }
+
+    public String AMTranslationKeyPath() {
+        return tTsGamesJSONFormat.getAnimal_master_answer_trans_key();
     }
 }
