@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version "2.0.21"
+}
+
+group = project.group
+version = project.version
+java {
+    withSourcesJar()
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+kotlin {
+    jvmToolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+}
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://jitpack.io'
+    }
+}
+dependencies {
+    implementation "com.google.code.gson:gson:${project.gson_version}"
+    implementation "com.github.umjammer:jlayer:${project.jlayer_version}"
+    implementation "org.vineflower:vineflower:${project.vineflower_version}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("TTsGames.json") {
+        expand "version": project.version
+    }
+}
+jar {
+    manifest {
+        attributes(
+                'Main-Class': "TTs.TTsGames.Main"
+        )
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    from('src/main/resources')
+}

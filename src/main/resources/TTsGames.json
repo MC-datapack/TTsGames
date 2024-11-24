@@ -1,0 +1,72 @@
+{
+  "prerelease": true,
+  "version": {
+	"TTsGames": {
+	  "prerelease": "${version}",
+	  "group": "2.0"
+	},
+	"AnimalMaster": {
+	  "release": "6.2"
+	},
+	"DetektivAdler": {
+	  "release": "1.3"
+	},
+	"DetektivThunder": {
+	  "prerelease": "2.0 build.5"
+	}
+  },
+  "languages": [
+	"Deutsch",
+	"English"
+  ],
+  "language_files": {
+	"Deutsch": "assets/lang/de_de.json",
+	"English": "assets/lang/en_us.json"
+  },
+  "textures_base_dictionary": "assets/textures",
+  "no_texture_file": "no_texture.png",
+  "textures": [
+	[
+	  "TTsGames.jpg", "TTsGames_Background.jpg"
+	],
+	[
+	  "animal_master/AnimalMaster_bottom.jpeg",
+	  "animal_master/animals/Elefant.jpeg", "animal_master/animals/Brachiosaurus.jpeg", "animal_master/animals/Giraffe.jpeg",
+	  "animal_master/animals/Löwe.jpeg", "animal_master/animals/Tiger.jpeg", "animal_master/animals/Katze.jpeg",
+	  "animal_master/animals/Kakadu.jpeg", "animal_master/animals/Pinguin.jpeg", "animal_master/animals/Fledermaus.jpeg",
+	  "animal_master/animals/Panda.jpeg", "animal_master/animals/Eisbär.jpeg",
+	  "animal_master/animals/Schmetterling.jpeg", "animal_master/animals/Hummel.jpeg",
+	  "animal_master/animals/Delfin.jpeg", "animal_master/animals/Tigerhai.jpeg", "animal_master/animals/Fächerfisch.jpeg",
+	  "animal_master/animals/Leopard.jpeg", "animal_master/animals/Gepard.jpeg", "animal_master/animals/Pferd.jpeg",
+	  "animal_master/animals/Pottwal.jpeg", "animal_master/animals/Blauwal.jpeg",
+	  "animal_master/animals/Seewespe.jpeg", "animal_master/animals/Inlandtaipan.jpeg", "animal_master/animals/Steinfisch.jpeg",
+	  "animal_master/animals/Tsetsefliege.jpeg", "animal_master/animals/Raubwanze.jpeg", "animal_master/animals/Moskitos.jpeg",
+	  "animal_master/animals/Assel.jpeg", "animal_master/animals/Tausendfüßer.jpeg", "animal_master/animals/Hundertfüßer.jpeg",
+	  "animal_master/animals/Islandmuschel.jpeg", "animal_master/animals/Riesenschwamm.jpeg", "animal_master/animals/Grönlandhai.jpeg",
+	  "animal_master/animals/Fruchtfliege.jpeg", "animal_master/animals/Gastrotrichen.jpeg", "animal_master/animals/Eintagsfliege.jpeg",
+	  "animal_master/AnimalMaster.jpeg"
+	],
+	[
+	  "detektiv_adler/DetektivAdler.jpg", "detektiv_adler/DetektivAdler_bottom.jpg",
+	  "detektiv_adler/Fälle/Fall1.jpg", "detektiv_adler/DiebOptionen/Fall1O1.jpg", "detektiv_adler/DiebOptionen/Fall1O2.jpg"
+	],
+	[
+	  "detektiv_thunder/DetektivThunder.jpg", "detektiv_thunder/DetektivThunder_bottom.jpg",
+	  "detektiv_thunder/locations/Wache_0.png", "detektiv_thunder/locations/Kunstgalerie.png", "detektiv_thunder/locations/Kunstgalerie_Fingerabdruck_0.png"
+	]
+  ],
+  "sounds_base_dictionary": "assets/sounds",
+  "sounds": [
+	[],
+	[
+	  "animal_master/correct.wav", "animal_master/incorrect.wav"
+	],
+	[],
+	[
+	  "detektiv_thunder/phrases/001.wav", "detektiv_thunder/phrases/002.wav", "detektiv_thunder/phrases/003.wav", "detektiv_thunder/phrases/004.wav",
+	  "detektiv_thunder/phrases/005.wav", "detektiv_thunder/phrases/006.wav", "detektiv_thunder/phrases/007.wav"
+	]
+  ],
+  "unallowed_usernames": "data/username/unallowed.json5",
+  "animal_master_button_colors": "data/animal_master/colors.json"
+}
