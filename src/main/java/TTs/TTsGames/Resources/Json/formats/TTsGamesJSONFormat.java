@@ -6,7 +6,7 @@ import java.util.*;
 @SuppressWarnings("unused")
 public class TTsGamesJSONFormat {
     private boolean prerelease;
-    private String unallowed_usernames, animal_master_button_colors;
+    private String unallowed_usernames, animal_master_button_colors, animal_master_correct, animal_master_selected;
     private Map<String, GameVersion> version;
     private Map<String, String> language_files;
     private String no_texture_file, language_files_base_dictionary, textures_base_dictionary, sounds_base_dictionary;
@@ -46,6 +46,8 @@ public class TTsGamesJSONFormat {
     public List<List<String>> getMainSounds() {return sounds;}
 
     public String getAnimal_master_button_colors() {return animal_master_button_colors;}
+    public String getAnimal_master_selected() {return animal_master_selected;}
+    public String getAnimal_master_correct() {return animal_master_correct;}
 
     public static class GameVersion {
         private String release, prerelease, group;

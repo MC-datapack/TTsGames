@@ -50,7 +50,13 @@ public class JsonReader {
     }
 
     public String[] UnallowedUsernames() {
-        return ValuesStandard("values", UnallowedUsernamePath());
+        return ValuesStandard("values", UnallowedUsernamePath(), String[].class);
+    }
+    public boolean[] AMCorrect() {
+        return ValuesStandard("values", AMCorrectPath(), boolean[].class);
+    }
+    public int[] AMSelectedAnimal() {
+        return ValuesStandard("values", AMSelectedPath(), int[].class);
     }
 
     public TTsGamesJSONFormat readJsonFile(String filePath) {
@@ -92,7 +98,7 @@ public class JsonReader {
     }
 
 
-    private String[] ValuesStandard(String element, String path) {
+    private <T> T ValuesStandard(String element, String path, Class<T> tClass) {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(path);
              InputStreamReader reader = inputStream == null ? null : new InputStreamReader(inputStream)) {
 
@@ -105,7 +111,7 @@ public class JsonReader {
             JsonObject jsonObject = jsonElement.getAsJsonObject();
 
             JsonElement jsonElement1 = jsonObject.get(element);
-            return gson.fromJson(jsonElement1, String[].class);
+            return gson.fromJson(jsonElement1, tClass);
         } catch (IOException e) {
             logger.error("Failed to read the Json File: ", e);
             return null;
@@ -163,5 +169,13 @@ public class JsonReader {
 
     public String UnallowedUsernamePath() {
         return tTsGamesJSONFormat.getUnallowedUsernames();
+    }
+
+    public String AMCorrectPath() {
+        return tTsGamesJSONFormat.getAnimal_master_correct();
+    }
+
+    public String AMSelectedPath() {
+        return tTsGamesJSONFormat.getAnimal_master_selected();
     }
 }

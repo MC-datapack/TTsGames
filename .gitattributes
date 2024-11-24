@@ -12,3 +12,4 @@
 
 *.gradle linguist-language=Gradle linguist-detectable
 *.json linguist-language=JSON linguist-detectable
+*.json5 linguist-language=JSON5 linguist-detectable
