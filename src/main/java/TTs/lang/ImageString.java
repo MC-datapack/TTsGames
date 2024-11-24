@@ -55,6 +55,7 @@ public final class ImageString {
             if (inputStream != null) {
                 return ImageIO.read(inputStream);
             } else {
+                logger.warn("Did not find texture " + path);
                 return noTexture;
             }
         } catch (IOException e) {

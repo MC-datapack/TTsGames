@@ -12,16 +12,13 @@ public class AnimatedImagePanel extends JPanel {
     private final List<Image> images;
     private int currentIndex = 0;
     private Timer timer;
-    private ImageString string;
-
     public AnimatedImagePanel(ImageString imagePaths) {
-        this.string = imagePaths;
         this.images = new ArrayList<>();
-        List<ImageString> strings = this.string.getStrings();
+        List<ImageString> strings = imagePaths.getStrings();
         for (ImageString string : strings) {
             this.images.add(string.toImage());
         }
-        startImageRotation(this.string.getDelay(), this.string.getRepeat());
+        startImageRotation(imagePaths.getDelay(), imagePaths.getRepeat());
     }
 
     public void restartAnimation() {
