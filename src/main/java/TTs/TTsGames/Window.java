@@ -72,9 +72,9 @@ public class Window {
                 gameInfo.setPreferredSize(new Dimension(200, 135));
                 sizeSettings.setPreferredSize(new Dimension(65, 135));
             } else {
-                games.setPreferredSize(new Dimension(140, 98));
-                gameInfo.setPreferredSize(new Dimension(200, 98));
-                sizeSettings.setPreferredSize(new Dimension(65, 98));
+                games.setPreferredSize(new Dimension(140, 100));
+                gameInfo.setPreferredSize(new Dimension(200, 100));
+                sizeSettings.setPreferredSize(new Dimension(65, 100));
             }
             hello.setPreferredSize(new Dimension(350, 30));
             statisticsPanel.setPreferredSize(new Dimension(350, 200));
@@ -309,6 +309,7 @@ public class Window {
                 SDfalse.setVisible(true);
                 games.setPreferredSize(new Dimension(games.getWidth(), 100));
                 gameInfo.setPreferredSize(new Dimension(gameInfo.getWidth(), 100));
+                sizeSettings.setPreferredSize(new Dimension(sizeSettings.getWidth(), 100));
             });
             SDtrue.addMouseListener(new MouseAdapter() {
                 @Override
@@ -329,6 +330,7 @@ public class Window {
                 SDfalse.setVisible(false);
                 games.setPreferredSize(new Dimension(games.getWidth(), 135));
                 gameInfo.setPreferredSize(new Dimension(gameInfo.getWidth(), 135));
+                sizeSettings.setPreferredSize(new Dimension(sizeSettings.getWidth(), 135));
             });
             SDfalse.addMouseListener(new MouseAdapter() {
                 @Override
