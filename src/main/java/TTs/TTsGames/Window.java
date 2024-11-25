@@ -4,6 +4,7 @@ import TTs.TTsGames.Games.DetektivThunder.DetektivThunder;
 import TTs.TTsGames.Games.AnimalMaster.AnimalMaster;
 import TTs.TTsGames.Games.DetektivAdler.DetektivAdler;
 import TTs.TTsGames.Logger.TTsLogger;
+import TTs.TTsGames.Resources.Text;
 import TTs.lang.Array;
 import TTs.swing.*;
 
@@ -24,28 +25,36 @@ public class Window {
             windows[0] = new JFrame("TTs Games " + Versions[7]);
 
             JTextField usernameInput = new JTextField(TTsGames[18], 25);
-            JButton AnimalMaster = new JButton(TTsGames[0]) {public void paintComponent(Graphics g) {super.paintComponent(g);g.setColor(new Color(68, 68, 68, 200));g.fillRect(0, 0, this.getWidth(), this.getHeight());}};
-            JButton Detektiv_Adler = new JButton(TTsGames[1]) {public void paintComponent(Graphics g) {super.paintComponent(g);g.setColor(new Color(68, 68, 68, 200));g.fillRect(0, 0, this.getWidth(), this.getHeight());}};
-            JButton Detektiv_Thunder = new JButton(TTsGames[2]) {public void paintComponent(Graphics g) {super.paintComponent(g);g.setColor(new Color(68, 68, 68, 200));g.fillRect(0, 0, this.getWidth(), this.getHeight());}};
-            JButton Settings = new JButton(TTsGames[3]) {public void paintComponent(Graphics g) {super.paintComponent(g);g.setColor(new Color(68, 68, 68, 200));g.fillRect(0, 0, this.getWidth(), this.getHeight());}};
+            JButton AnimalMaster = new JButton(TTsGames[0]);
+            JButton Detektiv_Adler = new JButton(TTsGames[1]);
+            JButton Detektiv_Thunder = new JButton(TTsGames[2]);
+            JButton Settings = new JButton(TTsGames[3]);
             JSlider volumeSlider = new VolumeSlider(0, 100, volume, new Color(162, 247, 255), new Color(200, 0, 255));
-            JButton Settings_Dev = new JButton(TTsGames[5]) {public void paintComponent(Graphics g) {super.paintComponent(g);g.setColor(new Color(68, 68, 68, 200));g.fillRect(0, 0, this.getWidth(), this.getHeight());}};
-            JButton SDtrue = new JButton(TTsGames[6]) {public void paintComponent(Graphics g) {super.paintComponent(g);g.setColor(new Color(68, 68, 68, 200));g.fillRect(0, 0, this.getWidth(), this.getHeight());}};
-            JButton SDfalse = new JButton(TTsGames[7]) {public void paintComponent(Graphics g) {super.paintComponent(g);g.setColor(new Color(68, 68, 68, 200));g.fillRect(0, 0, this.getWidth(), this.getHeight());}};
-            JButton changeUsername = new JButton(TTsGames[26]) {public void paintComponent(Graphics g) {super.paintComponent(g);g.setColor(new Color(68, 68, 68, 200));g.fillRect(0, 0, this.getWidth(), this.getHeight());}};
-            JButton Settings_Back = new JButton(TTsGames[4]) {public void paintComponent(Graphics g) {super.paintComponent(g);g.setColor(new Color(68, 68, 68, 200));g.fillRect(0, 0, this.getWidth(), this.getHeight());}};
-            JButton Credits = new JButton("Credits") {public void paintComponent(Graphics g) {super.paintComponent(g);g.setColor(new Color(68, 68, 68, 200));g.fillRect(0, 0, this.getWidth(), this.getHeight());}};
+            JButton Settings_Dev = new JButton(TTsGames[5]);
+            JButton SDtrue = new JButton(TTsGames[6]);
+            JButton SDfalse = new JButton(TTsGames[7]);
+            JButton changeUsername = new JButton(TTsGames[26]);
+            JButton Settings_Back = new JButton(TTsGames[4]);
+            JButton Credits = new JButton("Credits");
             JLabel Credits1 = new JLabel(TTsGames[8]), Credits2 = new JLabel(TTsGames[9]), Credits3 = new JLabel(TTsGames[10]), Credits4 = new JLabel(TTsGames[11]), Credits5 = new JLabel(TTsGames[12]);
-            JButton CreditsBack = new JButton(TTsGames[4]) {public void paintComponent(Graphics g) {super.paintComponent(g);g.setColor(new Color(68, 68, 68, 200));g.fillRect(0, 0, this.getWidth(), this.getHeight());}};
+            JButton CreditsBack = new JButton(TTsGames[4]);
             BorderPanel games = new BorderPanel(TTsGames[13], new Color(68, 68, 68, 200), true);
             BorderPanel gameInfo = new BorderPanel(TTsGames[14], new Color(68, 68, 68, 200), true);
             JLabel iAnimalMaster = new JLabel(TTsGames[15]), iDetektivAdler = new JLabel(TTsGames[16]), iDetektivThunder = new JLabel(TTsGames[17]);
             JLabel placeholder = new JLabel();
-            JButton statistics = new JButton(TTsGames[19]) {public void paintComponent(Graphics g) {super.paintComponent(g);g.setColor(new Color(68, 68, 68, 200));g.fillRect(0, 0, this.getWidth(), this.getHeight());}};
-            JButton statisticsBack = new JButton(TTsGames[4]) {public void paintComponent(Graphics g) {super.paintComponent(g);g.setColor(new Color(68, 68, 68, 200));g.fillRect(0, 0, this.getWidth(), this.getHeight());}};
+            JButton statistics = new JButton(TTsGames[19]);
+            JButton statisticsBack = new JButton(TTsGames[4]);
             BorderPanel statisticsPanel = new BorderPanel(TTsGames[23], new Color(68, 68, 68, 200), true);
             JLabel animalMasterTime = new JLabel(TTsGames[20] + checkTime(AnimalMasterTime[2]) + TTsGames[21]);
             BorderPanel hello = new BorderPanel(TTsGames[24], new Color(68, 68, 68, 200), true);
+            BorderPanel sizeSettings = new BorderPanel(Text.translatable("common.size"), new Color(68, 68, 68, 200), true);
+
+            //Resizable Settings AnimalMaster
+            JButton[] sizes = {
+                    new JButton("1"), new JButton("1.25"), new JButton("1.5"), new JButton("1.75"), new JButton("2")
+            };
+
+
 
             if (!setUsername) {
                 games.setVisible(false);
@@ -59,14 +68,13 @@ public class Window {
             }
 
             if (dev) {
-                games.setPreferredSize(new Dimension(160, 135));
-            } else {
-                games.setPreferredSize(new Dimension(160, 98));
-            }
-            if (dev) {
+                games.setPreferredSize(new Dimension(140, 135));
                 gameInfo.setPreferredSize(new Dimension(200, 135));
+                sizeSettings.setPreferredSize(new Dimension(65, 135));
             } else {
+                games.setPreferredSize(new Dimension(140, 98));
                 gameInfo.setPreferredSize(new Dimension(200, 98));
+                sizeSettings.setPreferredSize(new Dimension(65, 98));
             }
             hello.setPreferredSize(new Dimension(350, 30));
             statisticsPanel.setPreferredSize(new Dimension(350, 200));
@@ -82,16 +90,22 @@ public class Window {
             for (Component component : GameIno) {
                 gameInfo.add(component);
             }
-
+            for (Component component : sizes) {
+                sizeSettings.add(component);
+            }
             statisticsPanel.add(animalMasterTime);
             Component[] doStandardButtonstuff = {
                     AnimalMaster, Detektiv_Adler, Detektiv_Thunder, Settings, Settings_Back, Credits, CreditsBack,
                     Settings_Dev, SDtrue, SDfalse, statistics, statisticsBack, changeUsername
             };
             for (Component component : doStandardButtonstuff) {
-                ((JButton) component).setOpaque(false);
-                ((JButton) component).setContentAreaFilled(true);
                 component.setForeground(BLACK);
+                component.setBackground(new Color(68, 68, 68));
+                component.setFocusable(false);
+            }
+            for (Component component : sizes) {
+                component.setForeground(BLACK);
+                component.setBackground(new Color(68, 68, 68));
                 component.setFocusable(false);
             }
 
@@ -121,9 +135,9 @@ public class Window {
             Component[] setPrefferendSizeButtonSize = {
                     Settings, languageSelection, Settings_Back, Credits, CreditsBack, statistics, statisticsBack
             };
-            AnimalMaster.setPreferredSize(new Dimension(150, 30));
-            Detektiv_Adler.setPreferredSize(new Dimension(150, 30));
-            Detektiv_Thunder.setPreferredSize(new Dimension(150, 30));
+            AnimalMaster.setPreferredSize(new Dimension(133, 30));
+            Detektiv_Adler.setPreferredSize(new Dimension(133, 30));
+            Detektiv_Thunder.setPreferredSize(new Dimension(133, 30));
             iAnimalMaster.setPreferredSize(new Dimension(190, 30));
             iDetektivAdler.setPreferredSize(new Dimension(190, 30));
             iDetektivThunder.setPreferredSize(new Dimension(190, 30));
@@ -132,6 +146,9 @@ public class Window {
             Settings_Dev.setPreferredSize(new Dimension(200, 30));
             SDtrue.setPreferredSize(new Dimension(200, 30));
             SDfalse.setPreferredSize(new Dimension(200, 30));
+            for (Component component : sizes) {
+                component.setPreferredSize(new Dimension(58, 30));
+            }
             for (Component component : setPrefferendSizeButtonSize) {
                 component.setPreferredSize(buttonSize);
             }
@@ -144,7 +161,7 @@ public class Window {
             Background.add(panel);
 
             Component[] addToPanel = {
-                    hello, games, gameInfo, placeholder, Settings, languageSelection, volumeSlider, changeUsername, Settings_Dev, SDtrue, SDfalse,
+                    hello, games, sizeSettings, gameInfo, placeholder, Settings, languageSelection, volumeSlider, changeUsername, Settings_Dev, SDtrue, SDfalse,
                     Settings_Back, Credits, Credits1, Credits2, Credits3, Credits4, Credits5, CreditsBack, usernameInput,
                     statistics, statisticsPanel,statisticsBack
             };
@@ -152,11 +169,22 @@ public class Window {
                 panel.add(component);
             }
 
+            for (Component component : sizes) {
+                component.setVisible(false);
+            }
+
+            if (a == 1.0) sizes[0].setVisible(true);
+            else if (a == 1.25) sizes[1].setVisible(true);
+            else if (a == 1.5) sizes[2].setVisible(true);
+            else if (a == 1.75) sizes[3].setVisible(true);
+            else if (a == 2.0) sizes[4].setVisible(true);
+
+
             AnimalMaster.addActionListener(e -> {
                 if (!alreadyStarted[0] && !fAMReset) {
                     logger.setInstance(TTsLogger.Instance.ANIMAL_MASTER);
                     MainWindow = false;
-                    new AnimalMaster(false, windows[0].getLocation(), new Dimension(420, 210));
+                    new AnimalMaster(false, windows[0].getLocation(), new Dimension((int) (420 * a), (int) (210 * a)));
                     alreadyStarted[0] = true;
                     windows[0].setVisible(false);
                     started = "AnimalMaster";
@@ -195,6 +223,7 @@ public class Window {
                 Settings_Dev.setVisible(true);
                 games.setVisible(false);
                 gameInfo.setVisible(false);
+                sizeSettings.setVisible(false);
                 placeholder.setVisible(false);
                 Credits.setVisible(false);
                 Settings.setVisible(false);
@@ -212,6 +241,7 @@ public class Window {
                 Settings_Back.setVisible(false);
                 games.setVisible(true);
                 gameInfo.setVisible(true);
+                sizeSettings.setVisible(true);
                 placeholder.setVisible(true);
                 Credits.setVisible(true);
                 Settings.setVisible(true);
@@ -223,12 +253,12 @@ public class Window {
             languageSelection.addActionListener(e -> {
                 configLoader.setLanguage((String) languageSelection.getSelectedItem());
                 language = (String) languageSelection.getSelectedItem();
-                System.exit(0);
             });
             Credits.addActionListener(e -> {
                 Credits.setVisible(false);
                 games.setVisible(false);
                 gameInfo.setVisible(false);
+                sizeSettings.setVisible(false);
                 placeholder.setVisible(false);
                 Settings.setVisible(false);
                 Credits1.setVisible(true);
@@ -248,6 +278,7 @@ public class Window {
                 Credits.setVisible(true);
                 games.setVisible(true);
                 gameInfo.setVisible(true);
+                sizeSettings.setVisible(true);
                 placeholder.setVisible(true);
                 Settings.setVisible(true);
                 Credits1.setVisible(false);
@@ -329,7 +360,7 @@ public class Window {
             volumeSlider.addChangeListener(e -> {
                 configLoader.setVolume(volumeSlider.getValue());
                 volume = volumeSlider.getValue();
-                setVolume(volume);
+                setVolume((float) volume);
             });
             usernameInput.addKeyListener(new KeyAdapter() {
                 @Override
@@ -360,6 +391,7 @@ public class Window {
                 statisticsBack.setVisible(true);
                 games.setVisible(false);
                 gameInfo.setVisible(false);
+                sizeSettings.setVisible(false);
                 placeholder.setVisible(false);
                 Credits.setVisible(false);
                 Settings.setVisible(false);
@@ -371,6 +403,7 @@ public class Window {
                 statisticsBack.setVisible(false);
                 games.setVisible(true);
                 gameInfo.setVisible(true);
+                sizeSettings.setVisible(true);
                 placeholder.setVisible(true);
                 Credits.setVisible(true);
                 Settings.setVisible(true);
@@ -378,8 +411,34 @@ public class Window {
                 hello.setVisible(true);
             });
 
+            sizes[0].addActionListener(e -> {
+                configLoader.setAnimal_master_size_multiplier(1.25);
+                sizes[0].setVisible(false);
+                sizes[1].setVisible(true);
+            });
+            sizes[1].addActionListener(e -> {
+                configLoader.setAnimal_master_size_multiplier(1.5);
+                sizes[1].setVisible(false);
+                sizes[2].setVisible(true);
+            });
+            sizes[2].addActionListener(e -> {
+                configLoader.setAnimal_master_size_multiplier(1.75);
+                sizes[2].setVisible(false);
+                sizes[3].setVisible(true);
+            });
+            sizes[3].addActionListener(e -> {
+                configLoader.setAnimal_master_size_multiplier(2.0);
+                sizes[3].setVisible(false);
+                sizes[4].setVisible(true);
+            });
+            sizes[4].addActionListener(e -> {
+                configLoader.setAnimal_master_size_multiplier(1.0);
+                sizes[4].setVisible(false);
+                sizes[0].setVisible(true);
+            });
 
-            WindowOperations(0, resizable, new Dimension(420, 350), new Point(800, 500), Textures[0][0], Background);
+
+            WindowOperations(0, resizable, new Dimension(500, 400), new Point(800, 500), Textures[0][0], Background);
             timer(() -> {
                 if (fAM) {
                     fAM = false;

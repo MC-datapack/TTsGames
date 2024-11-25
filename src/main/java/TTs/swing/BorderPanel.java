@@ -31,9 +31,9 @@ public class BorderPanel extends JPanel {
         setBorder(BorderFactory.createLineBorder(Color.BLACK, thickness, rounded));
         setOpaque(false);
     }
-    public BorderPanel(boolean rounded) {
-        setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, rounded));
-        setOpaque(false);
+    public BorderPanel(boolean Opaque) {
+        setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, false));
+        setOpaque(Opaque);
     }
     public BorderPanel(String text, Color textColor) {
         textL = new JLabel(text);

@@ -34,6 +34,7 @@ public class Main {
     public static float[] AnimalMasterTime = new float[3];
     public static boolean MainWindow = true, dev, AnimalMaster, DetektivAdler, setUsername, fAM = false, fAMReset = false;
     public static boolean[] alreadyStarted = {false, false};
+    public static double a;
 
     public static URI uri;
     public static FloatControl volumeControl;
@@ -63,6 +64,7 @@ public class Main {
         Username = configLoader.getUsername();
         setUsername = !Objects.equals(Username, "௹⨌{UsernameDe}");
         AnimalMasterTime[2] = configLoader.getAnimalMasterTimeRecord();
+        a = configLoader.getAnimal_master_size_multiplier();
         logger.debug("Loaded config");
 
         translations = new Translations();
@@ -255,9 +257,7 @@ public class Main {
                 float min = volumeControl.getMinimum();
                 float max = volumeControl.getMaximum();
                 volume = min + (volume / 100) * (max - min);
-                if (volumeControl != null) {
-                    volumeControl.setValue(Math.min(Math.max(volume, min), max));
-                }
+                if (volumeControl != null) volumeControl.setValue(Math.min(Math.max(volume, min), max));
             }
         }
     }

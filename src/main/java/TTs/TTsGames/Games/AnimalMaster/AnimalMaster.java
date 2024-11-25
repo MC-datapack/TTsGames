@@ -17,15 +17,16 @@ public class AnimalMaster {
     BorderPanel[] questions = new BorderPanel[13], komplimente = new BorderPanel[13], beleidigungen = new BorderPanel[13], Correct = new BorderPanel[15];
     JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10)); JButton informations = new JButton(Informations[0]);
     JLabel placeholder = new JLabel("                           "), placeholderLarge = new JLabel("                                                          ");
-    Dimension[] buttonSizes = {new Dimension(102, 30), new Dimension(118, 30), new Dimension(133, 30),
-            new Dimension(200, 30), new Dimension(300, 30), new Dimension(360, 30)};
+    Dimension[] buttonSizes = {new Dimension((int) (102 * a), (int) (30 * a)), new Dimension((int) (118 * a), (int) (30 * a)),
+            new Dimension((int) (133 * a), (int) (30 * a)), new Dimension((int) (200 * a), (int) (30 * a)),
+            new Dimension((int) (300 * a), (int) (30 * a)), new Dimension((int) (360 * a), (int) (30 * a))};
     JButton Auswertung = new JButton(NextButtons[1]), Auswertung2 = new JButton(NextButtons[1]), HardQuestions = new JButton(NextButtons[2]),
     big = new JButton(Text.translatable("animal_master.picture.big"));
     public AnimalMaster(boolean resizable, Point location, Dimension size) { AnimalMasterTime[0] = System.nanoTime() + 1000000000;
         windows[1] = new JFrame(TTsGames[0] + Versions[1]); startedVersion = Versions[1];
         panel.setOpaque(false); panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 50, 10));
         for (int i = 0; i < 39; i++) answers[i] = new JButton(AnswerButtons[i]); for (int i = 0; i < 37; i++) ImagePanels[i] = Textures[1][i].toImagePanel();
-        ImagePanels[0].setLayout(new BorderLayout()); ImagePanels[0].setSize(420, 171); ImagePanels[0].add(panel);
+        ImagePanels[0].setLayout(new BorderLayout()); ImagePanels[0].setSize((int) (420 * a), (int) (171 * a)); ImagePanels[0].add(panel);
         for (int i = 0; i < 13; i++) {next[i] = new JButton(NextButtons[0]); next[i].setBackground(buttonColors[ThreadLocalRandom.current().nextInt(buttonColors.length)]);
             questions[i] = new BorderPanel(Questions[i], Color.BLACK, true);
             questions[i].setBackground(buttonColors[ThreadLocalRandom.current().nextInt(buttonColors.length)]);
@@ -42,7 +43,8 @@ public class AnimalMaster {
                 ((JButton) component).setOpaque(true); ((JButton) component).setContentAreaFilled(true); component.setBackground(buttonColors[ThreadLocalRandom.current().nextInt(buttonColors.length)]);
                 component.setForeground(Color.BLACK); component.setFocusable(false); component.setVisible(false); panel.add(component, "South");}
         questions[0].setVisible(true); answers[0].setVisible(true); answers[1].setVisible(true); answers[2].setVisible(true);
-        for (ImagePanel component : ImagePanels) {windows[1].add(component, "South"); component.setLayout(new BorderLayout()); component.setSize(420, 171); component.setVisible(false);}
+        for (ImagePanel component : ImagePanels) {windows[1].add(component, "South"); component.setLayout(new BorderLayout(10, 100));
+            component.setSize((int) (420 * a), (int) (190 * a)); component.setVisible(false);}
         ImagePanels[0].setVisible(true); ImagePanels[0].add(panel, "South");
         Component[][] setPrefferendSizeButtonSize = {answers, next, {informations, big}}; Component[] setPrefferendSizeButtonSize2 = {Auswertung, Auswertung2};
         for (Component[] componentArray : setPrefferendSizeButtonSize) for (Component component : componentArray) component.setPreferredSize(buttonSizes[1]);
@@ -51,7 +53,7 @@ public class AnimalMaster {
         for (Component component : questions) component.setPreferredSize(buttonSizes[5]);
         for (Component component : beleidigungen) component.setPreferredSize(buttonSizes[5]);
         for (Component component : komplimente) component.setPreferredSize(buttonSizes[5]);
-        for (BorderPanel component : Correct) component.setPreferredSize(new Dimension(380, 35)); //TODO ACTION LISTENER
+        for (BorderPanel component : Correct) component.setPreferredSize(new Dimension((int) (380 * a), (int) (35 * a))); //TODO ACTION LISTENER
         for (int i = 0; i < 13; i++) Answer(i);
         Next(new int[]{7, 12});
         next[7].addActionListener(e -> {informations.setVisible(false); Auswertung.setVisible(true);komplimente[7].setVisible(false); beleidigungen[7].setVisible(false);

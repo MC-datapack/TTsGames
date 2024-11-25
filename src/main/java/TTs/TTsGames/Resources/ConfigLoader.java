@@ -16,12 +16,12 @@ public class ConfigLoader {
 
     // Property Keys
     private static final String[] KEYS = {
-            "language", "devVersions", "volume", "username", "animalMasterTimeRecord"
+            "language", "devVersions", "volume", "username", "animalMasterTimeRecord", "animal_master_size_multiplier"
     }, DEFAULT_SETTINGS = {
-            "Deutsch", "false", "100", "௹⨌{UsernameDe}", "-1"
+            "Deutsch", "false", "100", "௹⨌{UsernameDe}", "-1", "1.0"
     };
     private final String[][] ALLOWED_SETTINGS = {
-            Languages, BOOLEAN, IntS(0, 100), {}, {}
+            Languages, BOOLEAN, IntS(0, 100), {}, {}, {}
     };
 
     public ConfigLoader() {
@@ -52,6 +52,7 @@ public class ConfigLoader {
                 properties.setProperty(KEYS[2], DEFAULT_SETTINGS[2]);
                 properties.setProperty(KEYS[3], DEFAULT_SETTINGS[3]);
                 properties.setProperty(KEYS[4], DEFAULT_SETTINGS[4]);
+                properties.setProperty(KEYS[5], DEFAULT_SETTINGS[5]);
                 properties.store(output, null);
                 logger.info("Default config.properties file created.");
             } catch (IOException e) {
@@ -81,6 +82,10 @@ public class ConfigLoader {
         }
         if (properties.getProperty(KEYS[4]) == null) {
             properties.setProperty(KEYS[4], DEFAULT_SETTINGS[4]);
+            saveProperties();
+        }
+        if (properties.getProperty(KEYS[5]) == null) {
+            properties.setProperty(KEYS[5], DEFAULT_SETTINGS[5]);
             saveProperties();
         }
     }
@@ -126,6 +131,12 @@ public class ConfigLoader {
 
     public void setAnimalMasterTimeRecord(float timeRecord) {
         properties.setProperty(KEYS[4], String.valueOf(timeRecord));
+        saveProperties();
+    }
+
+    public double getAnimal_master_size_multiplier() {return Double.parseDouble(properties.getProperty(KEYS[5]));}
+    public void setAnimal_master_size_multiplier(double value) {
+        properties.setProperty(KEYS[5], String.valueOf(value));
         saveProperties();
     }
 }

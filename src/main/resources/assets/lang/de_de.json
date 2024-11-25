@@ -28,6 +28,7 @@
   "common.restart": "(dafür bitte neustarten)",
   "common.username.not_allowed": "Dieser Name ist nicht erlaubt.",
   "common.text.username": "Benutzername ändern",
+  "common.size": "Größe",
 
   "animal_master.questions1": "1. Welches Tier ist das größte Landtier welches jemals lebte?",
   "animal_master.questions2": "2. Welches Tier miaut?                                       ",
