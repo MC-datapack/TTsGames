@@ -6,7 +6,7 @@ import java.util.Map;
 import static TTs.TTsGames.Main.*;
 
 public class Text {
-    private static final Map<String, String> languageMap = jsonReader.tTsGamesJSONFormat != null ? jsonReader.tTsGamesJSONFormat.getLanguageMap() : null;
+    private static final Map<String, String> languageMap = jsonReader.mainJSON != null ? jsonReader.mainJSON.getLanguageMap() : null;
     private static String language() {return languageMap.getOrDefault(configLoader.getLanguage(), null);}
     public static final Map<String, String> translations = jsonReader.TranslationJsonFile(language());
 

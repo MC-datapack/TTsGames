@@ -46,7 +46,7 @@ public class Main {
         logger = new TTsLogger(TTsLogger.Instance.TTS_GAMES);
         logger.debug("Initialized Logger");
 
-        jsonReader = new JsonReader();
+        jsonReader = new JsonReader("TTsGames.json");
         Versions = jsonReader.getVersions();
         Languages = jsonReader.getLanguages();
         Textures = jsonReader.getTextures();
@@ -79,12 +79,9 @@ public class Main {
         logger.debug("Opened Window");
 
         timer(() -> {
-            if (started != null) {
-                logger.check("Check  Started: " + started + " Version: " + startedVersion);
-            } else {
-                logger.check("Check  Started: " + "nothing");
-            }
-        }, 0,1000);
+            if (started != null) logger.check("Check  Started: " + started + " Version: " + startedVersion);
+            else logger.check("Check  Started: " + "nothing");
+        }, 1000,1000);
     }
 
     public static Timer timer(Runnable task, long delay) {

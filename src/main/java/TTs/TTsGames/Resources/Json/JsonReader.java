@@ -20,12 +20,12 @@ import java.util.Map;
 import static TTs.TTsGames.Main.logger;
 
 public class JsonReader {
-    public final TTsGamesJSONFormat tTsGamesJSONFormat;
-    public final ColorJSONFormat colorJSONFormat;
-    List<ColorJSONFormat.ColorRepresentation> colorReps;
-    public JsonReader() {
-        tTsGamesJSONFormat = readJsonFile("TTsGames.json");
-        colorJSONFormat = readColorJsonFile(tTsGamesJSONFormat.getAnimal_master_button_colors());
+    public final TTsGamesJSONFormat mainJSON;
+    public final ColorJSONFormat colorJSON;
+    ColorJSONFormat.ColorRepresentation[] colorReps;
+    public JsonReader(String TTsGamesJsonPath) {
+        mainJSON = readJsonFile(TTsGamesJsonPath);
+        colorJSON = readColorJsonFile(mainJSON.getData()[1][0]);
     }
 
     private static final Gson gson = new Gson();
@@ -50,16 +50,16 @@ public class JsonReader {
     }
 
     public String[] UnallowedUsernames() {
-        return ValuesStandard("values", UnallowedUsernamePath(), String[].class);
+        return ValuesStandard("values", mainJSON.getData()[0][0], String[].class);
     }
     public boolean[] AMCorrect() {
-        return ValuesStandard("values", AMCorrectPath(), boolean[].class);
+        return ValuesStandard("values", mainJSON.getData()[1][1], boolean[].class);
     }
     public int[] AMSelectedAnimal() {
-        return ValuesStandard("values", AMSelectedPath(), int[].class);
+        return ValuesStandard("values", mainJSON.getData()[1][2], int[].class);
     }
     public String[] AnswerTranslationKeys() {
-        return ValuesStandard("values", AMTranslationKeyPath(), String[].class);
+        return ValuesStandard("values", mainJSON.getData()[1][3], String[].class);
     }
 
     public TTsGamesJSONFormat readJsonFile(String filePath) {
@@ -92,8 +92,7 @@ public class JsonReader {
             if (inputStream == null) {
                 logger.error("File not found: " + filePath); return null;
             }
-            Type colorListType = new TypeToken<List<ColorJSONFormat.ColorRepresentation>>(){}.getType();
-             colorReps = gson.fromJson(reader, colorListType);
+            colorReps = gson.fromJson(reader, ColorJSONFormat.ColorRepresentation[].class);
             return gson.fromJson(reader, VERSION_TYPE);
         } catch (IOException e) {
             logger.error("Failed to read the Json File: ", e); return null;
@@ -122,35 +121,33 @@ public class JsonReader {
     }
 
     public String[] getVersions() {
-        return tTsGamesJSONFormat != null ? tTsGamesJSONFormat.toStringArray() : new String[0];
+        return mainJSON != null ? mainJSON.getVersions() : new String[0];
     }
     public String[] getLanguages() {
-        return tTsGamesJSONFormat != null && tTsGamesJSONFormat.getLanguages() != null ? tTsGamesJSONFormat.getLanguages().toArray(new String[0]) : new String[0];
+        return mainJSON != null && mainJSON.getLanguages() != null ? mainJSON.getLanguages() : new String[0];
     }
     public String getNoTextureFile() {
-        return tTsGamesJSONFormat.getNo_texture_file();
+        return mainJSON.getNo_texture_file();
     }
     public ImageString[][] getTextures() {
-        if (tTsGamesJSONFormat != null && tTsGamesJSONFormat.getTextures() != null) {
-            List<List<String>> animalsList = tTsGamesJSONFormat.getTextures();
-            ImageString[][] animalsArray = new ImageString[animalsList.size()][];
+        if (mainJSON != null && mainJSON.getTextures() != null) {
+            String[][] animalsList = mainJSON.getTextures();
+            ImageString[][] animalsArray = new ImageString[animalsList.length][];
 
-            for (int i = 0; i < animalsList.size(); i++) {
-                List<String> sublist = animalsList.get(i);
-                animalsArray[i] = ImageString.parseImageString(sublist.toArray(new String[0]));
+            for (int i = 0; i < animalsList.length; i++) {
+                animalsArray[i] = ImageString.parseImageString(animalsList[i]);
             }
             return animalsArray;
         }
         return new ImageString[0][0];
     }
     public SoundString[][] getSounds() {
-        if (tTsGamesJSONFormat != null && tTsGamesJSONFormat.getSounds() != null) {
-            List<List<String>> soundList = tTsGamesJSONFormat.getSounds();
-            SoundString[][] soundArray = new SoundString[soundList.size()][];
+        if (mainJSON != null && mainJSON.getSounds() != null) {
+            String[][] sounds = mainJSON.getSounds();
+            SoundString[][] soundArray = new SoundString[sounds.length][];
 
-            for (int i = 0; i < soundList.size(); i++) {
-                List<String> sublist = soundList.get(i);
-                soundArray[i] = SoundString.parseSoundsString(sublist.toArray(new String[0]));
+            for (int i = 0; i < sounds.length; i++) {
+                soundArray[i] = SoundString.parseSoundsString(sounds[i]);
             }
             return soundArray;
         }
@@ -158,9 +155,9 @@ public class JsonReader {
     }
 
     public Color[] getColors() {
-        Color[] colors = new Color[colorReps.size()];
-        for (int i = 0; i < colorReps.size(); i++) {
-            ColorJSONFormat.ColorRepresentation colorRep = colorReps.get(i);
+        Color[] colors = new Color[colorReps.length];
+        for (int i = 0; i < colorReps.length; i++) {
+            ColorJSONFormat.ColorRepresentation colorRep = colorReps[i];
             if (colorRep.getR() == 0 && colorRep.getG() == 0 && colorRep.getB() == 0) {
                 colors[i] = new Color(colorRep.getRGB());
             } else {
@@ -168,21 +165,5 @@ public class JsonReader {
             }
         }
         return colors;
-    }
-
-    public String UnallowedUsernamePath() {
-        return tTsGamesJSONFormat.getUnallowedUsernames();
-    }
-
-    public String AMCorrectPath() {
-        return tTsGamesJSONFormat.getAnimal_master_correct();
-    }
-
-    public String AMSelectedPath() {
-        return tTsGamesJSONFormat.getAnimal_master_selected();
-    }
-
-    public String AMTranslationKeyPath() {
-        return tTsGamesJSONFormat.getAnimal_master_answer_trans_key();
     }
 }

@@ -15,7 +15,7 @@ import static TTs.TTsGames.Resources.Translations.*;
 public class AnimalMaster {
     public static int selectedAnimal, correct = 0; JButton[] answers = new JButton[39], next = new JButton[13];ImagePanel[] ImagePanels = new ImagePanel[37];
     BorderPanel[] questions = new BorderPanel[13], komplimente = new BorderPanel[13], beleidigungen = new BorderPanel[13], Correct = new BorderPanel[15];
-    JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10)); JButton informations = new JButton(Informations[0]);
+    JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, (int) (10 * a), (int) (10 * a))); JButton informations = new JButton(Informations[0]);
     JLabel placeholder = new JLabel("                           "), placeholderLarge = new JLabel("                                                          ");
     Dimension[] buttonSizes = {new Dimension((int) (102 * a), (int) (30 * a)), new Dimension((int) (118 * a), (int) (30 * a)),
             new Dimension((int) (133 * a), (int) (30 * a)), new Dimension((int) (200 * a), (int) (30 * a)),
