@@ -10,8 +10,8 @@ import static dev.TTs.TTsGames.Main.*;
 @SuppressWarnings("unused")
 public class ConfigLoader {
     private final Properties properties = new Properties();
-    private static final String CONFIG_DIR_PATH = jsonReader.getMainJSON().getConfig().getDir_path();
-    private static final String CONFIG_FILE_PATH = jsonReader.getMainJSON().getConfig().getFile_path();
+    private static final String CONFIG_DIR_PATH = jsonReader.MainJSON.getConfig().getDir_path();
+    private static final String CONFIG_FILE_PATH = jsonReader.MainJSON.getConfig().getFile_path();
     private static final String[] BOOLEAN = {"true", "false"};
 
     // Property Keys

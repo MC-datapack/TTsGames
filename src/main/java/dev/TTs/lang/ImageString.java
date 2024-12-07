@@ -40,7 +40,7 @@ public final class ImageString {
     public URL toURL() {
         URL resource = ImageString.class.getResource("/" + this.toString());
         if (resource == null) {
-            return ImageString.class.getResource("/" + jsonReader.getMainJSON().getNoTextureFile());
+            return ImageString.class.getResource("/" + jsonReader.MainJSON.getNoTextureFile());
         }
         return resource;
     }

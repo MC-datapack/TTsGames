@@ -1,5 +1,7 @@
 package dev.TTs.TTsGames.Resources;
 
+import dev.TTs.TTsGames.Resources.Json.Text;
+
 import static dev.TTs.TTsGames.Main.jsonReader;
 
 public final class Translations {

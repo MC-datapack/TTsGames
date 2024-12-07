@@ -5,38 +5,13 @@ import dev.TTs.TTsGames.Games.DetektivThunder.Close;
 import dev.TTs.TTsGames.Resources.ConfigLoader;
 import dev.TTs.TTsGames.Resources.Json.JsonReader;
 import dev.TTs.TTsGames.Resources.*;
-import groovy.lang.Closure;
-import org.gradle.BuildListener;
-import org.gradle.BuildResult;
-import org.gradle.StartParameter;
-import org.gradle.api.Action;
-import org.gradle.api.Project;
-import org.gradle.api.ProjectEvaluationListener;
-import org.gradle.api.UnknownDomainObjectException;
-import org.gradle.api.artifacts.dsl.Dependencies;
-import org.gradle.api.execution.TaskExecutionGraph;
-import org.gradle.api.initialization.IncludedBuild;
-import org.gradle.api.initialization.Settings;
-import org.gradle.api.invocation.Gradle;
-import org.gradle.api.invocation.GradleLifecycle;
-import org.gradle.api.plugins.ExtensionContainer;
-import org.gradle.api.plugins.ObjectConfigurationAction;
-import org.gradle.api.plugins.PluginContainer;
-import org.gradle.api.plugins.PluginManager;
-import org.gradle.api.services.BuildServiceRegistry;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.math.BigInteger;
 import java.net.*;
-import java.sql.Array;
 import java.util.*;
-import java.util.List;
 import java.util.Timer;
-import java.util.stream.Collectors;
 
 import static dev.TTs.TTsGames.Games.DetektivThunder.DetektivThunder.startedClose;
 
@@ -70,13 +45,13 @@ public final class Main {
         logger.debug("Initialized Logger");
 
         jsonReader = new JsonReader("");
-        Versions = jsonReader.getMainJSON().getVersions();
-        Languages = jsonReader.getMainJSON().getLanguages();
-        Textures = jsonReader.getMainJSON().getTextures();
-        Sounds = jsonReader.getMainJSON().getSounds();
+        Versions = jsonReader.MainJSON.getVersions();
+        Languages = jsonReader.MainJSON.getLanguages();
+        Textures = jsonReader.MainJSON.getTextures();
+        Sounds = jsonReader.MainJSON.getSounds();
         unerlaubteNamen = jsonReader.UnallowedUsernames();
-        noTexture = jsonReader.getMainJSON().getNoTextureFile().toImage();
-        buttonColors = jsonReader.getColors();
+        noTexture = jsonReader.MainJSON.getNoTextureFile().toImage();
+        buttonColors = jsonReader.AMColors();
         logger.unimportant(unerlaubteNamen);
         logger.debug("Loaded JSON Files");
 
