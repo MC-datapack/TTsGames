@@ -36,7 +36,7 @@
 TTs Games is a normal Gradle Project using Gradle 8.10
 
 1. Download the sources
-2. Download Java 21 if not already installed
+2. Install Java 21 if not already installed
 3. Run the command ```gradlew build``` to build the jar file
 4. Go into the build/libs/, and you will find a jar file
 
