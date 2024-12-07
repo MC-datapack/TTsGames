@@ -1,6 +1,8 @@
 ![Icon](src/main/resources/assets/textures/TTsGames.jpg "Icon")
 # TTs Games
 
+### [Informations Regarding Resources](resources.md)
+
 TTs Games is a small collection of self-made simple games without 3D rendering.
 
 3D rendering may be included in a future release.
