@@ -18,7 +18,7 @@ public class ConfigLoader {
     private static final String[] KEYS = {
             "language", "devVersions", "volume", "username", "animalMasterTimeRecord", "animal_master_size_multiplier"
     }, DEFAULT_SETTINGS = {
-            "Deutsch", "false", "100", "௹⨌{UsernameDe}", "-1", "1.0"
+            "English", "false", "100", "௹⨌{UsernameDe}", "-1", "1.0"
     };
     private final String[][] ALLOWED_SETTINGS = {
             Languages, BOOLEAN, IntS(0, 100), {}, {}, {}
