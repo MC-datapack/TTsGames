@@ -8,21 +8,21 @@ version = project.version
 java {
     withSourcesJar()
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of("${project.java_version}")
     }
 }
 kotlin {
     jvmToolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of("${project.java_version}")
     }
 }
 sourceSets {
     main {
         java {
-            srcDirs = ['src/main/java']
+            srcDirs = ["${project.java_dir}"]
         }
         resources {
-            srcDirs = ['src/main/resources']
+            srcDirs = ["${project.resource_dir}"]
         }
     }
 }
@@ -31,24 +31,31 @@ repositories {
     maven {
         url 'https://jitpack.io'
     }
+    maven {
+        name = "javazoom"
+        url 'https://mavenlibs.com/maven/dependency'
+    }
 }
 dependencies {
+    implementation gradleApi()
     implementation "com.google.code.gson:gson:${project.gson_version}"
     implementation "com.github.umjammer:jlayer:${project.jlayer_version}"
     implementation "org.vineflower:vineflower:${project.vineflower_version}"
+    implementation "javazoom:jlayer:${project.jlayer_version}"
+    implementation "com.googlecode.soundlibs:mp3spi:${project.mp3spi_version}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 processResources {
     inputs.property "version", project.version
 
-    filesMatching("TTsGames.json") {
+    filesMatching(project.share_version) {
         expand "version": project.version
     }
 }
 jar {
     manifest {
         attributes(
-                'Main-Class': "TTs.TTsGames.Main"
+                'Main-Class': "${project.main_class}"
         )
     }
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -57,5 +64,5 @@ jar {
             it.isDirectory() ? it : zipTree(it)
         }
     }
-    from('src/main/resources')
+    from("${project.resource_dir}")
 }

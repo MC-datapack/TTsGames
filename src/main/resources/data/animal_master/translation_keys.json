@@ -1,0 +1,76 @@
+{
+  "questions": [
+	"animal_master.questions1",
+	"animal_master.questions2",
+	"animal_master.questions3",
+	"animal_master.questions4",
+	"animal_master.questions5",
+	"animal_master.questions6",
+	"animal_master.questions7",
+	"animal_master.questions8",
+	"animal_master.questions9",
+	"animal_master.questions10",
+	"animal_master.questions11",
+	"animal_master.questions12",
+	"animal_master.questions13"
+  ],
+  "buttons": [
+	"animal_master.answer.elefant", "animal_master.answer.brachiosaurus", "animal_master.answer.giraffe",
+	"animal_master.answer.löwe", "animal_master.answer.tiger", "animal_master.answer.katze",
+	"animal_master.answer.kakadu", "animal_master.answer.pinguin", "animal_master.answer.fledermaus",
+	"animal_master.answer.panda", "animal_master.answer.pinguin", "animal_master.answer.eisbär",
+	"animal_master.answer.elefant", "animal_master.answer.schmetterling", "animal_master.answer.hummel",
+	"animal_master.answer.delfin", "animal_master.answer.tigerhai", "animal_master.answer.fächerfisch",
+	"animal_master.answer.leopard", "animal_master.answer.gepard", "animal_master.answer.pferd",
+	"animal_master.answer.pottwal", "animal_master.answer.brachiosaurus", "animal_master.answer.blauwal",
+	"animal_master.answer.seewespe", "animal_master.answer.inlandtaipan", "animal_master.answer.steinfisch",
+	"animal_master.answer.tsetsefliege", "animal_master.answer.raubwanze", "animal_master.answer.moskitos",
+	"animal_master.answer.assel", "animal_master.answer.tausendfüßer", "animal_master.answer.hundertfüßer",
+	"animal_master.answer.islandmuschel", "animal_master.answer.riesenschwamm", "animal_master.answer.grönlandhai",
+	"animal_master.answer.fruchtfliege", "animal_master.answer.gastrotrichen", "animal_master.answer.eintagsfliege"
+  ],
+  "compliments": [
+	"animal_master.komplinemte1", "animal_master.komplinemte2", "animal_master.komplinemte3", "animal_master.komplinemte4", "animal_master.komplinemte5",
+	"animal_master.komplinemte6", "animal_master.komplinemte7", "animal_master.komplinemte8", "animal_master.komplinemte9", "animal_master.komplinemte10"
+  ],
+  "insults": [
+	"animal_master.beleidigungen1", "animal_master.beleidigungen2", "animal_master.beleidigungen3", "animal_master.beleidigungen4", "animal_master.beleidigungen5",
+	"animal_master.beleidigungen6", "animal_master.beleidigungen7", "animal_master.beleidigungen8", "animal_master.beleidigungen9", "animal_master.beleidigungen10"
+  ],
+  "results": [
+	"animal_master.resultate.0",
+	"animal_master.resultate.1",
+	"animal_master.resultate.2",
+	"animal_master.resultate.3",
+	"animal_master.resultate.4",
+	"animal_master.resultate.5",
+	"animal_master.resultate.6",
+	"animal_master.resultate.7",
+	"animal_master.resultate.8",
+	"animal_master.resultate.hard0",
+	"animal_master.resultate.hard1",
+	"animal_master.resultate.hard2",
+	"animal_master.resultate.hard3",
+	"animal_master.resultate.hard4",
+	"animal_master.resultate.hard5"
+  ],
+  "informations": [
+	"animal_master.information",
+	"animal_master.information.wikipedia_url.elefant", "animal_master.information.wikipedia_url.brachiosaurus", "animal_master.information.wikipedia_url.giraffe",
+	"animal_master.information.wikipedia_url.löwe", "animal_master.information.wikipedia_url.tiger", "animal_master.information.wikipedia_url.katze",
+	"animal_master.information.wikipedia_url.kakadu", "animal_master.information.wikipedia_url.pinguin", "animal_master.information.wikipedia_url.fledermaus",
+	"animal_master.information.wikipedia_url.panda", "animal_master.information.wikipedia_url.eisbär",
+	"animal_master.information.wikipedia_url.schmetterling", "animal_master.information.wikipedia_url.hummel",
+	"animal_master.information.wikipedia_url.delfin", "animal_master.information.wikipedia_url.tigerhai", "animal_master.information.wikipedia_url.fächerfisch",
+	"animal_master.information.wikipedia_url.leopard", "animal_master.information.wikipedia_url.gepard", "animal_master.information.wikipedia_url.pferd",
+	"animal_master.information.wikipedia_url.pottwal", "animal_master.information.wikipedia_url.blauwal",
+	"animal_master.information.wikipedia_url.seewespe", "animal_master.information.wikipedia_url.inlandtaipan", "animal_master.information.wikipedia_url.steinfisch",
+	"animal_master.information.wikipedia_url.tsetsefliege", "animal_master.information.wikipedia_url.raubwanze", "animal_master.information.wikipedia_url.moskitos",
+	"animal_master.information.wikipedia_url.assel", "animal_master.information.wikipedia_url.tausendfüßer", "animal_master.information.wikipedia_url.hundertfüßer",
+	"animal_master.information.wikipedia_url.islandmuschel", "animal_master.information.wikipedia_url.riesenschwamm", "animal_master.information.wikipedia_url.grönlandhai",
+	"animal_master.information.wikipedia_url.fruchtfliege", "animal_master.information.wikipedia_url.gastrotrichen", "animal_master.information.wikipedia_url.eintagsfliege"
+  ],
+  "other_buttons": [
+	"animal_master.next.question", "animal_master.next.auswertung", "animal_master.next.hard", "animal_master.picture.big", "animal_master.window.big"
+  ]
+}

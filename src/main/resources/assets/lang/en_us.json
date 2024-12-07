@@ -7,6 +7,7 @@
   "common.settings.dev_versions": "Development Versions",
   "common.settings.true": "On",
   "common.settings.false": "Off",
+  "common.credits": "Credits",
   "common.credits.image": "Bilder: Copilot(https://www.bing.com/chat?form=NTPCHB)",
   "common.credits.code": "Code: Timo Tewes",
   "common.credits.ideas": "Ideas: Thomas Tewes & Timo Tewes",

@@ -1,0 +1,16 @@
+{
+  //Count information
+    //Question (used for many more)
+    "q": 13,
+    //Answer
+    "a": 39,
+    //Images
+    "i": 37,
+    //Correct
+    "c": 15,
+  //Placeholder Text
+    //Normal
+    "p": "                           ",
+    //Large
+    "pl": "                                                          "
+}

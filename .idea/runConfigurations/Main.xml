@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Main" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="TTs.TTsGames.Main" />
-    <module name="TTsGames.main" />
+    <option name="MAIN_CLASS_NAME" value="dev.TTs.TTsGames.Main" />
+    <module name="TTsGames-2.0.main" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="T.T.TTsGames.*" />

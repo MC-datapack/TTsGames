@@ -1,0 +1,18 @@
+{
+  "games": [
+	"common.start.animal_master", "common.start.detektiv_adler", "common.start.detektiv_thunder",
+	"common.info.animal_master", "common.info.detektiv_adler", "common.info.detektiv_thunder"
+  ],
+  "settings": [
+	"common.settings", "common.settings.back", "common.settings.dev_versions", "common.text.username", "common.username", "common.size", "common.settings.true", "common.settings.false"
+  ],
+  "credits": [
+	"common.credits", "common.settings.back", "common.credits.image", "common.credits.code", "common.credits.ideas", "common.credits.speach", "common.credits.information"
+  ],
+  "statistics": [
+	"common.statistics", "common.settings.back","common.statistics.title", "common.statistics.animal_master_time", "common.seconds", "common.statistics.nothing"
+  ],
+  "other": [
+	"common.text.games", "common.text.info", "common.hello", "common.username.not_allowed"
+  ]
+}

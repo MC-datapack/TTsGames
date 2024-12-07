@@ -1,8 +1,8 @@
 {
-  "prerelease": true,
+  "prerelease": false,
   "version": {
 	"TTsGames": {
-	  "prerelease": "${version}",
+	  "release": "${version}",
 	  "group": "2.0"
 	},
 	"AnimalMaster": {
@@ -12,8 +12,12 @@
 	  "release": "1.3"
 	},
 	"DetektivThunder": {
-	  "prerelease": "2.0 build.5"
+	  "prerelease": "2.0 build.6"
 	}
+  },
+  "config": {
+	"dir_path": "AppData/Roaming/TTsGames",
+	"file_path": "config.properties"
   },
   "languages": [
 	"Deutsch",
@@ -23,62 +27,72 @@
 	"Deutsch": "assets/lang/de_de.json",
 	"English": "assets/lang/en_us.json"
   },
-  "textures_base_dictionary": "assets/textures",
+  "textures_base_dictionaries": [
+	"assets/textures", "assets/textures/animal_master", "assets/textures/detektiv_adler", "assets/textures/detektiv_thunder"
+  ],
   "no_texture_file": "no_texture.png",
   "textures": [
 	[
 	  "TTsGames.jpg", "TTsGames_Background.jpg"
 	],
 	[
-	  "animal_master/AnimalMaster_bottom.jpeg",
-	  "animal_master/animals/Elefant.jpeg", "animal_master/animals/Brachiosaurus.jpeg", "animal_master/animals/Giraffe.jpeg",
-	  "animal_master/animals/Löwe.jpeg", "animal_master/animals/Tiger.jpeg", "animal_master/animals/Katze.jpeg",
-	  "animal_master/animals/Kakadu.jpeg", "animal_master/animals/Pinguin.jpeg", "animal_master/animals/Fledermaus.jpeg",
-	  "animal_master/animals/Panda.jpeg", "animal_master/animals/Eisbär.jpeg",
-	  "animal_master/animals/Schmetterling.jpeg", "animal_master/animals/Hummel.jpeg",
-	  "animal_master/animals/Delfin.jpeg", "animal_master/animals/Tigerhai.jpeg", "animal_master/animals/Fächerfisch.jpeg",
-	  "animal_master/animals/Leopard.jpeg", "animal_master/animals/Gepard.jpeg", "animal_master/animals/Pferd.jpeg",
-	  "animal_master/animals/Pottwal.jpeg", "animal_master/animals/Blauwal.jpeg",
-	  "animal_master/animals/Seewespe.jpeg", "animal_master/animals/Inlandtaipan.jpeg", "animal_master/animals/Steinfisch.jpeg",
-	  "animal_master/animals/Tsetsefliege.jpeg", "animal_master/animals/Raubwanze.jpeg", "animal_master/animals/Moskitos.jpeg",
-	  "animal_master/animals/Assel.jpeg", "animal_master/animals/Tausendfüßer.jpeg", "animal_master/animals/Hundertfüßer.jpeg",
-	  "animal_master/animals/Islandmuschel.jpeg", "animal_master/animals/Riesenschwamm.jpeg", "animal_master/animals/Grönlandhai.jpeg",
-	  "animal_master/animals/Fruchtfliege.jpeg", "animal_master/animals/Gastrotrichen.jpeg", "animal_master/animals/Eintagsfliege.jpeg",
-	  "animal_master/AnimalMaster.jpeg"
+	  "AnimalMaster_bottom.jpeg",
+	  "animals/Elefant.jpeg", "animals/Brachiosaurus.jpeg", "animals/Giraffe.jpeg",
+	  "animals/Löwe.jpeg", "animals/Tiger.jpeg", "animals/Katze.jpeg",
+	  "animals/Kakadu.jpeg", "animals/Pinguin.jpeg", "animals/Fledermaus.jpeg",
+	  "animals/Panda.jpeg", "animals/Eisbär.jpeg",
+	  "animals/Schmetterling.jpeg", "animals/Hummel.jpeg",
+	  "animals/Delfin.jpeg", "animals/Tigerhai.jpeg", "animals/Fächerfisch.jpeg",
+	  "animals/Leopard.jpeg", "animals/Gepard.jpeg", "animals/Pferd.jpeg",
+	  "animals/Pottwal.jpeg", "animals/Blauwal.jpeg",
+	  "animals/Seewespe.jpeg", "animals/Inlandtaipan.jpeg", "animals/Steinfisch.jpeg",
+	  "animals/Tsetsefliege.jpeg", "animals/Raubwanze.jpeg", "animals/Moskitos.jpeg",
+	  "animals/Assel.jpeg", "animals/Tausendfüßer.jpeg", "animals/Hundertfüßer.jpeg",
+	  "animals/Islandmuschel.jpeg", "animals/Riesenschwamm.jpeg", "animals/Grönlandhai.jpeg",
+	  "animals/Fruchtfliege.jpeg", "animals/Gastrotrichen.jpeg", "animals/Eintagsfliege.jpeg",
+	  "AnimalMaster.jpeg"
 	],
 	[
-	  "detektiv_adler/DetektivAdler.jpg", "detektiv_adler/DetektivAdler_bottom.jpg",
-	  "detektiv_adler/Fälle/Fall1.jpg", "detektiv_adler/DiebOptionen/Fall1O1.jpg", "detektiv_adler/DiebOptionen/Fall1O2.jpg"
+	  "DetektivAdler.jpg", "DetektivAdler_bottom.jpg",
+	  "Fälle/Fall1.jpg", "DiebOptionen/Fall1O1.jpg", "DiebOptionen/Fall1O2.jpg"
 	],
 	[
-	  "detektiv_thunder/DetektivThunder.jpg", "detektiv_thunder/DetektivThunder_bottom.jpg",
-	  "detektiv_thunder/locations/Wache_0.png", "detektiv_thunder/locations/Kunstgalerie.png", "detektiv_thunder/locations/Kunstgalerie_Fingerabdruck_0.png"
+	  "DetektivThunder.jpg", "DetektivThunder_bottom.jpg",
+	  "locations/Wache_0.png", "locations/Kunstgalerie.png", "locations/Kunstgalerie_Fingerabdruck_0.png"
 	]
   ],
-  "sounds_base_dictionary": "assets/sounds",
+  "sounds_base_dictionaries": [
+	"assets/sounds", "assets/sounds/animal_master", "assets/sounds/detektiv_adler", "assets/sounds/detektiv_thunder"
+  ],
+  "sounds_file_types": [
+	".wav", ".wav", ".wav", ".wav"
+  ],
   "sounds": [
 	[],
 	[
-	  "animal_master/correct.wav", "animal_master/incorrect.wav"
+	  "correct", "incorrect"
 	],
 	[],
 	[
-	  "detektiv_thunder/phrases/001.wav", "detektiv_thunder/phrases/002.wav", "detektiv_thunder/phrases/003.wav", "detektiv_thunder/phrases/004.wav",
-	  "detektiv_thunder/phrases/005.wav", "detektiv_thunder/phrases/006.wav", "detektiv_thunder/phrases/007.wav"
+	  "phrases/001", "phrases/002", "phrases/003", "phrases/004",
+	  "phrases/005", "phrases/006", "phrases/007"
 	]
   ],
-  "data_base_dictionary": "data",
+  "data_base_dictionaries": [
+	"data/tts_games", "data/animal_master", "data/detektiv_adler", "data/detektiv_thunder"
+  ],
   "data": [
 	[
-	  "username/unallowed.json5"
+	  "unallowed_usernames.json5", "translation_keys.json"
 	],
 	[
-	  "animal_master/colors.json",
-	  "animal_master/correct.json",
-	  "animal_master/selected_animal.json",
-	  "animal_master/answer_translation_keys.json"
+	  "colors.json", "correct.json", "selected_animal.json", "translation_keys.json", "information.json5"
 	],
-	[],
-	[]
+	[
+	  "translation_keys.json"
+	],
+	[
+	  "translation_keys.json"
+	]
   ]
 }
