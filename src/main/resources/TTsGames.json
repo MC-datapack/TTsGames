@@ -8,10 +8,10 @@
 	"AnimalMaster": {
 	  "release": "7.0"
 	},
-	"DetektivAdler": {
+	"DetectiveEagle": {
 	  "release": "1.3"
 	},
-	"DetektivThunder": {
+	"DetectiveThunder": {
 	  "prerelease": "2.0 build.6"
 	}
   },
@@ -28,7 +28,7 @@
 	"English": "assets/lang/en_us.json"
   },
   "textures_base_dictionaries": [
-	"assets/textures", "assets/textures/animal_master", "assets/textures/detektiv_adler", "assets/textures/detektiv_thunder"
+	"assets/textures", "assets/textures/animal_master", "assets/textures/detective_eagle", "assets/textures/detective_thunder"
   ],
   "no_texture_file": "no_texture.png",
   "textures": [
@@ -62,7 +62,7 @@
 	]
   ],
   "sounds_base_dictionaries": [
-	"assets/sounds", "assets/sounds/animal_master", "assets/sounds/detektiv_adler", "assets/sounds/detektiv_thunder"
+	"assets/sounds", "assets/sounds/animal_master", "assets/sounds/detective_eagle", "assets/sounds/detective_thunder"
   ],
   "sounds_file_types": [
 	".wav", ".wav", ".wav", ".wav"
@@ -79,7 +79,7 @@
 	]
   ],
   "data_base_dictionaries": [
-	"data/tts_games", "data/animal_master", "data/detektiv_adler", "data/detektiv_thunder"
+	"data/tts_games", "data/animal_master", "data/detective_eagle", "data/detective_thunder"
   ],
   "data": [
 	[

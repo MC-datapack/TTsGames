@@ -1,7 +1,7 @@
 package dev.TTs.TTsGames;
 
 import dev.TTs.lang.*;
-import dev.TTs.TTsGames.Games.DetektivThunder.Close;
+import dev.TTs.TTsGames.Games.DetectiveThunder.Close;
 import dev.TTs.TTsGames.Resources.ConfigLoader;
 import dev.TTs.TTsGames.Resources.Json.JsonReader;
 import dev.TTs.TTsGames.Resources.*;
@@ -13,7 +13,7 @@ import java.net.*;
 import java.util.*;
 import java.util.Timer;
 
-import static dev.TTs.TTsGames.Games.DetektivThunder.DetektivThunder.startedClose;
+import static dev.TTs.TTsGames.Games.DetectiveThunder.DetektiveThunder.startedClose;
 
 @SuppressWarnings("unused")
 public final class Main {

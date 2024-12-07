@@ -22,11 +22,11 @@ public final class Translations {
             Credits = jsonReader.TTsTranslationKeys("credits"),
             Statistics = jsonReader.TTsTranslationKeys("statistics"),
             TTsGames = jsonReader.TTsTranslationKeys("other"),
-            DetektivAdler = jsonReader.DATranslationKeys("main"),
+            DetectiveEagle = jsonReader.DATranslationKeys("main"),
             QuestionsD  = jsonReader.DATranslationKeys("questions"),
             ButtonsD = jsonReader.DATranslationKeys("buttons"),
             ButtonsDT  = jsonReader.DTTranslationKeys("buttons"),
-            DetektivThunder = jsonReader.DTTranslationKeys("other");
+            DetectiveThunder = jsonReader.DTTranslationKeys("other");
 
     private void translate() {
         translateArray( Questions);
@@ -41,11 +41,11 @@ public final class Translations {
         translateArray(Credits);
         translateArray(Statistics);
         translateArray( TTsGames);
-        translateArray( DetektivAdler);
+        translateArray(DetectiveEagle);
         translateArray( QuestionsD);
         translateArray( ButtonsD);
         translateArray(ButtonsDT);
-        translateArray( DetektivThunder);
+        translateArray(DetectiveThunder);
     }
 
     private void translateArray(String[] arrayKey) {

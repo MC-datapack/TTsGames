@@ -1,11 +1,10 @@
 package dev.TTs.TTsGames;
 
-import dev.TTs.TTsGames.Games.DetektivThunder.DetektivThunder;
+import dev.TTs.TTsGames.Games.DetectiveThunder.DetektiveThunder;
 import dev.TTs.TTsGames.Games.AnimalMaster.AnimalMaster;
-import dev.TTs.TTsGames.Games.DetektivAdler.DetektivAdler;
+import dev.TTs.TTsGames.Games.DetectiveEagle.DetectiveEagle;
 import dev.TTs.TTsGames.Resources.Translations;
 import dev.TTs.lang.Instance;
-import dev.TTs.lang.TTsLogger;
 import dev.TTs.lang.Array;
 import dev.TTs.swing.BorderPanel;
 import dev.TTs.swing.CustomComboBoxRenderer;
@@ -56,7 +55,7 @@ public final class Window {
             BorderPanel statisticsPanel = new BorderPanel(Statistics[2], new Color(68, 68, 68, 200), true);
             JLabel animalMasterTime = new JLabel(Statistics[3] + checkTime(AMTime[2], Statistics[5]) + Statistics[4]);
 
-            JButton AnimalMaster = new JButton(Games[0]), Detektiv_Adler = new JButton(Games[1]), Detektiv_Thunder = new JButton(Games[2]);
+            JButton AnimalMaster = new JButton(Games[0]), Detective_Eagle = new JButton(Games[1]), Detective_Thunder = new JButton(Games[2]);
             JLabel iAnimalMaster = new JLabel(Games[3]), iDetektivAdler = new JLabel(Games[4]), iDetektivThunder = new JLabel(Games[5]);
 
             BorderPanel games = new BorderPanel(TTsGames[0], new Color(68, 68, 68, 200), true);
@@ -87,7 +86,7 @@ public final class Window {
             hello.setPreferredSize(new Dimension(350, 30));
             statisticsPanel.setPreferredSize(new Dimension(350, 200));
             Component[] Games = {
-                    AnimalMaster, Detektiv_Adler, Detektiv_Thunder
+                    AnimalMaster, Detective_Eagle, Detective_Thunder
             };
             for (Component component : Games) {
                 games.add(component);
@@ -103,7 +102,7 @@ public final class Window {
             }
             statisticsPanel.add(animalMasterTime);
             Component[] doStandardButtonstuff = {
-                    AnimalMaster, Detektiv_Adler, Detektiv_Thunder, settings, Settings_Back, credits, CreditsBack,
+                    AnimalMaster, Detective_Eagle, Detective_Thunder, settings, Settings_Back, credits, CreditsBack,
                     Settings_Dev, SDtrue, SDfalse, statistics, statisticsBack, changeUsername
             };
             for (Component component : doStandardButtonstuff) {
@@ -144,8 +143,8 @@ public final class Window {
                     settings, languageSelection, Settings_Back, credits, CreditsBack, statistics, statisticsBack
             };
             AnimalMaster.setPreferredSize(new Dimension(133, 30));
-            Detektiv_Adler.setPreferredSize(new Dimension(133, 30));
-            Detektiv_Thunder.setPreferredSize(new Dimension(133, 30));
+            Detective_Eagle.setPreferredSize(new Dimension(133, 30));
+            Detective_Thunder.setPreferredSize(new Dimension(133, 30));
             iAnimalMaster.setPreferredSize(new Dimension(190, 30));
             iDetektivAdler.setPreferredSize(new Dimension(190, 30));
             iDetektivThunder.setPreferredSize(new Dimension(190, 30));
@@ -202,11 +201,11 @@ public final class Window {
                 }
                 Main.AnimalMaster = true;
             });
-            Detektiv_Adler.addActionListener(e -> {
+            Detective_Eagle.addActionListener(e -> {
                 if (!alreadyStarted[1]) {
                     logger.setInstance(Instance.DETEKTIV_ADLER);
                     MainWindow = false;
-                    new DetektivAdler(false, windows[0].getLocation(), new Dimension(420, 210));
+                    new DetectiveEagle(false, windows[0].getLocation(), new Dimension(420, 210));
                     windows[0].setVisible(false);
                     started = " Detektiv Adler";
                     alreadyStarted[1] = true;
@@ -217,10 +216,10 @@ public final class Window {
                 Main.DetektivAdler = true;
             });
             if (dev) {
-                Detektiv_Thunder.addActionListener(e -> {
+                Detective_Thunder.addActionListener(e -> {
                     logger.setInstance(Instance.DETEKTIV_THUNDER);
                     MainWindow = false;
-                    new DetektivThunder(false,
+                    new DetektiveThunder(false,
                             new Point(windows[0].getX() - 500, windows[0].getY() - 300), new Dimension(1330, 750));
                     windows[0].setVisible(false);
                     started = " Detektiv Thunder";
