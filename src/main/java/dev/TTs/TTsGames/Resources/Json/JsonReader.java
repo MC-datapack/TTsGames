@@ -2,6 +2,7 @@ package dev.TTs.TTsGames.Resources.Json;
 
 import dev.TTs.TTsGames.Resources.Json.formats.AnimatedJSONFormat;
 import dev.TTs.TTsGames.Resources.Json.formats.ColorJSONFormat;
+import dev.TTs.TTsGames.Resources.Json.formats.SoundJSONFormat;
 import dev.TTs.TTsGames.Resources.Json.formats.TTsGamesJSONFormat;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -29,6 +30,7 @@ public class JsonReader {
     private static final Type MAP_TYPE = new TypeToken<Map<String, String>>() {}.getType();
     private static final Type VERSION_TYPE = new TypeToken<TTsGamesJSONFormat>() {}.getType();
     private static final Type ANIMATED_TYPE = new TypeToken<AnimatedJSONFormat>() {}.getType();
+    private static final Type SOUND_TYPE = new TypeToken<SoundJSONFormat>() {}.getType();
 
     public String[] UnallowedUsernames() {
         return ValuesStandard("values", MainJSON.getData()[0][0], String[].class);
@@ -120,6 +122,19 @@ public class JsonReader {
             logger.debug("Animation File found: " + filePath);
             return gson.fromJson(reader, ANIMATED_TYPE);
         } catch (IOException e) {
+            return null;
+        }
+    }
+
+    public SoundJSONFormat readSoundJsonFile(String filePath) {
+        try (InputStream inputStream = JsonReader.class.getClassLoader().getResourceAsStream(filePath);
+             InputStreamReader reader = inputStream == null ? null : new InputStreamReader(inputStream)) {
+            if (inputStream == null) {
+                return null;
+            }
+            return gson.fromJson(reader, SOUND_TYPE);
+        } catch (IOException e) {
+            logger.error("Did not find Sound Json File", e);
             return null;
         }
     }

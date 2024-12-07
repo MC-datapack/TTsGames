@@ -8,21 +8,35 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static dev.TTs.TTsGames.Main.*;
 
 @SuppressWarnings("unused")
 public final class SoundString {
-    private final String path;
+    private final String jsonPath;
+    private String soundPath;
     public static FloatControl volumeControl;
 
     public SoundString(String path) {
-        this.path = "/" + path;
+        this.jsonPath = path;
+        Timer Timer = new Timer();
+        Timer.scheduleAtFixedRate(new TimerTask() {
+            @Override public void run() {
+                if (configLoader != null) {
+                    timer(() -> {
+                        soundPath = "/" + jsonReader.readSoundJsonFile(path).getFiles(configLoader.getLanguage());
+                    }, 200);
+                    Timer.cancel();
+                }
+            }
+        }, 0, 1);
     }
 
     @Override
     public String toString() {
-        return path;
+        return "JSON Path: " + jsonPath + " , Sound File Path: " + soundPath;
     }
 
     @NotNull
@@ -34,9 +48,9 @@ public final class SoundString {
 
     @Nullable
     public URL toURL() {
-        URL resource = SoundString.class.getResource(this.toString());
+        URL resource = SoundString.class.getResource(this.soundPath);
         if (resource == null) {
-            logger.error("Sound is null: " + this.toString());
+            logger.error("Sound does not exist: " + this);
             return null;
         }
         return resource;
@@ -63,11 +77,11 @@ public final class SoundString {
             aud.close(); // Ensure the input stream is closed
             return clip;
         } catch (UnsupportedAudioFileException e) {
-            logger.error("Unsupported audio file format for: " + this.path, e);
+            logger.error("Unsupported audio file format for: " + this.soundPath, e);
         } catch (IOException e) {
-            logger.error("I/O error while playing sound from: " + this.path, e);
+            logger.error("I/O error while playing sound from: " + this.soundPath, e);
         } catch (LineUnavailableException e) {
-            logger.error("Audio line unavailable for: " + this.path, e);
+            logger.error("Audio line unavailable for: " + this.soundPath, e);
         }
         return null;
     }

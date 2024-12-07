@@ -65,7 +65,7 @@
 	"assets/sounds", "assets/sounds/animal_master", "assets/sounds/detective_eagle", "assets/sounds/detective_thunder"
   ],
   "sounds_file_types": [
-	".wav", ".wav", ".wav", ".wav"
+	".json", ".json", ".json", ".json"
   ],
   "sounds": [
 	[],

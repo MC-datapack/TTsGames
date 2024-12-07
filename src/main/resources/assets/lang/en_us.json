@@ -173,5 +173,18 @@
   "detektiv_adler.mehl": "Flour",
   "detektiv_adler.schwarz": "black",
   "detektiv_adler.dunkelbraun": "dark brown",
-  "detektiv_adler.gelb": "yellow"
+  "detektiv_adler.gelb": "yellow",
+
+  "detektiv_thunder.erklärung": "Explanation",
+  "detektiv_thunder.start": "Start",
+  "detektiv_thunder.description.line1": "Welcome to Detective Thunder.",
+  "detektiv_thunder.description.line2": "You have to solve a theft case. To do this, you have to make intelligent decisions.",
+  "detektiv_thunder.description.line3": "(Future) At the bottom right there is a cell phone in which evidence and suspects can be found.",
+  "detektiv_thunder.goto.galerie": "To the art gallery",
+  "detektiv_thunder.close.window": "Close",
+  "detektiv_thunder.close.close": "Close Detective Thunder",
+  "detektiv_thunder.close.score": "View Score (Future)",
+  "detektiv_thunder.goto.wache.back": "Back to the Station",
+  "detektiv_thunder.search.fingerabdruck": "Search for fingerprints",
+  "detektiv_thunder.verdächtig.magritte": "Suspect Magritte"
 }

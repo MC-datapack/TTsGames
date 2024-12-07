@@ -19,7 +19,7 @@ import static dev.TTs.TTsGames.Games.DetectiveThunder.DetektiveThunder.startedCl
 public final class Main {
     public static TTsLogger logger;
     public static Translations translations;
-    public static ConfigLoader configLoader;
+    public static volatile ConfigLoader configLoader;
     public static JsonReader jsonReader;
 
     public static String language, started = null, startedVersion = null, Username;
