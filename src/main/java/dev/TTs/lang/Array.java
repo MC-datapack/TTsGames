@@ -2,6 +2,7 @@ package dev.TTs.lang;
 
 @SuppressWarnings("unused")
 public final class Array<T> {
+    //Functions to check if an Object is contained in an Array
     public static boolean Contains(String[] array, String target) {
         for (String s : array) {
             if (s.equals(target)) {

@@ -29,23 +29,15 @@ public final class Translations {
             DetectiveThunder = jsonReader.DTTranslationKeys("other");
 
     private void translate() {
-        translateArray( Questions);
-        translateArray( AnswerButtons);
-        translateArray(Compliments);
-        translateArray( Insults);
-        translateArray(Results);
-        translateArray( Informations);
-        translateArray( OtherButtons);
-        translateArray(Games);
-        translateArray(Settings);
-        translateArray(Credits);
-        translateArray(Statistics);
-        translateArray( TTsGames);
-        translateArray(DetectiveEagle);
-        translateArray( QuestionsD);
-        translateArray( ButtonsD);
-        translateArray(ButtonsDT);
-        translateArray(DetectiveThunder);
+        String[][] arrays = {
+                Questions, AnswerButtons, Compliments, Insults, Results, Informations, OtherButtons,
+                Games, Settings, Credits, Statistics, TTsGames,
+                DetectiveEagle, QuestionsD, ButtonsD,
+                ButtonsDT, DetectiveThunder
+        };
+
+        for (String[] array : arrays) { translateArray(array);
+        }
     }
 
     private void translateArray(String[] arrayKey) {

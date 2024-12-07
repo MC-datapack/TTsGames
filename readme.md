@@ -14,6 +14,16 @@
  - No real goals
  - Thought as a project to train to code using **Java** (and maybe **Kotlin**)
 
+## Why Java?
+
+- Java has very optimized Extensions like [Gson](https://github.com/google/gson)
+- Java is a fast interpretive programming language
+  - I do not want to compile everything each time I want to test something (which can take very long)
+  - Interpretive programming languages like Python are much slower
+- Java is getting many updates over time
+  - The versions I am using are LTS versions [```Wikipedia Article```](https://en.wikipedia.org/wiki/Java_version_history#Release_table)
+- I have already been using Java in Minecraft Mods
+
 ## Dependencies 
 
 - I try to use only a few dependencies and not thousands like many people
@@ -23,12 +33,14 @@
 
 ### As Jar File
 
+TTs Games is a normal Gradle Project using Gradle 8.10
+
 1. Download the sources
 2. Download Java 21 if not already installed
 3. Run the command ```gradlew build``` to build the jar file
 4. Go into the build/libs/, and you will find a jar file
 
-### Using an IDE like [IntelliJ IDEA](https://www.jetbrains.com/idea/)
+### Using an IDE like [IntelliJ IDEA](https://www.jetbrains.com/idea)
 
 1. Download the Sources
 2. Import the project into your IDE
