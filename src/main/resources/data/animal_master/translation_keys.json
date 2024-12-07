@@ -30,12 +30,28 @@
 	"animal_master.answer.fruchtfliege", "animal_master.answer.gastrotrichen", "animal_master.answer.eintagsfliege"
   ],
   "compliments": [
-	"animal_master.komplinemte1", "animal_master.komplinemte2", "animal_master.komplinemte3", "animal_master.komplinemte4", "animal_master.komplinemte5",
-	"animal_master.komplinemte6", "animal_master.komplinemte7", "animal_master.komplinemte8", "animal_master.komplinemte9", "animal_master.komplinemte10"
+	"animal_master.komplinemte1",
+	"animal_master.komplinemte2",
+	"animal_master.komplinemte3",
+	"animal_master.komplinemte4",
+	"animal_master.komplinemte5",
+	"animal_master.komplinemte6",
+	"animal_master.komplinemte7",
+	"animal_master.komplinemte8",
+	"animal_master.komplinemte9",
+	"animal_master.komplinemte10"
   ],
   "insults": [
-	"animal_master.beleidigungen1", "animal_master.beleidigungen2", "animal_master.beleidigungen3", "animal_master.beleidigungen4", "animal_master.beleidigungen5",
-	"animal_master.beleidigungen6", "animal_master.beleidigungen7", "animal_master.beleidigungen8", "animal_master.beleidigungen9", "animal_master.beleidigungen10"
+	"animal_master.beleidigungen1",
+	"animal_master.beleidigungen2",
+	"animal_master.beleidigungen3",
+	"animal_master.beleidigungen4",
+	"animal_master.beleidigungen5",
+	"animal_master.beleidigungen6",
+	"animal_master.beleidigungen7",
+	"animal_master.beleidigungen8",
+	"animal_master.beleidigungen9",
+	"animal_master.beleidigungen10"
   ],
   "results": [
 	"animal_master.resultate.0",
