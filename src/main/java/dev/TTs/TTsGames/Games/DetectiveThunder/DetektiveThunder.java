@@ -1,4 +1,4 @@
-package dev.TTs.TTsGames.Games.DetektivThunder;
+package dev.TTs.TTsGames.Games.DetectiveThunder;
 
 import dev.TTs.lang.ExitCodes;
 import dev.TTs.swing.AnimatedImagePanel;
@@ -9,7 +9,7 @@ import java.awt.*;
 
 import static dev.TTs.TTsGames.Main.*;
 import static dev.TTs.TTsGames.Resources.Translations.*;
-import static dev.TTs.TTsGames.Resources.Translations.DetektivThunder;
+import static dev.TTs.TTsGames.Resources.Translations.DetectiveThunder;
 
 /**
  * <blockquote><pre>
@@ -22,22 +22,22 @@ import static dev.TTs.TTsGames.Resources.Translations.DetektivThunder;
  */
 
 @SuppressWarnings("unused")
-public final class DetektivThunder {
+public final class DetektiveThunder {
     int Score = 0;
     public static boolean showScore = false, startedClose = false;
 
-    public DetektivThunder(boolean resizable, Point location, Dimension size) {
+    public DetektiveThunder(boolean resizable, Point location, Dimension size) {
         startedVersion = Versions[6];
         SwingUtilities.invokeLater(() -> {
             windows[3] = new JFrame(Games[2] + Versions[6]);
 
-            JButton erklaerung = new JButton(DetektivThunder[0]);
+            JButton erklaerung = new JButton(DetectiveThunder[0]);
             //160 Buchstaben max pro Zeile
-            JLabel line1 = new JLabel(DetektivThunder[1]);
-            JLabel line2 = new JLabel(DetektivThunder[2]);
-            JLabel line3 = new JLabel(DetektivThunder[3]);
+            JLabel line1 = new JLabel(DetectiveThunder[1]);
+            JLabel line2 = new JLabel(DetectiveThunder[2]);
+            JLabel line3 = new JLabel(DetectiveThunder[3]);
 
-            JButton start = new JButton(DetektivThunder[4]);
+            JButton start = new JButton(DetectiveThunder[4]);
 
             JButton[] entscheidungen = new JButton[4];
             entscheidungen[0] = new JButton(ButtonsDT[0]);

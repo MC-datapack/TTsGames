@@ -93,10 +93,10 @@ public final class TTsGamesJSONFormat {
         else {versions[0] = version.get("TTsGames").getPrerelease();}
         versions[1] = version.get("AnimalMaster").getRelease();
         versions[2] = version.get("AnimalMaster").getPrerelease();
-        versions[3] = version.get("DetektivAdler").getRelease();
-        versions[4] = version.get("DetektivAdler").getPrerelease();
-        versions[5] = version.get("DetektivThunder").getRelease();
-        versions[6] = version.get("DetektivThunder").getPrerelease();
+        versions[3] = version.get("DetectiveEagle").getRelease();
+        versions[4] = version.get("DetectiveEagle").getPrerelease();
+        versions[5] = version.get("DetectiveThunder").getRelease();
+        versions[6] = version.get("DetectiveThunder").getPrerelease();
         versions[7] = version.get("TTsGames").getGroup();
         return versions;
     }

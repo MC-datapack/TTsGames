@@ -1,4 +1,4 @@
-package dev.TTs.TTsGames.Games.DetektivAdler;
+package dev.TTs.TTsGames.Games.DetectiveEagle;
 
 import dev.TTs.swing.ImagePanel;
 
@@ -8,16 +8,16 @@ import java.util.Timer;
 
 import static dev.TTs.TTsGames.Main.*;
 import static dev.TTs.TTsGames.Resources.Translations.*;
-import static dev.TTs.TTsGames.Resources.Translations.DetektivAdler;
+import static dev.TTs.TTsGames.Resources.Translations.DetectiveEagle;
 
-public final class DetektivAdler {
+public final class DetectiveEagle {
     Timer timer;
-    public DetektivAdler(boolean resizable, Point location, Dimension size) {
+    public DetectiveEagle(boolean resizable, Point location, Dimension size) {
         startedVersion = Versions[3];
         SwingUtilities.invokeLater(() -> {
             windows[2] = new JFrame(Games[1] + Versions[3]);
-            JLabel erkl = new JLabel(DetektivAdler[0]);
-            JButton start = new JButton(DetektivAdler[1]);
+            JLabel erkl = new JLabel(DetectiveEagle[0]);
+            JButton start = new JButton(DetectiveEagle[1]);
             JLabel question0 = new JLabel(QuestionsD[0]);
             JButton answer01 = new JButton(ButtonsD[3]);
             JButton answer02 = new JButton(ButtonsD[4]);
