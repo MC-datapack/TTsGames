@@ -19,11 +19,13 @@ import static dev.TTs.TTsGames.Main.*;
 public final class ImageString {
     private final String path, jsonPath;
     private final AnimatedJSONFormat jsonFormat;
+    private final boolean jsonFileExists;
 
     public ImageString(String path) {
         this.path = path;
         this.jsonPath = path + ".json";
         this.jsonFormat = jsonReader.readAnimatedJsonFile(this.jsonPath);
+        this.jsonFileExists = this.jsonFormat != null;
     }
 
     public static ImageString[] parseImageString(String[] paths) {
@@ -34,7 +36,7 @@ public final class ImageString {
 
     @Override
     public String toString() {
-        return this.path;
+        return "Image Path: " + path + " , Json Path" +  jsonPath + " , Animated Json File exists: " + jsonFileExists;
     }
 
     public URL toURL() {
