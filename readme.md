@@ -1,4 +1,4 @@
-![Icon](src/main/resources/assets/textures/TTsGames.jpg "Icon")
+![Icon](src/main/resources/assets/textures/TTsGames.jpg)
 # TTs Games
 
 ### [Informations Regarding Resources](resources.md)
@@ -8,6 +8,8 @@ TTs Games is a small collection of self-made simple games without 3D rendering.
 3D rendering may be included in a future release.
 
 ## Important Information
+
+**Java Version: 21**
 
 - Most of the code is not very optimized
 - [**AnimalMaster.java**](src/main/java/dev/TTs/TTsGames/Games/AnimalMaster/AnimalMaster.java) is **aimed to be as short as possible** and **isn't aimed to be readable**
