@@ -8,18 +8,18 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @SuppressWarnings("unused")
-public class AnimatedImagePanel extends JPanel {
+public class TAnimation extends TPanel {
     private final List<Image> images;
     private int currentIndex = 0;
     private Timer timer;
 
-    public AnimatedImagePanel(ImageString imagePaths) {
+    public TAnimation(ImageString imagePath) {
         this.images = new CopyOnWriteArrayList<>();
-        List<ImageString> strings = imagePaths.getStrings();
+        List<ImageString> strings = imagePath.getStrings();
         for (ImageString string : strings) {
             this.images.add(string.toImage());
         }
-        startImageRotation(imagePaths.getDelay(), imagePaths.getRepeat());
+        startImageRotation(imagePath.getDelay(), imagePath.getRepeat());
     }
 
     public void restartAnimation() {

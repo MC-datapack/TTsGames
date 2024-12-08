@@ -1,50 +1,43 @@
 package dev.TTs.TTsGames.Games.AnimalMaster; import static dev.TTs.TTsGames.Main.*; import static dev.TTs.TTsGames.Resources.Translations.*; import static java.util.concurrent.ThreadLocalRandom.current;
-import dev.TTs.lang.Array; import dev.TTs.swing.*; import javax.swing.*; import java.awt.*; public final class AnimalMaster {Color black = Color.BLACK; public static int sel, correct = 0;
-    JButton[] answers = new JButton[jsonReader.AInf("a")], next = new JButton[jsonReader.AInf("q")]; ImagePanel[] ImagePanels = new ImagePanel[jsonReader.AInf("i")];
-    BorderPanel[] questions = new BorderPanel[jsonReader.AInf("q")], compliments = new BorderPanel[jsonReader.AInf("q")], insults = new BorderPanel[jsonReader.AInf("q")],
-            Correct = new BorderPanel[jsonReader.AInf("c")]; JLabel placeholder = new JLabel(jsonReader.AInfS("p")), placeholderLarge = new JLabel(jsonReader.AInfS("pl"));
-    JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, (int) (10 * a), (int) (10 * a))); JButton informations = new JButton(Informations[0]);
-    JButton Auswertung = new JButton(OtherButtons[1]), Auswertung2 = new JButton(OtherButtons[1]), HardQuestions = new JButton(OtherButtons[2]), big = new JButton(OtherButtons[3]);
-    public AnimalMaster(boolean resizable, Point location, Dimension size, String title) {int[] widths = {102, 118, 133, 200, 300, 360}; Dimension[] buttonSizes = new Dimension[widths.length];
-        for (int i = 0; i < widths.length; i++) buttonSizes[i] = new Dimension((int) (widths[i] * a), (int) (30 * a)); panel.setOpaque(false);
-        AMTime[0] = System.nanoTime(); windows[1] = new JFrame(title); startedVersion = Versions[4]; panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 50, 10));
-        for (int i = 0; i < answers.length; i++) answers[i] = new JButton(AnswerButtons[i]); for (int i = 0; i < ImagePanels.length; i++) ImagePanels[i] = Textures[1][i].toImagePanel();
-        ImagePanels[0].setLayout(new BorderLayout()); ImagePanels[0].setSize((int) (420 * a), (int) (171 * a)); ImagePanels[0].add(panel);
-        for (int i = 0; i < questions.length; i++) {next[i] = new JButton(OtherButtons[0]); questions[i] = new BorderPanel(Questions[i], black, true);
-            compliments[i] = new BorderPanel(rand(Compliments), black, true); insults[i] = new BorderPanel(rand(Insults), black, true);
-            questions[i].setBackground(rand()); next[i].setBackground(rand()); compliments[i].setBackground(rand()); insults[i].setBackground(rand());}
-        for (int i = 0; i < Correct.length; i++) Correct[i] = new BorderPanel(Results[i], black, true); Component[][] doStandardLabelStuff = {questions, compliments, insults, Correct};
-        for (Component[] componentArray : doStandardLabelStuff) for (Component component : componentArray) {component.setForeground(Color.WHITE); component.setVisible(false);
-            panel.add(component, "South");}Component[][] doStandardButtonstuff = {{informations, Auswertung, Auswertung2, HardQuestions}, answers, next, {big}};
-        for (Component[] componentArray : doStandardButtonstuff) for (Component component : componentArray) {((JButton) component).setOpaque(true); ((JButton) component).setContentAreaFilled(true);
-            component.setBackground(rand()); component.setForeground(black); component.setFocusable(false); component.setVisible(false); panel.add(component, "South");}
-        questions[0].setVisible(true); answers[0].setVisible(true); answers[1].setVisible(true); answers[2].setVisible(true); for (ImagePanel component : ImagePanels) {
-            windows[1].add(component, "South"); component.setLayout(new BorderLayout(10, 100)); component.setSize((int) (420 * a), (int) (190 * a));
-                component.setVisible(false);} ImagePanels[0].setVisible(true); ImagePanels[0].add(panel, "South"); Component[][] setPrefferendSizeButtonSize = {answers, next,
-                {informations, big}}; Component[] setPrefferendSizeButtonSize2 = {Auswertung, Auswertung2};for (Component[] componentArray : setPrefferendSizeButtonSize) {
-                    for (Component component : componentArray) {component.setPreferredSize(buttonSizes[1]);}} for (Component component : setPrefferendSizeButtonSize2) component.setPreferredSize(buttonSizes[4]);
-        HardQuestions.setPreferredSize(buttonSizes[3]); Component[][] setPrefSize5 = {questions, insults, compliments}; for (int i = 0; i < 13; i++) Answer(i); Next(new int[]{7, 12});
-        for (Component[] components : setPrefSize5) for (Component component : components) {component.setPreferredSize(buttonSizes[5]);} for (BorderPanel component : Correct) {
-            component.setPreferredSize(new Dimension((int) (380 * a), (int) (35 * a)));} next[7].addActionListener(e -> {informations.setVisible(false); Auswertung.setVisible(true);
-            compliments[7].setVisible(false); insults[7].setVisible(false); next[7].setVisible(false); ImagePanels[20].setVisible(false); ImagePanels[2].setVisible(false); ImagePanels[21].setVisible(false);
-            ImagePanels[0].setVisible(true); ImagePanels[0].add(panel, "South"); big.setVisible(false);}); next[12].addActionListener(e -> {informations.setVisible(false);
-            compliments[12].setVisible(false); insults[12].setVisible(false); next[12].setVisible(false); Auswertung2.setVisible(true); ImagePanels[34].setVisible(false); ImagePanels[35].setVisible(false);
-            ImagePanels[36].setVisible(false); ImagePanels[0].setVisible(true); ImagePanels[0].add(panel, "South"); big.setVisible(false);}); Auswertung.addActionListener(e -> {
-            Correct[correct].setVisible(true); if (correct == 8) HardQuestions.setVisible(true); Auswertung.setVisible(false); fAMReset = true;}); Auswertung2.addActionListener(e -> {
-            Correct[correct + 1].setVisible(true); Auswertung2.setVisible(false); AMTime[1] = System.nanoTime(); if (((AMTime[1] - AMTime[0]) / 1000000000) < AMTime[2]) {AMTime[2] = ((AMTime[1] - AMTime[0]) / 1000000000);
-            } else if (AMTime[2] == -1.0F) {AMTime[2] = ((AMTime[1] - AMTime[0]) / 1000000000);} logger.info(AMTime[2]); configLoader.setAnimalMasterTimeRecord(AMTime[2]); fAM = true;});
-            HardQuestions.addActionListener(e -> {placeholder.setVisible(false); placeholderLarge.setVisible(false); for (Component component : next) component.setVisible(false);
-            for (Component component : Correct) component.setVisible(false); questions[8].setVisible(true); answers[24].setVisible(true); answers[25].setVisible(true); answers[26].setVisible(true);
-            HardQuestions.setVisible(false);}); informations.addActionListener(e -> openWebpage(Informations[sel])); big.addActionListener(e -> new Big(sel));
-        answers[34].setPreferredSize(buttonSizes[2]); answers[35].setPreferredSize(buttonSizes[0]); WindowOperations(1, resizable, size, location, Textures[1][37]);}
-    private void Answer(int question) {int i1 = question*3, i2 = question*3+1, i3 = question*3+2; int[] se = jsonReader.AMSelectedAnimal(); boolean[] cor = jsonReader.AMCorrect();
-        answers[i1].addActionListener(e -> ACL(question, se[i1], cor[i1])); answers[i2].addActionListener(e -> ACL(question, se[i2], cor[i2]));
-        answers[i3].addActionListener(e -> ACL(question, se[i3], cor[i3]));} private void Next(int[] not) {for (int i = 0; i < 13; i++) if (Array.dontContains(not, i)) {
-                int I = i; next[i].addActionListener(e -> NCL(I));}}private void ACL(int question, int i, boolean Correct) {ImagePanels[i].setVisible(true); ImagePanels[i].add(panel, "South");
-        if (Correct) {Sounds[1][0].playSound(); correct++; compliments[question].setVisible(true);} else {Sounds[1][1].playSound(); insults[question].setVisible(true);} questions[question].setVisible(false);
-        answers[question*3].setVisible(false); answers[question*3+1].setVisible(false); answers[question*3+2].setVisible(false); next[question].setVisible(true); sel = i; informations.setVisible(true);
-        big.setVisible(true); ImagePanels[0].setVisible(false);} private void NCL(int question) {next[question].setVisible(false); compliments[question].setVisible(false); insults[question].setVisible(false);
-        ImagePanels[jsonReader.AMSelectedAnimal()[question*3]].setVisible(false); ImagePanels[jsonReader.AMSelectedAnimal()[question*3+1]].setVisible(false);
-        ImagePanels[jsonReader.AMSelectedAnimal()[question*3+2]].setVisible(false); informations.setVisible(false); big.setVisible(false); ImagePanels[0].setVisible(true); int i = question+1;
-        ImagePanels[0].add(panel, "South"); questions[i].setVisible(true); answers[i*3].setVisible(true); answers[i*3+1].setVisible(true); answers[i*3+2].setVisible(true);}
-    private Color rand() {return buttonColors[current().nextInt(buttonColors.length)];} private String rand(String[] a) {return a[current().nextInt(a.length)];}}
+import dev.TTs.lang.Array;import dev.TTs.math.Time;import dev.TTs.swing.*; import java.awt.*; public final class AnimalMaster {Color black = Color.BLACK; public static int sel, correct = 0;
+TButton[] answers = new TButton[jsonReader.AInf("a")], next = new TButton[jsonReader.AInf("q")]; TImage[] TImages = new TImage[jsonReader.AInf("i")];
+TBorderPanel[] questions = new TBorderPanel[jsonReader.AInf("q")], compliments = new TBorderPanel[jsonReader.AInf("q")], insults = new TBorderPanel[jsonReader.AInf("q")],
+Correct = new TBorderPanel[jsonReader.AInf("c")]; TLabel placeholder = new TLabel(jsonReader.AInfS("p")), placeholderLarge = new TLabel(jsonReader.AInfS("pl"));
+TPanel panel = new TPanel(new FlowLayout(FlowLayout.LEFT, (int) (10 * a), (int) (10 * a))); TButton informations = new TButton(Informations[0]);
+TButton Auswertung = new TButton(OtherButtons[1]), Auswertung2 = new TButton(OtherButtons[1]), HardQuestions = new TButton(OtherButtons[2]), big = new TButton(OtherButtons[3]);
+public AnimalMaster(FrameInformationT inf) {int[] widths = {102, 118, 133, 200, 300, 360}; Dimension[] buttonSizes = new Dimension[widths.length]; for (int i = 0; i < widths.length; i++) {
+buttonSizes[i] = new Dimension((int) (widths[i] * a), (int) (30 * a));} panel.setOpaqueF(); AMTime[0] = Time.milliTime(); windows[1] = new TFrame(inf.title());
+startedVersion = Versions[4]; panel.setBorder(10, 10, 50, 10); for (int i = 0; i < answers.length; i++) answers[i] = new TButton(AnswerButtons[i]);
+for (int i = 0; i < TImages.length; i++) TImages[i] = Textures[1][i].toTImage(); TImages[0].setLayout(new BorderLayout()); TImages[0].setSize((int) (420 * a), (int) (171 * a));
+TImages[0].add(panel);for (int i = 0; i < questions.length; i++) {next[i] = new TButton(OtherButtons[0]); questions[i] = new TBorderPanel(Questions[i], black, true);
+compliments[i] = new TBorderPanel(r(Compliments), black, true); insults[i] = new TBorderPanel(r(Insults), black, true);
+questions[i].setBackground(r()); next[i].setBackground(r()); compliments[i].setBackground(r()); insults[i].setBackground(r());} for (int i = 0; i < Correct.length; i++) {Correct[i] =
+new TBorderPanel(Results[i], black, true);} TPanel[][] dSLS = {questions, compliments, insults, Correct}; panel.add("South", dSLS);
+for (TPanel[] componentArray : dSLS) for (TPanel component : componentArray) {component.setForeground(Color.WHITE); component.Hide();} TButton[][] dSBS = {{informations, Auswertung, Auswertung2,
+HardQuestions}, answers, next, {big}}; panel.add("South", dSBS);for (TButton[] componentArray : dSBS) for (TButton component : componentArray) {
+component.setBackground(r());component.setForeground(black); component.setFocusable(false); component.Hide();} questions[0].Show(); answers[0].Show(); answers[1].Show(); answers[2].Show();
+for (TImage component : TImages) {windows[1].add(component, "South");component.setBorderLayout(10, 100); component.setSize((int) (420 * a), (int) (190 * a));
+component.Hide();} TImages[0].Show(); TImages[0].add(panel, "South"); TButton[][] setPrefferendSizeButtonSize = {answers, next, {informations, big}};
+TButton[] setPrefferendSizeButtonSize2 = {Auswertung, Auswertung2}; for (TButton[] componentArray : setPrefferendSizeButtonSize) {for (TButton component : componentArray) {
+component.setPSize(buttonSizes[1]);}} for (TButton component : setPrefferendSizeButtonSize2) {component.setPSize(buttonSizes[4]);} HardQuestions.setPSize(buttonSizes[3]);
+TBorderPanel[][] setPrefSize5 = {questions, insults, compliments}; for (int i = 0; i < 13; i++) AN(i); NX(new int[]{7, 12}); for (TBorderPanel[] components : setPrefSize5) {
+for (TBorderPanel component : components) {component.setPSize(buttonSizes[5]);}} for (TBorderPanel component : Correct) { component.setPSize(new Dimension((int) (380 * a),
+(int) (35 * a)));} next[7].clickAction(() -> {informations.Hide(); Auswertung.Show(); compliments[7].Hide(); insults[7].Hide(); next[7].Hide(); TImages[20].Hide();
+TImages[2].Hide();TImages[21].Hide(); TImages[0].Show(); TImages[0].add(panel, "South"); big.Hide();}); next[12].clickAction(() -> {informations.Hide();
+compliments[12].Hide();insults[12].Hide(); next[12].Hide(); Auswertung2.Show(); TImages[34].Hide(); TImages[35].Hide(); TImages[36].Hide(); TImages[0].Show();
+TImages[0].add(panel, "South"); big.Hide();}); Auswertung.clickAction(() -> { Correct[correct].Show(); if (correct == 8) HardQuestions.Show();
+Auswertung.Hide(); fAMReset = true;}); Auswertung2.clickAction(() -> { Correct[correct + 1].Show(); Auswertung2.Hide(); AMTime[1] = Time.milliTime(); if ((AMTime[1] - AMTime[0]) < AMTime[2]) {
+AMTime[2] = AMTime[1] - AMTime[0]; } else if (AMTime[2] == -1.0F) { AMTime[2] = AMTime[1] - AMTime[0];} logger.info(AMTime[2]); configLoader.setAMTimeRecord(AMTime[2]); fAM = true;});
+HardQuestions.clickAction(() -> {placeholder.Hide(); placeholderLarge.Hide(); for (TButton component : next) component.Hide(); for (TPanel component : Correct)  component.Hide();
+questions[8].Show(); answers[24].Show(); answers[25].Show(); answers[26].Show();HardQuestions.Hide();});informations.clickAction(() -> openWebpage(Informations[sel]));
+big.clickAction(() ->new Big(sel)); answers[34].setPSize(buttonSizes[2]); answers[35].setPSize(buttonSizes[0]); WindowOperations(1, inf.frameInformation(), Textures[1][37]);}
+private void AN(int question) {int i1 = question*3, i2 = question*3+1, i3 = question*3+2; int[] se = jsonReader.AMSelectedAnimal(); boolean[] cor = jsonReader.AMCorrect();
+answers[i1].clickAction(() -> ACL(question, se[i1], cor[i1])); answers[i2].clickAction(() ->ACL(question, se[i2], cor[i2]));
+answers[i3].clickAction(() -> ACL(question, se[i3], cor[i3]));} private void NX(int[] not) {for (int i = 0; i < 13; i++) if (Array.dontContains(not, i)) {
+int I = i; next[i].clickAction(() ->NCL(I));}}private void ACL(int question, int i, boolean Correct) {TImages[i].Show(); TImages[i].add(panel, "South");
+if (Correct) {Sounds[1][0].playSound(); correct++; compliments[question].Show();} else {Sounds[1][1].playSound(); insults[question].Show();} questions[question].Hide(); answers[question*3].Hide();
+answers[question*3+1].Hide(); answers[question*3+2].Hide(); next[question].Show(); sel = i; informations.Show(); big.Show(); TImages[0].Hide();} private void NCL(int question) {next[question].Hide();
+compliments[question].Hide(); insults[question].Hide();TImages[jsonReader.AMSelectedAnimal()[question*3]].Hide(); TImages[jsonReader.AMSelectedAnimal()[question*3+1]].Hide();
+TImages[jsonReader.AMSelectedAnimal()[question*3+2]].Hide(); informations.Hide(); big.Hide(); TImages[0].Show(); int i = question+1; TImages[0].add(panel, "South");
+questions[i].Show(); answers[i*3].Show(); answers[i*3+1].Show(); answers[i*3+2].Show();} private Color r() {return buttonColors[current().nextInt(buttonColors.length)];}
+private String r(String[] a) {return a[current().nextInt(a.length)];}}

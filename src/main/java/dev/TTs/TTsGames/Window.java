@@ -6,10 +6,7 @@ import dev.TTs.TTsGames.Games.DetectiveEagle.DetectiveEagle;
 import dev.TTs.TTsGames.Resources.Translations;
 import dev.TTs.lang.Instance;
 import dev.TTs.lang.Array;
-import dev.TTs.swing.BorderPanel;
-import dev.TTs.swing.CustomComboBoxRenderer;
-import dev.TTs.swing.ImagePanel;
-import dev.TTs.swing.VolumeSlider;
+import dev.TTs.swing.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,56 +19,56 @@ import static dev.TTs.lang.SoundString.setVolume;
 import static java.awt.Color.BLACK;
 
 public final class Window {
-    static JComboBox<String> languageSelection = new JComboBox<>(Languages);
+    static TComboBox<String> languageSelection = new TComboBox<>(Languages);
     boolean pressedTrue = false, pressedFalse = false;
     public Window(boolean resizable) {
         SwingUtilities.invokeLater(() -> {
-            windows[0] = new JFrame("TTsGames " + Versions[1]);
+            windows[0] = new TFrame("TTsGames " + Versions[1]);
 
-            JButton settings = new JButton(Settings[0]);
-            JButton Settings_Back = new JButton(Settings[1]);
-            JButton Settings_Dev = new JButton(Settings[2]);
-            JTextField usernameInput = new JTextField(Settings[4], 25);
-            JButton changeUsername = new JButton(Settings[3]);
-            BorderPanel sizeSettings = new BorderPanel(Settings[5], new Color(68, 68, 68, 200), true);
-            JButton SDtrue = new JButton(Settings[6]);
-            JButton SDfalse = new JButton(Settings[7]);
-            JSlider volumeSlider = new VolumeSlider(0, 100, volume, new Color(162, 247, 255), new Color(200, 0, 255));
+            TButton settings = new TButton(Settings[0]);
+            TButton Settings_Back = new TButton(Settings[1]);
+            TButton Settings_Dev = new TButton(Settings[2]);
+            TTextField usernameInput = new TTextField(Settings[4], 25);
+            TButton changeUsername = new TButton(Settings[3]);
+            TBorderPanel sizeSettings = new TBorderPanel(Settings[5], new Color(68, 68, 68, 200), true);
+            TButton SDtrue = new TButton(Settings[6]);
+            TButton SDfalse = new TButton(Settings[7]);
+            TVolumeSlider volumeSlider = new TVolumeSlider(0, 100, volume, new Color(162, 247, 255), new Color(200, 0, 255));
 
-            JButton[] sizes = {
-                    new JButton("1"), new JButton("1.25"), new JButton("1.5"), new JButton("1.75"), new JButton("2")
+            TButton[] sizes = {
+                    new TButton("1"), new TButton("1.25"), new TButton("1.5"), new TButton("1.75"), new TButton("2")
             };
 
-            JButton credits = new JButton(Credits[0]);
-            JButton CreditsBack = new JButton(Credits[1]);
-            BorderPanel CreditBorder = new BorderPanel(true);
-            JLabel Credits1 = new JLabel(Credits[2]), Credits2 = new JLabel(Credits[3]), Credits3 = new JLabel(Credits[4]),
-                    Credits4 = new JLabel(Credits[5]), Credits5 = new JLabel(Credits[6]);
+            TButton credits = new TButton(Credits[0]);
+            TButton CreditsBack = new TButton(Credits[1]);
+            TBorderPanel CreditBorder = new TBorderPanel(true);
+            TLabel Credits1 = new TLabel(Credits[2]), Credits2 = new TLabel(Credits[3]), Credits3 = new TLabel(Credits[4]),
+                    Credits4 = new TLabel(Credits[5]), Credits5 = new TLabel(Credits[6]);
             CreditBorder.setPreferredSize(new Dimension(350, 200));
             CreditBorder.add(Credits1, Credits2, Credits3, Credits4, Credits5);
 
-            JButton statistics = new JButton(Statistics[0]);
-            JButton statisticsBack = new JButton(Statistics[1]);
-            BorderPanel statisticsPanel = new BorderPanel(Statistics[2], new Color(68, 68, 68, 200), true);
-            JLabel animalMasterTime = new JLabel(Statistics[3] + checkTime(AMTime[2], Statistics[5]) + Statistics[4]);
+            TButton statistics = new TButton(Statistics[0]);
+            TButton statisticsBack = new TButton(Statistics[1]);
+            TBorderPanel statisticsPanel = new TBorderPanel(Statistics[2], new Color(68, 68, 68, 200), true);
+            TLabel animalMasterTime = new TLabel(Statistics[3] + checkTime(AMTime[2], Statistics[5]) + Statistics[4]);
 
-            JButton AnimalMaster = new JButton(Games[0]), Detective_Eagle = new JButton(Games[1]), Detective_Thunder = new JButton(Games[2]);
-            JLabel iAnimalMaster = new JLabel(Games[3]), iDetektivAdler = new JLabel(Games[4]), iDetektivThunder = new JLabel(Games[5]);
+            TButton AnimalMaster = new TButton(Games[0]), Detective_Eagle = new TButton(Games[1]), Detective_Thunder = new TButton(Games[2]);
+            TLabel iAnimalMaster = new TLabel(Games[3]), iDetektivAdler = new TLabel(Games[4]), iDetektivThunder = new TLabel(Games[5]);
 
-            BorderPanel games = new BorderPanel(TTsGames[0], new Color(68, 68, 68, 200), true);
-            BorderPanel gameInfo = new BorderPanel(TTsGames[1], new Color(68, 68, 68, 200), true);
-            JLabel placeholder = new JLabel();
-            BorderPanel hello = new BorderPanel(TTsGames[2], new Color(68, 68, 68, 200), true);
+            TBorderPanel games = new TBorderPanel(TTsGames[0], new Color(68, 68, 68, 200), true);
+            TBorderPanel gameInfo = new TBorderPanel(TTsGames[1], new Color(68, 68, 68, 200), true);
+            TLabel placeholder = new TLabel();
+            TBorderPanel hello = new TBorderPanel(TTsGames[2], new Color(68, 68, 68, 200), true);
 
             if (!setUsername) {
-                games.setVisible(false);
-                gameInfo.setVisible(false);
-                settings.setVisible(false);
-                credits.setVisible(false);
-                statistics.setVisible(false);
-                hello.setVisible(false);
+                games.Hide();
+                gameInfo.Hide();
+                settings.Hide();
+                credits.Hide();
+                statistics.Hide();
+                hello.Hide();
             } else {
-                usernameInput.setVisible(false);
+                usernameInput.Hide();
             }
 
             if (dev) {
@@ -97,7 +94,7 @@ public final class Window {
             for (Component component : GameIno) {
                 gameInfo.add(component);
             }
-            for (Component component : sizes) {
+            for (TButton component : sizes) {
                 sizeSettings.add(component);
             }
             statisticsPanel.add(animalMasterTime);
@@ -110,7 +107,7 @@ public final class Window {
                 component.setBackground(new Color(68, 68, 68));
                 component.setFocusable(false);
             }
-            for (Component component : sizes) {
+            for (TButton component : sizes) {
                 component.setForeground(BLACK);
                 component.setBackground(new Color(68, 68, 68));
                 component.setFocusable(false);
@@ -124,10 +121,10 @@ public final class Window {
 
             languageSelection.setFocusable(false);
             setLanguageSelection(language);
-            languageSelection.setRenderer(new CustomComboBoxRenderer());
+            languageSelection.setRenderer(new LangSelRenderer());
             if (!setUsername) {
-                volumeSlider.setVisible(false);
-                languageSelection.setVisible(false);
+                volumeSlider.Hide();
+                languageSelection.Hide();
             }
 
             Component[] setVisibleFalse = {
@@ -153,16 +150,16 @@ public final class Window {
             Settings_Dev.setPreferredSize(new Dimension(200, 30));
             SDtrue.setPreferredSize(new Dimension(200, 30));
             SDfalse.setPreferredSize(new Dimension(200, 30));
-            for (Component component : sizes) {
+            for (TButton component : sizes) {
                 component.setPreferredSize(new Dimension(58, 30));
             }
             for (Component component : setPrefferendSizeButtonSize) {
                 component.setPreferredSize(buttonSize);
             }
 
-            JPanel panel = getJPanel();
+            TPanel panel = getTPanel();
 
-            ImagePanel Background = Textures[0][1].toImagePanel();
+            TImage Background = Textures[0][1].toTImage();
             Background.setLayout(new BorderLayout());
             Background.setSize(windows[0].getWidth(), windows[0].getHeight());
             Background.add(panel);
@@ -176,132 +173,133 @@ public final class Window {
                 panel.add(component);
             }
 
-            for (Component component : sizes) {
-                component.setVisible(false);
+            for (TButton component : sizes) {
+                component.Hide();
             }
 
-            if (a == 1.0) sizes[0].setVisible(true);
-            else if (a == 1.25) sizes[1].setVisible(true);
-            else if (a == 1.5) sizes[2].setVisible(true);
-            else if (a == 1.75) sizes[3].setVisible(true);
-            else if (a == 2.0) sizes[4].setVisible(true);
+            if (a == 1.0) sizes[0].Show();
+            else if (a == 1.25) sizes[1].Show();
+            else if (a == 1.5) sizes[2].Show();
+            else if (a == 1.75) sizes[3].Show();
+            else if (a == 2.0) sizes[4].Show();
 
 
-            AnimalMaster.addActionListener(e -> {
+            AnimalMaster.clickAction( () -> {
                 if (!alreadyStarted[0] && !fAMReset) {
                     logger.setInstance(Instance.ANIMAL_MASTER);
                     MainWindow = false;
-                    new AnimalMaster(false, windows[0].getLocation(), new Dimension((int) (420 * a), (int) (210 * a)), Translations.Games[0] + Versions[4]);
+                    new AnimalMaster(new FrameInformationT(false, windows[0].getLocation(), new Dimension((int) (420 * a), (int) (210 * a)),
+                            Translations.Games[0] + Versions[4]));
                     alreadyStarted[0] = true;
-                    windows[0].setVisible(false);
+                    windows[0].Hide();
                     started = "AnimalMaster";
                 } else {
                     MainWindow = false;
-                    windows[0].setVisible(false);
+                    windows[0].Hide();
                 }
                 Main.AnimalMaster = true;
             });
-            Detective_Eagle.addActionListener(e -> {
+            Detective_Eagle.clickAction( () -> {
                 if (!alreadyStarted[1]) {
                     logger.setInstance(Instance.DETEKTIV_ADLER);
                     MainWindow = false;
-                    new DetectiveEagle(false, windows[0].getLocation(), new Dimension(420, 210));
-                    windows[0].setVisible(false);
+                    new DetectiveEagle(new FrameInformation(false, windows[0].getLocation(), new Dimension(420, 210)));
+                    windows[0].Hide();
                     started = " Detektiv Adler";
                     alreadyStarted[1] = true;
                 } else {
                     MainWindow = false;
-                    windows[0].setVisible(false);
+                    windows[0].Hide();
                 }
                 Main.DetektivAdler = true;
             });
             if (dev) {
-                Detective_Thunder.addActionListener(e -> {
+                Detective_Thunder.clickAction( () -> {
                     logger.setInstance(Instance.DETEKTIV_THUNDER);
                     MainWindow = false;
-                    new DetektiveThunder(false, new Point(windows[0].getX() - 500, windows[0].getY() - 300), new Dimension(1330, 750));
-                    windows[0].setVisible(false);
+                    new DetektiveThunder(new FrameInformation(false, new Point(windows[0].getX() - 500, windows[0].getY() - 300), new Dimension(1330, 750)));
+                    windows[0].Hide();
                     started = " Detektiv Thunder";
                 });
             }
-            settings.addActionListener(e -> {
-                languageSelection.setVisible(true);
-                Settings_Dev.setVisible(true);
-                games.setVisible(false);
-                gameInfo.setVisible(false);
-                sizeSettings.setVisible(false);
-                placeholder.setVisible(false);
-                credits.setVisible(false);
-                settings.setVisible(false);
-                Settings_Back.setVisible(true);
-                volumeSlider.setVisible(true);
-                changeUsername.setVisible(true);
-                statistics.setVisible(false);
-                hello.setVisible(false);
+            settings.clickAction( () -> {
+                languageSelection.Show();
+                Settings_Dev.Show();
+                games.Hide();
+                gameInfo.Hide();
+                sizeSettings.Hide();
+                placeholder.Hide();
+                credits.Hide();
+                settings.Hide();
+                Settings_Back.Show();
+                volumeSlider.Show();
+                changeUsername.Show();
+                statistics.Hide();
+                hello.Hide();
             });
-            Settings_Back.addActionListener(e -> {
-                languageSelection.setVisible(false);
-                Settings_Dev.setVisible(false);
-                SDtrue.setVisible(false);
-                SDfalse.setVisible(false);
-                Settings_Back.setVisible(false);
-                games.setVisible(true);
-                gameInfo.setVisible(true);
-                sizeSettings.setVisible(true);
-                placeholder.setVisible(true);
-                credits.setVisible(true);
-                settings.setVisible(true);
-                volumeSlider.setVisible(false);
-                changeUsername.setVisible(false);
-                statistics.setVisible(true);
-                hello.setVisible(true);
+            Settings_Back.clickAction( () -> {
+                languageSelection.Hide();
+                Settings_Dev.Hide();
+                SDtrue.Hide();
+                SDfalse.Hide();
+                Settings_Back.Hide();
+                games.Show();
+                gameInfo.Show();
+                sizeSettings.Show();
+                placeholder.Show();
+                credits.Show();
+                settings.Show();
+                volumeSlider.Hide();
+                changeUsername.Hide();
+                statistics.Show();
+                hello.Show();
             });
-            languageSelection.addActionListener(e -> {
+            languageSelection.addActionListener( () -> {
                 configLoader.setLanguage((String) languageSelection.getSelectedItem());
                 language = (String) languageSelection.getSelectedItem();
             });
             //TODO improve
-            credits.addActionListener(e -> {
-                credits.setVisible(false);
-                games.setVisible(false);
-                gameInfo.setVisible(false);
-                sizeSettings.setVisible(false);
-                placeholder.setVisible(false);
-                settings.setVisible(false);
-                CreditBorder.setVisible(true);
-                CreditsBack.setVisible(true);
-                statistics.setVisible(false);
-                hello.setVisible(false);
+            credits.clickAction( () -> {
+                credits.Hide();
+                games.Hide();
+                gameInfo.Hide();
+                sizeSettings.Hide();
+                placeholder.Hide();
+                settings.Hide();
+                CreditBorder.Show();
+                CreditsBack.Show();
+                statistics.Hide();
+                hello.Hide();
             });
-            CreditsBack.addActionListener(e -> {
-                credits.setVisible(true);
-                games.setVisible(true);
-                gameInfo.setVisible(true);
-                sizeSettings.setVisible(true);
-                placeholder.setVisible(true);
-                settings.setVisible(true);
-                CreditBorder.setVisible(false);
-                CreditsBack.setVisible(false);
-                statistics.setVisible(true);
-                hello.setVisible(true);
+            CreditsBack.clickAction( () -> {
+                credits.Show();
+                games.Show();
+                gameInfo.Show();
+                sizeSettings.Show();
+                placeholder.Show();
+                settings.Show();
+                CreditBorder.Hide();
+                CreditsBack.Hide();
+                statistics.Show();
+                hello.Show();
             });
             Settings_Dev.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    Settings_Dev.setVisible(false);
+                    Settings_Dev.Hide();
                     if (configLoader.isDevVersionsEnabled()) {
-                        SDtrue.setVisible(true);
+                        SDtrue.Show();
                     } else {
-                        SDfalse.setVisible(true);
+                        SDfalse.Show();
                     }
                 }
             });
-            SDtrue.addActionListener(e -> {
+            SDtrue.clickAction( () -> {
                 pressedTrue = true;
                 configLoader.setDevVersions(false);
                 dev = false;
-                SDtrue.setVisible(false);
-                SDfalse.setVisible(true);
+                SDtrue.Hide();
+                SDfalse.Show();
                 games.setPreferredSize(new Dimension(games.getWidth(), 100));
                 gameInfo.setPreferredSize(new Dimension(gameInfo.getWidth(), 100));
                 sizeSettings.setPreferredSize(new Dimension(sizeSettings.getWidth(), 100));
@@ -310,19 +308,19 @@ public final class Window {
                 @Override
                 public void mouseExited(MouseEvent e) {
                     if (!pressedTrue) {
-                        SDtrue.setVisible(false);
-                        Settings_Dev.setVisible(true);
+                        SDtrue.Hide();
+                        Settings_Dev.Show();
                     } else {
                         pressedTrue = false;
                     }
                 }
             });
-            SDfalse.addActionListener(e -> {
+            SDfalse.clickAction( () -> {
                 pressedFalse = true;
                 configLoader.setDevVersions(true);
                 dev = true;
-                SDtrue.setVisible(true);
-                SDfalse.setVisible(false);
+                SDtrue.Show();
+                SDfalse.Hide();
                 games.setPreferredSize(new Dimension(games.getWidth(), 135));
                 gameInfo.setPreferredSize(new Dimension(gameInfo.getWidth(), 135));
                 sizeSettings.setPreferredSize(new Dimension(sizeSettings.getWidth(), 135));
@@ -331,28 +329,28 @@ public final class Window {
                 @Override
                 public void mouseExited(MouseEvent e) {
                     if (!pressedFalse) {
-                        SDfalse.setVisible(false);
-                        Settings_Dev.setVisible(true);
+                        SDfalse.Hide();
+                        Settings_Dev.Show();
                     } else {
                         pressedFalse = false;
                     }
                 }
             });
-            changeUsername.addActionListener(e -> {
-                games.setVisible(false);
-                gameInfo.setVisible(false);
-                settings.setVisible(false);
-                credits.setVisible(false);
-                statistics.setVisible(false);
-                hello.setVisible(false);
-                languageSelection.setVisible(false);
-                volumeSlider.setVisible(false);
-                Settings_Dev.setVisible(false);
-                SDfalse.setVisible(false);
-                SDtrue.setVisible(false);
-                Settings_Back.setVisible(false);
-                changeUsername.setVisible(false);
-                usernameInput.setVisible(true);
+            changeUsername.clickAction( () -> {
+                games.Hide();
+                gameInfo.Hide();
+                settings.Hide();
+                credits.Hide();
+                statistics.Hide();
+                hello.Hide();
+                languageSelection.Hide();
+                volumeSlider.Hide();
+                Settings_Dev.Hide();
+                SDfalse.Hide();
+                SDtrue.Hide();
+                Settings_Back.Hide();
+                changeUsername.Hide();
+                usernameInput.Show();
             });
             volumeSlider.addChangeListener(e -> {
                 configLoader.setVolume(volumeSlider.getValue());
@@ -371,71 +369,71 @@ public final class Window {
                         } else {
                             logger.info(usernameInput.getText());
                             configLoader.setUsername(usernameInput.getText());
-                            usernameInput.setVisible(false);
-                            games.setVisible(true);
-                            gameInfo.setVisible(true);
-                            settings.setVisible(true);
-                            credits.setVisible(true);
-                            statistics.setVisible(true);
-                            placeholder.setVisible(true);
-                            hello.setVisible(true);
+                            usernameInput.Hide();
+                            games.Show();
+                            gameInfo.Show();
+                            settings.Show();
+                            credits.Show();
+                            statistics.Show();
+                            placeholder.Show();
+                            hello.Show();
                         }
                     }
                 }
             });
-            statistics.addActionListener(e -> {
-                statisticsPanel.setVisible(true);
-                statisticsBack.setVisible(true);
-                games.setVisible(false);
-                gameInfo.setVisible(false);
-                sizeSettings.setVisible(false);
-                placeholder.setVisible(false);
-                credits.setVisible(false);
-                settings.setVisible(false);
-                statistics.setVisible(false);
-                hello.setVisible(false);
+            statistics.clickAction( () -> {
+                statisticsPanel.Show();
+                statisticsBack.Show();
+                games.Hide();
+                gameInfo.Hide();
+                sizeSettings.Hide();
+                placeholder.Hide();
+                credits.Hide();
+                settings.Hide();
+                statistics.Hide();
+                hello.Hide();
             });
-            statisticsBack.addActionListener(e -> {
-                statisticsPanel.setVisible(false);
-                statisticsBack.setVisible(false);
-                games.setVisible(true);
-                gameInfo.setVisible(true);
-                sizeSettings.setVisible(true);
-                placeholder.setVisible(true);
-                credits.setVisible(true);
-                settings.setVisible(true);
-                statistics.setVisible(true);
-                hello.setVisible(true);
+            statisticsBack.clickAction( () -> {
+                statisticsPanel.Hide();
+                statisticsBack.Hide();
+                games.Show();
+                gameInfo.Show();
+                sizeSettings.Show();
+                placeholder.Show();
+                credits.Show();
+                settings.Show();
+                statistics.Show();
+                hello.Show();
             });
 
-            sizes[0].addActionListener(e -> {
+            sizes[0].clickAction( () -> {
                 configLoader.setAnimal_master_size_multiplier(1.25);
-                sizes[0].setVisible(false);
-                sizes[1].setVisible(true);
+                sizes[0].Hide();
+                sizes[1].Show();
             });
-            sizes[1].addActionListener(e -> {
+            sizes[1].clickAction( () -> {
                 configLoader.setAnimal_master_size_multiplier(1.5);
-                sizes[1].setVisible(false);
-                sizes[2].setVisible(true);
+                sizes[1].Hide();
+                sizes[2].Show();
             });
-            sizes[2].addActionListener(e -> {
+            sizes[2].clickAction( () -> {
                 configLoader.setAnimal_master_size_multiplier(1.75);
-                sizes[2].setVisible(false);
-                sizes[3].setVisible(true);
+                sizes[2].Hide();
+                sizes[3].Show();
             });
-            sizes[3].addActionListener(e -> {
+            sizes[3].clickAction( () -> {
                 configLoader.setAnimal_master_size_multiplier(2.0);
-                sizes[3].setVisible(false);
-                sizes[4].setVisible(true);
+                sizes[3].Hide();
+                sizes[4].Show();
             });
-            sizes[4].addActionListener(e -> {
+            sizes[4].clickAction( () -> {
                 configLoader.setAnimal_master_size_multiplier(1.0);
-                sizes[4].setVisible(false);
-                sizes[0].setVisible(true);
+                sizes[4].Hide();
+                sizes[0].Show();
             });
 
 
-            WindowOperations(0, resizable, new Dimension(500, 400), new Point(800, 500), Textures[0][0], Background);
+            WindowOperations(0, new FrameInformation(resizable, new Point(800, 500), new Dimension(500, 400)), Textures[0][0], Background);
             timer(() -> {
                 if (fAM) {
                     fAM = false;
@@ -447,16 +445,16 @@ public final class Window {
         });
     }
 
-    private static JPanel getJPanel() {
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10)) {
+    private static TPanel getTPanel() {
+        TPanel panel = new TPanel(new FlowLayout(FlowLayout.LEFT, 10, 10)) {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.setColor(new Color(0, 0, 0, 0));
                 g.fillRect(0, 0, this.getWidth(), this.getHeight());
             }
         };
-        panel.setOpaque(false);
-        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 20, 10));
+        panel.setOpaqueF();
+        panel.setBorder(10, 10, 20, 10);
         return panel;
     }
 

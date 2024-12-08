@@ -1,6 +1,7 @@
 package dev.TTs.TTsGames.Games.DetectiveThunder;
 
 import dev.TTs.lang.Instance;
+import dev.TTs.swing.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,14 +11,14 @@ import static dev.TTs.TTsGames.Games.DetectiveThunder.DetektiveThunder.*;
 import static dev.TTs.TTsGames.Resources.Translations.DetectiveThunder;
 
 public final class Close {
-    public Close(JFrame DetektivThunderWindow, Point location) {
+    public Close(TFrame DetektivThunderWindow, Point location) {
         location = new Point(location.x + 500, location.y + 250);
-        windows[4] = new JFrame(DetectiveThunder[5]);
+        windows[4] = new TFrame(DetectiveThunder[5]);
 
-        JButton close = new JButton(DetectiveThunder[6]);
-        JButton score = new JButton(DetectiveThunder[7]);
+        TButton close = new TButton(DetectiveThunder[6]);
+        TButton score = new TButton(DetectiveThunder[7]);
 
-        JPanel panel = new JPanel();
+        TPanel panel = new TPanel();
         panel.setSize(240,120);
 
         panel.add(close);
@@ -26,7 +27,7 @@ public final class Close {
 
         close.addActionListener(e -> {
             logger.setInstance(Instance.TTS_GAMES);
-            DetektivThunderWindow.setVisible(false);
+            DetektivThunderWindow.Hide();
             windows[4].dispose();
             startedClose = false;
             MainWindow = true;
@@ -37,6 +38,6 @@ public final class Close {
             startedClose = false;
         });
 
-        WindowOperations(4, false, new Dimension(240, 120), location, Textures[3][0], panel);
+        WindowOperations(4, new FrameInformation(false, location, new Dimension(240, 120)), Textures[3][0], panel);
     }
 }

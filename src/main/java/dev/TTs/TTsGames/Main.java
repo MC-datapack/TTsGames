@@ -5,6 +5,8 @@ import dev.TTs.TTsGames.Games.DetectiveThunder.Close;
 import dev.TTs.TTsGames.Resources.ConfigLoader;
 import dev.TTs.TTsGames.Resources.Json.JsonReader;
 import dev.TTs.TTsGames.Resources.*;
+import dev.TTs.swing.FrameInformation;
+import dev.TTs.swing.TFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,7 +36,7 @@ public final class Main {
 
     public static URI uri;
     public static Image noTexture;
-    public static JFrame[] windows = new JFrame[6];
+    public static TFrame[] windows = new TFrame[6];
     public static Color[] buttonColors;
     public static Timer checkLoop;
 
@@ -61,7 +63,7 @@ public final class Main {
         dev = configLoader.isDevVersionsEnabled();
         Username = configLoader.getUsername();
         setUsername = !Objects.equals(Username, "௹⨌{UsernameDe}");
-        AMTime[2] = configLoader.getAnimalMasterTimeRecord();
+        AMTime[2] = configLoader.getAlMTimeRecord();
         a = configLoader.getAnimal_master_size_multiplier();
         logger.debug("Loaded config");
 
@@ -112,11 +114,11 @@ public final class Main {
     }
 
 
-    public static void WindowOperations(int window, boolean resizable, Dimension size, Point location, ImageString icon, Component background) {
-        WindowOperations(window, resizable, size, location, icon);
+    public static void WindowOperations(int window, FrameInformation information, ImageString icon, Component background) {
+        WindowOperations(window, information, icon);
         windows[window].add(background);
     }
-    public static void WindowOperations(int window, boolean resizable, Dimension size, Point location, ImageString icon) {
+    public static void WindowOperations(int window, FrameInformation information, ImageString icon) {
         windows[window].addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -153,9 +155,9 @@ public final class Main {
             }
         });
         windows[window].setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        windows[window].setResizable(resizable);
-        windows[window].setSize(size);
-        windows[window].setLocation(location);
+        windows[window].setResizable(information.resizable());
+        windows[window].setSize(information.size());
+        windows[window].setLocation(information.location());
         windows[window].setIconImage(icon.toImage());
         windows[window].getContentPane().setBackground(Color.LIGHT_GRAY);
         windows[window].setLayout(new BorderLayout());

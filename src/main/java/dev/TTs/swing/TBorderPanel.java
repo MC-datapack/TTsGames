@@ -4,45 +4,45 @@ import javax.swing.*;
 import java.awt.*;
 
 @SuppressWarnings("unused")
-public class BorderPanel extends JPanel {
+public class TBorderPanel extends TPanel {
     JLabel textL;
 
-    public BorderPanel() {
+    public TBorderPanel() {
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, false));
         setOpaque(false);
     }
-    public BorderPanel(Color color) {
+    public TBorderPanel(Color color) {
         setBorder(BorderFactory.createLineBorder(color, 2, false));
         setOpaque(false);
     }
-    public BorderPanel(Color color, int thickness) {
+    public TBorderPanel(Color color, int thickness) {
         setBorder(BorderFactory.createLineBorder(color, thickness, false));
         setOpaque(false);
     }
-    public BorderPanel(Color color, int thickness, boolean rounded) {
+    public TBorderPanel(Color color, int thickness, boolean rounded) {
         setBorder(BorderFactory.createLineBorder(color, thickness, rounded));
         setOpaque(false);
     }
-    public BorderPanel(int thickness) {
+    public TBorderPanel(int thickness) {
         setBorder(BorderFactory.createLineBorder(Color.BLACK, thickness, false));
         setOpaque(false);
     }
-    public BorderPanel(int thickness, boolean rounded) {
+    public TBorderPanel(int thickness, boolean rounded) {
         setBorder(BorderFactory.createLineBorder(Color.BLACK, thickness, rounded));
         setOpaque(false);
     }
-    public BorderPanel(boolean Opaque) {
+    public TBorderPanel(boolean Opaque) {
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, false));
         setOpaque(Opaque);
     }
-    public BorderPanel(String text, Color textColor) {
+    public TBorderPanel(String text, Color textColor) {
         textL = new JLabel(text);
         textL.setForeground(textColor);
         this.add(textL);
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, false));
         setOpaque(false);
     }
-    public BorderPanel(String text, Color textColor, boolean Opaque) {
+    public TBorderPanel(String text, Color textColor, boolean Opaque) {
         textL = new JLabel(text);
         textL.setForeground(textColor);
         this.add(textL);
@@ -55,22 +55,7 @@ public class BorderPanel extends JPanel {
         super.paintComponent(g);
     }
 
-    public void setText(String text) {
-        textL.setText(text);
-        textL.revalidate();
-        this.revalidate();
-        textL.repaint();
-        this.repaint();
-    }
-
     public JLabel getLabel() {
         return textL;
-    }
-
-    public Component[] add(Component... components) {
-        for (Component component : components) {
-            this.add(component);
-        }
-        return components;
     }
 }

@@ -2,13 +2,12 @@ package dev.TTs.swing;
 
 import dev.TTs.lang.ImageString;
 
-import javax.swing.*;
 import java.awt.*;
 
-public class ImagePanel extends JPanel {
+public class TImage extends TPanel {
     private final Image backgroundImage;
 
-    public ImagePanel(ImageString imagePath) {
+    public TImage(ImageString imagePath) {
         this.backgroundImage = imagePath.toImage();
     }
 

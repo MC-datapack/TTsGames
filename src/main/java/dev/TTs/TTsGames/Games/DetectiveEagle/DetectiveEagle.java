@@ -1,6 +1,7 @@
 package dev.TTs.TTsGames.Games.DetectiveEagle;
 
-import dev.TTs.swing.ImagePanel;
+import dev.TTs.lang.ExitCodes;
+import dev.TTs.swing.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,36 +13,36 @@ import static dev.TTs.TTsGames.Resources.Translations.DetectiveEagle;
 
 public final class DetectiveEagle {
     Timer timer;
-    public DetectiveEagle(boolean resizable, Point location, Dimension size) {
+    public DetectiveEagle(FrameInformation inf) {
         startedVersion = Versions[7];
         SwingUtilities.invokeLater(() -> {
-            windows[2] = new JFrame(Games[1] + Versions[7]);
-            JLabel erkl = new JLabel(DetectiveEagle[0]);
-            JButton start = new JButton(DetectiveEagle[1]);
-            JLabel question0 = new JLabel(QuestionsD[0]);
-            JButton answer01 = new JButton(ButtonsD[3]);
-            JButton answer02 = new JButton(ButtonsD[4]);
-            JButton answer03 = new JButton(ButtonsD[5]);
-            JLabel question1 = new JLabel(QuestionsD[1]);
-            JButton answer11 = new JButton(ButtonsD[6]);
-            JButton answer12 = new JButton(ButtonsD[7]);
-            JButton answer13 = new JButton(ButtonsD[8]);
-            JLabel question2 = new JLabel(QuestionsD[2]);
-            JButton answer20 = new JButton(ButtonsD[1]);
-            JButton answer21 = new JButton(ButtonsD[2]);
-            JLabel question3 = new JLabel(QuestionsD[3]);
-            JButton answer31 = new JButton(Textures[2][3].toIcon());
-            JButton answer32 = new JButton(Textures[2][4].toIcon());
+            windows[2] = new TFrame(Games[1] + Versions[7]);
+            TLabel erkl = new TLabel(DetectiveEagle[0]);
+            TButton start = new TButton(DetectiveEagle[1]);
+            TLabel question0 = new TLabel(QuestionsD[0]);
+            TButton answer01 = new TButton(ButtonsD[3]);
+            TButton answer02 = new TButton(ButtonsD[4]);
+            TButton answer03 = new TButton(ButtonsD[5]);
+            TLabel question1 = new TLabel(QuestionsD[1]);
+            TButton answer11 = new TButton(ButtonsD[6]);
+            TButton answer12 = new TButton(ButtonsD[7]);
+            TButton answer13 = new TButton(ButtonsD[8]);
+            TLabel question2 = new TLabel(QuestionsD[2]);
+            TButton answer20 = new TButton(ButtonsD[1]);
+            TButton answer21 = new TButton(ButtonsD[2]);
+            TLabel question3 = new TLabel(QuestionsD[3]);
+            TButton answer31 = new TButton(Textures[2][3].toIcon());
+            TButton answer32 = new TButton(Textures[2][4].toIcon());
 
-            Component[] doStandardButtonstuff =  {
+            TButton[] doStandardButtonstuff =  {
                     start, answer01, answer02, answer03, answer11, answer12, answer13, answer20, answer21, answer31, answer32
             };
             Component[] dostandardLabelStuff = {
                     erkl, question0, question1, question2, question3
             };
-            for (Component component : doStandardButtonstuff) {
-                ((JButton) component).setOpaque(false);
-                ((JButton) component).setContentAreaFilled(false);
+            for (TButton component : doStandardButtonstuff) {
+                component.setOpaqueF();
+                component.setContentAreaFilled(false);
                 component.setForeground(Color.WHITE);
                 component.setFocusable(false);
             }
@@ -70,20 +71,18 @@ public final class DetectiveEagle {
                 component.setBounds(10, 10, 320, 30);
             }
 
-
-
-            ImagePanel Background = Textures[2][1].toImagePanel();
+            TImage Background = Textures[2][1].toTImage();
             Background.setLayout(new BorderLayout());
             Background.setPreferredSize(new Dimension(420, 171));
             Background.setBounds(0, 0, 420, 171);
 
-            ImagePanel Fall1 = Textures[2][2].toImagePanel();
+            TImage Fall1 = Textures[2][2].toTImage();
             Fall1.setLayout(new BorderLayout());
             Fall1.setPreferredSize(new Dimension(300, 171));
-            Fall1.setVisible(true);
+            Fall1.Show();
             Fall1.setBounds(0, 0, 300, 171);
 
-            JLayeredPane Pane = new JLayeredPane();
+            TLayeredPane Pane = new TLayeredPane();
             Pane.setPreferredSize(new Dimension(420, 171));
 
             Component[] addToPane = {
@@ -91,7 +90,7 @@ public final class DetectiveEagle {
                     answer11, answer12, answer13, answer32, Fall1, Background
             };
             for (Component component : addToPane) {
-                Pane.add(component, JLayeredPane.PALETTE_LAYER);
+                Pane.add(component, TLayeredPane.PALETTE_LAYER);
             }
 
             Component[] setVisibleFalse = {
@@ -101,83 +100,66 @@ public final class DetectiveEagle {
                 component.setVisible(false);
             }
 
-
-
-
-
-
-            start.addActionListener(e-> {
-                Fall1.setVisible(true);
-                start.setVisible(false);
-                erkl.setVisible(false);
+            start.clickAction( () -> {
+                Fall1.Show();
+                start.Hide();
+                erkl.Hide();
                 timer = timer(() -> {
-                    Fall1.setVisible(false);
-                    question0.setVisible(true);
-                    answer01.setVisible(true);
-                    answer02.setVisible(true);
-                    answer03.setVisible(true);
+                    Fall1.Hide();
+                    question0.Show();
+                    answer01.Show();
+                    answer02.Show();
+                    answer03.Show();
                 }, 5000);
             });
-            answer01.addActionListener(e-> {
-                System.exit(0); //TODO Verbessern nicht System.exit(0) sondern etwas anderes
+            answer01.clickAction( () -> System.exit(ExitCodes.NO_ERROR));
+            answer02.clickAction( () -> {
+                question0.Hide();
+                answer01.Hide();
+                answer02.Hide();
+                answer03.Hide();
+                question1.Show();
+                answer11.Show();
+                answer12.Show();
+                answer13.Show();
             });
-            answer02.addActionListener(e-> {
-                question0.setVisible(false);
-                answer01.setVisible(false);
-                answer02.setVisible(false);
-                answer03.setVisible(false);
-                question1.setVisible(true);
-                answer11.setVisible(true);
-                answer12.setVisible(true);
-                answer13.setVisible(true);
+            answer03.clickAction( () -> System.exit(ExitCodes.NO_ERROR));
+            answer11.clickAction( () -> {
+                question1.Hide();
+                answer11.Hide();
+                answer12.Hide();
+                answer13.Hide();
+                question2.Show();
+                answer20.Show();
+                answer21.Show();
             });
-            answer03.addActionListener(e-> {
-                System.exit(0); //TODO Verbessern nicht System.exit(0) sondern etwas anderes
+            answer12.clickAction( () -> {
+                question1.Hide();
+                answer11.Hide();
+                answer12.Hide();
+                answer13.Hide();
+                question2.Show();
+                answer20.Show();
+                answer21.Show();
             });
-            answer11.addActionListener(e-> {
-                question1.setVisible(false);
-                answer11.setVisible(false);
-                answer12.setVisible(false);
-                answer13.setVisible(false);
-                question2.setVisible(true);
-                answer20.setVisible(true);
-                answer21.setVisible(true);
+            answer13.clickAction( () -> System.exit(ExitCodes.NO_ERROR));
+            answer20.clickAction( () -> {
+                question2.Hide();
+                answer20.Hide();
+                answer21.Hide();
+                question3.Show();
+                answer31.Show();
+                answer32.Show();
             });
-            answer12.addActionListener(e-> {
-                question1.setVisible(false);
-                answer11.setVisible(false);
-                answer12.setVisible(false);
-                answer13.setVisible(false);
-                question2.setVisible(true);
-                answer20.setVisible(true);
-                answer21.setVisible(true);
+            answer21.clickAction( () -> System.exit(ExitCodes.NO_ERROR));
+            answer31.clickAction( () -> {
+                question3.Hide();
+                answer31.Hide();
+                answer32.Hide();
             });
-            answer13.addActionListener(e-> {
-                System.exit(0); //TODO Verbessern nicht System.exit(0) sondern etwas anderes
-            });
-            answer20.addActionListener(e-> {
-                question2.setVisible(false);
-                answer20.setVisible(false);
-                answer21.setVisible(false);
-                question3.setVisible(true);
-                answer31.setVisible(true);
-                answer32.setVisible(true);
-            });
-            answer21.addActionListener(e-> {
-                System.exit(0); //TODO Verbessern nicht System.exit(0) sondern etwas anderes
-            });
-            answer31.addActionListener(e-> {
-                question3.setVisible(false);
-                answer31.setVisible(false);
-                answer32.setVisible(false);
-            });
-            answer32.addActionListener(e-> {
-                System.exit(0); //TODO Verbessern nicht System.exit(0) sondern etwas anderes
-            });
+            answer32.clickAction( () -> System.exit(ExitCodes.NO_ERROR));
 
-
-
-            WindowOperations(2, resizable, size, location, Textures[2][0], Pane);
+            WindowOperations(2, inf, Textures[2][0], Pane);
         });
     }
 }

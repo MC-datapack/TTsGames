@@ -4,16 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 
 @SuppressWarnings("unused")
-public class CustomComboBoxRenderer extends JLabel implements ListCellRenderer<Object> {
+public class LangSelRenderer extends JLabel implements ListCellRenderer<Object> {
     private final Color SelectedColor, UnselectedColor;
 
-    public CustomComboBoxRenderer() {
+    public LangSelRenderer() {
         setOpaque(true);
         setFont(new Font("Pixel", Font.PLAIN, 14)); // Custom pixel art font
         this.SelectedColor = new Color(100, 100, 250);
         this.UnselectedColor = new Color(200, 200, 200, 150);
     }
-    public CustomComboBoxRenderer(Color selectedColor, Color unselectedColor) {
+    public LangSelRenderer(Color selectedColor, Color unselectedColor) {
         setOpaque(true);
         setFont(new Font("Pixel", Font.PLAIN, 14)); // Custom pixel art font
         this.SelectedColor = selectedColor;

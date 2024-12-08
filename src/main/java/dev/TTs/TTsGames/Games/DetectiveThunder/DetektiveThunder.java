@@ -1,8 +1,7 @@
 package dev.TTs.TTsGames.Games.DetectiveThunder;
 
 import dev.TTs.lang.ExitCodes;
-import dev.TTs.swing.AnimatedImagePanel;
-import dev.TTs.swing.ImagePanel;
+import dev.TTs.swing.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,33 +25,33 @@ public final class DetektiveThunder {
     int Score = 0;
     public static boolean showScore = false, startedClose = false;
 
-    public DetektiveThunder(boolean resizable, Point location, Dimension size) {
+    public DetektiveThunder(FrameInformation inf) {
         startedVersion = Versions[10];
         SwingUtilities.invokeLater(() -> {
-            windows[3] = new JFrame(Games[2] + Versions[10]);
+            windows[3] = new TFrame(Games[2] + Versions[10]);
 
-            JButton erklaerung = new JButton(DetectiveThunder[0]);
+            TButton erklaerung = new TButton(DetectiveThunder[0]);
             //160 Buchstaben max pro Zeile
-            JLabel line1 = new JLabel(DetectiveThunder[1]);
-            JLabel line2 = new JLabel(DetectiveThunder[2]);
-            JLabel line3 = new JLabel(DetectiveThunder[3]);
+            TLabel line1 = new TLabel(DetectiveThunder[1]);
+            TLabel line2 = new TLabel(DetectiveThunder[2]);
+            TLabel line3 = new TLabel(DetectiveThunder[3]);
 
-            JButton start = new JButton(DetectiveThunder[4]);
+            TButton start = new TButton(DetectiveThunder[4]);
 
-            JButton[] entscheidungen = new JButton[4];
-            entscheidungen[0] = new JButton(ButtonsDT[0]);
-            entscheidungen[1] = new JButton(ButtonsDT[1]);
-            entscheidungen[2] = new JButton(ButtonsDT[2]);
-            entscheidungen[3] = new JButton(ButtonsDT[3]);
+            TButton[] entscheidungen = new TButton[4];
+            entscheidungen[0] = new TButton(ButtonsDT[0]);
+            entscheidungen[1] = new TButton(ButtonsDT[1]);
+            entscheidungen[2] = new TButton(ButtonsDT[2]);
+            entscheidungen[3] = new TButton(ButtonsDT[3]);
 
-            Component[][] doStandardButtonStuff = {
+            TButton[][] doStandardButtonStuff = {
                     entscheidungen,
                     {erklaerung, start}
             };
-            for (Component[] componentArray : doStandardButtonStuff) {
-                for (Component component : componentArray) {
-                    ((JButton) component).setOpaque(false);
-                    ((JButton) component).setContentAreaFilled(false);
+            for (TButton[] componentArray : doStandardButtonStuff) {
+                for (TButton component : componentArray) {
+                    component.setOpaque(false);
+                    component.setContentAreaFilled(false);
                     component.setForeground(Color.WHITE);
                     component.setFocusable(false);
                 }
@@ -66,22 +65,22 @@ public final class DetektiveThunder {
                 component.setFocusable(false);
             }
 
-            ImagePanel background = Textures[3][1].toImagePanel();
+            TImage background = Textures[3][1].toTImage();
 
-            AnimatedImagePanel Wache = Textures[3][2].toAnimatedImagePanel();
-            ImagePanel Kunstgalerie = Textures[3][3].toImagePanel();
-            AnimatedImagePanel FingerabdruckSuche = Textures[3][4].toAnimatedImagePanel();
+            TAnimation Wache = Textures[3][2].toTAnimation();
+            TImage Kunstgalerie = Textures[3][3].toTImage();
+            TAnimation FingerabdruckSuche = Textures[3][4].toTAnimation();
 
 
-            Component[] doStandardPanelStuff = {
+            TPanel[] doStandardPanelStuff = {
                     Wache, Kunstgalerie, FingerabdruckSuche
             };
 
-            for (Component component : doStandardPanelStuff) {
+            for (TPanel component : doStandardPanelStuff) {
                 windows[3].add(component);
-                ((Container) component).setLayout(new BorderLayout());
+                component.setLayout(new BorderLayout());
                 component.setSize(1330, 750);
-                component.setVisible(false);
+                component.Hide();
             }
 
 
@@ -95,7 +94,7 @@ public final class DetektiveThunder {
                 }
             }
 
-            JPanel panel = new JPanel();
+            TPanel panel = new TPanel();
             panel.setOpaque(false);
             panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 20, 10));
             background.add(panel);
@@ -111,29 +110,29 @@ public final class DetektiveThunder {
             }
 
             erklaerung.addActionListener(e -> {
-                erklaerung.setVisible(false);
-                line1.setVisible(true);
-                line2.setVisible(true);
-                line3.setVisible(true);
+                erklaerung.Hide();
+                line1.Show();
+                line2.Show();
+                line3.Show();
             });
             start.addActionListener(e -> {
-                start.setVisible(false);
-                erklaerung.setVisible(false);
-                background.setVisible(false);
-                line1.setVisible(false);
-                line2.setVisible(false);
-                line3.setVisible(false);
-                Wache.setVisible(true);
+                start.Hide();
+                erklaerung.Hide();
+                background.Hide();
+                line1.Hide();
+                line2.Hide();
+                line3.Hide();
+                Wache.Show();
                 Wache.add(panel);
                 timer(() -> {
                     Sounds[3][0].playSound();
-                    timer(() -> entscheidungen[0].setVisible(true), 9500);
+                    timer(() -> entscheidungen[0].Show(), 9500);
                 }, 1000);
             });
             entscheidungen[0].addActionListener(e -> {
-                entscheidungen[0].setVisible(false);
-                Wache.setVisible(false);
-                Kunstgalerie.setVisible(true);
+                entscheidungen[0].Hide();
+                Wache.Hide();
+                Kunstgalerie.Show();
                 Kunstgalerie.add(panel);
                 Sounds[3][1].playSound();
                 timer(() -> {
@@ -142,26 +141,26 @@ public final class DetektiveThunder {
                         Sounds[3][3].playSound();
                         timer(() -> {
                             for (int i = 1; i < 4; i++) {
-                                entscheidungen[i].setVisible(true);
+                                entscheidungen[i].Show();
                             }
                         }, 3150);
                     }, 14700);
                 }, 4500);
             });
             entscheidungen[1].addActionListener(e -> {
-                entscheidungen[1].setVisible(false);
-                entscheidungen[2].setVisible(false);
-                entscheidungen[3].setVisible(false);
-                Kunstgalerie.setVisible(false);
-                Wache.setVisible(true);
+                entscheidungen[1].Hide();
+                entscheidungen[2].Hide();
+                entscheidungen[3].Hide();
+                Kunstgalerie.Hide();
+                Wache.Show();
                 Wache.add(panel);
                 Sounds[3][4].playSound();
                 timer(() -> System.exit(ExitCodes.NO_ERROR), 11100);
             });
             entscheidungen[3].addActionListener(e -> {
-                entscheidungen[1].setVisible(false);
-                entscheidungen[2].setVisible(false);
-                entscheidungen[3].setVisible(false);
+                entscheidungen[1].Hide();
+                entscheidungen[2].Hide();
+                entscheidungen[3].Hide();
                 Sounds[3][5].playSound();
                 timer(() -> {
                     Sounds[3][6].playSound();
@@ -169,17 +168,17 @@ public final class DetektiveThunder {
                 }, 1500);
             });
             entscheidungen[2].addActionListener(e -> {
-                entscheidungen[1].setVisible(false);
-                entscheidungen[2].setVisible(false);
-                entscheidungen[3].setVisible(false);
-                Kunstgalerie.setVisible(false);
-                FingerabdruckSuche.setVisible(true);
+                entscheidungen[1].Hide();
+                entscheidungen[2].Hide();
+                entscheidungen[3].Hide();
+                Kunstgalerie.Hide();
+                FingerabdruckSuche.Show();
                 FingerabdruckSuche.restartAnimation();
                 FingerabdruckSuche.add(panel);
             });
 
 
-            WindowOperations(3, resizable, size, location, Textures[3][0], background);
+            WindowOperations(3, inf, Textures[3][0], background);
         });
     }
 }

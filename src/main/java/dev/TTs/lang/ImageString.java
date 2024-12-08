@@ -1,8 +1,8 @@
 package dev.TTs.lang;
 
 import dev.TTs.TTsGames.Resources.Json.formats.AnimatedJSONFormat;
-import dev.TTs.swing.AnimatedImagePanel;
-import dev.TTs.swing.ImagePanel;
+import dev.TTs.swing.TAnimation;
+import dev.TTs.swing.TImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -66,12 +66,12 @@ public final class ImageString {
         }
     }
 
-    public ImagePanel toImagePanel() {
-        return new ImagePanel(this);
+    public TImage toTImage() {
+        return new TImage(this);
     }
 
-    public AnimatedImagePanel toAnimatedImagePanel() {
-        return new AnimatedImagePanel(this);
+    public TAnimation toTAnimation() {
+        return new TAnimation(this);
     }
 
     public List<ImageString> getStrings() {

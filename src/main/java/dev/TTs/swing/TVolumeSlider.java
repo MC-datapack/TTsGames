@@ -6,18 +6,18 @@ import javax.swing.plaf.basic.BasicSliderUI;
 import java.awt.*;
 
 @SuppressWarnings("unused")
-public class VolumeSlider extends JSlider {
-    public VolumeSlider(int min, int max) {
+public class TVolumeSlider extends TSlider {
+    public TVolumeSlider(int min, int max) {
         super(min, max);
         setUI(new VolumeSliderUI(this, new Color(200, 100, 250), new Color(50, 50, 200), new Color(220, 220, 220)));
     }
 
-    public VolumeSlider(int min, int max, int value) {
+    public TVolumeSlider(int min, int max, int value) {
         super(min, max, value);
         setUI(new VolumeSliderUI(this, new Color(200, 100, 250), new Color(50, 50, 200), new Color(220, 220, 220)));
     }
 
-    public VolumeSlider(int min, int max, int value, Color trackColor, Color thumbColor) {
+    public TVolumeSlider(int min, int max, int value, Color trackColor, Color thumbColor) {
         super(min, max, value);
         setUI(new VolumeSliderUI(this, trackColor, thumbColor, new Color(trackColor.getRed(), trackColor.getGreen(), trackColor.getBlue(), 100)));
     }

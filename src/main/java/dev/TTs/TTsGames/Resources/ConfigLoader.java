@@ -127,9 +127,9 @@ public class ConfigLoader {
         saveProperties();
     }
 
-    public float getAnimalMasterTimeRecord() {return Float.parseFloat(properties.getProperty(KEYS[4]));}
+    public float getAlMTimeRecord() {return Float.parseFloat(properties.getProperty(KEYS[4]));}
 
-    public void setAnimalMasterTimeRecord(float timeRecord) {
+    public void setAMTimeRecord(float timeRecord) {
         properties.setProperty(KEYS[4], String.valueOf(timeRecord));
         saveProperties();
     }
