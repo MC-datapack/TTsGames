@@ -9,6 +9,3 @@
 
 # Binary files should be left untouched
 *.jar           binary
-
-*.json linguist-language=JSON linguist-detectable
-*.json5 linguist-language=JSON5 linguist-detectable

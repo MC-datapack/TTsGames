@@ -26,7 +26,7 @@ public final class Window {
     boolean pressedTrue = false, pressedFalse = false;
     public Window(boolean resizable) {
         SwingUtilities.invokeLater(() -> {
-            windows[0] = new JFrame("TTsGames " + Versions[7]);
+            windows[0] = new JFrame("TTsGames " + Versions[1]);
 
             JButton settings = new JButton(Settings[0]);
             JButton Settings_Back = new JButton(Settings[1]);
@@ -191,7 +191,7 @@ public final class Window {
                 if (!alreadyStarted[0] && !fAMReset) {
                     logger.setInstance(Instance.ANIMAL_MASTER);
                     MainWindow = false;
-                    new AnimalMaster(false, windows[0].getLocation(), new Dimension((int) (420 * a), (int) (210 * a)), Translations.Games[0] + Versions[1]);
+                    new AnimalMaster(false, windows[0].getLocation(), new Dimension((int) (420 * a), (int) (210 * a)), Translations.Games[0] + Versions[4]);
                     alreadyStarted[0] = true;
                     windows[0].setVisible(false);
                     started = "AnimalMaster";
@@ -219,8 +219,7 @@ public final class Window {
                 Detective_Thunder.addActionListener(e -> {
                     logger.setInstance(Instance.DETEKTIV_THUNDER);
                     MainWindow = false;
-                    new DetektiveThunder(false,
-                            new Point(windows[0].getX() - 500, windows[0].getY() - 300), new Dimension(1330, 750));
+                    new DetektiveThunder(false, new Point(windows[0].getX() - 500, windows[0].getY() - 300), new Dimension(1330, 750));
                     windows[0].setVisible(false);
                     started = " Detektiv Thunder";
                 });
@@ -467,7 +466,6 @@ public final class Window {
                 languageSelection.setSelectedIndex(i);
                 break;
             }
-            //Trigger the action listener to load the appropriate language
             ActionEvent event = new ActionEvent(languageSelection, ActionEvent.ACTION_PERFORMED, null);
             for (ActionListener listener : languageSelection.getActionListeners()) {
                 listener.actionPerformed(event);

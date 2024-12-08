@@ -124,31 +124,31 @@ public final class Main {
                     case 0 -> close();
                     case 1 -> {
                         MainWindow = true;
-                        windows[window].setVisible(false);
+                        windows[1].setVisible(false);
                         started = null;
                         AnimalMaster = false;
                         logger.setInstance(Instance.TTS_GAMES);
-                        timer(() -> windows[window].setVisible(AnimalMaster), 0, 100);
+                        timer(() -> windows[1].setVisible(AnimalMaster), 0, 100);
                     }
                     case 2 -> {
                         MainWindow = true;
-                        windows[window].setVisible(false);
+                        windows[2].setVisible(false);
                         started = null;
                         DetektivAdler = false;
                         logger.setInstance(Instance.TTS_GAMES);
-                        timer(() -> windows[window].setVisible(DetektivAdler), 0, 100);
+                        timer(() -> windows[2].setVisible(DetektivAdler), 0, 100);
                     }
                     case 3 -> {
                         if (!startedClose) {
                             startedClose = true;
-                            new Close(windows[window], windows[window].getLocation());
+                            new Close(windows[3], windows[3].getLocation());
                         }
                     }
                     case 4 -> {
-                        windows[window].dispose();
+                        windows[4].dispose();
                         startedClose = false;
                     }
-                    case 5 -> windows[window].dispose();
+                    case 5 -> windows[5].dispose();
                 }
             }
         });

@@ -1,60 +1,67 @@
 {
   "prerelease": false,
   "version": {
-	"TTsGames": {
+	"tts_games": {
 	  "release": "${version}",
 	  "group": "2.0"
 	},
-	"AnimalMaster": {
-	  "release": "7.0"
+	"animal_master": {
+	  "release": "7.0",
+	  "group": "7.0"
 	},
-	"DetectiveEagle": {
-	  "release": "1.3"
+	"detective_eagle": {
+	  "release": "1.3",
+	  "group": "1.3"
 	},
-	"DetectiveThunder": {
-	  "prerelease": "2.0 build.6"
+	"detective_thunder": {
+	  "prerelease": "2.0 build.6",
+	  "group": "2.0"
 	}
   },
   "config": {
-	"dir_path": "AppData/Roaming/TTsGames",
-	"file_path": "config.properties"
+	"folder_path": "AppData/Roaming/TTsGames",
+	"file_name": "config.properties"
   },
   "languages": [
 	"Deutsch",
 	"English"
   ],
+  "language_files_base_dictionary": "assets/lang",
   "language_files": {
-	"Deutsch": "assets/lang/de_de.json",
-	"English": "assets/lang/en_us.json"
+	"Deutsch": "de_de",
+	"English": "en_us"
   },
   "textures_base_dictionaries": [
 	"assets/textures", "assets/textures/animal_master", "assets/textures/detective_eagle", "assets/textures/detective_thunder"
   ],
-  "no_texture_file": "no_texture.png",
+  "textures_file_types": [
+	".jpg", ".jpeg", ".jpg", ""
+  ],
+  "no_texture_file": "assets/textures/no_texture.png",
   "textures": [
 	[
-	  "TTsGames.jpg", "TTsGames_Background.jpg"
+	  "TTsGames", "TTsGames_Background"
 	],
 	[
-	  "AnimalMaster_bottom.jpeg",
-	  "animals/Elefant.jpeg", "animals/Brachiosaurus.jpeg", "animals/Giraffe.jpeg",
-	  "animals/Löwe.jpeg", "animals/Tiger.jpeg", "animals/Katze.jpeg",
-	  "animals/Kakadu.jpeg", "animals/Pinguin.jpeg", "animals/Fledermaus.jpeg",
-	  "animals/Panda.jpeg", "animals/Eisbär.jpeg",
-	  "animals/Schmetterling.jpeg", "animals/Hummel.jpeg",
-	  "animals/Delfin.jpeg", "animals/Tigerhai.jpeg", "animals/Fächerfisch.jpeg",
-	  "animals/Leopard.jpeg", "animals/Gepard.jpeg", "animals/Pferd.jpeg",
-	  "animals/Pottwal.jpeg", "animals/Blauwal.jpeg",
-	  "animals/Seewespe.jpeg", "animals/Inlandtaipan.jpeg", "animals/Steinfisch.jpeg",
-	  "animals/Tsetsefliege.jpeg", "animals/Raubwanze.jpeg", "animals/Moskitos.jpeg",
-	  "animals/Assel.jpeg", "animals/Tausendfüßer.jpeg", "animals/Hundertfüßer.jpeg",
-	  "animals/Islandmuschel.jpeg", "animals/Riesenschwamm.jpeg", "animals/Grönlandhai.jpeg",
-	  "animals/Fruchtfliege.jpeg", "animals/Gastrotrichen.jpeg", "animals/Eintagsfliege.jpeg",
-	  "AnimalMaster.jpeg"
+	  "AnimalMaster_bottom",
+	  "animals/Elefant", "animals/Brachiosaurus", "animals/Giraffe",
+	  "animals/Löwe", "animals/Tiger", "animals/Katze",
+	  "animals/Kakadu", "animals/Pinguin", "animals/Fledermaus",
+	  "animals/Panda", "animals/Eisbär",
+	  "animals/Schmetterling", "animals/Hummel",
+	  "animals/Delfin", "animals/Tigerhai", "animals/Fächerfisch",
+	  "animals/Leopard", "animals/Gepard", "animals/Pferd",
+	  "animals/Pottwal", "animals/Blauwal",
+	  "animals/Seewespe", "animals/Inlandtaipan", "animals/Steinfisch",
+	  "animals/Tsetsefliege", "animals/Raubwanze", "animals/Moskitos",
+	  "animals/Assel", "animals/Tausendfüßer", "animals/Hundertfüßer",
+	  "animals/Islandmuschel", "animals/Riesenschwamm", "animals/Grönlandhai",
+	  "animals/Fruchtfliege", "animals/Gastrotrichen", "animals/Eintagsfliege",
+	  "AnimalMaster"
 	],
 	[
-	  "DetektivAdler.jpg", "DetektivAdler_bottom.jpg",
-	  "Fälle/Fall1.jpg", "DiebOptionen/Fall1O1.jpg", "DiebOptionen/Fall1O2.jpg"
+	  "DetektivAdler", "DetektivAdler_bottom",
+	  "Fälle/Fall1", "DiebOptionen/Fall1O1", "DiebOptionen/Fall1O2"
 	],
 	[
 	  "DetektivThunder.jpg", "DetektivThunder_bottom.jpg",
@@ -63,9 +70,6 @@
   ],
   "sounds_base_dictionaries": [
 	"assets/sounds", "assets/sounds/animal_master", "assets/sounds/detective_eagle", "assets/sounds/detective_thunder"
-  ],
-  "sounds_file_types": [
-	".json", ".json", ".json", ".json"
   ],
   "sounds": [
 	[],
@@ -81,6 +85,9 @@
   "data_base_dictionaries": [
 	"data/tts_games", "data/animal_master", "data/detective_eagle", "data/detective_thunder"
   ],
+  "data_file_types": [
+	"", "", ".json", ".json"
+  ],
   "data": [
 	[
 	  "unallowed_usernames.json5", "translation_keys.json"
@@ -89,10 +96,10 @@
 	  "colors.json", "correct.json", "selected_animal.json", "translation_keys.json", "information.json5"
 	],
 	[
-	  "translation_keys.json"
+	  "translation_keys"
 	],
 	[
-	  "translation_keys.json"
+	  "translation_keys"
 	]
   ]
 }

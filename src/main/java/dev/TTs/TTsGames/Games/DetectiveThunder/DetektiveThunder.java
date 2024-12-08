@@ -27,9 +27,9 @@ public final class DetektiveThunder {
     public static boolean showScore = false, startedClose = false;
 
     public DetektiveThunder(boolean resizable, Point location, Dimension size) {
-        startedVersion = Versions[6];
+        startedVersion = Versions[10];
         SwingUtilities.invokeLater(() -> {
-            windows[3] = new JFrame(Games[2] + Versions[6]);
+            windows[3] = new JFrame(Games[2] + Versions[10]);
 
             JButton erklaerung = new JButton(DetectiveThunder[0]);
             //160 Buchstaben max pro Zeile

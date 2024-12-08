@@ -10,15 +10,17 @@ public final class TTsGamesJSONFormat {
     private boolean prerelease;
     private Map<String, GameVersion> version;
     private Config config;
+    private String language_files_base_dictionary;
     private String[] languages;
     private Map<String, String> language_files;
     private String[] textures_base_dictionaries;
+    private String[] textures_file_types;
     private String no_texture_file;
     private String[][] textures;
     private String[] sounds_base_dictionaries;
-    private String[] sounds_file_types;
     private String[][] sounds;
     private String[] data_base_dictionaries;
+    private String[] data_file_types;
     private String[][] data;
 
     public boolean getPrerelease() {
@@ -30,18 +32,18 @@ public final class TTsGamesJSONFormat {
     public String[] getLanguages() {
         return languages;
     }
-    public Map<String, String> getLanguageFiles() {
-        return language_files;
+    public String getLanguageFile(String language) {
+        return language_files_base_dictionary + "/" + language_files.get(language) + ".json";
     }
     public ImageString getNoTextureFile() {
-        return new ImageString(textures_base_dictionaries[0] + "/" + no_texture_file);
+        return new ImageString(no_texture_file);
     }
     public ImageString[][] getTextures() {
         ImageString[][] newTextures = new ImageString[textures.length][];
         for (int i = 0; i < textures.length; i++) {
             newTextures[i] = new ImageString[textures[i].length];
             for (int j = 0; j < textures[i].length; j++) {
-                newTextures[i][j] = new ImageString (textures_base_dictionaries[i] + "/" + textures[i][j]);
+                newTextures[i][j] = new ImageString (textures_base_dictionaries[i] + "/" + textures[i][j] + textures_file_types[i]);
             }
         }
         return newTextures;
@@ -51,7 +53,7 @@ public final class TTsGamesJSONFormat {
         for (int i = 0; i < sounds.length; i++) {
             newTextures[i] = new SoundString[sounds[i].length];
             for (int j = 0; j < sounds[i].length; j++) {
-                newTextures[i][j] = new SoundString(sounds_base_dictionaries[i] + "/" + sounds[i][j] + sounds_file_types[i]);
+                newTextures[i][j] = new SoundString(sounds_base_dictionaries[i] + "/" + sounds[i][j] + ".json");
             }
         }
         return newTextures;
@@ -62,7 +64,7 @@ public final class TTsGamesJSONFormat {
         for (int i = 0; i < data.length; i++) {
             newData[i] = new String[data[i].length];
             for (int j = 0; j < data[i].length; j++) {
-                newData[i][j] = data_base_dictionaries[i] + "/" + data[i][j];
+                newData[i][j] = data_base_dictionaries[i] + "/" + data[i][j] + data_file_types[i];
             }
         }
         return newData;
@@ -81,23 +83,26 @@ public final class TTsGamesJSONFormat {
     }
 
     public static class Config {
-        private String dir_path, file_path;
+        private String folder_path, file_name;
 
-        public String getDir_path() {return System.getProperty("user.home") + "/" + dir_path;}
-        public String getFile_path() {return System.getProperty("user.home") + "/" + dir_path + "/" + file_path;}
+        public String getFolder_path() {return System.getProperty("user.home") + "/" + folder_path;}
+        public String getFile_name() {return System.getProperty("user.home") + "/" + folder_path + "/" + file_name;}
     }
 
     public String[] getVersions() {
-        String[] versions = new String[8];
-        if (!prerelease) {versions[0] = version.get("TTsGames").getRelease();}
-        else {versions[0] = version.get("TTsGames").getPrerelease();}
-        versions[1] = version.get("AnimalMaster").getRelease();
-        versions[2] = version.get("AnimalMaster").getPrerelease();
-        versions[3] = version.get("DetectiveEagle").getRelease();
-        versions[4] = version.get("DetectiveEagle").getPrerelease();
-        versions[5] = version.get("DetectiveThunder").getRelease();
-        versions[6] = version.get("DetectiveThunder").getPrerelease();
-        versions[7] = version.get("TTsGames").getGroup();
+        String[] versions = new String[11];
+        if (!prerelease) {versions[0] = version.get("tts_games").getRelease();}
+        else {versions[0] = version.get("tts_games").getPrerelease();}
+        versions[1] = version.get("tts_games").getGroup();
+        versions[2] = version.get("animal_master").getRelease();
+        versions[3] = version.get("animal_master").getPrerelease();
+        versions[4] = version.get("animal_master").getGroup();
+        versions[5] = version.get("detective_eagle").getRelease();
+        versions[6] = version.get("detective_eagle").getPrerelease();
+        versions[7] = version.get("detective_eagle").getGroup();
+        versions[8] = version.get("detective_thunder").getRelease();
+        versions[9] = version.get("detective_thunder").getPrerelease();
+        versions[10] = version.get("detective_thunder").getGroup();
         return versions;
     }
 }

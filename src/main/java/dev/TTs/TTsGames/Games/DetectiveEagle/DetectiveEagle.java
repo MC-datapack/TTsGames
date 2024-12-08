@@ -13,9 +13,9 @@ import static dev.TTs.TTsGames.Resources.Translations.DetectiveEagle;
 public final class DetectiveEagle {
     Timer timer;
     public DetectiveEagle(boolean resizable, Point location, Dimension size) {
-        startedVersion = Versions[3];
+        startedVersion = Versions[7];
         SwingUtilities.invokeLater(() -> {
-            windows[2] = new JFrame(Games[1] + Versions[3]);
+            windows[2] = new JFrame(Games[1] + Versions[7]);
             JLabel erkl = new JLabel(DetectiveEagle[0]);
             JButton start = new JButton(DetectiveEagle[1]);
             JLabel question0 = new JLabel(QuestionsD[0]);

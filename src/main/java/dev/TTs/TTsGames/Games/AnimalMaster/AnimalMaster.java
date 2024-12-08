@@ -7,7 +7,7 @@ import dev.TTs.lang.Array; import dev.TTs.swing.*; import javax.swing.*; import 
     JButton Auswertung = new JButton(OtherButtons[1]), Auswertung2 = new JButton(OtherButtons[1]), HardQuestions = new JButton(OtherButtons[2]), big = new JButton(OtherButtons[3]);
     public AnimalMaster(boolean resizable, Point location, Dimension size, String title) {int[] widths = {102, 118, 133, 200, 300, 360}; Dimension[] buttonSizes = new Dimension[widths.length];
         for (int i = 0; i < widths.length; i++) buttonSizes[i] = new Dimension((int) (widths[i] * a), (int) (30 * a)); panel.setOpaque(false);
-        AMTime[0] = System.nanoTime(); windows[1] = new JFrame(title); startedVersion = Versions[1]; panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 50, 10));
+        AMTime[0] = System.nanoTime(); windows[1] = new JFrame(title); startedVersion = Versions[4]; panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 50, 10));
         for (int i = 0; i < answers.length; i++) answers[i] = new JButton(AnswerButtons[i]); for (int i = 0; i < ImagePanels.length; i++) ImagePanels[i] = Textures[1][i].toImagePanel();
         ImagePanels[0].setLayout(new BorderLayout()); ImagePanels[0].setSize((int) (420 * a), (int) (171 * a)); ImagePanels[0].add(panel);
         for (int i = 0; i < questions.length; i++) {next[i] = new JButton(OtherButtons[0]); questions[i] = new BorderPanel(Questions[i], black, true);
