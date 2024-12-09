@@ -21,7 +21,7 @@ public class ConfigLoader {
             "English", "false", "100", "௹⨌{UsernameDe}", "-1", "1.0"
     };
     private final String[][] ALLOWED_SETTINGS = {
-            Languages, BOOLEAN, IntS(0, 100), {}, {}, {}
+            Languages, BOOLEAN, {}, {}, {}, {}
     };
 
     public ConfigLoader() {
@@ -72,7 +72,7 @@ public class ConfigLoader {
             properties.setProperty(KEYS[1], DEFAULT_SETTINGS[1]);
             saveProperties();
         }
-        if (Array.dontContains(ALLOWED_SETTINGS[2], properties.getProperty(KEYS[2]))) {
+        if (properties.getProperty(KEYS[2]) == null) {
             properties.setProperty(KEYS[2], DEFAULT_SETTINGS[2]);
             saveProperties();
         }

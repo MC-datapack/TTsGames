@@ -2,6 +2,8 @@ package dev.TTs.swing;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class TFrame extends JFrame {
 
@@ -47,5 +49,15 @@ public class TFrame extends JFrame {
 
     public void Show() {
         this.setVisible(true);
+    }
+
+    public void closingOperation(Runnable task) {
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                task.run();
+            }
+        });
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 }

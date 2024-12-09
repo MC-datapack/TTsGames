@@ -42,7 +42,7 @@ public final class Main {
 
     @Run(name = "main")
     public static void main(String[] args) throws TTsException {
-        logger = new TTsLogger(Instance.TTS_GAMES, true);
+        logger = new TTsLogger(System.getProperty("user.home") + "/AppData/Roaming/TTsGames/logs/",true);
         logger.error("args: %s", Arrays.toString(args));
         logger.debug("Initialized Logger");
 
@@ -104,12 +104,13 @@ public final class Main {
         return timer;
     }
 
-    public static void close() {
+    public static void shutDown() {
         logger.debug("Shutting Down");
         Arrays.stream(windows)
                 .filter(Objects::nonNull)
                 .forEach(JFrame::dispose);
-        logger.debug("exited Window");
+        logger.debug("Closed Windows");
+        logger.close();
         System.exit(ExitCodes.NO_ERROR);
     }
 
@@ -119,42 +120,38 @@ public final class Main {
         windows[window].add(background);
     }
     public static void WindowOperations(int window, FrameInformation information) {
-        windows[window].addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                switch (window) {
-                    case 0 -> close();
-                    case 1 -> {
-                        MainWindow = true;
-                        windows[1].setVisible(false);
-                        started = null;
-                        AnimalMaster = false;
-                        logger.setInstance(Instance.TTS_GAMES);
-                        timer(() -> windows[1].setVisible(AnimalMaster), 0, 100);
-                    }
-                    case 2 -> {
-                        MainWindow = true;
-                        windows[2].setVisible(false);
-                        started = null;
-                        DetektivAdler = false;
-                        logger.setInstance(Instance.TTS_GAMES);
-                        timer(() -> windows[2].setVisible(DetektivAdler), 0, 100);
-                    }
-                    case 3 -> {
-                        if (!startedClose) {
-                            startedClose = true;
-                            new Close(windows[3], windows[3].getLocation());
-                        }
-                    }
-                    case 4 -> {
-                        windows[4].dispose();
-                        startedClose = false;
-                    }
-                    case 5 -> windows[5].dispose();
+        windows[window].closingOperation(() -> {
+            switch (window) {
+                case 0 -> shutDown();
+                case 1 -> {
+                    MainWindow = true;
+                    windows[1].setVisible(false);
+                    started = null;
+                    AnimalMaster = false;
+                    logger.setInstance(Instance.TTS_GAMES);
+                    timer(() -> windows[1].setVisible(AnimalMaster), 0, 100);
                 }
+                case 2 -> {
+                    MainWindow = true;
+                    windows[2].setVisible(false);
+                    started = null;
+                    DetektivAdler = false;
+                    logger.setInstance(Instance.TTS_GAMES);
+                    timer(() -> windows[2].setVisible(DetektivAdler), 0, 100);
+                }
+                case 3 -> {
+                    if (!startedClose) {
+                        startedClose = true;
+                        new Close(windows[3], windows[3].getLocation());
+                    }
+                }
+                case 4 -> {
+                    windows[4].dispose();
+                    startedClose = false;
+                }
+                case 5 -> windows[5].dispose();
             }
         });
-        windows[window].setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         windows[window].setResizable(information.resizable());
         windows[window].setSize(information.size());
         windows[window].setLocation(information.location());
@@ -179,25 +176,6 @@ public final class Main {
         if (!urlString.startsWith("https://") && !urlString.startsWith("http://")) {
             urlString = "https://" + urlString; }
         return urlString;
-    }
-
-    public static String[] IntS(int min, int max) {
-        int[] Ints = new int[max - min + 1];
-        for (int i = 0; i < max - min + 1; i++) {
-            Ints[i] = i;
-        }
-        String[] ints = new String[Ints.length];
-        for (int i = 0; i < Ints.length; i++) {
-            ints[i] = String.valueOf(Ints[i]);
-        }
-        return ints;
-    }
-    public static int[] Int(int min, int max) {
-        int[] Ints = new int[max - min + 1];
-        for (int i = min; i < max + 1; i++) {
-            Ints[i] = i;
-        }
-        return Ints;
     }
 
     public static String checkTime(float time, String fallback) {
