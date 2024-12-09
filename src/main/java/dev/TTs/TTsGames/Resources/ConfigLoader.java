@@ -35,7 +35,7 @@ public class ConfigLoader {
             properties.load(input);
             logger.debug("Properties loaded.");
         } catch (IOException e) {
-            logger.error("Error loading properties: ", e);
+            logger.error("Error loading properties: %s", e);
         }
     }
 
@@ -56,7 +56,7 @@ public class ConfigLoader {
                 properties.store(output, null);
                 logger.debug("Default config.properties file created.");
             } catch (IOException e) {
-                logger.error("Error creating default properties file: ", e);
+                logger.error("Error creating default properties file: %s", e);
             }
         } else {
             logger.debug("config.properties exists.");
@@ -95,7 +95,7 @@ public class ConfigLoader {
             properties.store(output, null);
             logger.unimportant("Properties saved.");
         } catch (IOException e) {
-            logger.error("Error saving properties: ", e);
+            logger.error("Error saving properties: %s", e);
         }
     }
 

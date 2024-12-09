@@ -38,6 +38,6 @@ public final class Close {
             startedClose = false;
         });
 
-        WindowOperations(4, new FrameInformation(false, location, new Dimension(240, 120)), Textures[3][0], panel);
+        WindowOperations(4, new FrameInformation(false, location, new Dimension(240, 120), Textures[3][0]), panel);
     }
 }

@@ -21,7 +21,7 @@ import static dev.TTs.TTsGames.Games.DetectiveThunder.DetektiveThunder.startedCl
 public final class Main {
     public static TTsLogger logger;
     public static Translations translations;
-    public static volatile ConfigLoader configLoader;
+    public static ConfigLoader configLoader;
     public static JsonReader jsonReader;
 
     public static String language, started = null, startedVersion = null, Username;
@@ -43,7 +43,7 @@ public final class Main {
     @Run(name = "main")
     public static void main(String[] args) throws TTsException {
         logger = new TTsLogger(Instance.TTS_GAMES, true);
-        logger.error("args: " + Arrays.toString(args));
+        logger.error("args: %s", Arrays.toString(args));
         logger.debug("Initialized Logger");
 
         jsonReader = new JsonReader("");
@@ -54,7 +54,7 @@ public final class Main {
         unerlaubteNamen = jsonReader.UnallowedUsernames();
         noTexture = jsonReader.MainJSON.getNoTextureFile().toImage();
         buttonColors = jsonReader.AMColors();
-        logger.unimportant(unerlaubteNamen);
+        logger.unimportant(Arrays.toString(unerlaubteNamen));
         logger.debug("Loaded JSON Files");
 
         configLoader = new ConfigLoader();
@@ -73,13 +73,13 @@ public final class Main {
         translations = new Translations();
         logger.debug("Loaded translations");
 
-        logger.info("TTs Games " + Versions[0] + " is starting");
+        logger.info("TTs Games %s is starting", Versions[0]);
         new Window(false);
         logger.debug("Opened Window");
 
         checkLoop = timer(() -> {
-            if (started != null) logger.check("Check  Started: " + started + " Version: " + startedVersion);
-            else logger.check("Check  Started: " + "nothing");
+            if (started != null) logger.check("Check  Started: %s Version: %s", started, startedVersion);
+            else logger.check("Check  Started: nothing");
         }, 1000,1000);
     }
 
@@ -114,11 +114,11 @@ public final class Main {
     }
 
 
-    public static void WindowOperations(int window, FrameInformation information, ImageString icon, Component background) {
-        WindowOperations(window, information, icon);
+    public static void WindowOperations(int window, FrameInformation information, Component background) {
+        WindowOperations(window, information);
         windows[window].add(background);
     }
-    public static void WindowOperations(int window, FrameInformation information, ImageString icon) {
+    public static void WindowOperations(int window, FrameInformation information) {
         windows[window].addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -158,7 +158,7 @@ public final class Main {
         windows[window].setResizable(information.resizable());
         windows[window].setSize(information.size());
         windows[window].setLocation(information.location());
-        windows[window].setIconImage(icon.toImage());
+        windows[window].setIconImage(information.icon().toImage());
         windows[window].getContentPane().setBackground(Color.LIGHT_GRAY);
         windows[window].setLayout(new BorderLayout());
         windows[window].setVisible(true);
@@ -171,7 +171,7 @@ public final class Main {
                 Desktop.getDesktop().browse(uri);
             }
         } catch (Exception e) {
-            logger.warn("Failed to open webpage", e);
+            logger.warn("Failed to open webpage: %s", e);
         }
     }
 

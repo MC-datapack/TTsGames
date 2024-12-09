@@ -159,7 +159,7 @@ public final class DetectiveEagle {
             });
             answer32.clickAction( () -> System.exit(ExitCodes.NO_ERROR));
 
-            WindowOperations(2, inf, Textures[2][0], Pane);
+            WindowOperations(2, inf, Pane);
         });
     }
 }

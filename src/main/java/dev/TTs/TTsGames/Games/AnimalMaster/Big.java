@@ -16,6 +16,6 @@ public final class Big {
         TImage image = Textures[1][picture].toTImage();
 
         WindowOperations(5, new FrameInformation(false, new Point(windows[1].getLocation().x - 700, windows[1].getLocation().y - 400),
-                new Dimension(Textures[1][picture].toIcon().getIconWidth(), Textures[1][picture].toIcon().getIconHeight())), Textures[1][37], image);
+                new Dimension(Textures[1][picture].toIcon().getIconWidth(), Textures[1][picture].toIcon().getIconHeight()), Textures[1][37]), image);
     }
 }

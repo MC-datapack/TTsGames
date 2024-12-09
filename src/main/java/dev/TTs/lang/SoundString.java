@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.sound.sampled.*;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
@@ -93,5 +94,9 @@ public final class SoundString {
             volume = min + (volume / 100) * (max - min);
             if (volumeControl != null) volumeControl.setValue(Math.min(Math.max(volume, min), max));
         }
+    }
+
+    public static void beep() {
+        Toolkit.getDefaultToolkit().beep();
     }
 }

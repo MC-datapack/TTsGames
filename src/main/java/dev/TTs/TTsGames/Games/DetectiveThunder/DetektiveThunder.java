@@ -178,7 +178,7 @@ public final class DetektiveThunder {
             });
 
 
-            WindowOperations(3, inf, Textures[3][0], background);
+            WindowOperations(3, inf, background);
         });
     }
 }

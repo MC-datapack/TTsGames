@@ -87,7 +87,7 @@ public class JsonReader {
              InputStreamReader reader = inputStream == null ? null : new InputStreamReader(inputStream)) {
 
             if (inputStream == null) {
-                logger.error("File not found: " + path);
+                logger.error("File not found: %s" + path);
                 return null;
             }
 
@@ -97,7 +97,7 @@ public class JsonReader {
             JsonElement jsonElement1 = jsonObject.get(element);
             return gson.fromJson(jsonElement1, tClass);
         } catch (IOException e) {
-            logger.error("Failed to read the Json File: ", e);
+            logger.error("Failed to read the Json File: %s", e);
             return null;
         }
     }
@@ -106,10 +106,10 @@ public class JsonReader {
         try (InputStream inputStream = JsonReader.class.getClassLoader().getResourceAsStream(filePath);
              InputStreamReader reader = inputStream == null ? null : new InputStreamReader(inputStream)) {
             if (inputStream == null) {
-                logger.error("File not found: " + filePath); return null;
+                logger.error("File not found: %s", filePath); return null;
             } return gson.fromJson(reader, VERSION_TYPE);
         } catch (IOException e) {
-            logger.error("Failed to read the Json File: ", e); return null;
+            logger.error("Failed to read the Json File: %s", e); return null;
         }
     }
 
@@ -119,7 +119,7 @@ public class JsonReader {
             if (inputStream == null) {
                 return null;
             }
-            logger.debug("Animation File found: " + filePath);
+            logger.debug("Animation File found: %s", filePath);
             return gson.fromJson(reader, ANIMATED_TYPE);
         } catch (IOException e) {
             return null;
@@ -134,7 +134,7 @@ public class JsonReader {
             }
             return gson.fromJson(reader, SOUND_TYPE);
         } catch (IOException e) {
-            logger.error("Did not find Sound Json File", e);
+            logger.error("Did not find Sound Json File: %s", e);
             return null;
         }
     }
@@ -148,7 +148,7 @@ public class JsonReader {
             colorReps = gson.fromJson(reader, ColorJSONFormat.ColorRepresentation[].class);
             return gson.fromJson(reader, VERSION_TYPE);
         } catch (IOException e) {
-            logger.error("Failed to read the Json File: ", e); return null;
+            logger.error("Failed to read the Json File: %s", e); return null;
         }
     }
 
@@ -157,13 +157,13 @@ public class JsonReader {
              InputStreamReader reader = inputStream == null ? null : new InputStreamReader(inputStream)) {
 
             if (inputStream == null) {
-                logger.error("File not found: " + filePath);
+                logger.error("File not found: %s", filePath);
                 return null;
             }
 
             return gson.fromJson(reader, MAP_TYPE);
         } catch (IOException e) {
-            logger.error("Failed to read the Json File: ", e);
+            logger.error("Failed to read the Json File: %s", e);
             return null;
         }
     }

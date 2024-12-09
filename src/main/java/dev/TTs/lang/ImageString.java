@@ -57,11 +57,11 @@ public final class ImageString {
             if (inputStream != null) {
                 return ImageIO.read(inputStream);
             } else {
-                logger.warn("Did not find texture " + path);
+                logger.warn("Did not find texture: %s", path);
                 return noTexture;
             }
         } catch (IOException e) {
-            logger.error("Did not find No Texture File", e);
+            logger.error("Did not find No Texture File: %s", e);
             return null;
         }
     }
@@ -78,7 +78,7 @@ public final class ImageString {
         try {
             return jsonFormat.getPaths();
         } catch (Exception e) {
-            logger.warn("Error getting strings for path: " + this.jsonPath, e);
+            logger.warn("Error getting strings for path: %s: %s", this.jsonPath, e);
             return new ImageString[0];
         }
     }
@@ -87,7 +87,7 @@ public final class ImageString {
         try {
             return jsonFormat.getDelay();
         } catch (Exception e) {
-            logger.warn("Error getting Delay for path: " + this.jsonPath, e);
+            logger.warn("Error getting Delay for path: %s: %s", this.jsonPath, e);
             return 1;
         }
     }
@@ -95,7 +95,7 @@ public final class ImageString {
         try {
             return jsonFormat.getRepeat();
         } catch (Exception e) {
-            logger.warn("Error getting Delay for path: " + this.jsonPath, e);
+            logger.warn("Error getting Repeat setting for path: %s: %s", this.jsonPath, e);
             return true;
         }
     }

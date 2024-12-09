@@ -30,7 +30,7 @@ Auswertung.Hide(); fAMReset = true;}); Auswertung2.clickAction(() -> { Correct[c
 AMTime[2] = AMTime[1] - AMTime[0]; } else if (AMTime[2] == -1.0F) { AMTime[2] = AMTime[1] - AMTime[0];} logger.info(AMTime[2]); configLoader.setAMTimeRecord(AMTime[2]); fAM = true;});
 HardQuestions.clickAction(() -> {placeholder.Hide(); placeholderLarge.Hide(); for (TButton component : next) component.Hide(); for (TPanel component : Correct)  component.Hide();
 questions[8].Show(); answers[24].Show(); answers[25].Show(); answers[26].Show();HardQuestions.Hide();});informations.clickAction(() -> openWebpage(Informations[sel]));
-big.clickAction(() ->new Big(sel)); answers[34].setPSize(buttonSizes[2]); answers[35].setPSize(buttonSizes[0]); WindowOperations(1, inf.frameInformation(), Textures[1][37]);}
+big.clickAction(() ->new Big(sel)); answers[34].setPSize(buttonSizes[2]); answers[35].setPSize(buttonSizes[0]); WindowOperations(1, inf.frameInformation());}
 private void AN(int question) {int i1 = question*3, i2 = question*3+1, i3 = question*3+2; int[] se = jsonReader.AMSelectedAnimal(); boolean[] cor = jsonReader.AMCorrect();
 answers[i1].clickAction(() -> ACL(question, se[i1], cor[i1])); answers[i2].clickAction(() ->ACL(question, se[i2], cor[i2]));
 answers[i3].clickAction(() -> ACL(question, se[i3], cor[i3]));} private void NX(int[] not) {for (int i = 0; i < 13; i++) if (Array.dontContains(not, i)) {
