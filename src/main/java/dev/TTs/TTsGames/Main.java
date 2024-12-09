@@ -10,7 +10,6 @@ import dev.TTs.swing.TFrame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.net.*;
 import java.util.*;
 import java.util.Timer;
@@ -40,8 +39,7 @@ public final class Main {
     public static Color[] buttonColors;
     public static Timer checkLoop;
 
-    @Run(name = "main")
-    public static void main(String[] args) throws TTsException {
+    public static void main(String[] args) {
         logger = new TTsLogger(System.getProperty("user.home") + "/AppData/Roaming/TTsGames/logs/",true);
         logger.error("args: %s", Arrays.toString(args));
         logger.debug("Initialized Logger");
