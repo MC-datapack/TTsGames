@@ -14,6 +14,7 @@ import java.awt.*;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.Map;
+import java.util.Objects;
 
 import static dev.TTs.TTsGames.Main.logger;
 
@@ -27,10 +28,6 @@ public class JsonReader {
     }
 
     private static final Gson gson = new Gson();
-    private static final Type MAP_TYPE = new TypeToken<Map<String, String>>() {}.getType();
-    private static final Type VERSION_TYPE = new TypeToken<TTsGamesJSONFormat>() {}.getType();
-    private static final Type ANIMATED_TYPE = new TypeToken<AnimatedJSONFormat>() {}.getType();
-    private static final Type SOUND_TYPE = new TypeToken<SoundJSONFormat>() {}.getType();
 
     public String[] UnallowedUsernames() {
         return ValuesStandard("values", MainJSON.getData()[0][0], String[].class);
@@ -81,20 +78,19 @@ public class JsonReader {
 
 
 
-    //Private or Protected Constructors created to make the part above shorter
     private <T> T ValuesStandard(String element, String path, Class<T> tClass) {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(path);
              InputStreamReader reader = inputStream == null ? null : new InputStreamReader(inputStream)) {
 
             if (inputStream == null) {
-                logger.error("File not found: %s" + path);
+                logger.error("File not found: %s", path);
                 return null;
             }
 
             JsonElement jsonElement = JsonParser.parseReader(reader);
             JsonObject jsonObject = jsonElement.getAsJsonObject();
-
             JsonElement jsonElement1 = jsonObject.get(element);
+
             return gson.fromJson(jsonElement1, tClass);
         } catch (IOException e) {
             logger.error("Failed to read the Json File: %s", e);
@@ -102,57 +98,7 @@ public class JsonReader {
         }
     }
 
-    private TTsGamesJSONFormat readTTsJsonFile(String filePath) {
-        try (InputStream inputStream = JsonReader.class.getClassLoader().getResourceAsStream(filePath);
-             InputStreamReader reader = inputStream == null ? null : new InputStreamReader(inputStream)) {
-            if (inputStream == null) {
-                logger.error("File not found: %s", filePath); return null;
-            } return gson.fromJson(reader, VERSION_TYPE);
-        } catch (IOException e) {
-            logger.error("Failed to read the Json File: %s", e); return null;
-        }
-    }
-
-    public AnimatedJSONFormat readAnimatedJsonFile(String filePath) {
-        try (InputStream inputStream = JsonReader.class.getClassLoader().getResourceAsStream(filePath);
-             InputStreamReader reader = inputStream == null ? null : new InputStreamReader(inputStream)) {
-            if (inputStream == null) {
-                return null;
-            }
-            logger.debug("Animation File found: %s", filePath);
-            return gson.fromJson(reader, ANIMATED_TYPE);
-        } catch (IOException e) {
-            return null;
-        }
-    }
-
-    public SoundJSONFormat readSoundJsonFile(String filePath) {
-        try (InputStream inputStream = JsonReader.class.getClassLoader().getResourceAsStream(filePath);
-             InputStreamReader reader = inputStream == null ? null : new InputStreamReader(inputStream)) {
-            if (inputStream == null) {
-                return null;
-            }
-            return gson.fromJson(reader, SOUND_TYPE);
-        } catch (IOException e) {
-            logger.error("Did not find Sound Json File: %s", e);
-            return null;
-        }
-    }
-
-    private ColorJSONFormat readColorJsonFile(String filePath) {
-        try (InputStream inputStream = JsonReader.class.getClassLoader().getResourceAsStream(filePath);
-             InputStreamReader reader = inputStream == null ? null : new InputStreamReader(inputStream)) {
-            if (inputStream == null) {
-                logger.error("File not found: " + filePath); return null;
-            }
-            colorReps = gson.fromJson(reader, ColorJSONFormat.ColorRepresentation[].class);
-            return gson.fromJson(reader, VERSION_TYPE);
-        } catch (IOException e) {
-            logger.error("Failed to read the Json File: %s", e); return null;
-        }
-    }
-
-    protected Map<String, String> readTranslationJsonFile(String filePath) {
+    private <T> T readJsonFile(String filePath, Class<T> tClass) {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
              InputStreamReader reader = inputStream == null ? null : new InputStreamReader(inputStream)) {
 
@@ -161,7 +107,48 @@ public class JsonReader {
                 return null;
             }
 
-            return gson.fromJson(reader, MAP_TYPE);
+            return gson.fromJson(reader, tClass);
+        } catch (IOException e) {
+            logger.error("Failed to read the Json File: %s", e);
+            return null;
+        }
+    }
+
+    private TTsGamesJSONFormat readTTsJsonFile(String filePath) {
+        return readJsonFile(filePath, TTsGamesJSONFormat.class);
+    }
+
+    public AnimatedJSONFormat readAnimatedJsonFile(String filePath) {
+        AnimatedJSONFormat result = readJsonFile(filePath, AnimatedJSONFormat.class);
+        if (result != null) {
+            logger.debug("Animation File found: %s", filePath);
+        }
+        return result;
+    }
+
+    public SoundJSONFormat readSoundJsonFile(String filePath) {
+        return readJsonFile(filePath, SoundJSONFormat.class);
+    }
+
+    private ColorJSONFormat readColorJsonFile(String filePath) {
+        ColorJSONFormat colorJsonFormat = readJsonFile(filePath, ColorJSONFormat.class);
+        if (colorJsonFormat != null) {
+            colorReps = gson.fromJson(new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(filePath))),
+                    ColorJSONFormat.ColorRepresentation[].class);
+        }
+        return colorJsonFormat;
+    }
+    protected Map<String, String> readTranslationJsonFile(String filePath) {
+        Type mapType = new TypeToken<Map<String, String>>() {}.getType();
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
+             InputStreamReader reader = inputStream == null ? null : new InputStreamReader(inputStream)) {
+
+            if (inputStream == null) {
+                logger.error("File not found: %s", filePath);
+                return null;
+            }
+
+            return gson.fromJson(reader, mapType);
         } catch (IOException e) {
             logger.error("Failed to read the Json File: %s", e);
             return null;

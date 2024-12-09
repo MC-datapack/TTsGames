@@ -14,7 +14,6 @@ public class ConfigLoader {
     private static final String CONFIG_FILE_PATH = jsonReader.MainJSON.getConfig().getFile_name();
     private static final String[] BOOLEAN = {"true", "false"};
 
-    // Property Keys
     private static final String[] KEYS = {
             "language", "devVersions", "volume", "username", "animalMasterTimeRecord", "animal_master_size_multiplier"
     }, DEFAULT_SETTINGS = {
