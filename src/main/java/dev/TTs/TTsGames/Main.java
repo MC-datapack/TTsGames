@@ -103,6 +103,7 @@ public final class Main {
     }
 
     public static void shutDown() {
+        checkLoop.cancel();
         logger.debug("Shutting Down");
         Arrays.stream(windows)
                 .filter(Objects::nonNull)
