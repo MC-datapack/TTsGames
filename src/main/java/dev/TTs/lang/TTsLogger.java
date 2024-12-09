@@ -26,12 +26,12 @@ public final class TTsLogger {
     public void check       (String message) {writeToLog(LogLevel.CHECK, message);}
     public void info        (String message) {writeToLog(LogLevel.INFO, message);}
     public void warn        (String message) {writeToLog(LogLevel.WARN, message);}
-    public void error       (@NotNull ImageString message) {writeToLog(LogLevel.ERROR, message + Arrays.toString(message.getStrings().toArray()));}
-    public void unimportant (@NotNull ImageString message) {writeToLog(LogLevel.UNIMPORTANT, message + Arrays.toString(message.getStrings().toArray()));}
-    public void debug       (@NotNull ImageString message) {writeToLog(LogLevel.DEBUG, message + Arrays.toString(message.getStrings().toArray()));}
-    public void check       (@NotNull ImageString message) {writeToLog(LogLevel.CHECK, message + Arrays.toString(message.getStrings().toArray()));}
-    public void info        (@NotNull ImageString message) {writeToLog(LogLevel.INFO, message + Arrays.toString(message.getStrings().toArray()));}
-    public void warn        (@NotNull ImageString message) {writeToLog(LogLevel.WARN, message + Arrays.toString(message.getStrings().toArray()));}
+    public void error       (@NotNull ImageString message) {writeToLog(LogLevel.ERROR, message + Arrays.toString(message.getStrings()));}
+    public void unimportant (@NotNull ImageString message) {writeToLog(LogLevel.UNIMPORTANT, message + Arrays.toString(message.getStrings()));}
+    public void debug       (@NotNull ImageString message) {writeToLog(LogLevel.DEBUG, message + Arrays.toString(message.getStrings()));}
+    public void check       (@NotNull ImageString message) {writeToLog(LogLevel.CHECK, message + Arrays.toString(message.getStrings()));}
+    public void info        (@NotNull ImageString message) {writeToLog(LogLevel.INFO, message + Arrays.toString(message.getStrings()));}
+    public void warn        (@NotNull ImageString message) {writeToLog(LogLevel.WARN, message + Arrays.toString(message.getStrings()));}
     public void unimportant (char message) {writeToLog(LogLevel.UNIMPORTANT, String.valueOf(message));}
     public void debug       (char message) {writeToLog(LogLevel.DEBUG, String.valueOf(message));}
     public void check       (char message) {writeToLog(LogLevel.CHECK, String.valueOf(message));}

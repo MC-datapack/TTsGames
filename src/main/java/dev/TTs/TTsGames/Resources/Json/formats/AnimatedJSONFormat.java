@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @SuppressWarnings("unused")
 public final class AnimatedJSONFormat {
@@ -12,25 +13,24 @@ public final class AnimatedJSONFormat {
     private String base_path;
     @Nullable
     private String file_format;
-    private List<String> paths;
+    private String[] paths;
     private int delay;
     private boolean repeat;
 
-    public List<ImageString> getPaths() {
-        List<ImageString> newPaths = new ArrayList<>();
-        for (String imageString : paths) {
+    public ImageString[] getPaths() {
+        ImageString[] newPaths = new ImageString[paths.length];
+        for (int i = 0; i < paths.length; i++) {
             if (base_path == null) {
-                newPaths.add(new ImageString(imageString + file_format));
+                newPaths[i] = (new ImageString(paths[i] + file_format));
             }
             if (file_format == null) {
-                newPaths.add(new ImageString( base_path + "/" + imageString));
+                newPaths[i] = (new ImageString( base_path + "/" + paths[i]));
             } else {
-                newPaths.add(new ImageString( base_path + "/" + imageString + file_format));
+                newPaths[i] = (new ImageString( base_path + "/" + paths[i] + file_format));
             }
         }
         return newPaths;
     }
-    protected List<String> getMainPaths() {return paths;}
     public int getDelay() {return delay;}
     public boolean getRepeat() {return repeat;}
 }

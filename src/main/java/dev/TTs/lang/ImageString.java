@@ -74,12 +74,12 @@ public final class ImageString {
         return new TAnimation(this);
     }
 
-    public List<ImageString> getStrings() {
+    public ImageString[] getStrings() {
         try {
-            return Collections.unmodifiableList(jsonFormat.getPaths());
+            return jsonFormat.getPaths();
         } catch (Exception e) {
             logger.warn("Error getting strings for path: " + this.jsonPath, e);
-            return Collections.emptyList();
+            return new ImageString[0];
         }
     }
 
