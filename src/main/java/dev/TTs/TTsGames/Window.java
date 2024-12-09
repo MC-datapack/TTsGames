@@ -3,7 +3,7 @@ package dev.TTs.TTsGames;
 import dev.TTs.TTsGames.Games.DetectiveThunder.DetektiveThunder;
 import dev.TTs.TTsGames.Games.AnimalMaster.AnimalMaster;
 import dev.TTs.TTsGames.Games.DetectiveEagle.DetectiveEagle;
-import dev.TTs.TTsGames.Resources.Translations;
+import dev.TTs.resources.Translations;
 import dev.TTs.lang.Instance;
 import dev.TTs.lang.Array;
 import dev.TTs.swing.*;
@@ -13,8 +13,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 import static dev.TTs.TTsGames.Main.*;
-import static dev.TTs.TTsGames.Resources.Translations.*;
-import static dev.TTs.TTsGames.Resources.Translations.Games;
+import static dev.TTs.resources.Translations.*;
+import static dev.TTs.resources.Translations.Games;
 import static dev.TTs.lang.SoundString.setVolume;
 import static java.awt.Color.BLACK;
 

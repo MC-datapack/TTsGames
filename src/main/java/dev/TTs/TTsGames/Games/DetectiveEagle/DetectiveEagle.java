@@ -8,8 +8,8 @@ import java.awt.*;
 import java.util.Timer;
 
 import static dev.TTs.TTsGames.Main.*;
-import static dev.TTs.TTsGames.Resources.Translations.*;
-import static dev.TTs.TTsGames.Resources.Translations.DetectiveEagle;
+import static dev.TTs.resources.Translations.*;
+import static dev.TTs.resources.Translations.DetectiveEagle;
 
 public final class DetectiveEagle {
     Timer timer;

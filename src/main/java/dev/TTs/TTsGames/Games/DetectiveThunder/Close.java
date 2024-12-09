@@ -3,12 +3,11 @@ package dev.TTs.TTsGames.Games.DetectiveThunder;
 import dev.TTs.lang.Instance;
 import dev.TTs.swing.*;
 
-import javax.swing.*;
 import java.awt.*;
 
 import static dev.TTs.TTsGames.Main.*;
 import static dev.TTs.TTsGames.Games.DetectiveThunder.DetektiveThunder.*;
-import static dev.TTs.TTsGames.Resources.Translations.DetectiveThunder;
+import static dev.TTs.resources.Translations.DetectiveThunder;
 
 public final class Close {
     public Close(TFrame DetektivThunderWindow, Point location) {

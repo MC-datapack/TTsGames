@@ -1,4 +1,4 @@
-package dev.TTs.TTsGames.Resources;
+package dev.TTs.resources;
 
 import dev.TTs.lang.Array;
 

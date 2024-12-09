@@ -1,21 +1,17 @@
-package dev.TTs.TTsGames.Resources;
+package dev.TTs.resources;
 
-import dev.TTs.TTsGames.Resources.Json.Text;
+import dev.TTs.resources.Json.Text;
 
 import static dev.TTs.TTsGames.Main.jsonReader;
 
 public final class Translations {
     public Translations() {
-        String[][] arrays = {
+        Text.translatable(new String[][] {
                 Questions, AnswerButtons, Compliments, Insults, Results, Informations, OtherButtons,
                 Games, Settings, Credits, Statistics, TTsGames,
                 DetectiveEagle, QuestionsD, ButtonsD,
                 ButtonsDT, DetectiveThunder
-        };
-
-        for (String[] array : arrays) {
-            translateArray(array);
-        }
+        });
     }
 
     public static String[]
@@ -36,10 +32,4 @@ public final class Translations {
             ButtonsD = jsonReader.DATranslationKeys("buttons"),
             ButtonsDT  = jsonReader.DTTranslationKeys("buttons"),
             DetectiveThunder = jsonReader.DTTranslationKeys("other");
-
-    private void translateArray(String[] arrayKey) {
-        for (int i = 0; i < arrayKey.length; i++) {
-            arrayKey[i] = Text.translatable(arrayKey[i]);
-        }
-    }
 }

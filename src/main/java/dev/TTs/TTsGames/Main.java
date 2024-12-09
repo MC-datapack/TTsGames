@@ -2,9 +2,9 @@ package dev.TTs.TTsGames;
 
 import dev.TTs.lang.*;
 import dev.TTs.TTsGames.Games.DetectiveThunder.Close;
-import dev.TTs.TTsGames.Resources.ConfigLoader;
-import dev.TTs.TTsGames.Resources.Json.JsonReader;
-import dev.TTs.TTsGames.Resources.*;
+import dev.TTs.resources.ConfigLoader;
+import dev.TTs.resources.Json.JsonReader;
+import dev.TTs.resources.Translations;
 import dev.TTs.swing.FrameInformation;
 import dev.TTs.swing.TFrame;
 

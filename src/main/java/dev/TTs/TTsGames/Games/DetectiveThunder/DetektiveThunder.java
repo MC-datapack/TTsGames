@@ -7,8 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 
 import static dev.TTs.TTsGames.Main.*;
-import static dev.TTs.TTsGames.Resources.Translations.*;
-import static dev.TTs.TTsGames.Resources.Translations.DetectiveThunder;
+import static dev.TTs.resources.Translations.*;
+import static dev.TTs.resources.Translations.DetectiveThunder;
 
 /**
  * <blockquote><pre>

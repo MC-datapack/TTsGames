@@ -1,6 +1,6 @@
 package dev.TTs.lang;
 
-import dev.TTs.TTsGames.Resources.Json.formats.AnimatedJSONFormat;
+import dev.TTs.resources.Json.formats.AnimatedJSONFormat;
 import dev.TTs.swing.TAnimation;
 import dev.TTs.swing.TImage;
 
@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.*;
-import java.util.List;
 
 import static dev.TTs.TTsGames.Main.*;
 

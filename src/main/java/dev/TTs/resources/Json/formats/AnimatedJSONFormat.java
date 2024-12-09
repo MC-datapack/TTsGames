@@ -1,11 +1,7 @@
-package dev.TTs.TTsGames.Resources.Json.formats;
+package dev.TTs.resources.Json.formats;
 
 import dev.TTs.lang.ImageString;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 @SuppressWarnings("unused")
 public final class AnimatedJSONFormat {

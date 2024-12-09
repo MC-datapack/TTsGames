@@ -7,7 +7,7 @@ import dev.TTs.swing.TFrame;
 import java.awt.*;
 
 import static dev.TTs.TTsGames.Main.*;
-import static dev.TTs.TTsGames.Resources.Translations.OtherButtons;
+import static dev.TTs.resources.Translations.OtherButtons;
 
 public final class Big {
     public Big(int picture) {

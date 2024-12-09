@@ -1,4 +1,4 @@
-package dev.TTs.TTsGames.Resources.Json.formats;
+package dev.TTs.resources.Json.formats;
 
 @SuppressWarnings("unused")
 public final class ColorJSONFormat {

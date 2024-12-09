@@ -1,4 +1,4 @@
-package dev.TTs.TTsGames.Resources.Json;
+package dev.TTs.resources.Json;
 
 import java.util.Map;
 
@@ -11,5 +11,21 @@ public final class Text {
     public static String translatable(String string) {
         String translation = translations.getOrDefault(string, string);
         return translation.contains(USERNAME_PLACEHOLDER) ? translation.replace(USERNAME_PLACEHOLDER, Username) : translation;
+    }
+
+    public static String[] translatable(String[] string) {
+        for (int i = 0; i < string.length; i++) {
+            string[i] = Text.translatable(string[i]);
+        }
+        return string;
+    }
+
+    public static String[][] translatable(String[][] string) {
+        for (int i = 0; i < string.length; i++) {
+            for (int j = 0; j < string[i].length; j++) {
+                string[i][j] = Text.translatable(string[i][j]);
+            }
+        }
+        return string;
     }
 }
