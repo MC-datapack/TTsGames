@@ -14,7 +14,7 @@ import java.net.*;
 import java.util.*;
 import java.util.Timer;
 
-import static dev.TTs.TTsGames.Games.DetectiveThunder.DetektiveThunder.startedClose;
+import static dev.TTs.TTsGames.Games.DetectiveThunder.DetectiveThunder.startedClose;
 
 @SuppressWarnings("unused")
 public final class Main {
@@ -68,6 +68,7 @@ public final class Main {
         if (Objects.equals(Username, "௹⨌{UsernameDe}")) {
             Username = "↺";
         }
+        //noinspection InstantiationOfUtilityClass
         translations = new Translations();
         logger.debug("Loaded translations");
 

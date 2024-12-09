@@ -1,6 +1,6 @@
 package dev.TTs.TTsGames;
 
-import dev.TTs.TTsGames.Games.DetectiveThunder.DetektiveThunder;
+import dev.TTs.TTsGames.Games.DetectiveThunder.DetectiveThunder;
 import dev.TTs.TTsGames.Games.AnimalMaster.AnimalMaster;
 import dev.TTs.TTsGames.Games.DetectiveEagle.DetectiveEagle;
 import dev.TTs.resources.Translations;
@@ -14,7 +14,6 @@ import java.awt.event.*;
 
 import static dev.TTs.TTsGames.Main.*;
 import static dev.TTs.resources.Translations.*;
-import static dev.TTs.resources.Translations.Games;
 import static dev.TTs.lang.SoundString.setVolume;
 import static java.awt.Color.BLACK;
 
@@ -217,7 +216,7 @@ public final class Window {
                 Detective_Thunder.clickAction( () -> {
                     logger.setInstance(Instance.DETEKTIV_THUNDER);
                     MainWindow = false;
-                    new DetektiveThunder(new FrameInformation(false, new Point(windows[0].getX() - 500, windows[0].getY() - 300),
+                    new DetectiveThunder(new FrameInformation(false, new Point(windows[0].getX() - 500, windows[0].getY() - 300),
                             new Dimension(1330, 750), Textures[3][0]));
                     windows[0].Hide();
                     started = " Detektiv Thunder";

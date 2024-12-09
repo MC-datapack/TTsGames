@@ -26,9 +26,7 @@ public final class SoundString {
         Timer.scheduleAtFixedRate(new TimerTask() {
             @Override public void run() {
                 if (configLoader != null) {
-                    timer(() -> {
-                        soundPath = "/" + jsonReader.readSoundJsonFile(path).getFiles(configLoader.getLanguage());
-                    }, 200);
+                    timer(() -> soundPath = "/" + jsonReader.readSoundJsonFile(path).getFiles(configLoader.getLanguage()), 200);
                     Timer.cancel();
                 }
             }

@@ -6,7 +6,7 @@ import dev.TTs.swing.*;
 import java.awt.*;
 
 import static dev.TTs.TTsGames.Main.*;
-import static dev.TTs.TTsGames.Games.DetectiveThunder.DetektiveThunder.*;
+import static dev.TTs.TTsGames.Games.DetectiveThunder.DetectiveThunder.*;
 import static dev.TTs.resources.Translations.DetectiveThunder;
 
 public final class Close {

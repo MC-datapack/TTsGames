@@ -54,6 +54,7 @@ package dev.TTs.lang;
  *  Bright White: 107m
  * </pre>
  */
+
 public enum LogLevel {
     UNIMPORTANT("Unimportant", "94m", 'A'),
     DEBUG("Debug","36m", 'A'),

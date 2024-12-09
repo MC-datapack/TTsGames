@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class TComboBox<E> extends JComboBox<E> {
 
+    @SafeVarargs
     public TComboBox(E... items) {
         super(items);
     }

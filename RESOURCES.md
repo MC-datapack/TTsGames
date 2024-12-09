@@ -1,4 +1,4 @@
-# Informations regarding Resources
+# Information regarding Resources
 
 **(requires Java coding)** means that you have to add Java code so that you can see your created thing
 
@@ -71,7 +71,7 @@
 5. Add the name of your language and the location of the json/json5 file of your language
 6. Create this json/json5 file
 7. Get the translation keys of another language (for example, [en_us.json](src/main/resources/assets/lang/en_us.json))
-9. add to every Sound JSON File your new Language (explained in 5. of Create a Sound)
+8. add to every Sound JSON File your new Language (explained in 5. of Create a Sound)
 
 ## Data
 

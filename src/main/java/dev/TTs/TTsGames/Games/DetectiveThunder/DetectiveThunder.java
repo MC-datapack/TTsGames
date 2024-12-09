@@ -21,11 +21,11 @@ import static dev.TTs.resources.Translations.DetectiveThunder;
  */
 
 @SuppressWarnings("unused")
-public final class DetektiveThunder {
+public final class DetectiveThunder {
     int Score = 0;
     public static boolean showScore = false, startedClose = false;
 
-    public DetektiveThunder(FrameInformation inf) {
+    public DetectiveThunder(FrameInformation inf) {
         startedVersion = Versions[10];
         SwingUtilities.invokeLater(() -> {
             windows[3] = new TFrame(Games[2] + Versions[10]);
