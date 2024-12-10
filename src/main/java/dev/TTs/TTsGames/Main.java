@@ -29,7 +29,7 @@ public final class Main {
     public static ImageString[][] Textures;
     public static int volume = 0;
     public static float[] AMTime = new float[3];
-    public static boolean MainWindow = true, dev, AnimalMaster, DetektivAdler, setUsername, fAM = false, fAMReset = false;
+    public static boolean MainWindow = true, dev, AnimalMaster, DetektivAdler, setUsername, fAM = false, fAMReset = false, subtitles;
     public static boolean[] alreadyStarted = {false, false};
     public static double a;
 
@@ -60,6 +60,7 @@ public final class Main {
         language = configLoader.getLanguage();
         dev = configLoader.isDevVersionsEnabled();
         Username = configLoader.getUsername();
+        subtitles = configLoader.getSubtitles();
         setUsername = !Objects.equals(Username, "௹⨌{UsernameDe}");
         AMTime[2] = configLoader.getAlMTimeRecord();
         a = configLoader.getAnimal_master_size_multiplier();

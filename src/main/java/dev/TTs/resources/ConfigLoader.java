@@ -14,12 +14,12 @@ public class ConfigLoader {
     private static final String CONFIG_FILE_PATH = jsonReader.MainJSON.getConfig().getFile_name();
 
     private static final String[] KEYS = {
-            "language", "dev_versions", "volume", "username", "animal_master_time_record", "animal_master_size_multiplier"
+            "language", "dev_versions", "volume", "username", "animal_master_time_record", "animal_master_size_multiplier", "subtitles"
     }, DEFAULT_SETTINGS = {
-            "English", "false", "100", "௹⨌{UsernameDe}", "-1", "1.0"
+            "English", "false", "100", "௹⨌{UsernameDe}", "-1", "1.0", "false"
     };
     private final String[][] ALLOWED_SETTINGS = {
-            Languages, {"true", "false"}, {}, {}, {}, {}
+            Languages, {"true", "false"}, {}, {}, {}, {}, {"true", "false"}
     };
 
     public ConfigLoader() {
@@ -48,6 +48,7 @@ public class ConfigLoader {
             properties.setProperty(KEYS[3], DEFAULT_SETTINGS[3]);
             properties.setProperty(KEYS[4], DEFAULT_SETTINGS[4]);
             properties.setProperty(KEYS[5], DEFAULT_SETTINGS[5]);
+            properties.setProperty(KEYS[6], DEFAULT_SETTINGS[6]);
             saveProperties();
             logger.debug("Default config.properties file created.");
         } else {
@@ -78,6 +79,10 @@ public class ConfigLoader {
         }
         if (properties.getProperty(KEYS[5]) == null) {
             properties.setProperty(KEYS[5], DEFAULT_SETTINGS[5]);
+            saveProperties();
+        }
+        if (Array.dontContains(ALLOWED_SETTINGS[6], properties.getProperty(KEYS[6]))) {
+            properties.setProperty(KEYS[6], DEFAULT_SETTINGS[6]);
             saveProperties();
         }
     }
@@ -136,9 +141,21 @@ public class ConfigLoader {
         saveProperties();
     }
 
-    public double getAnimal_master_size_multiplier() {return Double.parseDouble(properties.getProperty(KEYS[5]));}
+    public double getAnimal_master_size_multiplier() {
+        return Double.parseDouble(properties.getProperty(KEYS[5]));
+    }
+
     public void setAnimal_master_size_multiplier(double value) {
         properties.setProperty(KEYS[5], String.valueOf(value));
+        saveProperties();
+    }
+
+    public boolean getSubtitles() {
+        return Boolean.parseBoolean(properties.getProperty(KEYS[6]));
+    }
+
+    public void setSubtitles(boolean value) {
+        properties.setProperty(KEYS[6], Boolean.toString(value));
         saveProperties();
     }
 }

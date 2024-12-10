@@ -4,7 +4,8 @@
 	"common.info.animal_master", "common.info.detective_eagle", "common.info.detective_thunder"
   ],
   "settings": [
-	"common.settings", "common.settings.back", "common.settings.dev_versions", "common.text.username", "common.username", "common.size", "common.settings.true", "common.settings.false"
+	"common.settings", "common.settings.back", "common.settings.dev_versions", "common.text.username", "common.username", "common.size", "common.settings.true", "common.settings.false",
+	"common.settings.subtitles"
   ],
   "credits": [
 	"common.credits", "common.settings.back", "common.credits.image", "common.credits.code", "common.credits.ideas", "common.credits.speach", "common.credits.information"

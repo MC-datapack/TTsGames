@@ -19,7 +19,8 @@ import static java.awt.Color.BLACK;
 
 public final class Window {
     static TComboBox<String> languageSelection = new TComboBox<>(Languages);
-    boolean pressedTrue = false, pressedFalse = false;
+    boolean SDpressedTrue = false, SDpressedFalse = false;
+    boolean SubpressedTrue = false, SubpressedFalse = false;
     public Window(boolean resizable) {
         SwingUtilities.invokeLater(() -> {
             windows[0] = new TFrame("TTsGames " + Versions[1]);
@@ -27,12 +28,16 @@ public final class Window {
             TButton settings = new TButton(Settings[0]);
             TButton Settings_Back = new TButton(Settings[1]);
             TButton Settings_Dev = new TButton(Settings[2]);
+            TButton SDtrue = new TButton(Settings[6]);
+            TButton SDfalse = new TButton(Settings[7]);
             TTextField usernameInput = new TTextField(Settings[4], 25);
             TButton changeUsername = new TButton(Settings[3]);
             TBorderPanel sizeSettings = new TBorderPanel(Settings[5], new Color(68, 68, 68, 200), true);
-            TButton SDtrue = new TButton(Settings[6]);
-            TButton SDfalse = new TButton(Settings[7]);
             TVolumeSlider volumeSlider = new TVolumeSlider(0, 100, volume, new Color(162, 247, 255), new Color(200, 0, 255));
+
+            TButton Subtitles = new TButton(Settings[8]);
+            TButton SubDtrue = new TButton(Settings[6]);
+            TButton SubDfalse = new TButton(Settings[7]);
 
             TButton[] sizes = {
                     new TButton("1"), new TButton("1.25"), new TButton("1.5"), new TButton("1.75"), new TButton("2")
@@ -100,7 +105,7 @@ public final class Window {
             statisticsPanel.add(animalMasterTime);
             Component[] doStandardButtonstuff = {
                     AnimalMaster, Detective_Eagle, Detective_Thunder, settings, Settings_Back, credits, CreditsBack,
-                    Settings_Dev, SDtrue, SDfalse, statistics, statisticsBack, changeUsername
+                    Settings_Dev, SDtrue, SDfalse, statistics, statisticsBack, changeUsername, Subtitles, SubDtrue, SubDfalse
             };
             for (Component component : doStandardButtonstuff) {
                 component.setForeground(BLACK);
@@ -129,7 +134,7 @@ public final class Window {
 
             Component[] setVisibleFalse = {
                     languageSelection, Settings_Back, CreditBorder, CreditsBack, Settings_Dev, SDtrue, SDfalse, volumeSlider, statisticsBack,
-                    statisticsPanel, changeUsername
+                    statisticsPanel, changeUsername, Subtitles, SubDtrue, SubDfalse
             };
             for (Component component : setVisibleFalse) {
                 component.setVisible(false);
@@ -137,7 +142,7 @@ public final class Window {
 
             Dimension buttonSize = new Dimension(118, 30);
             Component[] setPrefferendSizeButtonSize = {
-                    settings, languageSelection, Settings_Back, credits, CreditsBack, statistics, statisticsBack
+                    settings, languageSelection, Settings_Back, credits, CreditsBack, statistics, statisticsBack, Subtitles, SubDtrue, SubDfalse
             };
             AnimalMaster.setPreferredSize(new Dimension(133, 30));
             Detective_Eagle.setPreferredSize(new Dimension(133, 30));
@@ -166,7 +171,7 @@ public final class Window {
 
             Component[] addToPanel = {
                     hello, games, sizeSettings, gameInfo, placeholder, settings, languageSelection, volumeSlider, changeUsername, Settings_Dev, SDtrue, SDfalse,
-                    Settings_Back, credits, CreditBorder, CreditsBack, usernameInput,
+                    Subtitles, SubDtrue, SubDfalse, Settings_Back, credits, CreditBorder, CreditsBack, usernameInput,
                     statistics, statisticsPanel,statisticsBack
             };
             for (Component component : addToPanel) {
@@ -226,6 +231,7 @@ public final class Window {
             settings.clickAction( () -> {
                 languageSelection.Show();
                 Settings_Dev.Show();
+                Subtitles.Show();
                 games.Hide();
                 gameInfo.Hide();
                 sizeSettings.Hide();
@@ -241,6 +247,7 @@ public final class Window {
             Settings_Back.clickAction( () -> {
                 languageSelection.Hide();
                 Settings_Dev.Hide();
+                Subtitles.Hide();
                 SDtrue.Hide();
                 SDfalse.Hide();
                 Settings_Back.Hide();
@@ -296,7 +303,7 @@ public final class Window {
                 }
             });
             SDtrue.clickAction( () -> {
-                pressedTrue = true;
+                SDpressedTrue = true;
                 configLoader.setDevVersions(false);
                 dev = false;
                 SDtrue.Hide();
@@ -308,16 +315,16 @@ public final class Window {
             SDtrue.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseExited(MouseEvent e) {
-                    if (!pressedTrue) {
+                    if (!SDpressedTrue) {
                         SDtrue.Hide();
                         Settings_Dev.Show();
                     } else {
-                        pressedTrue = false;
+                        SDpressedTrue = false;
                     }
                 }
             });
             SDfalse.clickAction( () -> {
-                pressedFalse = true;
+                SDpressedFalse = true;
                 configLoader.setDevVersions(true);
                 dev = true;
                 SDtrue.Show();
@@ -329,11 +336,11 @@ public final class Window {
             SDfalse.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseExited(MouseEvent e) {
-                    if (!pressedFalse) {
+                    if (!SDpressedFalse) {
                         SDfalse.Hide();
                         Settings_Dev.Show();
                     } else {
-                        pressedFalse = false;
+                        SDpressedFalse = false;
                     }
                 }
             });
@@ -347,6 +354,7 @@ public final class Window {
                 languageSelection.Hide();
                 volumeSlider.Hide();
                 Settings_Dev.Hide();
+                Subtitles.Hide();
                 SDfalse.Hide();
                 SDtrue.Hide();
                 Settings_Back.Hide();
@@ -431,6 +439,54 @@ public final class Window {
                 configLoader.setAnimal_master_size_multiplier(1.0);
                 sizes[4].Hide();
                 sizes[0].Show();
+            });
+
+            Subtitles.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    Subtitles.Hide();
+                    if (configLoader.isDevVersionsEnabled()) {
+                        SubDtrue.Show();
+                    } else {
+                        SubDfalse.Show();
+                    }
+                }
+            });
+            SubDtrue.clickAction( () -> {
+                SubpressedTrue = true;
+                configLoader.setSubtitles(false);
+                subtitles = false;
+                SubDtrue.Hide();
+                SubDfalse.Show();
+            });
+            SubDtrue.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    if (!SubpressedTrue) {
+                        SubDtrue.Hide();
+                        Subtitles.Show();
+                    } else {
+                        SubpressedTrue = false;
+                    }
+                }
+            });
+            SubDfalse.clickAction( () -> {
+                SubpressedFalse = true;
+                configLoader.setSubtitles(true);
+                subtitles = true;
+                SubDtrue.Show();
+                SubDfalse.Hide();
+            });
+            SubDfalse.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    if (!SubpressedFalse) {
+                        SubDfalse.Hide();
+                        Subtitles.Show();
+                    } else {
+                        SubpressedFalse = false;
+                    }
+                }
             });
 
 
