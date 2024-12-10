@@ -1,9 +1,9 @@
 {
   "buttons": [
-	"detektiv_thunder.goto.galerie", "detektiv_thunder.goto.wache.back", "detektiv_thunder.search.fingerabdruck", "detektiv_thunder.verdächtig.magritte"
+	"detective_thunder.goto.galerie", "detective_thunder.goto.wache.back", "detective_thunder.search.fingerabdruck", "detective_thunder.verdächtig.magritte"
   ],
   "other": [
-	"detektiv_thunder.erklärung", "detektiv_thunder.description.line1", "detektiv_thunder.description.line2", "detektiv_thunder.description.line3", "detektiv_thunder.start",
-	"detektiv_thunder.close.window", "detektiv_thunder.close.close", "detektiv_thunder.close.score"
+	"detective_thunder.erklärung", "detective_thunder.description.line1", "detective_thunder.description.line2", "detective_thunder.description.line3", "detective_thunder.start",
+	"detective_thunder.close.window", "detective_thunder.close.close", "detective_thunder.close.score"
   ]
 }

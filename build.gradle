@@ -33,6 +33,7 @@ repositories {
 dependencies {
     //implementation gradleApi()
     implementation "com.google.code.gson:gson:${project.gson_version}"
+    implementation libs.annotations
     //implementation "org.vineflower:vineflower:${project.vineflower_version}"
     //implementation "javazoom:jlayer:${project.jlayer_version}"
     //implementation "com.googlecode.soundlibs:mp3spi:${project.mp3spi_version}"

@@ -38,4 +38,22 @@ public final class Array<T> {
         }
         return false;
     }
+
+    public static boolean Contains(char[] array, char target) {
+        for (char c : array) {
+            if (c == target) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean dontContains(char[] array, char target) {
+        for (char c : array) {
+            if (c == target) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

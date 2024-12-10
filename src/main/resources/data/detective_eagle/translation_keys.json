@@ -1,13 +1,13 @@
 {
   "main": [
-	"detektiv_adler.erklärung", "detektiv_adler.start"
+	"detective_eagle.erklärung", "detective_eagle.start"
   ],
   "questions": [
-	"detektiv_adler.question1", "detektiv_adler.question2", "detektiv_adler.question3", "detektiv_adler.question4"
+	"detective_eagle.question1", "detective_eagle.question2", "detective_eagle.question3", "detective_eagle.question4"
   ],
   "buttons": [
-	"detektiv_adler.next", "detektiv_adler.ja", "detektiv_adler.nein",
-	"detektiv_adler.reis", "detektiv_adler.reissack", "detektiv_adler.mehl",
-	"detektiv_adler.schwarz", "detektiv_adler.dunkelbraun", "detektiv_adler.gelb"
+	"detective_eagle.next", "detective_eagle.ja", "detective_eagle.nein",
+	"detective_eagle.reis", "detective_eagle.reissack", "detective_eagle.mehl",
+	"detective_eagle.schwarz", "detective_eagle.dunkelbraun", "detective_eagle.gelb"
   ]
 }

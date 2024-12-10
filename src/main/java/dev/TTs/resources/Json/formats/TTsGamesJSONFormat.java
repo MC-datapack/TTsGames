@@ -53,7 +53,7 @@ public final class TTsGamesJSONFormat {
         for (int i = 0; i < sounds.length; i++) {
             newTextures[i] = new SoundString[sounds[i].length];
             for (int j = 0; j < sounds[i].length; j++) {
-                newTextures[i][j] = new SoundString(sounds_base_dictionaries[i] + "/" + sounds[i][j] + ".json");
+                newTextures[i][j] = new SoundString(sounds_base_dictionaries[i] + "/" + sounds[i][j] + ".json", i);
             }
         }
         return newTextures;

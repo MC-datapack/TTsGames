@@ -1,10 +1,13 @@
 package dev.TTs.lang;
 
+import dev.TTs.resources.Json.Text;
+import dev.TTs.resources.Json.formats.SoundJSONFormat;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.sound.sampled.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
@@ -18,15 +21,28 @@ import static dev.TTs.TTsGames.Main.*;
 public final class SoundString {
     private final String jsonPath;
     private String soundPath;
+    private String soundKey;
     public static FloatControl volumeControl;
 
-    public SoundString(String path) {
+    public SoundString(String path, int game) {
+        SoundJSONFormat format = jsonReader.readSoundJsonFile(path);
         this.jsonPath = path;
         Timer Timer = new Timer();
         Timer.scheduleAtFixedRate(new TimerTask() {
             @Override public void run() {
                 if (configLoader != null) {
-                    timer(() -> soundPath = "/" + jsonReader.readSoundJsonFile(path).getFiles(configLoader.getLanguage()), 200);
+                    File defaultF = new File(format.getFiles("English"));
+                    String Game;
+                    switch (game) {
+                        case 0 -> Game = "common";
+                        case 1 -> Game = "animal_master";
+                        case 2 -> Game = "detective_eagle";
+                        case 3 -> Game = "detective_thunder";
+                        default -> Game = "error";
+                    }
+                    soundKey = Text.translatable(String.format("sound.%s.%s", Game, defaultF.getName()));
+                    soundPath = "/" + jsonReader.readSoundJsonFile(path).getFiles(configLoader.getLanguage());
+                    logger.warn(getSoundKey());
                     Timer.cancel();
                 }
             }
@@ -38,11 +54,8 @@ public final class SoundString {
         return "JSON Path: " + jsonPath + " , Sound File Path: " + soundPath;
     }
 
-    @NotNull
-    public static SoundString[] parseSoundsString(String[] paths) {
-        return Arrays.stream(paths)
-                .map(SoundString::new)
-                .toArray(SoundString[]::new);
+    public String getSoundKey() {
+        return soundKey;
     }
 
     @Nullable
