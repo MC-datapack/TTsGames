@@ -7,20 +7,19 @@ import java.util.Properties;
 
 import static dev.TTs.TTsGames.Main.*;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "ResultOfMethodCallIgnored"})
 public class ConfigLoader {
     private final Properties properties = new Properties();
     private static final String CONFIG_DIR_PATH = jsonReader.MainJSON.getConfig().getFolder_path();
     private static final String CONFIG_FILE_PATH = jsonReader.MainJSON.getConfig().getFile_name();
-    private static final String[] BOOLEAN = {"true", "false"};
 
     private static final String[] KEYS = {
-            "language", "devVersions", "volume", "username", "animalMasterTimeRecord", "animal_master_size_multiplier"
+            "language", "dev_versions", "volume", "username", "animal_master_time_record", "animal_master_size_multiplier"
     }, DEFAULT_SETTINGS = {
             "English", "false", "100", "௹⨌{UsernameDe}", "-1", "1.0"
     };
     private final String[][] ALLOWED_SETTINGS = {
-            Languages, BOOLEAN, {}, {}, {}, {}
+            Languages, {"true", "false"}, {}, {}, {}, {}
     };
 
     public ConfigLoader() {
@@ -40,25 +39,19 @@ public class ConfigLoader {
 
     private void ensurePropertiesFileExists() {
         File configDir = new File(CONFIG_DIR_PATH);
-        if (!configDir.exists()) {
-            boolean m = configDir.mkdirs();
-        }
+        configDir.mkdirs();
         File configFile = new File(CONFIG_FILE_PATH);
         if (!configFile.exists()) {
-            try (OutputStream output = new FileOutputStream(configFile)) {
-                properties.setProperty(KEYS[0], DEFAULT_SETTINGS[0]);
-                properties.setProperty(KEYS[1], DEFAULT_SETTINGS[1]);
-                properties.setProperty(KEYS[2], DEFAULT_SETTINGS[2]);
-                properties.setProperty(KEYS[3], DEFAULT_SETTINGS[3]);
-                properties.setProperty(KEYS[4], DEFAULT_SETTINGS[4]);
-                properties.setProperty(KEYS[5], DEFAULT_SETTINGS[5]);
-                properties.store(output, null);
-                logger.debug("Default config.properties file created.");
-            } catch (IOException e) {
-                logger.error("Error creating default properties file: %s", e);
-            }
+            properties.setProperty(KEYS[0], DEFAULT_SETTINGS[0]);
+            properties.setProperty(KEYS[1], DEFAULT_SETTINGS[1]);
+            properties.setProperty(KEYS[2], DEFAULT_SETTINGS[2]);
+            properties.setProperty(KEYS[3], DEFAULT_SETTINGS[3]);
+            properties.setProperty(KEYS[4], DEFAULT_SETTINGS[4]);
+            properties.setProperty(KEYS[5], DEFAULT_SETTINGS[5]);
+            saveProperties();
+            logger.debug("Default config.properties file created.");
         } else {
-            logger.debug("config.properties exists.");
+            logger.unimportant("config.properties exists.");
         }
     }
     
@@ -98,35 +91,45 @@ public class ConfigLoader {
         }
     }
 
-    public String getLanguage() {return properties.getProperty(KEYS[0]);}
+    public String getLanguage() {
+        return properties.getProperty(KEYS[0]);
+    }
 
     public void setLanguage(String newLanguage) {
         properties.setProperty(KEYS[0], newLanguage);
         saveProperties();
     }
 
-    public boolean isDevVersionsEnabled() {return Boolean.parseBoolean(properties.getProperty(KEYS[1]));}
+    public boolean isDevVersionsEnabled() {
+        return Boolean.parseBoolean(properties.getProperty(KEYS[1]));
+    }
 
     public void setDevVersions(boolean isEnabled) {
         properties.setProperty(KEYS[1], Boolean.toString(isEnabled));
         saveProperties();
     }
 
-    public int getVolume() {return Integer.parseInt(properties.getProperty(KEYS[2]));}
+    public int getVolume() {
+        return Integer.parseInt(properties.getProperty(KEYS[2]));
+    }
 
     public void setVolume(int volume) {
         properties.setProperty(KEYS[2], String.valueOf(volume));
         saveProperties();
     }
 
-    public String getUsername() {return properties.getProperty(KEYS[3]);}
+    public String getUsername() {
+        return properties.getProperty(KEYS[3]);
+    }
 
     public void setUsername(String username) {
         properties.setProperty(KEYS[3], username);
         saveProperties();
     }
 
-    public float getAlMTimeRecord() {return Float.parseFloat(properties.getProperty(KEYS[4]));}
+    public float getAlMTimeRecord() {
+        return Float.parseFloat(properties.getProperty(KEYS[4]));
+    }
 
     public void setAMTimeRecord(float timeRecord) {
         properties.setProperty(KEYS[4], String.valueOf(timeRecord));

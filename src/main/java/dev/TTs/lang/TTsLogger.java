@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public final class TTsLogger {
     private final String logFilePath;
     private BufferedWriter bufferedWriter;
@@ -14,7 +15,6 @@ public final class TTsLogger {
     private final boolean debug;
     private final String resetColor = "\u001B[0m";
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     public TTsLogger(String logDirPath, boolean debug) {
         this.debug = debug;
         File logDir = new File(logDirPath);
@@ -61,11 +61,9 @@ public final class TTsLogger {
     }
 
     private String getTime() {
-        LocalDateTime now = LocalDateTime.now();
-        return now.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss.SSSSSSS"));
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss.SSSSSSS"));
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void close() {
         debug("Closing logger");
         try {

@@ -109,13 +109,13 @@ public final class DetectiveThunder {
                 }
             }
 
-            erklaerung.addActionListener(e -> {
+            erklaerung.clickAction( () -> {
                 erklaerung.Hide();
                 line1.Show();
                 line2.Show();
                 line3.Show();
             });
-            start.addActionListener(e -> {
+            start.clickAction( () -> {
                 start.Hide();
                 erklaerung.Hide();
                 background.Hide();
@@ -129,7 +129,7 @@ public final class DetectiveThunder {
                     timer(() -> entscheidungen[0].Show(), 9500);
                 }, 1000);
             });
-            entscheidungen[0].addActionListener(e -> {
+            entscheidungen[0].clickAction( () -> {
                 entscheidungen[0].Hide();
                 Wache.Hide();
                 Kunstgalerie.Show();
@@ -147,7 +147,7 @@ public final class DetectiveThunder {
                     }, 14700);
                 }, 4500);
             });
-            entscheidungen[1].addActionListener(e -> {
+            entscheidungen[1].clickAction( () -> {
                 entscheidungen[1].Hide();
                 entscheidungen[2].Hide();
                 entscheidungen[3].Hide();
@@ -157,7 +157,7 @@ public final class DetectiveThunder {
                 Sounds[3][4].playSound();
                 timer(() -> System.exit(ExitCodes.NO_ERROR), 11100);
             });
-            entscheidungen[3].addActionListener(e -> {
+            entscheidungen[3].clickAction( () -> {
                 entscheidungen[1].Hide();
                 entscheidungen[2].Hide();
                 entscheidungen[3].Hide();
@@ -167,7 +167,7 @@ public final class DetectiveThunder {
                     timer(() -> System.exit(ExitCodes.NO_ERROR), 3000);
                 }, 1500);
             });
-            entscheidungen[2].addActionListener(e -> {
+            entscheidungen[2].clickAction( () -> {
                 entscheidungen[1].Hide();
                 entscheidungen[2].Hide();
                 entscheidungen[3].Hide();

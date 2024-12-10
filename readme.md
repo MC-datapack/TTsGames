@@ -9,7 +9,7 @@ TTs Games is a small collection of self-made simple games without 3D rendering.
 
 ## Important Information
 
-**Java Version: 21**
+### Java Version: 21
 
 - Most of the code is not very optimized
 - [**AnimalMaster.java**](src/main/java/dev/TTs/TTsGames/Games/AnimalMaster/AnimalMaster.java) is **aimed to be as short as possible** and **isn't aimed to be readable**

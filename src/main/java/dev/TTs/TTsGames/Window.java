@@ -62,6 +62,7 @@ public final class Window {
             if (!setUsername) {
                 games.Hide();
                 gameInfo.Hide();
+                sizeSettings.Hide();
                 settings.Hide();
                 credits.Hide();
                 statistics.Hide();

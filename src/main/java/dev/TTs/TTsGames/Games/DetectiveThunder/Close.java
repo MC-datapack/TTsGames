@@ -24,7 +24,7 @@ public final class Close {
         panel.add(score);
 
 
-        close.addActionListener(e -> {
+        close.clickAction( () -> {
             logger.setInstance(Instance.TTS_GAMES);
             DetektivThunderWindow.Hide();
             windows[4].dispose();
@@ -32,7 +32,7 @@ public final class Close {
             MainWindow = true;
             started = null;
         });
-        score.addActionListener(e -> {
+        score.clickAction( () -> {
             showScore = true;
             startedClose = false;
         });
