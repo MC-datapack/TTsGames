@@ -3,38 +3,54 @@ package dev.TTs.swing;
 import javax.swing.*;
 import java.awt.*;
 
-public class TLayeredPane extends JLayeredPane {
+public class TLayeredPane extends JLayeredPane implements TComponent {
     public TLayeredPane() {
         super();
     }
 
-    public Component[] add(Object constrains, Component... components) {
+    @Override
+    public Component[] add(String constrains, Component... components) {
         for (Component component : components) {
             this.add(component, constrains);
         }
         return components;
     }
 
-    public Component[][] add(Object constrains, Component[]... components) {
+    @Override
+    public Component[][] add(String constrains, Component[]... components) {
         for (Component[] component : components) {
             this.add(constrains, component);
         }
         return components;
     }
 
-    public void setOpaqueF() {
-        this.setOpaque(false);
-    }
-
+    @Override
     public void Hide() {
         this.setVisible(false);
     }
 
+    @Override
     public void Show() {
         this.setVisible(true);
     }
 
+    @Override
     public void setPSize(Dimension size) {
         this.setPreferredSize(size);
+    }
+
+    @Override
+    public void setPSize(int width, int height) {
+        this.setPreferredSize(new Dimension(width, height));
+    }
+
+    @Override
+    public void SetOpaqueT() {
+        this.setOpaque(true);
+    }
+
+    @Override
+    public void SetOpaqueF() {
+        this.setOpaque(false);
     }
 }

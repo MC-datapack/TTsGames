@@ -2,7 +2,7 @@ package dev.TTs.lang;
 
 import dev.TTs.resources.Json.Text;
 import dev.TTs.resources.Json.formats.SoundJSONFormat;
-import dev.TTs.swing.Subtitles;
+import dev.TTs.swing.TSubtitles;
 import org.jetbrains.annotations.Nullable;
 
 import javax.sound.sampled.*;
@@ -22,7 +22,7 @@ public final class SoundString {
     private String soundPath;
     private String soundKey;
     public static FloatControl volumeControl;
-    private Subtitles subtitles;
+    private TSubtitles subtitles;
 
     public SoundString(String path, int game) {
         SoundJSONFormat format = jsonReader.readSoundJsonFile(path);
@@ -68,7 +68,7 @@ public final class SoundString {
         return resource;
     }
 
-    public void addSubtitles(Subtitles subtitles) {
+    public void addSubtitles(TSubtitles subtitles) {
         if (subtitles != null) {
             this.subtitles = subtitles;
         }

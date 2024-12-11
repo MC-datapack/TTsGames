@@ -36,8 +36,12 @@ public class TImage extends TPanel {
     }
 
     public void restartAnimation() {
+        this.setCurrentIndex(0);
+    }
+
+    public void setCurrentIndex(int index) {
         if (isAnimation) {
-            this.currentIndex = 0;
+            this.currentIndex = index;
             repaint();
         }
     }

@@ -72,11 +72,11 @@ public final class DetectiveThunder {
             TImage FingerabdruckSuche = Textures[3][4].toTImage();
 
 
-            TPanel[] doStandardPanelStuff = {
+            TImage[] doStandardPanelStuff = {
                     Wache, Kunstgalerie, FingerabdruckSuche
             };
 
-            for (TPanel component : doStandardPanelStuff) {
+            for (TImage component : doStandardPanelStuff) {
                 windows[3].add(component);
                 component.setLayout(new BorderLayout());
                 component.setSize(1330, 750);

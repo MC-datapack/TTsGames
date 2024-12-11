@@ -78,7 +78,7 @@ public class TVolumeSlider extends TSlider {
         }
 
         @Override
-        public Dimension getThumbSize() {
+        protected Dimension getThumbSize() {
             return new Dimension(THUMB_SIZE, THUMB_SIZE);
         }
     }

@@ -22,10 +22,10 @@ public final class Window {
     static TComboBox<String> languageSelection = new TComboBox<>(Languages);
     boolean SDpressedTrue = false, SDpressedFalse = false;
     boolean SubpressedTrue = false, SubpressedFalse = false;
-    private static Subtitles SubtitlesScr;
+    private static TSubtitles SubtitlesScr;
     public Window(boolean resizable) {
         SwingUtilities.invokeLater(() -> {
-            SubtitlesScr = new Subtitles(new Point(0, 0));
+            SubtitlesScr = new TSubtitles(new Point(0, 0));
             if (subtitles) {
                 setSubtitlesVisible(true);
             }
@@ -462,6 +462,7 @@ public final class Window {
                 SubpressedTrue = true;
                 configLoader.setSubtitles(false);
                 subtitles = false;
+                Subtitles.Hide();
                 setSubtitlesVisible(false);
                 SubDtrue.Hide();
                 SubDfalse.Show();
@@ -481,6 +482,7 @@ public final class Window {
                 SubpressedFalse = true;
                 configLoader.setSubtitles(true);
                 subtitles = true;
+                Subtitles.Show();
                 setSubtitlesVisible(true);
                 SubDtrue.Show();
                 SubDfalse.Hide();
@@ -518,7 +520,7 @@ public final class Window {
                 g.fillRect(0, 0, this.getWidth(), this.getHeight());
             }
         };
-        panel.setOpaqueF();
+        panel.SetOpaqueF();
         panel.setBorder(10, 10, 20, 10);
         return panel;
     }
