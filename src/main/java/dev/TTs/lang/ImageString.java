@@ -1,7 +1,6 @@
 package dev.TTs.lang;
 
 import dev.TTs.resources.Json.formats.AnimatedJSONFormat;
-import dev.TTs.swing.TAnimation;
 import dev.TTs.swing.TImage;
 
 import javax.imageio.ImageIO;
@@ -69,11 +68,10 @@ public final class ImageString {
         return new TImage(this);
     }
 
-    public TAnimation toTAnimation() {
-        return new TAnimation(this);
-    }
-
     public ImageString[] getStrings() {
+        if (jsonFormat == null) {
+            return new ImageString[]{this};
+        }
         try {
             return jsonFormat.getPaths();
         } catch (Exception e) {
@@ -87,7 +85,7 @@ public final class ImageString {
             return jsonFormat.getDelay();
         } catch (Exception e) {
             logger.warn("Error getting Delay for path: %s: %s", this.jsonPath, e);
-            return 1;
+            return 100000;
         }
     }
     public boolean getRepeat() {

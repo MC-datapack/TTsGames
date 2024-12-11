@@ -67,9 +67,9 @@ public final class DetectiveThunder {
 
             TImage background = Textures[3][1].toTImage();
 
-            TAnimation Wache = Textures[3][2].toTAnimation();
+            TImage Wache = Textures[3][2].toTImage();
             TImage Kunstgalerie = Textures[3][3].toTImage();
-            TAnimation FingerabdruckSuche = Textures[3][4].toTAnimation();
+            TImage FingerabdruckSuche = Textures[3][4].toTImage();
 
 
             TPanel[] doStandardPanelStuff = {
