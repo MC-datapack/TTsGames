@@ -22,10 +22,10 @@ public final class Window {
     static TComboBox<String> languageSelection = new TComboBox<>(Languages);
     boolean SDpressedTrue = false, SDpressedFalse = false;
     boolean SubpressedTrue = false, SubpressedFalse = false;
-    private static Subtitles Subtitles;
+    private static Subtitles SubtitlesScr;
     public Window(boolean resizable) {
         SwingUtilities.invokeLater(() -> {
-            Subtitles = new Subtitles(new Point(0, 0));
+            SubtitlesScr = new Subtitles(new Point(0, 0));
             if (subtitles) {
                 setSubtitlesVisible(true);
             }
@@ -462,7 +462,6 @@ public final class Window {
                 SubpressedTrue = true;
                 configLoader.setSubtitles(false);
                 subtitles = false;
-                Subtitles.Hide();
                 setSubtitlesVisible(false);
                 SubDtrue.Hide();
                 SubDfalse.Show();
@@ -482,7 +481,6 @@ public final class Window {
                 SubpressedFalse = true;
                 configLoader.setSubtitles(true);
                 subtitles = true;
-                Subtitles.Show();
                 setSubtitlesVisible(true);
                 SubDtrue.Show();
                 SubDfalse.Hide();
@@ -539,13 +537,14 @@ public final class Window {
     }
 
     private static void setSubtitlesVisible(boolean bool) {
-        if (Subtitles == null) {
+        SubtitlesScr.setVisible(bool);
+        if (SubtitlesScr == null) {
             return;
         }
-        Subtitles.setVisible(bool);
+        SubtitlesScr.setVisible(bool);
         for (SoundString[] soundArray : Sounds) {
             for (SoundString sound : soundArray) {
-                sound.addSubtitles(Subtitles);
+                sound.addSubtitles(SubtitlesScr);
             }
         }
     }
