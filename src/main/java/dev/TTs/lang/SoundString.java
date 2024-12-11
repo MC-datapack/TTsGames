@@ -3,7 +3,6 @@ package dev.TTs.lang;
 import dev.TTs.resources.Json.Text;
 import dev.TTs.resources.Json.formats.SoundJSONFormat;
 import dev.TTs.swing.Subtitles;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.sound.sampled.*;
@@ -11,7 +10,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -73,6 +71,31 @@ public final class SoundString {
     public void addSubtitles(Subtitles subtitles) {
         if (subtitles != null) {
             this.subtitles = subtitles;
+        }
+    }
+
+    public long getLengthMilliSeconds() {
+        try {
+            URL url = this.toURL();
+            if (url == null) {
+                throw new IllegalArgumentException("File not found: " + Objects.requireNonNull(this.toURL()));
+            }
+            if (subtitles != null) {
+                subtitles.setString(soundKey);
+            }
+            AudioInputStream aud = AudioSystem.getAudioInputStream(url);
+            Clip clip = AudioSystem.getClip();
+            clip.open(aud);
+            return clip.getMicrosecondLength() / 1000L;
+        } catch (UnsupportedAudioFileException e) {
+            logger.error("Unsupported audio file format for: " + this.soundPath, e);
+            return 0L;
+        } catch (IOException e) {
+            logger.error("I/O error while playing sound from: " + this.soundPath, e);
+            return 0L;
+        } catch (LineUnavailableException e) {
+            logger.error("Audio line unavailable for: " + this.soundPath, e);
+            return 0L;
         }
     }
 

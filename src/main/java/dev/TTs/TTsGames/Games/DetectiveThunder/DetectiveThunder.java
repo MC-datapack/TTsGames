@@ -126,7 +126,7 @@ public final class DetectiveThunder {
                 Wache.add(panel);
                 timer(() -> {
                     Sounds[3][0].playSound();
-                    timer(() -> entscheidungen[0].Show(), 9500);
+                    timer(() -> entscheidungen[0].Show(), Sounds[3][0].getLengthMilliSeconds());
                 }, 1000);
             });
             entscheidungen[0].clickAction( () -> {
@@ -143,9 +143,9 @@ public final class DetectiveThunder {
                             for (int i = 1; i < 4; i++) {
                                 entscheidungen[i].Show();
                             }
-                        }, 3150);
-                    }, 14700);
-                }, 4500);
+                        }, Sounds[3][3].getLengthMilliSeconds());
+                    }, Sounds[3][2].getLengthMilliSeconds());
+                }, Sounds[3][1].getLengthMilliSeconds());
             });
             entscheidungen[1].clickAction( () -> {
                 entscheidungen[1].Hide();
@@ -155,7 +155,7 @@ public final class DetectiveThunder {
                 Wache.Show();
                 Wache.add(panel);
                 Sounds[3][4].playSound();
-                timer(() -> System.exit(ExitCodes.NO_ERROR), 11100);
+                timer(() -> System.exit(ExitCodes.NO_ERROR), Sounds[3][4].getLengthMilliSeconds());
             });
             entscheidungen[3].clickAction( () -> {
                 entscheidungen[1].Hide();
@@ -164,8 +164,8 @@ public final class DetectiveThunder {
                 Sounds[3][5].playSound();
                 timer(() -> {
                     Sounds[3][6].playSound();
-                    timer(() -> System.exit(ExitCodes.NO_ERROR), 3000);
-                }, 1500);
+                    timer(() -> System.exit(ExitCodes.NO_ERROR), Sounds[3][6].getLengthMilliSeconds());
+                }, Sounds[3][5].getLengthMilliSeconds());
             });
             entscheidungen[2].clickAction( () -> {
                 entscheidungen[1].Hide();
@@ -176,7 +176,6 @@ public final class DetectiveThunder {
                 FingerabdruckSuche.restartAnimation();
                 FingerabdruckSuche.add(panel);
             });
-
 
             WindowOperations(3, inf, background);
         });
