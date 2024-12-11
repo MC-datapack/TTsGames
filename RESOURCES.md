@@ -66,7 +66,7 @@
 1. Go to the Language File (for example, [en_us.json](src/main/resources/assets/lang/en_us.json))
 2. Change the second String of a line and don't change the first String
 
-### Implement a new Language
+### Implement a new Language (Does not require Java coding)
 1. Got to [TTsGames.json](src/main/resources/TTsGames.json)
 2. Search for the field languages
 3. Add your language to languages
