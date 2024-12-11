@@ -541,7 +541,6 @@ public final class Window {
         if (SubtitlesScr == null) {
             return;
         }
-        SubtitlesScr.setVisible(bool);
         for (SoundString[] soundArray : Sounds) {
             for (SoundString sound : soundArray) {
                 sound.addSubtitles(SubtitlesScr);
