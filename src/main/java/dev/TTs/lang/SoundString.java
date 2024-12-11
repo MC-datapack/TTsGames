@@ -80,12 +80,10 @@ public final class SoundString {
             if (url == null) {
                 throw new IllegalArgumentException("File not found: " + Objects.requireNonNull(this.toURL()));
             }
-            if (subtitles != null) {
-                subtitles.setString(soundKey);
-            }
             AudioInputStream aud = AudioSystem.getAudioInputStream(url);
             Clip clip = AudioSystem.getClip();
             clip.open(aud);
+            aud.close();
             return clip.getMicrosecondLength() / 1000L;
         } catch (UnsupportedAudioFileException e) {
             logger.error("Unsupported audio file format for: " + this.soundPath, e);
