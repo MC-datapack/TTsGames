@@ -46,13 +46,6 @@ public class TImage extends TPanel {
         }
     }
 
-    public void setAnimationIndex(int index) {
-        if (isAnimation) {
-            this.currentIndex = index;
-            repaint();
-        }
-    }
-
     public void stopAnimation() {
         if (isAnimation && timer != null) {
             timer.stop();
