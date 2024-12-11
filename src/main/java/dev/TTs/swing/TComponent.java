@@ -9,8 +9,4 @@ public interface TComponent {
     void setPSize(int width, int height);
     void SetOpaqueT();
     void SetOpaqueF();
-    default Component[] add(Component... components) {return null;}
-    default Component[][] add(Component[]... components) {return null;}
-    default Component[] add(String constrains, Component... components) {return null;}
-    default Component[][] add(String constrains, Component[]... components) {return null;}
 }

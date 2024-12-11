@@ -3,9 +3,25 @@ package dev.TTs.swing;
 import javax.swing.*;
 import java.awt.*;
 
-public class TLayeredPane extends JLayeredPane implements TComponent {
+public class TLayeredPane extends JLayeredPane implements TContainer {
     public TLayeredPane() {
         super();
+    }
+
+    @Override
+    public Component[] add(Component... components) {
+        for (Component component : components) {
+            this.add(component);
+        }
+        return components;
+    }
+
+    @Override
+    public Component[][] add(Component[]... components) {
+        for (Component[] component : components) {
+            this.add(component);
+        }
+        return components;
     }
 
     @Override

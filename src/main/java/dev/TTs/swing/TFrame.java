@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class TFrame extends JFrame implements TComponent {
+public class TFrame extends JFrame implements TContainer {
 
     public TFrame() {
         super();

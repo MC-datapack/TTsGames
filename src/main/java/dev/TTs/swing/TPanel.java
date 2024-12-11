@@ -3,7 +3,7 @@ package dev.TTs.swing;
 import javax.swing.*;
 import java.awt.*;
 
-public class TPanel extends JPanel implements TComponent {
+public class TPanel extends JPanel implements TContainer {
 
     public TPanel() {
         super();
