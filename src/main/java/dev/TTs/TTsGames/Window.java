@@ -3,6 +3,7 @@ package dev.TTs.TTsGames;
 import dev.TTs.TTsGames.Games.DetectiveThunder.DetectiveThunder;
 import dev.TTs.TTsGames.Games.AnimalMaster.AnimalMaster;
 import dev.TTs.TTsGames.Games.DetectiveEagle.DetectiveEagle;
+import dev.TTs.lang.SoundString;
 import dev.TTs.resources.Translations;
 import dev.TTs.lang.Instance;
 import dev.TTs.lang.Array;
@@ -21,8 +22,13 @@ public final class Window {
     static TComboBox<String> languageSelection = new TComboBox<>(Languages);
     boolean SDpressedTrue = false, SDpressedFalse = false;
     boolean SubpressedTrue = false, SubpressedFalse = false;
+    private static Subtitles Subtitles;
     public Window(boolean resizable) {
         SwingUtilities.invokeLater(() -> {
+            Subtitles = new Subtitles(new Point(0, 0));
+            if (subtitles) {
+                setSubtitlesVisible(true);
+            }
             windows[0] = new TFrame("TTsGames " + Versions[1]);
 
             TButton settings = new TButton(Settings[0]);
@@ -452,10 +458,12 @@ public final class Window {
                     }
                 }
             });
-            SubDtrue.clickAction( () -> {
+            SubDtrue.clickAction(() -> {
                 SubpressedTrue = true;
                 configLoader.setSubtitles(false);
                 subtitles = false;
+                Subtitles.Hide();
+                setSubtitlesVisible(false);
                 SubDtrue.Hide();
                 SubDfalse.Show();
             });
@@ -474,6 +482,8 @@ public final class Window {
                 SubpressedFalse = true;
                 configLoader.setSubtitles(true);
                 subtitles = true;
+                Subtitles.Show();
+                setSubtitlesVisible(true);
                 SubDtrue.Show();
                 SubDfalse.Hide();
             });
@@ -524,6 +534,18 @@ public final class Window {
             ActionEvent event = new ActionEvent(languageSelection, ActionEvent.ACTION_PERFORMED, null);
             for (ActionListener listener : languageSelection.getActionListeners()) {
                 listener.actionPerformed(event);
+            }
+        }
+    }
+
+    private static void setSubtitlesVisible(boolean bool) {
+        if (Subtitles == null) {
+            return;
+        }
+        Subtitles.setVisible(bool);
+        for (SoundString[] soundArray : Sounds) {
+            for (SoundString sound : soundArray) {
+                sound.addSubtitles(Subtitles);
             }
         }
     }

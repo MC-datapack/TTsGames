@@ -2,6 +2,7 @@ package dev.TTs.lang;
 
 import dev.TTs.resources.Json.Text;
 import dev.TTs.resources.Json.formats.SoundJSONFormat;
+import dev.TTs.swing.Subtitles;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,6 +24,7 @@ public final class SoundString {
     private String soundPath;
     private String soundKey;
     public static FloatControl volumeControl;
+    private Subtitles subtitles;
 
     public SoundString(String path, int game) {
         SoundJSONFormat format = jsonReader.readSoundJsonFile(path);
@@ -68,6 +70,12 @@ public final class SoundString {
         return resource;
     }
 
+    public void addSubtitles(Subtitles subtitles) {
+        if (subtitles != null) {
+            this.subtitles = subtitles;
+        }
+    }
+
     @Nullable
     public Clip playSound() {
         return playSound(1.0f);
@@ -79,6 +87,9 @@ public final class SoundString {
             URL url = this.toURL();
             if (url == null) {
                 throw new IllegalArgumentException("File not found: " + Objects.requireNonNull(this.toURL()));
+            }
+            if (subtitles != null) {
+                subtitles.setString(soundKey);
             }
             AudioInputStream aud = AudioSystem.getAudioInputStream(url);
             Clip clip = AudioSystem.getClip();
