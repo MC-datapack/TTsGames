@@ -55,6 +55,9 @@
 5. Create an element called "files" (requires a Map of two Strings)
    - The first String is the Language like "English"
    - The second String is the main File Path
+6. Go to the language files and add a new translation key named: ```sound.<game>.<file name>.<file type>```
+   - [Change Translations](https://github.com/MC-datapack/TTsGames/blob/master/RESOURCES.md#change-translations)
+7. Add the translation which will be displayed in the subtitles.
 
 ## Languages
 
