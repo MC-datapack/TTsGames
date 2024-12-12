@@ -15,5 +15,6 @@
 	"Wache_10"
   ],
   "delay": 100,
-  "repeat": true
+  "repeat": true,
+  "blend": true
 }

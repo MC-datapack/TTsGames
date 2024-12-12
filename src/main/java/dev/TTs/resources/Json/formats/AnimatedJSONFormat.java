@@ -12,6 +12,7 @@ public final class AnimatedJSONFormat {
     private String[] paths;
     private int delay;
     private boolean repeat;
+    private boolean blend;
 
     public ImageString[] getPaths() {
         ImageString[] newPaths = new ImageString[paths.length];
@@ -29,4 +30,5 @@ public final class AnimatedJSONFormat {
     }
     public int getDelay() {return delay;}
     public boolean getRepeat() {return repeat;}
+    public boolean getBlend() {return blend;}
 }

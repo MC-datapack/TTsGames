@@ -36,6 +36,8 @@
 7. Create an element called "repeat" (requires a boolean (true/false))
    - If set to true, it will repeat infinitely
    - If set to false, it will only do the animation once
+8. Create an element called "blend" (requires a boolean (true/false))
+   - If set to true, it will overlay the two images to create more realistic animations without requiring hundreds of frames
 
 ## Sounds
 

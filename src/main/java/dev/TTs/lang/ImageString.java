@@ -96,4 +96,12 @@ public final class ImageString {
             return true;
         }
     }
+    public boolean getBlend() {
+        try {
+            return jsonFormat.getBlend();
+        } catch (Exception e) {
+            logger.warn("Error getting Repeat setting for path: %s: %s", this.jsonPath, e);
+            return true;
+        }
+    }
 }
