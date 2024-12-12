@@ -5,7 +5,7 @@ correct = 0; TButton[] a = new TButton[jsonReader.AInf("a")], n = new TButton[js
 jsonReader.AInfS("P")), pl = new TLabel(jsonReader.AInfS("pl")); TPanel p = new TPanel(new FlowLayout(FlowLayout.LEFT, (int) (10 * Main.a), (int) (10 * Main.a)));
 TButton inf = new TButton(Informations[0]); TButton A = new TButton(OtherButtons[1]), Auswertung2 = new TButton(OtherButtons[1]), HQ = new TButton(OtherButtons[2]), big = new TButton(OtherButtons[3]);
 public AnimalMaster(FrameInformationT inf) {int[] widths = {102, 118, 133, 200, 300, 360}; Dimension[] buttonSizes = new Dimension[widths.length]; for (int i = 0; i < widths.length; i++) {buttonSizes[i] =
-new Dimension((int) (widths[i] * Main.a), (int) (30 * Main.a));} p.SetOpaqueF(); AMTime[0] = Time.milliTime(); windows[1] = new TFrame(inf.title()); startedVersion = Versions[4];
+new Dimension((int) (widths[i] * Main.a), (int) (30 * Main.a));} p.setOpaqueF(); AMTime[0] = Time.milliTime(); windows[1] = new TFrame(inf.title()); startedVersion = Versions[4];
 p.setBorder(10, 10, 50, 10); for (int i = 0; i < a.length; i++) a[i] = new TButton(AnswerButtons[i]); for (int i = 0; i < this.i.length; i++) this.i[i] = Textures[1][i].toTImage();
 i[0].setLayout(new BorderLayout()); i[0].setSize((int) (420 * Main.a), (int) (171 * Main.a));i[0].add(p);for (int i = 0; i < q.length; i++) {n[i] = new TButton(OtherButtons[0]);
 q[i] = new TBorderPanel(Questions[i], black, true); c[i] = new TBorderPanel(r(Compliments), black, true); b[i] = new TBorderPanel(r(Insults),

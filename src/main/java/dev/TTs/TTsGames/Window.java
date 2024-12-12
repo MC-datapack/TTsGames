@@ -109,19 +109,19 @@ public final class Window {
                 sizeSettings.add(component);
             }
             statisticsPanel.add(animalMasterTime);
-            Component[] doStandardButtonstuff = {
+            TComponent[] doStandardButtonstuff = {
                     AnimalMaster, Detective_Eagle, Detective_Thunder, settings, Settings_Back, credits, CreditsBack,
                     Settings_Dev, SDtrue, SDfalse, statistics, statisticsBack, changeUsername, Subtitles, SubDtrue, SubDfalse
             };
-            for (Component component : doStandardButtonstuff) {
-                component.setForeground(BLACK);
-                component.setBackground(new Color(68, 68, 68));
-                component.setFocusable(false);
+            for (TComponent component : doStandardButtonstuff) {
+                component.setColor(Region.FOREGROUND, BLACK);
+                component.setColor(Region.BACKGROUND, new Color(68, 68, 68));
+                component.setFocusableF();
             }
-            for (TButton component : sizes) {
-                component.setForeground(BLACK);
-                component.setBackground(new Color(68, 68, 68));
-                component.setFocusable(false);
+            for (TComponent component : sizes) {
+                component.setColor(Region.FOREGROUND, BLACK);
+                component.setColor(Region.BACKGROUND, new Color(68, 68, 68));
+                component.setFocusableF();
             }
 
             volumeSlider.setOpaque(false);
@@ -520,7 +520,7 @@ public final class Window {
                 g.fillRect(0, 0, this.getWidth(), this.getHeight());
             }
         };
-        panel.SetOpaqueF();
+        panel.setOpaqueF();
         panel.setBorder(10, 10, 20, 10);
         return panel;
     }

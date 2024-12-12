@@ -41,7 +41,7 @@ public final class DetectiveEagle {
                     erkl, question0, question1, question2, question3
             };
             for (TButton component : doStandardButtonstuff) {
-                component.SetOpaqueF();
+                component.setOpaqueF();
                 component.setContentAreaFilled(false);
                 component.setForeground(Color.WHITE);
                 component.setFocusable(false);

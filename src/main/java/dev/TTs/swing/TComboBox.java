@@ -10,10 +10,6 @@ public class TComboBox<E> extends JComboBox<E> implements TComponent {
         super(items);
     }
 
-    public void setOpaqueF() {
-        this.setOpaque(false);
-    }
-
     @Override
     public void Hide() {
         this.setVisible(false);
@@ -35,13 +31,31 @@ public class TComboBox<E> extends JComboBox<E> implements TComponent {
     }
 
     @Override
-    public void SetOpaqueT() {
+    public void setOpaqueT() {
         this.setOpaque(true);
     }
 
     @Override
-    public void SetOpaqueF() {
+    public void setOpaqueF() {
         this.setOpaque(false);
+    }
+
+    @Override
+    public void setFocusableT() {
+        this.setFocusable(true);
+    }
+
+    @Override
+    public void setFocusableF() {
+        this.setFocusable(false);
+    }
+
+    @Override
+    public void setColor(Region region, Color color) {
+        switch (region) {
+            case BACKGROUND -> this.setBackground(color);
+            case FOREGROUND -> this.setForeground(color);
+        }
     }
 
     public void addActionListener(Runnable event) {

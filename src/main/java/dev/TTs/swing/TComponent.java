@@ -7,6 +7,9 @@ public interface TComponent {
     void Show();
     void setPSize(Dimension size);
     void setPSize(int width, int height);
-    void SetOpaqueT();
-    void SetOpaqueF();
+    void setOpaqueT();
+    void setOpaqueF();
+    void setFocusableT();
+    void setFocusableF();
+    void setColor(Region region, Color color);
 }

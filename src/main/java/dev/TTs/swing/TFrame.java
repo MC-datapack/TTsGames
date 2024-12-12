@@ -68,10 +68,28 @@ public class TFrame extends JFrame implements TContainer {
     }
 
     @Override
-    public void SetOpaqueT() {}
+    public void setOpaqueT() {}
 
     @Override
-    public void SetOpaqueF() {}
+    public void setOpaqueF() {}
+
+    @Override
+    public void setFocusableT() {
+        this.setFocusable(true);
+    }
+
+    @Override
+    public void setFocusableF() {
+        this.setFocusable(false);
+    }
+
+    @Override
+    public void setColor(Region region, Color color) {
+        switch (region) {
+            case BACKGROUND -> this.setBackground(color);
+            case FOREGROUND -> this.setForeground(color);
+        }
+    }
 
     public void closingOperation(Runnable task) {
         this.addWindowListener(new WindowAdapter() {
