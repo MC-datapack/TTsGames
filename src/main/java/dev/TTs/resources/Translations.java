@@ -2,6 +2,8 @@ package dev.TTs.resources;
 
 import dev.TTs.resources.Json.Text;
 
+import java.util.Arrays;
+
 import static dev.TTs.TTsGames.Main.jsonReader;
 
 public final class Translations {
@@ -32,4 +34,17 @@ public final class Translations {
             ButtonsD = jsonReader.DATranslationKeys("buttons"),
             ButtonsDT  = jsonReader.DTTranslationKeys("buttons"),
             DetectiveThunder = jsonReader.DTTranslationKeys("other");
+
+    @Override
+    public String toString() {
+        return String.format(
+                "animal_master: {questions: %s, buttons : %s, compliments: %s, insults: %s, results: %s, informations: %s, other_buttons: %s} " +
+                "tts_games: {games: %s, settings: %s, credits: %s, statistics: %s, other: %s} " +
+                "detective_eagle: {main: %s, questions: %s, buttons: %s} " +
+                "detective_thunder: {buttons: %s, other: %s} ",
+                Arrays.toString(Questions), Arrays.toString(AnswerButtons), Arrays.toString(Compliments), Arrays.toString(Insults), Arrays.toString(Results),
+                Arrays.toString(Informations), Arrays.toString(OtherButtons), Arrays.toString(Games), Arrays.toString(Settings), Arrays.toString(Credits),
+                Arrays.toString(Statistics), Arrays.toString(TTsGames), Arrays.toString(DetectiveEagle), Arrays.toString(QuestionsD), Arrays.toString(ButtonsD),
+                Arrays.toString(ButtonsDT), Arrays.toString(DetectiveThunder));
+    }
 }

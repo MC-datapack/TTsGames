@@ -70,7 +70,7 @@ public final class Main {
         }
 
         translations = new Translations();
-        logger.debug("Loaded translations");
+        logger.debug("Loaded translations: %s", translations.toString());
 
         logger.info("TTs Games %s is starting", Versions[0]);
         new Window(false);
