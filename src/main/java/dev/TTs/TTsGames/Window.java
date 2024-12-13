@@ -18,8 +18,9 @@ import static dev.TTs.resources.Translations.*;
 import static dev.TTs.lang.SoundString.setVolume;
 import static java.awt.Color.BLACK;
 
+@SuppressWarnings("FieldMayBeFinal")
 public final class Window {
-    static TComboBox<String> languageSelection = new TComboBox<>(Languages);
+    private static TComboBox<String> languageSelection = new TComboBox<>(Languages);
     boolean SDpressedTrue = false, SDpressedFalse = false;
     boolean SubpressedTrue = false, SubpressedFalse = false;
     private static TSubtitles SubtitlesScr;
