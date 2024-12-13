@@ -16,38 +16,6 @@ public class TFrame extends JFrame implements TContainer {
     }
 
     @Override
-    public Component[] add(Component... components) {
-        for (Component component : components) {
-            this.add(component);
-        }
-        return components;
-    }
-
-    @Override
-    public Component[] add(String constrains, Component... components) {
-        for (Component component : components) {
-            this.add(component, constrains);
-        }
-        return components;
-    }
-
-    @Override
-    public Component[][] add(Component[]... components) {
-        for (Component[] component : components) {
-            this.add(component);
-        }
-        return components;
-    }
-
-    @Override
-    public Component[][] add(String constrains, Component[]... components) {
-        for (Component[] component : components) {
-            this.add(constrains, component);
-        }
-        return components;
-    }
-
-    @Override
     public void background(Color color) {
         this.setBackground(color);
     }
@@ -83,5 +51,16 @@ public class TFrame extends JFrame implements TContainer {
             }
         });
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    }
+
+    @Override
+    public Component addC(Component component) {
+        return this.add(component);
+    }
+
+    @Override
+    public Component addC(Component component, String constrains) {
+        this.add(component, constrains);
+        return component;
     }
 }

@@ -13,38 +13,6 @@ public class TPanel extends JPanel implements TContainer {
         super(flowLayout);
     }
 
-    @Override
-    public Component[] add(Component... components) {
-        for (Component component : components) {
-            this.add(component);
-        }
-        return components;
-    }
-
-    @Override
-    public Component[] add(String constrains, Component... components) {
-        for (Component component : components) {
-            this.add(component, constrains);
-        }
-        return components;
-    }
-
-    @Override
-    public Component[][] add(Component[]... components) {
-        for (Component[] component : components) {
-            this.add(component);
-        }
-        return components;
-    }
-
-    @Override
-    public Component[][] add(String constrains, Component[]... components) {
-        for (Component[] component : components) {
-            this.add(constrains, component);
-        }
-        return components;
-    }
-
     public void setBorder(int top, int left, int bottom, int right) {
         this.setBorder(BorderFactory.createEmptyBorder(top, left, bottom, right));
     }
@@ -81,5 +49,16 @@ public class TPanel extends JPanel implements TContainer {
     @Override
     public void pSize(Dimension dimension) {
         this.setPreferredSize(dimension);
+    }
+
+    @Override
+    public Component addC(Component component) {
+        return this.add(component);
+    }
+
+    @Override
+    public Component addC(Component component, String constrains) {
+        this.add(component, constrains);
+        return component;
     }
 }

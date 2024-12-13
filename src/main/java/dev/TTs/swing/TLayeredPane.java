@@ -9,38 +9,6 @@ public class TLayeredPane extends JLayeredPane implements TContainer {
     }
 
     @Override
-    public Component[] add(Component... components) {
-        for (Component component : components) {
-            this.add(component);
-        }
-        return components;
-    }
-
-    @Override
-    public Component[][] add(Component[]... components) {
-        for (Component[] component : components) {
-            this.add(component);
-        }
-        return components;
-    }
-
-    @Override
-    public Component[] add(String constrains, Component... components) {
-        for (Component component : components) {
-            this.add(component, constrains);
-        }
-        return components;
-    }
-
-    @Override
-    public Component[][] add(String constrains, Component[]... components) {
-        for (Component[] component : components) {
-            this.add(constrains, component);
-        }
-        return components;
-    }
-
-    @Override
     public void background(Color color) {
         this.setBackground(color);
     }
@@ -68,5 +36,16 @@ public class TLayeredPane extends JLayeredPane implements TContainer {
     @Override
     public void pSize(Dimension dimension) {
         this.setPreferredSize(dimension);
+    }
+
+    @Override
+    public Component addC(Component component) {
+        return this.add(component);
+    }
+
+    @Override
+    public Component addC(Component component, String constrains) {
+        this.add(component, constrains);
+        return component;
     }
 }
