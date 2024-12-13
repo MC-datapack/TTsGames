@@ -9,7 +9,6 @@ import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.*;
 
 import static dev.TTs.TTsGames.Main.*;
 
@@ -24,12 +23,6 @@ public final class ImageString {
         this.jsonPath = path + ".json";
         this.jsonFormat = jsonReader.readAnimatedJsonFile(this.jsonPath);
         this.jsonFileExists = this.jsonFormat != null;
-    }
-
-    public static ImageString[] parseImageString(String[] paths) {
-        return Arrays.stream(paths)
-                .map(ImageString::new)
-                .toArray(ImageString[]::new);
     }
 
     @Override
