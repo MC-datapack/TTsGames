@@ -52,7 +52,7 @@ package dev.TTs.lang;
  *  Bright Purple: 105m
  *  Bright Cyan: 106m
  *  Bright White: 107m
- * </pre>
+ * </pre></blockquote>
  */
 
 public enum LogLevel {

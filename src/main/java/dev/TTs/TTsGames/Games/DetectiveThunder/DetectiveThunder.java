@@ -17,7 +17,7 @@ import static dev.TTs.resources.Translations.DetectiveThunder;
  * Magritte: LILY
  *
  * Sprecher: ALICE
- * </pre>
+ * </pre></blockquote>
  */
 
 @SuppressWarnings("unused")

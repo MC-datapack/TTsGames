@@ -2,6 +2,7 @@ package dev.TTs.swing;
 
 import java.awt.*;
 
+@SuppressWarnings("unused")
 public interface TComponent {
     default void Hide() {
         this.visible(false);
