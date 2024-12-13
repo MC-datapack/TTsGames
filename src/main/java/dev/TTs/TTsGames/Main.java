@@ -33,7 +33,6 @@ public final class Main {
     public static boolean[] alreadyStarted = {false, false};
     public static double a;
 
-    public static URI uri;
     public static Image noTexture;
     public static TFrame[] windows = new TFrame[6];
     public static Color[] buttonColors;
