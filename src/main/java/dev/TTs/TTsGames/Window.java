@@ -391,6 +391,7 @@ public final class Window {
                             credits.Show();
                             statistics.Show();
                             placeholder.Show();
+                            sizeSettings.Show();
                             hello.Show();
                         }
                     }

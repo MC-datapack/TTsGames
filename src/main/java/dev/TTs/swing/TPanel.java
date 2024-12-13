@@ -54,50 +54,32 @@ public class TPanel extends JPanel implements TContainer {
     }
 
     @Override
-    public void setOpaqueF() {
-        this.setOpaque(false);
+    public void background(Color color) {
+        this.setBackground(color);
     }
 
     @Override
-    public void setFocusableT() {
-        this.setFocusable(true);
+    public void foreground(Color color) {
+        this.setForeground(color);
     }
 
     @Override
-    public void setFocusableF() {
-        this.setFocusable(false);
+    public void focusable(boolean bool) {
+        this.setFocusable(bool);
     }
 
     @Override
-    public void setColor(Region region, Color color) {
-        switch (region) {
-            case BACKGROUND -> this.setBackground(color);
-            case FOREGROUND -> this.setForeground(color);
-        }
+    public void opaque(boolean bool) {
+        this.setOpaque(bool);
     }
 
     @Override
-    public void setOpaqueT() {
-        this.setOpaque(true);
+    public void visible(boolean bool) {
+        this.setVisible(bool);
     }
 
     @Override
-    public void Hide() {
-        this.setVisible(false);
-    }
-
-    @Override
-    public void Show() {
-        this.setVisible(true);
-    }
-
-    @Override
-    public void setPSize(Dimension size) {
-        this.setPreferredSize(size);
-    }
-
-    @Override
-    public void setPSize(int width, int height) {
-        this.setPreferredSize(new Dimension(width, height));
+    public void pSize(Dimension dimension) {
+        this.setPreferredSize(dimension);
     }
 }

@@ -13,52 +13,33 @@ public class TLabel extends JLabel implements TComponent {
         super(text);
     }
 
-
     @Override
-    public void Hide() {
-        this.setVisible(false);
+    public void background(Color color) {
+        this.setBackground(color);
     }
 
     @Override
-    public void Show() {
-        this.setVisible(true);
+    public void foreground(Color color) {
+        this.setForeground(color);
     }
 
     @Override
-    public void setPSize(Dimension size) {
-        this.setPreferredSize(size);
+    public void focusable(boolean bool) {
+        this.setFocusable(bool);
     }
 
     @Override
-    public void setPSize(int width, int height) {
-        this.setPreferredSize(new Dimension(width, height));
+    public void opaque(boolean bool) {
+        this.setOpaque(bool);
     }
 
     @Override
-    public void setOpaqueT() {
-        this.setOpaque(true);
+    public void visible(boolean bool) {
+        this.setVisible(bool);
     }
 
     @Override
-    public void setOpaqueF() {
-        this.setOpaque(false);
-    }
-
-    @Override
-    public void setFocusableT() {
-        this.setFocusable(true);
-    }
-
-    @Override
-    public void setFocusableF() {
-        this.setFocusable(false);
-    }
-
-    @Override
-    public void setColor(Region region, Color color) {
-        switch (region) {
-            case BACKGROUND -> this.setBackground(color);
-            case FOREGROUND -> this.setForeground(color);
-        }
+    public void pSize(Dimension dimension) {
+        this.setPreferredSize(dimension);
     }
 }
