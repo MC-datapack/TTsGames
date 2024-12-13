@@ -16,7 +16,7 @@ import java.util.Timer;
 
 import static dev.TTs.TTsGames.Games.DetectiveThunder.DetectiveThunder.startedClose;
 
-@SuppressWarnings({"unused", "InstantiationOfUtilityClass"})
+@SuppressWarnings("InstantiationOfUtilityClass")
 public final class Main {
     public static TTsLogger logger;
     public static Translations translations;
