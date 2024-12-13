@@ -1,7 +1,5 @@
 package dev.TTs.swing;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.awt.*;
 
 public interface TComponent {
