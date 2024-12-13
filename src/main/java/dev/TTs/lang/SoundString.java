@@ -42,7 +42,6 @@ public final class SoundString {
                     }
                     soundKey = Text.translatable(String.format("sound.%s.%s", Game, defaultF.getName()));
                     soundPath = "/" + jsonReader.readSoundJsonFile(path).getFiles(configLoader.getLanguage());
-                    logger.warn(getSoundKey());
                     Timer.cancel();
                 }
             }
