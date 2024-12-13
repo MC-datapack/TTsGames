@@ -16,7 +16,7 @@ import java.util.Timer;
 
 import static dev.TTs.TTsGames.Games.DetectiveThunder.DetectiveThunder.startedClose;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "InstantiationOfUtilityClass"})
 public final class Main {
     public static TTsLogger logger;
     public static Translations translations;
@@ -69,7 +69,7 @@ public final class Main {
         if (Objects.equals(Username, "௹⨌{UsernameDe}")) {
             Username = "↺";
         }
-        //noinspection InstantiationOfUtilityClass
+
         translations = new Translations();
         logger.debug("Loaded translations");
 
