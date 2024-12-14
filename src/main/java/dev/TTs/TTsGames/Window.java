@@ -514,7 +514,7 @@ public final class Window {
         });
     }
 
-    private static TPanel getTPanel() {
+    private TPanel getTPanel() {
         TPanel panel = new TPanel(new FlowLayout(FlowLayout.LEFT, 10, 10)) {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -527,7 +527,7 @@ public final class Window {
         return panel;
     }
 
-    private static void setLanguageSelection(String language) {
+    private void setLanguageSelection(String language) {
         for (int i = 0; i < languageSelection.getItemCount(); i++) {
             if (languageSelection.getItemAt(i).equals(language)) {
                 languageSelection.setSelectedIndex(i);
@@ -540,7 +540,7 @@ public final class Window {
         }
     }
 
-    private static void setSubtitlesVisible(boolean bool) {
+    private void setSubtitlesVisible(boolean bool) {
         SubtitlesScr.setVisible(bool);
         if (SubtitlesScr == null) {
             return;

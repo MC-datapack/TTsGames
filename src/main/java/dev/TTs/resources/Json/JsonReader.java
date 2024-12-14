@@ -14,6 +14,7 @@ import java.util.Map;
 
 import static dev.TTs.TTsGames.Main.logger;
 
+@SuppressWarnings("DataFlowIssue")
 public class JsonReader {
     public final TTsGamesJSONFormat MainJSON;
     public final ColorJSONFormat colorJSON;
