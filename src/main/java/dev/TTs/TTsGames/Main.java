@@ -82,6 +82,18 @@ public class Main {
         }, 1000,1000);
     }
 
+    public static void deMain(String[] args) {
+        logger.error("Shutdown args: %s", Arrays.toString(args));
+        checkLoop.cancel();
+        logger.debug("Shutting Down");
+        Arrays.stream(windows)
+                .filter(Objects::nonNull)
+                .forEach(JFrame::dispose);
+        logger.debug("Closed Windows");
+        logger.close();
+        System.exit(ExitCodes.NO_ERROR);
+    }
+
     public static Timer timer(Runnable task, long delay) {
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -103,17 +115,6 @@ public class Main {
         return timer;
     }
 
-    public static void shutDown() {
-        checkLoop.cancel();
-        logger.debug("Shutting Down");
-        Arrays.stream(windows)
-                .filter(Objects::nonNull)
-                .forEach(JFrame::dispose);
-        logger.debug("Closed Windows");
-        logger.close();
-        System.exit(ExitCodes.NO_ERROR);
-    }
-
 
     public static void WindowOperations(int window, WindowInformation information, Component background) {
         WindowOperations(window, information);
@@ -122,7 +123,7 @@ public class Main {
     public static void WindowOperations(int window, WindowInformation information) {
         windows[window].closingOperation(() -> {
             switch (window) {
-                case 0 -> shutDown();
+                case 0 -> deMain(new String[0]);
                 case 1 -> {
                     MainWindow = true;
                     windows[1].setVisible(false);

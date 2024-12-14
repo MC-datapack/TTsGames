@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@SuppressWarnings("ResultOfMethodCallIgnored")
+@SuppressWarnings({"ResultOfMethodCallIgnored", "FieldCanBeLocal"})
 public final class TTsLogger {
     private final String logFilePath;
     private BufferedWriter bufferedWriter;
@@ -42,14 +42,14 @@ public final class TTsLogger {
         final String formattedMessage = formatMessage(level, String.format(String.valueOf(message), args));
         System.out.println(formattedMessage);
         if (bufferedWriter == null) {
-            System.err.println("BufferedWriter not initialized.");
+            System.err.println(formatMessage(LogLevel.ERROR, "BufferedWriter not initialized."));
             return;
         }
         try {
             bufferedWriter.write(formattedMessage + "\n");
             bufferedWriter.flush();
         } catch (IOException e) {
-            error("Error using Buffered Writer \"%s\" to write the message \"%s\": ", bufferedWriter, formattedMessage, e);
+            System.err.println(formatMessage(LogLevel.ERROR, String.format("Error using Buffered Writer \"%s\" to write the message \"%s\": %s", bufferedWriter, formattedMessage, e)));
         }
     }
 
