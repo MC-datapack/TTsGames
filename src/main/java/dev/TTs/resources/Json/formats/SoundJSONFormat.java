@@ -2,7 +2,7 @@ package dev.TTs.resources.Json.formats;
 
 import java.util.Map;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "MismatchedQueryAndUpdateOfCollection"})
 public class SoundJSONFormat {
     private String base_dictionary;
     private Map<String, String> files;

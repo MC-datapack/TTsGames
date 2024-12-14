@@ -1,11 +1,10 @@
 package dev.TTs.swing3d;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings({"unused", "FieldMayBeFinal"})
+@SuppressWarnings({"unused", "FieldMayBeFinal", "UnusedAssignment"})
 public class Cube extends Simple3DCube {
     private List<Point3D> platform;
 
@@ -93,13 +92,5 @@ public class Cube extends Simple3DCube {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         renderPlatform(g);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        angleX += 2;
-        angleY += 2;
-        angleZ += 2;
-        repaint();
     }
 }
