@@ -13,7 +13,7 @@ import static dev.TTs.resources.Translations.DetectiveEagle;
 
 public final class DetectiveEagle {
     Timer timer;
-    public DetectiveEagle(FrameInformation inf) {
+    public DetectiveEagle(WindowInformation inf) {
         startedVersion = Versions[7];
         SwingUtilities.invokeLater(() -> {
             windows[2] = new TFrame(Games[1] + Versions[7]);

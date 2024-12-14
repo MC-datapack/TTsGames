@@ -5,7 +5,7 @@ import dev.TTs.TTsGames.Games.DetectiveThunder.Close;
 import dev.TTs.resources.ConfigLoader;
 import dev.TTs.resources.Json.JsonReader;
 import dev.TTs.resources.Translations;
-import dev.TTs.swing.FrameInformation;
+import dev.TTs.swing.WindowInformation;
 import dev.TTs.swing.TFrame;
 
 import javax.swing.*;
@@ -114,11 +114,11 @@ public final class Main {
     }
 
 
-    public static void WindowOperations(int window, FrameInformation information, Component background) {
+    public static void WindowOperations(int window, WindowInformation information, Component background) {
         WindowOperations(window, information);
         windows[window].add(background);
     }
-    public static void WindowOperations(int window, FrameInformation information) {
+    public static void WindowOperations(int window, WindowInformation information) {
         windows[window].closingOperation(() -> {
             switch (window) {
                 case 0 -> shutDown();

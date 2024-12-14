@@ -25,7 +25,7 @@ public final class DetectiveThunder {
     int Score = 0;
     public static boolean showScore = false, startedClose = false;
 
-    public DetectiveThunder(FrameInformation inf) {
+    public DetectiveThunder(WindowInformation inf) {
         startedVersion = Versions[10];
         SwingUtilities.invokeLater(() -> {
             windows[3] = new TFrame(Games[2] + Versions[10]);
