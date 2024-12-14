@@ -1,4 +1,6 @@
-package dev.TTs.swing;
+package dev.TTs.swing3d;
+
+import dev.TTs.swing.TComponent;
 
 @SuppressWarnings("unused")
 public interface Object3D extends TComponent {

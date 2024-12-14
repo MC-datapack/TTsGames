@@ -1,4 +1,6 @@
-package dev.TTs.swing;
+package dev.TTs.swing3d;
+
+import dev.TTs.swing.TPanel;
 
 import javax.swing.*;
 import java.awt.*;

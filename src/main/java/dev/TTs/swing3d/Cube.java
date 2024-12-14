@@ -1,13 +1,11 @@
-package dev.TTs.swing;
+package dev.TTs.swing3d;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-// Deprecated because of bugs
-@Deprecated(since = "hopefully never")
+@SuppressWarnings({"unused", "FieldMayBeFinal"})
 public class Cube extends Simple3DCube {
     private List<Point3D> platform;
 
@@ -21,7 +19,7 @@ public class Cube extends Simple3DCube {
         this.platform = new ArrayList<>();
     }
 
-    public void addToPlatform(int x, int y, int z) {
+    public void addPointForCube(int x, int y, int z) {
         platform.add(new Point3D(x, y, z));
     }
 
@@ -33,7 +31,7 @@ public class Cube extends Simple3DCube {
 
     private void renderAtPosition(Graphics g, Point3D pos) {
         Graphics2D g2d = (Graphics2D) g.create();
-        g2d.translate(getWidth() / 2 + pos.x, getHeight() / 2 + pos.y);
+        g2d.translate(getWidth() / 2.0 + pos.x(), getHeight() / 2.0 + pos.y());
 
         int size = Math.min(getWidth(), getHeight()) / 4;
         int[][] transformedVertices = new int[VERTICES.length][2];
@@ -103,22 +101,5 @@ public class Cube extends Simple3DCube {
         angleY += 2;
         angleZ += 2;
         repaint();
-    }
-
-    private record Point3D(double x, double y, double z) {}
-
-    // Example usage
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        Cube cubePanel = new Cube();
-
-        cubePanel.addToPlatform(0, 0, 0);     // Center cube
-        // Removed other cube additions
-
-        frame.add(cubePanel);
-        frame.setSize(800, 800);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        cubePanel.startSpinning();
     }
 }
