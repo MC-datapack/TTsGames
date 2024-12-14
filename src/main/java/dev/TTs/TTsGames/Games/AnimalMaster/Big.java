@@ -9,7 +9,7 @@ import java.awt.*;
 import static dev.TTs.TTsGames.Main.*;
 import static dev.TTs.resources.Translations.OtherButtons;
 
-public final class Big {
+public class Big {
     public Big(int picture) {
         windows[5] = new TFrame(OtherButtons[4]);
 

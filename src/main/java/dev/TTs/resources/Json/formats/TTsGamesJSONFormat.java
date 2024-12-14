@@ -5,8 +5,8 @@ import dev.TTs.lang.SoundString;
 
 import java.util.*;
 
-@SuppressWarnings("unused")
-public final class TTsGamesJSONFormat {
+@SuppressWarnings({"unused", "MismatchedReadAndWriteOfArray", "MismatchedQueryAndUpdateOfCollection"})
+public class TTsGamesJSONFormat {
     private boolean prerelease;
     private Map<String, GameVersion> version;
     private Config config;

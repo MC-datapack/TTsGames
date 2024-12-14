@@ -9,7 +9,7 @@ import static dev.TTs.TTsGames.Main.*;
 import static dev.TTs.TTsGames.Games.DetectiveThunder.DetectiveThunder.*;
 import static dev.TTs.resources.Translations.DetectiveThunder;
 
-public final class Close {
+public class Close {
     public Close(TFrame DetektivThunderWindow, Point location) {
         location = new Point(location.x + 500, location.y + 250);
         windows[4] = new TFrame(DetectiveThunder[5]);

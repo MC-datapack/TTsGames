@@ -1,8 +1,7 @@
 package dev.TTs.TTsGames.Games.AnimalMaster; import static dev.TTs.TTsGames.Main.*; import static dev.TTs.resources.Translations.*; import static java.util.concurrent.ThreadLocalRandom.current;
-import dev.TTs.TTsGames.Main;import dev.TTs.lang.Array;import dev.TTs.math.Time;import dev.TTs.resources.Configs; import dev.TTs.swing.*; import java.awt.*; public final class AnimalMaster {Color black = Color.BLACK;public static int sel,
-correct = 0; TButton[] a = new TButton[jsonReader.AInf("a")], n = new TButton[jsonReader.AInf("q")]; TImage[] i = new TImage[jsonReader.AInf("i")]; TBorderPanel[] q = new TBorderPanel
-[jsonReader.AInf("q")], c = new TBorderPanel[jsonReader.AInf("q")], b = new TBorderPanel[jsonReader.AInf("q")], C = new TBorderPanel[jsonReader.AInf("c")]; TLabel P = new TLabel(
-jsonReader.AInfS("P")), pl = new TLabel(jsonReader.AInfS("pl")); TPanel p = new TPanel(new FlowLayout(FlowLayout.LEFT, (int) (10 * Main.a), (int) (10 * Main.a)));
+import dev.TTs.TTsGames.Main;import dev.TTs.lang.Array;import dev.TTs.math.Time;import dev.TTs.resources.Configs; import dev.TTs.swing.*; import java.awt.*; public class AnimalMaster {Color black = Color.BLACK;public static int sel, correct = 0; TButton[] a = new TButton[jsonReader.AInf("a")], n = new TButton[jsonReader.AInf("q")]; TImage[] i =
+new TImage[jsonReader.AInf("i")]; TBorderPanel[] q = new TBorderPanel[jsonReader.AInf("q")], c = new TBorderPanel[jsonReader.AInf("q")], b = new TBorderPanel[jsonReader.AInf("q")], C = new TBorderPanel[jsonReader.AInf("c")];
+TLabel P = new TLabel(jsonReader.AInfS("P")), pl = new TLabel(jsonReader.AInfS("pl")); TPanel p = new TPanel(new FlowLayout(FlowLayout.LEFT, (int) (10 * Main.a), (int) (10 * Main.a)));
 TButton inf = new TButton(Informations[0]); TButton A = new TButton(OtherButtons[1]), Auswertung2 = new TButton(OtherButtons[1]), HQ = new TButton(OtherButtons[2]), big = new TButton(OtherButtons[3]);
 public AnimalMaster(WindowInformation inf) {int[] widths = {102, 118, 133, 200, 300, 360}; Dimension[] buttonSizes = new Dimension[widths.length]; for (int i = 0; i < widths.length; i++) {buttonSizes[i] =
 new Dimension((int) (widths[i] * Main.a), (int) (30 * Main.a));} p.setOpaqueF(); AMTime[0] = Time.milliTime(); windows[1] = new TFrame(inf.title()); startedVersion = Versions[4];

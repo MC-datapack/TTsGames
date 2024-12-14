@@ -17,7 +17,7 @@ import java.util.Timer;
 
 import static dev.TTs.TTsGames.Games.DetectiveThunder.DetectiveThunder.startedClose;
 
-public final class Main {
+public class Main {
     public static TTsLogger logger;
     public static Translations translations;
     public static ConfigLoader configLoader;

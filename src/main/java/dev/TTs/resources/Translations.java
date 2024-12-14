@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import static dev.TTs.TTsGames.Main.jsonReader;
 
-public final class Translations {
+public class Translations {
     public Translations() {
         Text.translatable(new String[][] {
                 Questions, AnswerButtons, Compliments, Insults, Results, Informations, OtherButtons,

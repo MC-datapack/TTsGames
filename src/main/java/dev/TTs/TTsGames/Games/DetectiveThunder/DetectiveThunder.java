@@ -21,7 +21,7 @@ import static dev.TTs.resources.Translations.DetectiveThunder;
  */
 
 @SuppressWarnings("unused")
-public final class DetectiveThunder {
+public class DetectiveThunder {
     int Score = 0;
     public static boolean showScore = false, startedClose = false;
 

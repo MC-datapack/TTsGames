@@ -11,7 +11,7 @@ import static dev.TTs.TTsGames.Main.*;
 import static dev.TTs.resources.Translations.*;
 import static dev.TTs.resources.Translations.DetectiveEagle;
 
-public final class DetectiveEagle {
+public class DetectiveEagle {
     Timer timer;
     public DetectiveEagle(WindowInformation inf) {
         startedVersion = Versions[7];

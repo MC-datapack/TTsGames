@@ -3,8 +3,8 @@ package dev.TTs.resources.Json.formats;
 import dev.TTs.lang.ImageString;
 import org.jetbrains.annotations.Nullable;
 
-@SuppressWarnings("unused")
-public final class AnimatedJSONFormat {
+@SuppressWarnings({"unused", "MismatchedReadAndWriteOfArray"})
+public class AnimatedJSONFormat {
     @Nullable
     private String base_path;
     @Nullable

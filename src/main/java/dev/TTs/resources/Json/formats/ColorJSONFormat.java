@@ -1,7 +1,7 @@
 package dev.TTs.resources.Json.formats;
 
 @SuppressWarnings("unused")
-public final class ColorJSONFormat {
+public class ColorJSONFormat {
     public static class ColorRepresentation {
         private int r;
         private int g;
