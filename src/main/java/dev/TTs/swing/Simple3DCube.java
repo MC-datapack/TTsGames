@@ -7,18 +7,18 @@ import java.awt.event.ActionListener;
 
 @SuppressWarnings({"unused", "UnusedAssignment"})
 public class Simple3DCube extends TPanel implements ActionListener, Object3D {
-    private static final int[][] VERTICES = {
+    static final int[][] VERTICES = {
             {1, 1, -1}, {-1, 1, -1}, {-1, -1, -1}, {1, -1, -1},
             {1, 1, 1},  {-1, 1, 1},  {-1, -1, 1},  {1, -1, 1}
     };
 
-    private static final int[][] EDGES = {
+    static final int[][] EDGES = {
             {0, 1}, {1, 2}, {2, 3}, {3, 0},
             {4, 5}, {5, 6}, {6, 7}, {7, 4},
             {0, 4}, {1, 5}, {2, 6}, {3, 7}
     };
 
-    private static final int[][] FACES = {
+    static final int[][] FACES = {
             {0, 1, 2, 3}, // back
             {4, 5, 6, 7}, // front
             {0, 1, 5, 4}, // top
@@ -27,14 +27,14 @@ public class Simple3DCube extends TPanel implements ActionListener, Object3D {
             {1, 2, 6, 5}  // left
     };
 
-    private Timer timer;
-    private double angleX = 0;
-    private double angleY = 0;
-    private double angleZ = 0;
-    private final Color[] faceColors;
+    Timer timer;
+    double angleX = 0;
+    double angleY = 0;
+    double angleZ = 0;
+    final Color[] faceColors;
 
-    private int width = 400;
-    private int height = 400;
+    int width = 400;
+    int height = 400;
 
     public Simple3DCube() {
         timer = new Timer(30, this);
@@ -88,7 +88,7 @@ public class Simple3DCube extends TPanel implements ActionListener, Object3D {
     }
 
 
-    private double[] rotate(int[] point, double angleX, double angleY, double angleZ) {
+    protected double[] rotate(int[] point, double angleX, double angleY, double angleZ) {
         double radX = Math.toRadians(angleX);
         double radY = Math.toRadians(angleY);
         double radZ = Math.toRadians(angleZ);
