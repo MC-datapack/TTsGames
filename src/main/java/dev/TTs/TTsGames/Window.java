@@ -200,8 +200,8 @@ public final class Window {
                 if (!alreadyStarted[0] && !fAMReset) {
                     logger.setInstance(Instance.ANIMAL_MASTER);
                     MainWindow = false;
-                    new AnimalMaster(new FrameInformationT(false, windows[0].getLocation(), new Dimension((int) (420 * a), (int) (210 * a)),
-                            Translations.Games[0] + Versions[4], Textures[1][37]));
+                    new AnimalMaster(new WindowInformation(false, windows[0].getLocation(), new Dimension((int) (420 * a), (int) (210 * a)), Textures[1][37],
+                            Translations.Games[0] + Versions[4]));
                     alreadyStarted[0] = true;
                     windows[0].Hide();
                     started = "AnimalMaster";
@@ -215,7 +215,7 @@ public final class Window {
                 if (!alreadyStarted[1]) {
                     logger.setInstance(Instance.DETEKTIV_ADLER);
                     MainWindow = false;
-                    new DetectiveEagle(new FrameInformation(false, windows[0].getLocation(), new Dimension(420, 210), Textures[2][0]));
+                    new DetectiveEagle(new WindowInformation(false, windows[0].getLocation(), new Dimension(420, 210), Textures[2][0]));
                     windows[0].Hide();
                     started = " Detektiv Adler";
                     alreadyStarted[1] = true;
@@ -229,7 +229,7 @@ public final class Window {
                 Detective_Thunder.clickAction( () -> {
                     logger.setInstance(Instance.DETEKTIV_THUNDER);
                     MainWindow = false;
-                    new DetectiveThunder(new FrameInformation(false, new Point(windows[0].getX() - 500, windows[0].getY() - 300),
+                    new DetectiveThunder(new WindowInformation(false, new Point(windows[0].getX() - 500, windows[0].getY() - 300),
                             new Dimension(1330, 750), Textures[3][0]));
                     windows[0].Hide();
                     started = " Detektiv Thunder";
@@ -502,7 +502,7 @@ public final class Window {
             });
 
 
-            WindowOperations(0, new FrameInformation(resizable, new Point(800, 500), new Dimension(500, 400), Textures[0][0]), Background);
+            WindowOperations(0, new WindowInformation(resizable, new Point(800, 500), new Dimension(500, 400), Textures[0][0]), Background);
             timer(() -> {
                 if (fAM) {
                     fAM = false;
