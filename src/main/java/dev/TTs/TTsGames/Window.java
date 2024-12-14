@@ -4,6 +4,7 @@ import dev.TTs.TTsGames.Games.DetectiveThunder.DetectiveThunder;
 import dev.TTs.TTsGames.Games.AnimalMaster.AnimalMaster;
 import dev.TTs.TTsGames.Games.DetectiveEagle.DetectiveEagle;
 import dev.TTs.lang.SoundString;
+import dev.TTs.resources.Configs;
 import dev.TTs.resources.Translations;
 import dev.TTs.lang.Instance;
 import dev.TTs.lang.Array;
@@ -270,7 +271,7 @@ public final class Window {
                 hello.Show();
             });
             languageSelection.addActionListener( () -> {
-                configLoader.setLanguage((String) languageSelection.getSelectedItem());
+                configLoader.set(Configs.LANGUAGE, languageSelection.getSelectedItem());
                 language = (String) languageSelection.getSelectedItem();
             });
             //TODO improve
@@ -302,7 +303,7 @@ public final class Window {
                 @Override
                 public void mouseEntered(MouseEvent e) {
                     Settings_Dev.Hide();
-                    if (configLoader.isDevVersionsEnabled()) {
+                    if (configLoader.get(Configs.DEV_VERSIONS)) {
                         SDtrue.Show();
                     } else {
                         SDfalse.Show();
@@ -311,7 +312,7 @@ public final class Window {
             });
             SDtrue.clickAction( () -> {
                 SDpressedTrue = true;
-                configLoader.setDevVersions(false);
+                configLoader.set(Configs.DEV_VERSIONS, false);
                 dev = false;
                 SDtrue.Hide();
                 SDfalse.Show();
@@ -332,7 +333,7 @@ public final class Window {
             });
             SDfalse.clickAction( () -> {
                 SDpressedFalse = true;
-                configLoader.setDevVersions(true);
+                configLoader.set(Configs.DEV_VERSIONS, true);
                 dev = true;
                 SDtrue.Show();
                 SDfalse.Hide();
@@ -369,7 +370,7 @@ public final class Window {
                 usernameInput.Show();
             });
             volumeSlider.addChangeListener(e -> {
-                configLoader.setVolume(volumeSlider.getValue());
+                configLoader.set(Configs.VOLUME, volumeSlider.getValue());
                 volume = volumeSlider.getValue();
                 setVolume((float) volume);
             });
@@ -384,7 +385,7 @@ public final class Window {
                             usernameInput.setText(TTsGames[3]);
                         } else {
                             logger.info(usernameInput.getText());
-                            configLoader.setUsername(usernameInput.getText());
+                            configLoader.set(Configs.USERNAME, usernameInput.getText());
                             usernameInput.Hide();
                             games.Show();
                             gameInfo.Show();
@@ -424,27 +425,27 @@ public final class Window {
             });
 
             sizes[0].clickAction( () -> {
-                configLoader.setAnimal_master_size_multiplier(1.25);
+                configLoader.set(Configs.AM_SIZE_MULTIPLIER, 1.25);
                 sizes[0].Hide();
                 sizes[1].Show();
             });
             sizes[1].clickAction( () -> {
-                configLoader.setAnimal_master_size_multiplier(1.5);
+                configLoader.set(Configs.AM_SIZE_MULTIPLIER, 1.5);
                 sizes[1].Hide();
                 sizes[2].Show();
             });
             sizes[2].clickAction( () -> {
-                configLoader.setAnimal_master_size_multiplier(1.75);
+                configLoader.set(Configs.AM_SIZE_MULTIPLIER, 1.75);
                 sizes[2].Hide();
                 sizes[3].Show();
             });
             sizes[3].clickAction( () -> {
-                configLoader.setAnimal_master_size_multiplier(2.0);
+                configLoader.set(Configs.AM_SIZE_MULTIPLIER, 2.0);
                 sizes[3].Hide();
                 sizes[4].Show();
             });
             sizes[4].clickAction( () -> {
-                configLoader.setAnimal_master_size_multiplier(1.0);
+                configLoader.set(Configs.AM_SIZE_MULTIPLIER, 1.0);
                 sizes[4].Hide();
                 sizes[0].Show();
             });
@@ -453,7 +454,7 @@ public final class Window {
                 @Override
                 public void mouseEntered(MouseEvent e) {
                     Subtitles.Hide();
-                    if (configLoader.isDevVersionsEnabled()) {
+                    if (configLoader.get(Configs.DEV_VERSIONS)) {
                         SubDtrue.Show();
                     } else {
                         SubDfalse.Show();
@@ -462,7 +463,7 @@ public final class Window {
             });
             SubDtrue.clickAction(() -> {
                 SubpressedTrue = true;
-                configLoader.setSubtitles(false);
+                configLoader.set(Configs.SUBTITLES, false);
                 subtitles = false;
                 Subtitles.Hide();
                 setSubtitlesVisible(false);
@@ -482,7 +483,7 @@ public final class Window {
             });
             SubDfalse.clickAction( () -> {
                 SubpressedFalse = true;
-                configLoader.setSubtitles(true);
+                configLoader.set(Configs.SUBTITLES, true);
                 subtitles = true;
                 Subtitles.Show();
                 setSubtitlesVisible(true);

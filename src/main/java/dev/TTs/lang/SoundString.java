@@ -1,5 +1,6 @@
 package dev.TTs.lang;
 
+import dev.TTs.resources.Configs;
 import dev.TTs.resources.Json.Text;
 import dev.TTs.resources.Json.formats.SoundJSONFormat;
 import dev.TTs.swing.TSubtitles;
@@ -16,7 +17,7 @@ import java.util.TimerTask;
 
 import static dev.TTs.TTsGames.Main.*;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public final class SoundString {
     private final String jsonPath;
     private String soundPath;
@@ -41,7 +42,7 @@ public final class SoundString {
                         default -> Game = "error";
                     }
                     soundKey = Text.translatable(String.format("sound.%s.%s", Game, defaultF.getName()));
-                    soundPath = "/" + jsonReader.readSoundJsonFile(path).getFiles(configLoader.getLanguage());
+                    soundPath = "/" + jsonReader.readSoundJsonFile(path).getFiles(configLoader.get(Configs.LANGUAGE));
                     Timer.cancel();
                 }
             }

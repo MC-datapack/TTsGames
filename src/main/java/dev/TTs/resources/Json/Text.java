@@ -1,11 +1,14 @@
 package dev.TTs.resources.Json;
 
+import dev.TTs.resources.Configs;
+
 import java.util.Map;
 
 import static dev.TTs.TTsGames.Main.*;
 
+@SuppressWarnings({"UnusedReturnValue", "unused"})
 public final class Text {
-    private static final Map<String, String> translations = jsonReader.readTranslationJsonFile(jsonReader.MainJSON.getLanguageFile(configLoader.getLanguage()));
+    private static final Map<String, String> translations = jsonReader.readTranslationJsonFile(jsonReader.MainJSON.getLanguageFile(configLoader.get(Configs.LANGUAGE)));
     private static final String USERNAME_PLACEHOLDER = "௹⨌{Username}";
 
     public static String translatable(String string) {

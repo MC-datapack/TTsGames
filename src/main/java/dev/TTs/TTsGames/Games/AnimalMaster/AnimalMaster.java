@@ -1,5 +1,5 @@
 package dev.TTs.TTsGames.Games.AnimalMaster; import static dev.TTs.TTsGames.Main.*; import static dev.TTs.resources.Translations.*; import static java.util.concurrent.ThreadLocalRandom.current;
-import dev.TTs.TTsGames.Main;import dev.TTs.lang.Array;import dev.TTs.math.Time;import dev.TTs.swing.*; import java.awt.*; public final class AnimalMaster {Color black = Color.BLACK;public static int sel,
+import dev.TTs.TTsGames.Main;import dev.TTs.lang.Array;import dev.TTs.math.Time;import dev.TTs.resources.Configs; import dev.TTs.swing.*; import java.awt.*; public final class AnimalMaster {Color black = Color.BLACK;public static int sel,
 correct = 0; TButton[] a = new TButton[jsonReader.AInf("a")], n = new TButton[jsonReader.AInf("q")]; TImage[] i = new TImage[jsonReader.AInf("i")]; TBorderPanel[] q = new TBorderPanel
 [jsonReader.AInf("q")], c = new TBorderPanel[jsonReader.AInf("q")], b = new TBorderPanel[jsonReader.AInf("q")], C = new TBorderPanel[jsonReader.AInf("c")]; TLabel P = new TLabel(
 jsonReader.AInfS("P")), pl = new TLabel(jsonReader.AInfS("pl")); TPanel p = new TPanel(new FlowLayout(FlowLayout.LEFT, (int) (10 * Main.a), (int) (10 * Main.a)));
@@ -21,12 +21,12 @@ AN(i);NX(7, 12); for (TBorderPanel[] components : setPrefSize5) {for (TBorderPan
 i[20].Hide();i[2].Hide(); i[21].Hide(); i[0].Show(); i[0].add(p, "South"); big.Hide();}); n[12].clickAction(() -> {this.inf.Hide();c[12].Hide(); b[12].Hide(); n[12].Hide();
 Auswertung2.Show(); i[34].Hide(); i[35].Hide(); i[36].Hide(); i[0].Show(); i[0].add(p, "South"); big.Hide();}); A.clickAction(() -> { C[correct].Show(); if (correct == 8)
 HQ.Show(); A.Hide(); fAMReset = true;}); Auswertung2.clickAction(() -> { C[correct + 1].Show(); Auswertung2.Hide(); AMTime[1] = Time.milliTime(); if ((AMTime[1] - AMTime[0]) < AMTime[2]) {
-AMTime[2] = AMTime[1] - AMTime[0]; } else if (AMTime[2] == -1.0F) { AMTime[2] = AMTime[1] - AMTime[0];} logger.info(AMTime[2]); configLoader.setAMTimeRecord(AMTime[2]); fAM = true;});
+AMTime[2] = AMTime[1] - AMTime[0]; } else if (AMTime[2] == -1.0F) { AMTime[2] = AMTime[1] - AMTime[0];} logger.info(AMTime[2]); configLoader.set(Configs.AM_RECORD, AMTime[2]); fAM = true;});
 HQ.clickAction(() -> {P.Hide(); pl.Hide(); for (TButton component : n) component.Hide(); for (TPanel component : C)  component.Hide(); q[8].Show(); a[24].Show(); a[25].Show(); a[26].Show();HQ.Hide();});
 this.inf.clickAction(() -> openWebpage(Informations[sel])); big.clickAction(() ->new Big(sel)); a[34].setPSize(buttonSizes[2]); a[35].setPSize(buttonSizes[0]);
 WindowOperations(1, inf);} private void AN(int q) {int i1 = q *3, i2 = q *3+1, i3 = q *3+2; int[] se = jsonReader.AMSelectedAnimal(); boolean[] cor = jsonReader.AMCorrect();
-a[i1].clickAction(() -> ACL(q, se[i1], cor[i1])); a[i2].clickAction(() ->ACL(q, se[i2], cor[i2])); a[i3].clickAction(() ->
-ACL(q, se[i3], cor[i3]));} private void NX(int... n) {for (int i = 0; i < 13; i++) if (Array.dontContains(n, i)) {int I = i; this.n[i].clickAction(() -> NCL(I));}} private void ACL(int q, int i, boolean c)
+a[i1].clickAction(() -> ACL(q, se[i1], cor[i1])); a[i2].clickAction(() ->ACL(q, se[i2], cor[i2])); a[i3].clickAction(() -> ACL(q, se[i3], cor[i3]));}
+private void NX(int... n) {for (int i = 0; i < 13; i++) if (Array.dontContains(n, i)) {int I = i; this.n[i].clickAction(() -> NCL(I));}} private void ACL(int q, int i, boolean c)
 {this.i[i].Show(); this.i[i].add(p, "South"); if (c) {Sounds[1][0].playSound(); correct++; this.c[q].Show();} else {Sounds[1][1].playSound(); b[q].Show();} this.q[q].Hide(); a[q *3].Hide();
 a[q *3+1].Hide(); a[q *3+2].Hide();n[q].Show(); sel = i; inf.Show(); big.Show(); this.i[0].Hide();} private void NCL(int q) {n[q].Hide();c[q].Hide(); b[q].Hide(); i[jsonReader.AMSelectedAnimal()[q *3]].Hide();
 i[jsonReader.AMSelectedAnimal()[q *3+1]].Hide();i[jsonReader.AMSelectedAnimal()[q *3+2]].Hide(); inf.Hide();big.Hide();i[0].Show(); int i = q +1; this.i[0].add(p, "South"); this.q[i].Show(); a[i*3].Show();

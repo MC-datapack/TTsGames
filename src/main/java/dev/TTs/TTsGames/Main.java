@@ -3,6 +3,7 @@ package dev.TTs.TTsGames;
 import dev.TTs.lang.*;
 import dev.TTs.TTsGames.Games.DetectiveThunder.Close;
 import dev.TTs.resources.ConfigLoader;
+import dev.TTs.resources.Configs;
 import dev.TTs.resources.Json.JsonReader;
 import dev.TTs.resources.Translations;
 import dev.TTs.swing.WindowInformation;
@@ -27,7 +28,7 @@ public final class Main {
     public static SoundString[][] Sounds;
     public static ImageString[][] Textures;
     public static int volume = 0;
-    public static float[] AMTime = new float[3];
+    public static double[] AMTime = new double[3];
     public static boolean MainWindow = true, dev, AnimalMaster, DetektivAdler, setUsername, fAM = false, fAMReset = false, subtitles;
     public static boolean[] alreadyStarted = {false, false};
     public static double a;
@@ -54,14 +55,14 @@ public final class Main {
         logger.debug("Loaded JSON Files");
 
         configLoader = new ConfigLoader();
-        volume = configLoader.getVolume();
-        language = configLoader.getLanguage();
-        dev = configLoader.isDevVersionsEnabled();
-        Username = configLoader.getUsername();
-        subtitles = configLoader.getSubtitles();
+        volume = configLoader.get(Configs.VOLUME);
+        language = configLoader.get(Configs.LANGUAGE);
+        dev = configLoader.get(Configs.DEV_VERSIONS);
+        Username = configLoader.get(Configs.USERNAME);
+        subtitles = configLoader.get(Configs.SUBTITLES);
         setUsername = !Objects.equals(Username, "௹⨌{UsernameDe}");
-        AMTime[2] = configLoader.getAlMTimeRecord();
-        a = configLoader.getAnimal_master_size_multiplier();
+        AMTime[2] = configLoader.get(Configs.AM_RECORD);
+        a = configLoader.get(Configs.AM_SIZE_MULTIPLIER);
         logger.debug("Loaded config");
 
         if (Objects.equals(Username, "௹⨌{UsernameDe}")) {
@@ -177,7 +178,7 @@ public final class Main {
         return urlString;
     }
 
-    public static String checkTime(float time, String fallback) {
+    public static String checkTime(double time, String fallback) {
         if (time == -1) return fallback;
         else return String.valueOf(time);
     }
