@@ -19,7 +19,7 @@ import static dev.TTs.resources.Translations.*;
 import static dev.TTs.lang.SoundString.setVolume;
 import static java.awt.Color.BLACK;
 
-@SuppressWarnings("FieldMayBeFinal")
+@SuppressWarnings({"FieldMayBeFinal", "CanBeFinal"})
 public class Window {
     private static TComboBox<String> languageSelection = new TComboBox<>(Languages);
     boolean SDpressedTrue = false, SDpressedFalse = false;

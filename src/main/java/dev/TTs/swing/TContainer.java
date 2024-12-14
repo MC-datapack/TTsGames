@@ -2,6 +2,7 @@ package dev.TTs.swing;
 
 import java.awt.*;
 
+@SuppressWarnings("UnusedReturnValue")
 public interface TContainer extends TComponent {
     default Component[] add(Component... components) {
         for (Component component : components) {

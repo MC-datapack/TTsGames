@@ -56,17 +56,17 @@ package dev.TTs.lang;
  */
 
 public enum Instance {
-    TTS_GAMES("TTs Games", "34m","1m"),
-    ANIMAL_MASTER("AnimalMaster", "92m", "1m"),
-    DETEKTIV_ADLER("Detektiv Adler", "34m", "1m"),
-    DETEKTIV_THUNDER("Detektiv Thunder", "34m", "1m");
+    TTS_GAMES("TTs Games", "34m"),
+    ANIMAL_MASTER("AnimalMaster", "92m"),
+    DETEKTIV_ADLER("Detektiv Adler", "34m"),
+    DETEKTIV_THUNDER("Detektiv Thunder", "34m");
 
     private final String name;
     private final String colorCode;
 
-    Instance(String name, String colorCode, String colorCode2) {
+    Instance(String name, String colorCode) {
         this.name = name;
-        this.colorCode = "\u001B[" + colorCode + "\u001B[" + colorCode2;
+        this.colorCode = "\u001B[" + colorCode + "\u001B[1m";
     }
 
     public String getName() {return name;}

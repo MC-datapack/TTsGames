@@ -11,6 +11,7 @@ import static dev.TTs.TTsGames.Main.*;
 import static dev.TTs.resources.Translations.*;
 import static dev.TTs.resources.Translations.DetectiveEagle;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class DetectiveEagle {
     Timer timer;
     public DetectiveEagle(WindowInformation inf) {

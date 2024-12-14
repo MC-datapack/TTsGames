@@ -5,7 +5,7 @@ import java.awt.*;
 import static dev.TTs.TTsGames.Main.Textures;
 import static dev.TTs.resources.Translations.*;
 
-@SuppressWarnings("SameParameterValue")
+@SuppressWarnings({"SameParameterValue", "CanBeFinal"})
 public class TSubtitles extends TFrame {
     TLabel text = new TLabel();
 

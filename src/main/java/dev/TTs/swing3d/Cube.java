@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings({"unused", "FieldMayBeFinal", "UnusedAssignment"})
+@SuppressWarnings({"unused", "FieldMayBeFinal", "UnusedAssignment", "CanBeFinal"})
 public class Cube extends Simple3DCube {
     private List<Point3D> platform;
 

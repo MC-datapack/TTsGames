@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import static dev.TTs.TTsGames.Main.jsonReader;
 
+@SuppressWarnings("CanBeFinal")
 public class Translations {
     public Translations() {
         Text.translatable(new String[][] {

@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-@SuppressWarnings({"unused", "UnusedAssignment"})
+@SuppressWarnings({"unused", "UnusedAssignment", "CanBeFinal"})
 public class Simple3DCube extends TPanel implements ActionListener, Object3D {
     static final int[][] VERTICES = {
             {1, 1, -1}, {-1, 1, -1}, {-1, -1, -1}, {1, -1, -1},
