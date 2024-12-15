@@ -39,9 +39,13 @@ public class Main {
     public static Color[] buttonColors;
     public static Timer checkLoop;
 
+    public static String javaVersion;
+
     public static void main(String[] args) {
+        javaVersion = System.getProperty("java.version");
+
         logger = new TTsLogger(System.getProperty("user.home") + "/AppData/Roaming/TTsGames/logs/",true);
-        logger.error("args: %s", Arrays.toString(args));
+        logger.error("Used Java version: %s args: %s", javaVersion, Arrays.toString(args));
         logger.debug("Initialized Logger");
 
         jsonReader = new JsonReader("");
@@ -74,6 +78,8 @@ public class Main {
         logger.debug("Loaded translations: %s", translations.toString());
 
         logger.info("TTs Games %s is starting", Versions[0]);
+        if (Array.dontContains(jsonReader.MainJSON.getSupportedJavaVersions(), javaVersion)) return;
+
         new Window(false);
         logger.debug("Opened Window");
 

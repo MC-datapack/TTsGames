@@ -7,6 +7,7 @@ import java.util.*;
 
 @SuppressWarnings({"unused", "MismatchedReadAndWriteOfArray", "MismatchedQueryAndUpdateOfCollection"})
 public class TTsGamesJSONFormat {
+    private String[] supported_java_versions;
     private boolean prerelease;
     private Map<String, GameVersion> version;
     private Config config;
@@ -22,6 +23,10 @@ public class TTsGamesJSONFormat {
     private String[] data_base_dictionaries;
     private String[] data_file_types;
     private String[][] data;
+
+    public String[] getSupportedJavaVersions() {
+        return supported_java_versions;
+    }
 
     public boolean getPrerelease() {
         return prerelease;
