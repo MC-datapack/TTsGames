@@ -33,13 +33,13 @@ TTs Games is a small collection of self-made simple games without 3D rendering.
   - I do not want to compile everything each time I want to test something (which can take very long)
   - Interpretive programming languages like Python are much slower
 - Java is getting many updates over time
-  - The versions I am using are LTS versions [```Wikipedia Article```](https://en.wikipedia.org/wiki/Java_version_history#Release_table)
+  - The versions I am using are LTS versions [```Wikipedia Article```](https://en.wikipedia.org/wiki/Java_version_history#Release_table) but you can check the supported languages in the field "supported_java_versions" int [TTsGames.json](src/main/resources/TTsGames.json)
 - I have already been using Java in Minecraft Mods
 
 ## Dependencies 
 
 - I try to use only a few dependencies and not thousands like many people
-- The only dependencies I use are [Gson](https://github.com/google/gson) and [Kotlin](https://github.com/JetBrains/kotlin)
+- The only dependencies I use is [Gson](https://github.com/google/gson)
 - **Dependencies are automatically included in the jar file**
 
 ## Running TTs Games

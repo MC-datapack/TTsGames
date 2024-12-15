@@ -40,7 +40,7 @@
   "no_texture_file": "assets/textures/no_texture.png",
   "textures": [
 	[
-	  "TTsGames", "TTsGames_Background", "Subtitles"
+	  "TTsGames", "TTsGames_Background", "Subtitles", "Error"
 	],
 	[
 	  "AnimalMaster_bottom",

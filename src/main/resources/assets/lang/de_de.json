@@ -1,4 +1,7 @@
 {
+  "java.title": "Falsche Java Version",
+  "java.info": "Diese Java Version wird nicht unterstützt: ",
+
   "common.start.animal_master": "AnimalMaster ",
   "common.start.detective_eagle": "Detektiv Adler ",
   "common.start.detective_thunder": "Detektiv Thunder ",

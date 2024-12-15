@@ -35,7 +35,7 @@ public class Main {
     public static double a;
 
     public static Image noTexture;
-    public static TFrame[] windows = new TFrame[6];
+    public static TFrame[] windows = new TFrame[7];
     public static Color[] buttonColors;
     public static Timer checkLoop;
 
@@ -78,7 +78,10 @@ public class Main {
         logger.debug("Loaded translations: %s", translations.toString());
 
         logger.info("TTs Games %s is starting", Versions[0]);
-        if (Array.dontContains(jsonReader.MainJSON.getSupportedJavaVersions(), javaVersion)) return;
+        if (Array.dontContains(jsonReader.MainJSON.getSupportedJavaVersions(), javaVersion)) {
+            new WrongJavaVersion();
+            return;
+        }
 
         new Window(false);
         logger.debug("Opened Window");

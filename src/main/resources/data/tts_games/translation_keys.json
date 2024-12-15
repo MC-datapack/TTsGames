@@ -15,5 +15,8 @@
   ],
   "other": [
 	"common.text.games", "common.text.info", "common.hello", "common.username.not_allowed"
+  ],
+  "wrong_java": [
+	"java.title", "java.info"
   ]
 }
