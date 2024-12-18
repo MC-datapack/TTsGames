@@ -466,7 +466,7 @@ public class Window {
                 @Override
                 public void mouseEntered(MouseEvent e) {
                     Subtitles.Hide();
-                    if (configLoader.get(Configs.DEV_VERSIONS)) {
+                    if (subtitles) {
                         SubDtrue.Show();
                     } else {
                         SubDfalse.Show();
@@ -556,7 +556,7 @@ public class Window {
     private void setSubtitlesVisible(boolean bool) {
         SubtitlesScr.setVisible(bool);
         if (SubtitlesScr == null) {
-            return;
+            SubtitlesScr = new TSubtitles(new Point(0, 0));
         }
         for (SoundString[] soundArray : Sounds) {
             for (SoundString sound : soundArray) {

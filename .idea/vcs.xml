@@ -2,5 +2,11 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Mods/Blocktopia" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Mods/Blocktopia pre BlockEntityRenderer" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Mods/Blocktopia-1.21.2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Mods/Hardcore Respawning" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Mods/More Concretes" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Mods/More Tools and Armor" vcs="Git" />
   </component>
 </project>

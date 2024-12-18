@@ -6,6 +6,9 @@ group = project.group
 version = project.version
 java {
     withSourcesJar()
+    toolchain {
+        languageVersion = JavaLanguageVersion.of("${project.java_version}")
+    }
 }
 sourceSets {
     main {
