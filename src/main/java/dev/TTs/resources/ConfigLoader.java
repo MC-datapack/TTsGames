@@ -79,6 +79,7 @@ public class ConfigLoader {
             case LONG -> (T) Long.valueOf(value);
             case SHORT -> (T) Short.valueOf(value);
             case BYTE -> (T) Byte.valueOf(value);
+            default -> throw new IllegalArgumentException("Unsupported format: " + config);
         };
     }
 

@@ -59,7 +59,8 @@ public enum Instance {
     TTS_GAMES("TTs Games", "34m"),
     ANIMAL_MASTER("AnimalMaster", "92m"),
     DETEKTIV_ADLER("Detektiv Adler", "34m"),
-    DETEKTIV_THUNDER("Detektiv Thunder", "34m");
+    DETEKTIV_THUNDER("Detektiv Thunder", "34m"),
+    PIXEL_QUEST("Pixel Quest", "94m");
 
     private final String name;
     private final String colorCode;

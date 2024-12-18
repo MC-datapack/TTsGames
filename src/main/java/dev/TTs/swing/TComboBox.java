@@ -40,6 +40,11 @@ public class TComboBox<E> extends JComboBox<E> implements TComponent {
         this.setPreferredSize(dimension);
     }
 
+    @Override
+    public void size(Dimension dimension) {
+        this.setSize(dimension);
+    }
+
     public void addActionListener(Runnable event) {
         this.addActionListener(e -> event.run());
     }

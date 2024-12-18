@@ -43,6 +43,11 @@ public class TFrame extends JFrame implements TContainer {
         this.setPreferredSize(dimension);
     }
 
+    @Override
+    public void size(Dimension dimension) {
+        this.setSize(dimension);
+    }
+
     public void closingOperation(Runnable task) {
         this.addWindowListener(new WindowAdapter() {
             @Override

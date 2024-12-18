@@ -8,18 +8,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @SuppressWarnings({"ResultOfMethodCallIgnored", "FieldCanBeLocal"})
-public final class TTsLogger {
+public final class TTsLogger implements Logging {
     private final String logFilePath;
     private BufferedWriter bufferedWriter;
     private Instance instance = Instance.TTS_GAMES;
     private final boolean debug;
-    private final String resetColor = "\u001B[0m";
 
     public TTsLogger(String logDirPath, boolean debug) {
         this.debug = debug;
         File logDir = new File(logDirPath);
         logDir.mkdirs();
-        this.logFilePath = logDirPath + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yy-MM-dd_HH-mm-ss")) + ".log";
+        this.logFilePath = logDirPath + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")) + ".log";
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(logFilePath, true));
         } catch (IOException e) {
@@ -28,18 +27,12 @@ public final class TTsLogger {
         }
     }
 
-    public void unimportant (Object message, Object... objects) {writeLogMessage(LogLevel.UNIMPORTANT, message, objects);}
-    public void debug (Object message, Object... objects) {writeLogMessage(LogLevel.DEBUG, message, objects);}
-    public void check (Object message, Object... objects) {writeLogMessage(LogLevel.CHECK, message, objects);}
-    public void info (Object message, Object... objects) {writeLogMessage(LogLevel.INFO, message, objects);}
-    public void warn (Object message, Object... objects) {writeLogMessage(LogLevel.WARN, message, objects);}
-    public void error (Object message, Object... objects) {writeLogMessage(LogLevel.ERROR, message, objects);}
-
-    private void writeLogMessage(LogLevel level, Object message, Object... args) {
+    @Override
+    public void writeMessage(LogLevel level, Object message, Object... args) {
         if (!debug && level.getImportance() == 'A') {
             return;
         }
-        final String formattedMessage = formatMessage(level, String.format(String.valueOf(message), args));
+        final String formattedMessage = formatMessage(level, String.valueOf(message), args);
         System.out.println(formattedMessage);
         if (bufferedWriter == null) {
             System.err.println(formatMessage(LogLevel.ERROR, "BufferedWriter not initialized."));
@@ -49,21 +42,11 @@ public final class TTsLogger {
             bufferedWriter.write(formattedMessage + "\n");
             bufferedWriter.flush();
         } catch (IOException e) {
-            System.err.println(formatMessage(LogLevel.ERROR, String.format("Error using Buffered Writer \"%s\" to write the message \"%s\": %s", bufferedWriter, formattedMessage, e)));
+            System.err.println(formatMessage(LogLevel.ERROR, "Error using Buffered Writer \"%s\" to write the message \"%s\": %s", bufferedWriter, formattedMessage, e));
         }
     }
 
-    private String formatMessage(LogLevel level, String message) {
-        return String.format("%s[%s] <%c> %s<%s> %s%s[%s] %s%s",
-                level.getColorCode(), getTime(), level.getImportance(),
-                instance.getColorCode(), instance.getName(), resetColor,
-                level.getColorCode(), level.getName(), message, resetColor);
-    }
-
-    private String getTime() {
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss.SSSSSSS"));
-    }
-
+    @Override
     public void close() {
         debug("Closing logger");
         try {
@@ -77,6 +60,12 @@ public final class TTsLogger {
         }
     }
 
+    @Override
+    public Instance getInstance() {
+        return instance;
+    }
+
+    @Override
     public void setInstance(Instance newInstance) {
         instance = newInstance;
     }

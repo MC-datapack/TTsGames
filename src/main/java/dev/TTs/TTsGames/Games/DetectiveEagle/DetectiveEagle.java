@@ -101,7 +101,7 @@ public class DetectiveEagle {
                 component.setVisible(false);
             }
 
-            start.clickAction( () -> {
+            start.event( () -> {
                 Fall1.Show();
                 start.Hide();
                 erkl.Hide();
@@ -113,8 +113,8 @@ public class DetectiveEagle {
                     answer03.Show();
                 }, 5000);
             });
-            answer01.clickAction( () -> System.exit(ExitCodes.NO_ERROR));
-            answer02.clickAction( () -> {
+            answer01.event( () -> System.exit(ExitCodes.NO_ERROR));
+            answer02.event( () -> {
                 question0.Hide();
                 answer01.Hide();
                 answer02.Hide();
@@ -124,8 +124,8 @@ public class DetectiveEagle {
                 answer12.Show();
                 answer13.Show();
             });
-            answer03.clickAction( () -> System.exit(ExitCodes.NO_ERROR));
-            answer11.clickAction( () -> {
+            answer03.event( () -> System.exit(ExitCodes.NO_ERROR));
+            answer11.event( () -> {
                 question1.Hide();
                 answer11.Hide();
                 answer12.Hide();
@@ -134,7 +134,7 @@ public class DetectiveEagle {
                 answer20.Show();
                 answer21.Show();
             });
-            answer12.clickAction( () -> {
+            answer12.event( () -> {
                 question1.Hide();
                 answer11.Hide();
                 answer12.Hide();
@@ -143,8 +143,8 @@ public class DetectiveEagle {
                 answer20.Show();
                 answer21.Show();
             });
-            answer13.clickAction( () -> System.exit(ExitCodes.NO_ERROR));
-            answer20.clickAction( () -> {
+            answer13.event( () -> System.exit(ExitCodes.NO_ERROR));
+            answer20.event( () -> {
                 question2.Hide();
                 answer20.Hide();
                 answer21.Hide();
@@ -152,13 +152,13 @@ public class DetectiveEagle {
                 answer31.Show();
                 answer32.Show();
             });
-            answer21.clickAction( () -> System.exit(ExitCodes.NO_ERROR));
-            answer31.clickAction( () -> {
+            answer21.event( () -> System.exit(ExitCodes.NO_ERROR));
+            answer31.event( () -> {
                 question3.Hide();
                 answer31.Hide();
                 answer32.Hide();
             });
-            answer32.clickAction( () -> System.exit(ExitCodes.NO_ERROR));
+            answer32.event( () -> System.exit(ExitCodes.NO_ERROR));
 
             WindowOperations(2, inf, Pane);
         });

@@ -3,6 +3,7 @@ package dev.TTs.TTsGames.Games.DetectiveThunder;
 import dev.TTs.lang.Instance;
 import dev.TTs.swing.*;
 
+import javax.swing.*;
 import java.awt.*;
 
 import static dev.TTs.TTsGames.Main.*;
@@ -24,7 +25,7 @@ public class Close {
         panel.add(score);
 
 
-        close.clickAction( () -> {
+        close.event( () -> {
             logger.setInstance(Instance.TTS_GAMES);
             DetektivThunderWindow.Hide();
             windows[4].dispose();
@@ -32,7 +33,7 @@ public class Close {
             MainWindow = true;
             started = null;
         });
-        score.clickAction( () -> {
+        score.event( () -> {
             showScore = true;
             startedClose = false;
         });

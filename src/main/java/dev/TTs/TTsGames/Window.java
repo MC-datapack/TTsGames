@@ -3,6 +3,7 @@ package dev.TTs.TTsGames;
 import dev.TTs.TTsGames.Games.DetectiveThunder.DetectiveThunder;
 import dev.TTs.TTsGames.Games.AnimalMaster.AnimalMaster;
 import dev.TTs.TTsGames.Games.DetectiveEagle.DetectiveEagle;
+import dev.TTs.TTsGames.Games.PixelQuest.main.PixelQuest;
 import dev.TTs.lang.SoundString;
 import dev.TTs.resources.Configs;
 import dev.TTs.resources.Translations;
@@ -25,6 +26,7 @@ public class Window {
     boolean SDpressedTrue = false, SDpressedFalse = false;
     boolean SubpressedTrue = false, SubpressedFalse = false;
     private static TSubtitles SubtitlesScr;
+
     public Window(boolean resizable) {
         SwingUtilities.invokeLater(() -> {
             SubtitlesScr = new TSubtitles(new Point(0, 0));
@@ -64,8 +66,8 @@ public class Window {
             TBorderPanel statisticsPanel = new TBorderPanel(Statistics[2], new Color(68, 68, 68, 200), true);
             TLabel animalMasterTime = new TLabel(Statistics[3] + checkTime(AMTime[2], Statistics[5]) + Statistics[4]);
 
-            TButton AnimalMaster = new TButton(Games[0]), Detective_Eagle = new TButton(Games[1]), Detective_Thunder = new TButton(Games[2]);
-            TLabel iAnimalMaster = new TLabel(Games[3]), iDetektivAdler = new TLabel(Games[4]), iDetektivThunder = new TLabel(Games[5]);
+            TButton AnimalMaster = new TButton(Games[0]), Detective_Eagle = new TButton(Games[1]), Detective_Thunder = new TButton(Games[2]), PixelQuest = new TButton(Games[3]);
+            TLabel iAnimalMaster = new TLabel(Games[4]), iDetektivAdler = new TLabel(Games[5]), iDetektivThunder = new TLabel(Games[6]), iPixelQuest = new TLabel(Games[7]);
 
             TBorderPanel games = new TBorderPanel(TTsGames[0], new Color(68, 68, 68, 200), true);
             TBorderPanel gameInfo = new TBorderPanel(TTsGames[1], new Color(68, 68, 68, 200), true);
@@ -85,9 +87,9 @@ public class Window {
             }
 
             if (dev) {
-                games.setPreferredSize(new Dimension(140, 135));
-                gameInfo.setPreferredSize(new Dimension(200, 135));
-                sizeSettings.setPreferredSize(new Dimension(65, 135));
+                games.setPreferredSize(new Dimension(140, 165));
+                gameInfo.setPreferredSize(new Dimension(200, 165));
+                sizeSettings.setPreferredSize(new Dimension(65, 165));
             } else {
                 games.setPreferredSize(new Dimension(140, 100));
                 gameInfo.setPreferredSize(new Dimension(200, 100));
@@ -96,13 +98,13 @@ public class Window {
             hello.setPreferredSize(new Dimension(350, 30));
             statisticsPanel.setPreferredSize(new Dimension(350, 200));
             Component[] Games = {
-                    AnimalMaster, Detective_Eagle, Detective_Thunder
+                    AnimalMaster, Detective_Eagle, Detective_Thunder, PixelQuest
             };
             for (Component component : Games) {
                 games.add(component);
             }
             Component[] GameIno = {
-                    iAnimalMaster, iDetektivAdler, iDetektivThunder
+                    iAnimalMaster, iDetektivAdler, iDetektivThunder, iPixelQuest
             };
             for (Component component : GameIno) {
                 gameInfo.add(component);
@@ -112,7 +114,7 @@ public class Window {
             }
             statisticsPanel.add(animalMasterTime);
             TComponent[] doStandardButtonstuff = {
-                    AnimalMaster, Detective_Eagle, Detective_Thunder, settings, Settings_Back, credits, CreditsBack,
+                    AnimalMaster, Detective_Eagle, Detective_Thunder, PixelQuest,settings, Settings_Back, credits, CreditsBack,
                     Settings_Dev, SDtrue, SDfalse, statistics, statisticsBack, changeUsername, Subtitles, SubDtrue, SubDfalse
             };
             for (TComponent component : doStandardButtonstuff) {
@@ -155,9 +157,11 @@ public class Window {
             AnimalMaster.setPreferredSize(new Dimension(133, 30));
             Detective_Eagle.setPreferredSize(new Dimension(133, 30));
             Detective_Thunder.setPreferredSize(new Dimension(133, 30));
+            PixelQuest.setPreferredSize(new Dimension(133, 30));
             iAnimalMaster.setPreferredSize(new Dimension(190, 30));
             iDetektivAdler.setPreferredSize(new Dimension(190, 30));
             iDetektivThunder.setPreferredSize(new Dimension(190, 30));
+            iPixelQuest.setPreferredSize(new Dimension(190, 30));
             placeholder.setPreferredSize(new Dimension(400, 55));
             changeUsername.setPreferredSize(new Dimension(160, 30));
             Settings_Dev.setPreferredSize(new Dimension(200, 30));
@@ -197,7 +201,7 @@ public class Window {
             else if (a == 2.0) sizes[4].Show();
 
 
-            AnimalMaster.clickAction( () -> {
+            AnimalMaster.event( () -> {
                 if (!alreadyStarted[0] && !fAMReset) {
                     logger.setInstance(Instance.ANIMAL_MASTER);
                     MainWindow = false;
@@ -212,7 +216,7 @@ public class Window {
                 }
                 Main.AnimalMaster = true;
             });
-            Detective_Eagle.clickAction( () -> {
+            Detective_Eagle.event( () -> {
                 if (!alreadyStarted[1]) {
                     logger.setInstance(Instance.DETEKTIV_ADLER);
                     MainWindow = false;
@@ -227,7 +231,7 @@ public class Window {
                 Main.DetektivAdler = true;
             });
             if (dev) {
-                Detective_Thunder.clickAction( () -> {
+                Detective_Thunder.event( () -> {
                     logger.setInstance(Instance.DETEKTIV_THUNDER);
                     MainWindow = false;
                     new DetectiveThunder(new WindowInformation(false, new Point(windows[0].getX() - 500, windows[0].getY() - 300),
@@ -235,8 +239,16 @@ public class Window {
                     windows[0].Hide();
                     started = " Detektiv Thunder";
                 });
+                PixelQuest.event(() -> {
+                    logger.setInstance(Instance.PIXEL_QUEST);
+                    MainWindow = false;
+                    new PixelQuest().create(new WindowInformation(false, new Point(windows[0].getX() - 300, windows[0].getY() - 300), new Dimension(800, 800),
+                            Textures[4][0], Translations.Games[3] + Versions[13]));
+                    windows[0].Hide();
+                    started = " Pixel Quest";
+                });
             }
-            settings.clickAction( () -> {
+            settings.event( () -> {
                 languageSelection.Show();
                 Settings_Dev.Show();
                 Subtitles.Show();
@@ -252,7 +264,7 @@ public class Window {
                 statistics.Hide();
                 hello.Hide();
             });
-            Settings_Back.clickAction( () -> {
+            Settings_Back.event( () -> {
                 languageSelection.Hide();
                 Settings_Dev.Hide();
                 Subtitles.Hide();
@@ -275,7 +287,7 @@ public class Window {
                 language = (String) languageSelection.getSelectedItem();
             });
             //TODO improve
-            credits.clickAction( () -> {
+            credits.event( () -> {
                 credits.Hide();
                 games.Hide();
                 gameInfo.Hide();
@@ -287,7 +299,7 @@ public class Window {
                 statistics.Hide();
                 hello.Hide();
             });
-            CreditsBack.clickAction( () -> {
+            CreditsBack.event( () -> {
                 credits.Show();
                 games.Show();
                 gameInfo.Show();
@@ -310,7 +322,7 @@ public class Window {
                     }
                 }
             });
-            SDtrue.clickAction( () -> {
+            SDtrue.event( () -> {
                 SDpressedTrue = true;
                 configLoader.set(Configs.DEV_VERSIONS, false);
                 dev = false;
@@ -331,15 +343,15 @@ public class Window {
                     }
                 }
             });
-            SDfalse.clickAction( () -> {
+            SDfalse.event( () -> {
                 SDpressedFalse = true;
                 configLoader.set(Configs.DEV_VERSIONS, true);
                 dev = true;
                 SDtrue.Show();
                 SDfalse.Hide();
-                games.setPreferredSize(new Dimension(games.getWidth(), 135));
-                gameInfo.setPreferredSize(new Dimension(gameInfo.getWidth(), 135));
-                sizeSettings.setPreferredSize(new Dimension(sizeSettings.getWidth(), 135));
+                games.setPreferredSize(new Dimension(games.getWidth(), 165));
+                gameInfo.setPreferredSize(new Dimension(gameInfo.getWidth(), 165));
+                sizeSettings.setPreferredSize(new Dimension(sizeSettings.getWidth(), 165));
             });
             SDfalse.addMouseListener(new MouseAdapter() {
                 @Override
@@ -352,7 +364,7 @@ public class Window {
                     }
                 }
             });
-            changeUsername.clickAction( () -> {
+            changeUsername.event( () -> {
                 games.Hide();
                 gameInfo.Hide();
                 settings.Hide();
@@ -399,7 +411,7 @@ public class Window {
                     }
                 }
             });
-            statistics.clickAction( () -> {
+            statistics.event( () -> {
                 statisticsPanel.Show();
                 statisticsBack.Show();
                 games.Hide();
@@ -411,7 +423,7 @@ public class Window {
                 statistics.Hide();
                 hello.Hide();
             });
-            statisticsBack.clickAction( () -> {
+            statisticsBack.event( () -> {
                 statisticsPanel.Hide();
                 statisticsBack.Hide();
                 games.Show();
@@ -424,27 +436,27 @@ public class Window {
                 hello.Show();
             });
 
-            sizes[0].clickAction( () -> {
+            sizes[0].event( () -> {
                 configLoader.set(Configs.AM_SIZE_MULTIPLIER, 1.25);
                 sizes[0].Hide();
                 sizes[1].Show();
             });
-            sizes[1].clickAction( () -> {
+            sizes[1].event( () -> {
                 configLoader.set(Configs.AM_SIZE_MULTIPLIER, 1.5);
                 sizes[1].Hide();
                 sizes[2].Show();
             });
-            sizes[2].clickAction( () -> {
+            sizes[2].event( () -> {
                 configLoader.set(Configs.AM_SIZE_MULTIPLIER, 1.75);
                 sizes[2].Hide();
                 sizes[3].Show();
             });
-            sizes[3].clickAction( () -> {
+            sizes[3].event( () -> {
                 configLoader.set(Configs.AM_SIZE_MULTIPLIER, 2.0);
                 sizes[3].Hide();
                 sizes[4].Show();
             });
-            sizes[4].clickAction( () -> {
+            sizes[4].event( () -> {
                 configLoader.set(Configs.AM_SIZE_MULTIPLIER, 1.0);
                 sizes[4].Hide();
                 sizes[0].Show();
@@ -461,7 +473,7 @@ public class Window {
                     }
                 }
             });
-            SubDtrue.clickAction(() -> {
+            SubDtrue.event(() -> {
                 SubpressedTrue = true;
                 configLoader.set(Configs.SUBTITLES, false);
                 subtitles = false;
@@ -481,7 +493,7 @@ public class Window {
                     }
                 }
             });
-            SubDfalse.clickAction( () -> {
+            SubDfalse.event( () -> {
                 SubpressedFalse = true;
                 configLoader.set(Configs.SUBTITLES, true);
                 subtitles = true;

@@ -11,6 +11,8 @@ import dev.TTs.swing.TFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.net.*;
 import java.util.*;
 import java.util.Timer;
@@ -35,7 +37,7 @@ public class Main {
     public static double a;
 
     public static Image noTexture;
-    public static TFrame[] windows = new TFrame[7];
+    public static TFrame[] windows = new TFrame[8];
     public static Color[] buttonColors;
     public static Timer checkLoop;
 
@@ -87,8 +89,8 @@ public class Main {
         logger.debug("Opened Window");
 
         checkLoop = timer(() -> {
-            if (started != null) logger.check("Check  Started: %s Version: %s", started, startedVersion);
-            else logger.check("Check  Started: nothing");
+            if (started != null) logger.check("Check  Java version: %s Started: %s Version: %s", javaVersion, started, startedVersion);
+            else logger.check("Check  Java version: %s Started: nothing", javaVersion);
         }, 1000,1000);
     }
 
@@ -131,38 +133,51 @@ public class Main {
         windows[window].add(background);
     }
     public static void WindowOperations(int window, WindowInformation information) {
-        windows[window].closingOperation(() -> {
-            switch (window) {
-                case 0 -> deMain(new String[0]);
-                case 1 -> {
-                    MainWindow = true;
-                    windows[1].setVisible(false);
-                    started = null;
-                    AnimalMaster = false;
-                    logger.setInstance(Instance.TTS_GAMES);
-                    timer(() -> windows[1].setVisible(AnimalMaster), 0, 100);
-                }
-                case 2 -> {
-                    MainWindow = true;
-                    windows[2].setVisible(false);
-                    started = null;
-                    DetektivAdler = false;
-                    logger.setInstance(Instance.TTS_GAMES);
-                    timer(() -> windows[2].setVisible(DetektivAdler), 0, 100);
-                }
-                case 3 -> {
-                    if (!startedClose) {
-                        startedClose = true;
-                        new Close(windows[3], windows[3].getLocation());
+        if (information.defaultCloseOperation() == 0) {
+            windows[window].addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    switch (window) {
+                        case 0 -> deMain(new String[0]);
+                        case 1 -> {
+                            MainWindow = true;
+                            windows[window].setVisible(false);
+                            started = null;
+                            AnimalMaster = false;
+                            logger.setInstance(Instance.TTS_GAMES);
+                            timer(() -> windows[window].setVisible(AnimalMaster), 0, 100);
+                        }
+                        case 2 -> {
+                            MainWindow = true;
+                            windows[window].setVisible(false);
+                            started = null;
+                            DetektivAdler = false;
+                            logger.setInstance(Instance.TTS_GAMES);
+                            timer(() -> windows[window].setVisible(DetektivAdler), 0, 100);
+                        }
+                        case 3 -> {
+                            if (!startedClose) {
+                                startedClose = true;
+                                new Close(windows[3], windows[3].getLocation());
+                            }
+                        }
+                        case 4 -> {
+                            windows[window].dispose();
+                            startedClose = false;
+                        }
+                        case 5 -> windows[window].dispose();
+                        case 7 -> {
+                            MainWindow = true;
+                            windows[window].dispose();
+                            started = null;
+                            AnimalMaster = false;
+                            logger.setInstance(Instance.TTS_GAMES);
+                        }
                     }
                 }
-                case 4 -> {
-                    windows[4].dispose();
-                    startedClose = false;
-                }
-                case 5 -> windows[5].dispose();
-            }
-        });
+            });
+        }
+        windows[window].setDefaultCloseOperation(information.defaultCloseOperation());
         windows[window].setResizable(information.resizable());
         windows[window].setSize(information.size());
         windows[window].setLocation(information.location());

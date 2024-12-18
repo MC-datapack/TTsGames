@@ -109,13 +109,13 @@ public class DetectiveThunder {
                 }
             }
 
-            erklaerung.clickAction( () -> {
+            erklaerung.event( () -> {
                 erklaerung.Hide();
                 line1.Show();
                 line2.Show();
                 line3.Show();
             });
-            start.clickAction( () -> {
+            start.event( () -> {
                 start.Hide();
                 erklaerung.Hide();
                 background.Hide();
@@ -129,7 +129,7 @@ public class DetectiveThunder {
                     timer(() -> entscheidungen[0].Show(), Sounds[3][0].getLengthMilliSeconds());
                 }, 1000);
             });
-            entscheidungen[0].clickAction( () -> {
+            entscheidungen[0].event( () -> {
                 entscheidungen[0].Hide();
                 Wache.Hide();
                 Kunstgalerie.Show();
@@ -147,7 +147,7 @@ public class DetectiveThunder {
                     }, Sounds[3][2].getLengthMilliSeconds());
                 }, Sounds[3][1].getLengthMilliSeconds());
             });
-            entscheidungen[1].clickAction( () -> {
+            entscheidungen[1].event( () -> {
                 entscheidungen[1].Hide();
                 entscheidungen[2].Hide();
                 entscheidungen[3].Hide();
@@ -157,7 +157,7 @@ public class DetectiveThunder {
                 Sounds[3][4].playSound();
                 timer(() -> System.exit(ExitCodes.NO_ERROR), Sounds[3][4].getLengthMilliSeconds());
             });
-            entscheidungen[3].clickAction( () -> {
+            entscheidungen[3].event( () -> {
                 entscheidungen[1].Hide();
                 entscheidungen[2].Hide();
                 entscheidungen[3].Hide();
@@ -167,7 +167,7 @@ public class DetectiveThunder {
                     timer(() -> System.exit(ExitCodes.NO_ERROR), Sounds[3][6].getLengthMilliSeconds());
                 }, Sounds[3][5].getLengthMilliSeconds());
             });
-            entscheidungen[2].clickAction( () -> {
+            entscheidungen[2].event( () -> {
                 entscheidungen[1].Hide();
                 entscheidungen[2].Hide();
                 entscheidungen[3].Hide();

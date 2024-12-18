@@ -2,7 +2,6 @@ package dev.TTs.resources;
 
 import dev.TTs.lang.Types;
 
-@SuppressWarnings("EnhancedSwitchMigration")
 public enum Configs {
     //Config
     LANGUAGE(Types.STRING, "language", "English"),
@@ -38,30 +37,34 @@ public enum Configs {
 
     public boolean isValid(String value) {
         try {
-            switch (type) {
-                case BOOLEAN:
-                    return value.equals("true") || value.equals("false");
-                case INT:
+            return switch (type) {
+                case BOOLEAN -> value.equals("true") || value.equals("false");
+                case INT -> {
                     Integer.parseInt(value);
-                    return true;
-                case DOUBLE:
+                    yield true;
+                }
+                case DOUBLE -> {
                     Double.parseDouble(value);
-                    return true;
-                case FLOAT:
+                    yield true;
+                }
+                case FLOAT -> {
                     Float.parseFloat(value);
-                    return true;
-                case LONG:
+                    yield true;
+                }
+                case LONG -> {
                     Long.parseLong(value);
-                    return true;
-                case SHORT:
+                    yield true;
+                }
+                case SHORT -> {
                     Short.parseShort(value);
-                    return true;
-                case BYTE:
+                    yield true;
+                }
+                case BYTE -> {
                     Byte.parseByte(value);
-                    return true;
-                default:
-                    return true;
-            }
+                    yield true;
+                }
+                default -> true;
+            };
         } catch (NumberFormatException e) {
             return false;
         }
