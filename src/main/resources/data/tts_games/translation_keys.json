@@ -1,7 +1,7 @@
 {
   "games": [
-	"common.start.animal_master", "common.start.detective_eagle", "common.start.detective_thunder",
-	"common.info.animal_master", "common.info.detective_eagle", "common.info.detective_thunder"
+	"common.start.animal_master", "common.start.detective_eagle", "common.start.detective_thunder", "common.start.pixel_quest",
+	"common.info.animal_master", "common.info.detective_eagle", "common.info.detective_thunder", "common.info.pixel_quest"
   ],
   "settings": [
 	"common.settings", "common.settings.back", "common.settings.dev_versions", "common.text.username", "common.username", "common.size", "common.settings.true", "common.settings.false",

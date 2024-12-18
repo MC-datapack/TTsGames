@@ -42,4 +42,9 @@ public class TLabel extends JLabel implements TComponent {
     public void pSize(Dimension dimension) {
         this.setPreferredSize(dimension);
     }
+
+    @Override
+    public void size(Dimension dimension) {
+        this.setSize(dimension);
+    }
 }

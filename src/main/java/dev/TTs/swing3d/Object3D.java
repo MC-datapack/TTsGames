@@ -1,9 +1,9 @@
 package dev.TTs.swing3d;
 
-import dev.TTs.swing.TComponent;
+import dev.TTs.swing.TContainer;
 
 @SuppressWarnings("unused")
-public interface Object3D extends TComponent {
+public interface Object3D extends TContainer {
     void startSpinning();
     void stopSpinning();
 

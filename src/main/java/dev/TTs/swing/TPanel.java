@@ -52,6 +52,11 @@ public class TPanel extends JPanel implements TContainer {
     }
 
     @Override
+    public void size(Dimension dimension) {
+        this.setSize(dimension);
+    }
+
+    @Override
     public Component addC(Component component) {
         return this.add(component);
     }

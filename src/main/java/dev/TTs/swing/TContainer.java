@@ -2,8 +2,11 @@ package dev.TTs.swing;
 
 import java.awt.*;
 
-@SuppressWarnings("UnusedReturnValue")
+@SuppressWarnings({"UnusedReturnValue", "unused"})
 public interface TContainer extends TComponent {
+    default Component addSouth(Component component) {
+        return this.addC(component, "South");
+    }
     default Component[] add(Component... components) {
         for (Component component : components) {
             this.addC(component);
@@ -24,6 +27,9 @@ public interface TContainer extends TComponent {
         }
         return components;
     }
+    default Component[] addSouth(Component... components) {
+        return this.add("South", components);
+    }
     default Component[][] add(String constrains, Component[]... components) {
         for (Component[] componentArray : components) {
             for (Component component : componentArray) {
@@ -31,6 +37,9 @@ public interface TContainer extends TComponent {
             }
         }
         return components;
+    }
+    default Component[][] addSouth(Component[]... components) {
+        return this.add("South", components);
     }
 
     Component addC(Component component);

@@ -25,7 +25,7 @@ public class TButton extends JButton implements TComponent {
         this.addActionListener(e -> event.run());
     }
 
-    public void clickAction(Runnable event) {
+    public void event(Runnable event) {
         this.addActionListener(e -> event.run());
     }
 
@@ -57,5 +57,10 @@ public class TButton extends JButton implements TComponent {
     @Override
     public void pSize(Dimension dimension) {
         this.setPreferredSize(dimension);
+    }
+
+    @Override
+    public void size(Dimension dimension) {
+        this.setSize(dimension);
     }
 }

@@ -95,7 +95,7 @@ public class TTsGamesJSONFormat {
     }
 
     public String[] getVersions() {
-        String[] versions = new String[11];
+        String[] versions = new String[14];
         if (!prerelease) {versions[0] = version.get("tts_games").getRelease();}
         else {versions[0] = version.get("tts_games").getPrerelease();}
         versions[1] = version.get("tts_games").getGroup();
@@ -108,6 +108,9 @@ public class TTsGamesJSONFormat {
         versions[8] = version.get("detective_thunder").getRelease();
         versions[9] = version.get("detective_thunder").getPrerelease();
         versions[10] = version.get("detective_thunder").getGroup();
+        versions[11] = version.get("pixel_quest").getRelease();
+        versions[12] = version.get("pixel_quest").getPrerelease();
+        versions[13] = version.get("pixel_quest").getGroup();
         return versions;
     }
 }

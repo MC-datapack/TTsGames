@@ -16,6 +16,10 @@
 	"detective_thunder": {
 	  "prerelease": "2.0 build.6",
 	  "group": "2.0"
+	},
+	"pixel_quest": {
+	  "prerelease": "0.0.0 alpha 1",
+	  "group": "0.0.0"
 	}
   },
   "config": {
@@ -32,10 +36,10 @@
 	"English": "en_us"
   },
   "textures_base_dictionaries": [
-	"assets/textures", "assets/textures/animal_master", "assets/textures/detective_eagle", "assets/textures/detective_thunder"
+	"assets/textures", "assets/textures/animal_master", "assets/textures/detective_eagle", "assets/textures/detective_thunder", "assets/textures/pixel_quest"
   ],
   "textures_file_types": [
-	".jpg", ".jpeg", ".jpg", ""
+	".jpg", ".jpeg", ".jpg", "", ".png"
   ],
   "no_texture_file": "assets/textures/no_texture.png",
   "textures": [
@@ -66,6 +70,9 @@
 	[
 	  "DetektivThunder.jpg", "DetektivThunder_bottom.jpg",
 	  "locations/Wache_0.png", "locations/Kunstgalerie.png", "locations/Kunstgalerie_Fingerabdruck_0.png"
+	],
+	[
+	  "icon", "background", "enemy", "animal", "player"
 	]
   ],
   "sounds_base_dictionaries": [
@@ -80,7 +87,8 @@
 	[
 	  "phrases/001", "phrases/002", "phrases/003", "phrases/004",
 	  "phrases/005", "phrases/006", "phrases/007"
-	]
+	],
+	[]
   ],
   "data_base_dictionaries": [
 	"data/tts_games", "data/animal_master", "data/detective_eagle", "data/detective_thunder"
@@ -100,7 +108,8 @@
 	],
 	[
 	  "translation_keys"
-	]
+	],
+	[]
   ],
   "supported_java_versions": [
 	"16", "16.0", "16.0.0",
