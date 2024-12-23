@@ -1,13 +1,10 @@
 package dev.TTs.TTsGames.Games.PixelQuest.entities;
 
 import dev.TTs.TTsGames.Games.PixelQuest.util.Identifier;
-import dev.TTs.lang.ImageString;
-
-import static dev.TTs.TTsGames.Main.Textures;
 
 public class Monster extends Enemy {
     public Monster(int x, int y, int speed) {
-        super(x, y, speed, 10, 500);
+        super(x, y, speed, 1, 250);
     }
 
     @Override
