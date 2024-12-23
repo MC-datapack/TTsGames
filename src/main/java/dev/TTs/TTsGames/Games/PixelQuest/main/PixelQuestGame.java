@@ -123,7 +123,7 @@ public class PixelQuestGame extends TPanel implements Runnable, GameObjectRender
         //gameObjects.add(new Furnace());
         gameObjects.add(new Fox(200, 200, 2));
         gameObjects.add(new Sheep(500, 500, 0));
-        //gameObjects.add(new Monster(300, 300, 2));
+        gameObjects.add(new Monster(300, 300, 2));
     }
 
     public synchronized void start() {

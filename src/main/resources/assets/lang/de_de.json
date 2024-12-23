@@ -201,7 +201,10 @@
   "pixel_quest.tooltip.smelt!": "Empfohlen ist dieses Item zu kochen, um ein besseres Essen zu erhalten.",
 
   "pixel_quest.item.fox": "Fuchsfleisch",
-  "pixel_quest.item.cooked_fox": "Gekochtes Fuchsfleisch",
+  "pixel_quest.item.cooked_fox": "Gebratenes Fuchsfleisch",
+  "pixel_quest.item.mutton": "Hammelfleisch",
+  "pixel_quest.item.cooked_mutton": "Gebratenes Hammelfleisch",
+  "pixel_quest.item.wool": "Wolle",
 
 
 
