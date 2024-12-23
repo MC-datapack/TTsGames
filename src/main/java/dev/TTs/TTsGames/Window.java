@@ -3,7 +3,7 @@ package dev.TTs.TTsGames;
 import dev.TTs.TTsGames.Games.DetectiveThunder.DetectiveThunder;
 import dev.TTs.TTsGames.Games.AnimalMaster.AnimalMaster;
 import dev.TTs.TTsGames.Games.DetectiveEagle.DetectiveEagle;
-import dev.TTs.TTsGames.Games.PixelQuest.main.PixelQuest;
+import dev.TTs.TTsGames.Games.PixelQuest.PixelQuest;
 import dev.TTs.lang.SoundString;
 import dev.TTs.resources.Configs;
 import dev.TTs.resources.Translations;
@@ -49,7 +49,10 @@ public class Window {
             TButton SubDtrue = new TButton(Settings[6]);
             TButton SubDfalse = new TButton(Settings[7]);
 
-            TButton[] sizes = {
+            TButton[] sizesAM = {
+                    new TButton("1"), new TButton("1.25"), new TButton("1.5"), new TButton("1.75"), new TButton("2")
+            };
+            TButton[] sizesDE = {
                     new TButton("1"), new TButton("1.25"), new TButton("1.5"), new TButton("1.75"), new TButton("2")
             };
 
@@ -66,7 +69,7 @@ public class Window {
             TBorderPanel statisticsPanel = new TBorderPanel(Statistics[2], new Color(68, 68, 68, 200), true);
             TLabel animalMasterTime = new TLabel(Statistics[3] + checkTime(AMTime[2], Statistics[5]) + Statistics[4]);
 
-            TButton AnimalMaster = new TButton(Games[0]), Detective_Eagle = new TButton(Games[1]), Detective_Thunder = new TButton(Games[2]), PixelQuest = new TButton(Games[3]);
+            TButton AnimalMaster = new TButton(Games[0]), Detective_Eagle = new TButton(Games[1]), Detective_Thunder = new TButton(Games[2]), PixelQuestB = new TButton(Games[3]);
             TLabel iAnimalMaster = new TLabel(Games[4]), iDetektivAdler = new TLabel(Games[5]), iDetektivThunder = new TLabel(Games[6]), iPixelQuest = new TLabel(Games[7]);
 
             TBorderPanel games = new TBorderPanel(TTsGames[0], new Color(68, 68, 68, 200), true);
@@ -91,30 +94,33 @@ public class Window {
                 gameInfo.setPreferredSize(new Dimension(200, 165));
                 sizeSettings.setPreferredSize(new Dimension(65, 165));
             } else {
-                games.setPreferredSize(new Dimension(140, 100));
-                gameInfo.setPreferredSize(new Dimension(200, 100));
-                sizeSettings.setPreferredSize(new Dimension(65, 100));
+                games.setPreferredSize(new Dimension(140, 135));
+                gameInfo.setPreferredSize(new Dimension(200, 135));
+                sizeSettings.setPreferredSize(new Dimension(65, 135));
             }
             hello.setPreferredSize(new Dimension(350, 30));
             statisticsPanel.setPreferredSize(new Dimension(350, 200));
             Component[] Games = {
-                    AnimalMaster, Detective_Eagle, Detective_Thunder, PixelQuest
+                    AnimalMaster, Detective_Eagle, PixelQuestB, Detective_Thunder
             };
             for (Component component : Games) {
                 games.add(component);
             }
             Component[] GameIno = {
-                    iAnimalMaster, iDetektivAdler, iDetektivThunder, iPixelQuest
+                    iAnimalMaster, iDetektivAdler, iPixelQuest, iDetektivThunder
             };
             for (Component component : GameIno) {
                 gameInfo.add(component);
             }
-            for (TButton component : sizes) {
+            for (TButton component : sizesAM) {
+                sizeSettings.add(component);
+            }
+            for (TButton component : sizesDE) {
                 sizeSettings.add(component);
             }
             statisticsPanel.add(animalMasterTime);
             TComponent[] doStandardButtonstuff = {
-                    AnimalMaster, Detective_Eagle, Detective_Thunder, PixelQuest,settings, Settings_Back, credits, CreditsBack,
+                    AnimalMaster, Detective_Eagle, Detective_Thunder, PixelQuestB,settings, Settings_Back, credits, CreditsBack,
                     Settings_Dev, SDtrue, SDfalse, statistics, statisticsBack, changeUsername, Subtitles, SubDtrue, SubDfalse
             };
             for (TComponent component : doStandardButtonstuff) {
@@ -122,7 +128,12 @@ public class Window {
                 component.setColor(Region.BACKGROUND, new Color(68, 68, 68));
                 component.setFocusableF();
             }
-            for (TComponent component : sizes) {
+            for (TComponent component : sizesAM) {
+                component.setColor(Region.FOREGROUND, BLACK);
+                component.setColor(Region.BACKGROUND, new Color(68, 68, 68));
+                component.setFocusableF();
+            }
+            for (TComponent component : sizesDE) {
                 component.setColor(Region.FOREGROUND, BLACK);
                 component.setColor(Region.BACKGROUND, new Color(68, 68, 68));
                 component.setFocusableF();
@@ -157,7 +168,7 @@ public class Window {
             AnimalMaster.setPreferredSize(new Dimension(133, 30));
             Detective_Eagle.setPreferredSize(new Dimension(133, 30));
             Detective_Thunder.setPreferredSize(new Dimension(133, 30));
-            PixelQuest.setPreferredSize(new Dimension(133, 30));
+            PixelQuestB.setPreferredSize(new Dimension(133, 30));
             iAnimalMaster.setPreferredSize(new Dimension(190, 30));
             iDetektivAdler.setPreferredSize(new Dimension(190, 30));
             iDetektivThunder.setPreferredSize(new Dimension(190, 30));
@@ -167,7 +178,10 @@ public class Window {
             Settings_Dev.setPreferredSize(new Dimension(200, 30));
             SDtrue.setPreferredSize(new Dimension(200, 30));
             SDfalse.setPreferredSize(new Dimension(200, 30));
-            for (TButton component : sizes) {
+            for (TButton component : sizesAM) {
+                component.setPreferredSize(new Dimension(58, 30));
+            }
+            for (TButton component : sizesDE) {
                 component.setPreferredSize(new Dimension(58, 30));
             }
             for (Component component : setPrefferendSizeButtonSize) {
@@ -176,7 +190,7 @@ public class Window {
 
             TPanel panel = getTPanel();
 
-            TImage Background = Textures[0][1].toTImage();
+            TImage Background = Textures[0][0][1].toTImage();
             Background.setLayout(new BorderLayout());
             Background.setSize(windows[0].getWidth(), windows[0].getHeight());
             Background.add(panel);
@@ -190,62 +204,60 @@ public class Window {
                 panel.add(component);
             }
 
-            for (TButton component : sizes) {
+            for (TButton component : sizesAM) {
                 component.Hide();
             }
 
-            if (a == 1.0) sizes[0].Show();
-            else if (a == 1.25) sizes[1].Show();
-            else if (a == 1.5) sizes[2].Show();
-            else if (a == 1.75) sizes[3].Show();
-            else if (a == 2.0) sizes[4].Show();
+            if (a == 1.0) sizesAM[0].Show();
+            else if (a == 1.25) sizesAM[1].Show();
+            else if (a == 1.5) sizesAM[2].Show();
+            else if (a == 1.75) sizesAM[3].Show();
+            else if (a == 2.0) sizesAM[4].Show();
+
+            for (TButton component : sizesDE) {
+                component.Hide();
+            }
+
+            if (de == 1.0) sizesDE[0].Show();
+            else if (de == 1.25) sizesDE[1].Show();
+            else if (de == 1.5) sizesDE[2].Show();
+            else if (de == 1.75) sizesDE[3].Show();
+            else if (de == 2.0) sizesDE[4].Show();
+
 
 
             AnimalMaster.event( () -> {
-                if (!alreadyStarted[0] && !fAMReset) {
-                    logger.setInstance(Instance.ANIMAL_MASTER);
-                    MainWindow = false;
-                    new AnimalMaster(new WindowInformation(false, windows[0].getLocation(), new Dimension((int) (420 * a), (int) (210 * a)), Textures[1][37],
-                            Translations.Games[0] + Versions[4]));
-                    alreadyStarted[0] = true;
-                    windows[0].Hide();
-                    started = "AnimalMaster";
-                } else {
-                    MainWindow = false;
-                    windows[0].Hide();
-                }
-                Main.AnimalMaster = true;
+                logger.setInstance(Instance.ANIMAL_MASTER);
+                MainWindow = false;
+                new AnimalMaster(new WindowInformation(false, windows[0].getLocation(), new Dimension((int) (420 * a), (int) (210 * a)), Textures[1][0][37],
+                        Translations.Games[0] + Versions[4]));
+                windows[0].Hide();
+                started = "AnimalMaster";
             });
             Detective_Eagle.event( () -> {
-                if (!alreadyStarted[1]) {
-                    logger.setInstance(Instance.DETEKTIV_ADLER);
-                    MainWindow = false;
-                    new DetectiveEagle(new WindowInformation(false, windows[0].getLocation(), new Dimension(420, 210), Textures[2][0]));
-                    windows[0].Hide();
-                    started = " Detektiv Adler";
-                    alreadyStarted[1] = true;
-                } else {
-                    MainWindow = false;
-                    windows[0].Hide();
-                }
-                Main.DetektivAdler = true;
+                logger.setInstance(Instance.DETEKTIV_ADLER);
+                MainWindow = false;
+                new DetectiveEagle(new WindowInformation(false, windows[0].getLocation(), new Dimension((int) (420 * de), (int) (210 * de)), Textures[2][0][0]));
+                windows[0].Hide();
+                started = " Detektiv Adler";
+            });
+            PixelQuestB.event(() -> {
+                logger.setInstance(Instance.PIXEL_QUEST);
+                MainWindow = false;
+                new PixelQuest(new WindowInformation(false, new Point(windows[0].getX() - 300, windows[0].getY() - 300), new Dimension(800, 800),
+                        Textures[4][0][0], Translations.Games[3] + Versions[13]));
+                windows[0].Hide();
+                started = " Pixel Quest";
+                startedVersion = Versions[13];
             });
             if (dev) {
                 Detective_Thunder.event( () -> {
                     logger.setInstance(Instance.DETEKTIV_THUNDER);
                     MainWindow = false;
                     new DetectiveThunder(new WindowInformation(false, new Point(windows[0].getX() - 500, windows[0].getY() - 300),
-                            new Dimension(1330, 750), Textures[3][0]));
+                            new Dimension(1330, 750), Textures[3][0][0]));
                     windows[0].Hide();
                     started = " Detektiv Thunder";
-                });
-                PixelQuest.event(() -> {
-                    logger.setInstance(Instance.PIXEL_QUEST);
-                    MainWindow = false;
-                    new PixelQuest().create(new WindowInformation(false, new Point(windows[0].getX() - 300, windows[0].getY() - 300), new Dimension(800, 800),
-                            Textures[4][0], Translations.Games[3] + Versions[13]));
-                    windows[0].Hide();
-                    started = " Pixel Quest";
                 });
             }
             settings.event( () -> {
@@ -328,9 +340,9 @@ public class Window {
                 dev = false;
                 SDtrue.Hide();
                 SDfalse.Show();
-                games.setPreferredSize(new Dimension(games.getWidth(), 100));
-                gameInfo.setPreferredSize(new Dimension(gameInfo.getWidth(), 100));
-                sizeSettings.setPreferredSize(new Dimension(sizeSettings.getWidth(), 100));
+                games.setPreferredSize(new Dimension(games.getWidth(), 135));
+                gameInfo.setPreferredSize(new Dimension(gameInfo.getWidth(), 135));
+                sizeSettings.setPreferredSize(new Dimension(sizeSettings.getWidth(), 135));
             });
             SDtrue.addMouseListener(new MouseAdapter() {
                 @Override
@@ -436,30 +448,66 @@ public class Window {
                 hello.Show();
             });
 
-            sizes[0].event( () -> {
+            sizesAM[0].event( () -> {
+                a = 1.25F;
                 configLoader.set(Configs.AM_SIZE_MULTIPLIER, 1.25);
-                sizes[0].Hide();
-                sizes[1].Show();
+                sizesAM[0].Hide();
+                sizesAM[1].Show();
             });
-            sizes[1].event( () -> {
+            sizesAM[1].event( () -> {
+                a = 1.5F;
                 configLoader.set(Configs.AM_SIZE_MULTIPLIER, 1.5);
-                sizes[1].Hide();
-                sizes[2].Show();
+                sizesAM[1].Hide();
+                sizesAM[2].Show();
             });
-            sizes[2].event( () -> {
+            sizesAM[2].event( () -> {
+                a = 1.75F;
                 configLoader.set(Configs.AM_SIZE_MULTIPLIER, 1.75);
-                sizes[2].Hide();
-                sizes[3].Show();
+                sizesAM[2].Hide();
+                sizesAM[3].Show();
             });
-            sizes[3].event( () -> {
+            sizesAM[3].event( () -> {
+                a = 2.0F;
                 configLoader.set(Configs.AM_SIZE_MULTIPLIER, 2.0);
-                sizes[3].Hide();
-                sizes[4].Show();
+                sizesAM[3].Hide();
+                sizesAM[4].Show();
             });
-            sizes[4].event( () -> {
+            sizesAM[4].event( () -> {
+                a = 1.0F;
                 configLoader.set(Configs.AM_SIZE_MULTIPLIER, 1.0);
-                sizes[4].Hide();
-                sizes[0].Show();
+                sizesAM[4].Hide();
+                sizesAM[0].Show();
+            });
+
+            sizesDE[0].event( () -> {
+                de = 1.25F;
+                configLoader.set(Configs.DE_SIZE_MULTIPLIER, 1.25);
+                sizesDE[0].Hide();
+                sizesDE[1].Show();
+            });
+            sizesDE[1].event( () -> {
+                de = 1.5F;
+                configLoader.set(Configs.DE_SIZE_MULTIPLIER, 1.5);
+                sizesDE[1].Hide();
+                sizesDE[2].Show();
+            });
+            sizesDE[2].event( () -> {
+                de = 1.75F;
+                configLoader.set(Configs.DE_SIZE_MULTIPLIER, 1.75);
+                sizesDE[2].Hide();
+                sizesDE[3].Show();
+            });
+            sizesDE[3].event( () -> {
+                de = 2.0F;
+                configLoader.set(Configs.DE_SIZE_MULTIPLIER, 2.0);
+                sizesDE[3].Hide();
+                sizesDE[4].Show();
+            });
+            sizesDE[4].event( () -> {
+                de = 1.0F;
+                configLoader.set(Configs.DE_SIZE_MULTIPLIER, 1.0);
+                sizesDE[4].Hide();
+                sizesDE[0].Show();
             });
 
             Subtitles.addMouseListener(new MouseAdapter() {
@@ -515,7 +563,7 @@ public class Window {
             });
 
 
-            WindowOperations(0, new WindowInformation(resizable, new Point(800, 500), new Dimension(500, 400), Textures[0][0]), Background);
+            WindowOperations(0, new WindowInformation(resizable, new Point(800, 500), new Dimension(500, 400), Textures[0][0][0]), Background);
             timer(() -> {
                 if (fAM) {
                     fAM = false;

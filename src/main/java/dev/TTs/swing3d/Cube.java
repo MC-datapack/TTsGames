@@ -1,10 +1,13 @@
 package dev.TTs.swing3d;
 
+import dev.TTs.lang.Buggy;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings({"unused", "FieldMayBeFinal", "UnusedAssignment", "CanBeFinal"})
+@Buggy
 public class Cube extends Simple3DCube {
     private List<Point3D> platform;
 

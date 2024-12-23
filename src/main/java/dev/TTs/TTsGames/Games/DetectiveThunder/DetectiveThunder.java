@@ -65,11 +65,11 @@ public class DetectiveThunder {
                 component.setFocusable(false);
             }
 
-            TImage background = Textures[3][1].toTImage();
+            TImage background = Textures[3][0][1].toTImage();
 
-            TImage Wache = Textures[3][2].toTImage();
-            TImage Kunstgalerie = Textures[3][3].toTImage();
-            TImage FingerabdruckSuche = Textures[3][4].toTImage();
+            TImage Wache = Textures[3][0][2].toTImage();
+            TImage Kunstgalerie = Textures[3][0][3].toTImage();
+            TImage FingerabdruckSuche = Textures[3][0][4].toTImage();
 
 
             TImage[] doStandardPanelStuff = {

@@ -9,7 +9,7 @@
   "common.info.animal_master": "An animal quiz",
   "common.info.detective_eagle": "A bad detective game",
   "common.info.detective_thunder": "A better detective game",
-  "common.info.pixel_quest": "A simple game (Alpha)",
+  "common.info.pixel_quest": "A simple 2D game",
   "common.settings": "Settings",
   "common.settings.back": "Back",
   "common.settings.dev_versions": "Development Versions",
@@ -194,6 +194,16 @@
   "detective_thunder.search.fingerabdruck": "Search for fingerprints",
   "detective_thunder.verdächtig.magritte": "Suspect Magritte",
 
+  "pixel_quest.health": "Health",
+  "pixel_quest.saturation": "Saturation",
+  "pixel_quest.weight": "Weight",
+  "pixel_quest.death.enemy": "௹⨌{Username} was killed by a monster",
+  "pixel_quest.death.starve": "௹⨌{Username} starved to death",
+  "pixel_quest.tooltip.smelt!": "You can cook this item to get a better food.",
+
+  "pixel_quest.item.fox": "Fox Meat",
+  "pixel_quest.item.cooked_fox": "Cooked Fox Meat",
+
 
 
   "sound.animal_master.correct.wav": "Correct",
@@ -205,5 +215,7 @@
   "sound.detective_thunder.004.wav": "That means fingerprints could still be on the display case.",
   "sound.detective_thunder.005.wav": "Detective Thunder, how could these informations be enough? Huh? Because of this I have to hire another detective. You did not complete this case.",
   "sound.detective_thunder.006.wav": "You are guilty, Magritte.",
-  "sound.detective_thunder.007.wav": "You lost because of a wrong accusation!"
+  "sound.detective_thunder.007.wav": "You lost because of a wrong accusation!",
+
+  "sound.pixel_quest.eat.wav": "Eating"
 }

@@ -8,7 +8,8 @@ public enum Configs {
     DEV_VERSIONS(Types.BOOLEAN, "dev_versions", false),
     VOLUME(Types.INT, "volume", 100),
     USERNAME(Types.STRING, "username", "௹⨌{UsernameDe}"),
-    AM_SIZE_MULTIPLIER(Types.DOUBLE, "animal_master_size_multiplier", 1.0),
+    AM_SIZE_MULTIPLIER(Types.FLOAT, "animal_master_size_multiplier", 1.0F),
+    DE_SIZE_MULTIPLIER(Types.FLOAT, "detective_eagle_size_multiplier", 1.0F),
     SUBTITLES(Types.BOOLEAN, "subtitles", false),
     //Statistics
     AM_RECORD(Types.DOUBLE, "animal_master_time_record", -1.0);

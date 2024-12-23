@@ -23,7 +23,7 @@ public class JsonReader {
         colorJSON = readColorJsonFile(MainJSON.getData()[1][0]);
     }
 
-    private static final Gson gson = new Gson();
+    public static final Gson gson = new Gson();
 
     public String[] UnallowedUsernames() {
         return ValuesStandard("values", MainJSON.getData()[0][0], String[].class);
@@ -49,6 +49,10 @@ public class JsonReader {
 
     public String[] DTTranslationKeys(String key) {
         return ValuesStandard(key, MainJSON.getData()[3][0], String[].class);
+    }
+
+    public String[] PQTranslationKeys(String key) {
+        return ValuesStandard(key, MainJSON.getData()[4][0], String[].class);
     }
 
     public Integer AInf(String s) {

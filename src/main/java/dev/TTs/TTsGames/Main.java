@@ -29,12 +29,11 @@ public class Main {
     public static String language, started = null, startedVersion = null, Username;
     public static String[] Versions, Languages, unerlaubteNamen;
     public static SoundString[][] Sounds;
-    public static ImageString[][] Textures;
+    public static ImageString[][][] Textures;
     public static int volume = 0;
     public static double[] AMTime = new double[3];
-    public static boolean MainWindow = true, dev, AnimalMaster, DetektivAdler, setUsername, fAM = false, fAMReset = false, subtitles;
-    public static boolean[] alreadyStarted = {false, false};
-    public static double a;
+    public static boolean MainWindow = true, dev, setUsername, fAM = false, fAMReset = false, subtitles;
+    public static float a, de;
 
     public static Image noTexture;
     public static TFrame[] windows = new TFrame[8];
@@ -70,6 +69,7 @@ public class Main {
         setUsername = !Objects.equals(Username, "௹⨌{UsernameDe}");
         AMTime[2] = configLoader.get(Configs.AM_RECORD);
         a = configLoader.get(Configs.AM_SIZE_MULTIPLIER);
+        de = configLoader.get(Configs.DE_SIZE_MULTIPLIER);
         logger.debug("Loaded config");
 
         if (Objects.equals(Username, "௹⨌{UsernameDe}")) {
@@ -139,21 +139,11 @@ public class Main {
                 public void windowClosing(WindowEvent e) {
                     switch (window) {
                         case 0 -> deMain(new String[0]);
-                        case 1 -> {
+                        case 1, 2, 7 -> {
                             MainWindow = true;
-                            windows[window].setVisible(false);
+                            windows[window].dispose();
                             started = null;
-                            AnimalMaster = false;
                             logger.setInstance(Instance.TTS_GAMES);
-                            timer(() -> windows[window].setVisible(AnimalMaster), 0, 100);
-                        }
-                        case 2 -> {
-                            MainWindow = true;
-                            windows[window].setVisible(false);
-                            started = null;
-                            DetektivAdler = false;
-                            logger.setInstance(Instance.TTS_GAMES);
-                            timer(() -> windows[window].setVisible(DetektivAdler), 0, 100);
                         }
                         case 3 -> {
                             if (!startedClose) {
@@ -166,13 +156,6 @@ public class Main {
                             startedClose = false;
                         }
                         case 5 -> windows[window].dispose();
-                        case 7 -> {
-                            MainWindow = true;
-                            windows[window].dispose();
-                            started = null;
-                            AnimalMaster = false;
-                            logger.setInstance(Instance.TTS_GAMES);
-                        }
                     }
                 }
             });

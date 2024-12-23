@@ -39,6 +39,7 @@ public final class SoundString {
                         case 1 -> Game = "animal_master";
                         case 2 -> Game = "detective_eagle";
                         case 3 -> Game = "detective_thunder";
+                        case 4 -> Game = "pixel_quest";
                         default -> Game = "error";
                     }
                     soundKey = Text.translatable(String.format("sound.%s.%s", Game, defaultF.getName()));

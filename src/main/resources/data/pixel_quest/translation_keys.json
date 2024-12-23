@@ -1,0 +1,10 @@
+{
+  "values": [
+	"pixel_quest.health",
+	"pixel_quest.saturation",
+	"pixel_quest.weight"
+  ],
+  "item_descriptions": [
+	"pixel_quest.tooltip.smelt!"
+  ]
+}

@@ -13,7 +13,7 @@ public class Translations {
                 Questions, AnswerButtons, Compliments, Insults, Results, Informations, OtherButtons,
                 Games, Settings, Credits, Statistics, WrongJava, TTsGames,
                 DetectiveEagle, QuestionsD, ButtonsD,
-                ButtonsDT, DetectiveThunder
+                ButtonsDT, DetectiveThunder, PixelQuest, ItemDescriptions
         });
     }
 
@@ -35,7 +35,9 @@ public class Translations {
             QuestionsD  = jsonReader.DATranslationKeys("questions"),
             ButtonsD = jsonReader.DATranslationKeys("buttons"),
             ButtonsDT  = jsonReader.DTTranslationKeys("buttons"),
-            DetectiveThunder = jsonReader.DTTranslationKeys("other");
+            DetectiveThunder = jsonReader.DTTranslationKeys("other"),
+            PixelQuest = jsonReader.PQTranslationKeys("values"),
+            ItemDescriptions = jsonReader.PQTranslationKeys("item_descriptions");
 
     @Override
     public String toString() {
@@ -43,10 +45,10 @@ public class Translations {
                 "animal_master: {questions: %s, buttons : %s, compliments: %s, insults: %s, results: %s, informations: %s, other_buttons: %s} " +
                 "tts_games: {games: %s, settings: %s, credits: %s, statistics: %s, wrong_java: %s, other: %s} " +
                 "detective_eagle: {main: %s, questions: %s, buttons: %s} " +
-                "detective_thunder: {buttons: %s, other: %s} ",
+                "detective_thunder: {buttons: %s, other: %s}, pixel_quest: {main: %s, item_descriptions: %s}",
                 Arrays.toString(Questions), Arrays.toString(AnswerButtons), Arrays.toString(Compliments), Arrays.toString(Insults), Arrays.toString(Results),
                 Arrays.toString(Informations), Arrays.toString(OtherButtons), Arrays.toString(Games), Arrays.toString(Settings), Arrays.toString(Credits),
                 Arrays.toString(Statistics), Arrays.toString(WrongJava), Arrays.toString(TTsGames), Arrays.toString(DetectiveEagle), Arrays.toString(QuestionsD),
-                Arrays.toString(ButtonsD), Arrays.toString(ButtonsDT), Arrays.toString(DetectiveThunder));
+                Arrays.toString(ButtonsD), Arrays.toString(ButtonsDT), Arrays.toString(DetectiveThunder), Arrays.toString(PixelQuest), Arrays.toString(ItemDescriptions));
     }
 }

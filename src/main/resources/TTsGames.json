@@ -18,8 +18,8 @@
 	  "group": "2.0"
 	},
 	"pixel_quest": {
-	  "prerelease": "0.0.0 alpha 1",
-	  "group": "0.0.0"
+	  "prerelease": "0.1.0",
+	  "group": "0.1.0"
 	}
   },
   "config": {
@@ -36,47 +36,88 @@
 	"English": "en_us"
   },
   "textures_base_dictionaries": [
-	"assets/textures", "assets/textures/animal_master", "assets/textures/detective_eagle", "assets/textures/detective_thunder", "assets/textures/pixel_quest"
+	[
+	  "assets/textures"
+	],
+	[
+	  "assets/textures/animal_master"
+	],
+	[
+	  "assets/textures/detective_eagle"
+	],
+	[
+	  "assets/textures/detective_thunder"
+	],
+	[
+	  "assets/textures/pixel_quest",
+	  "assets/textures/pixel_quest/gui",
+	  "assets/textures/pixel_quest/util"
+	]
   ],
   "textures_file_types": [
-	".jpg", ".jpeg", ".jpg", "", ".png"
+	[".jpg"],
+	[".jpeg"],
+	[".jpg"],
+	[""],
+	[
+	  ".png",
+	  ".png",
+	  ".png",
+	  ".png",
+	  ".png"
+	]
   ],
   "no_texture_file": "assets/textures/no_texture.png",
   "textures": [
 	[
-	  "TTsGames", "TTsGames_Background", "Subtitles", "Error"
+	  [
+		"TTsGames", "TTsGames_Background", "Subtitles", "Error"
+	  ]
 	],
 	[
-	  "AnimalMaster_bottom",
-	  "animals/Elefant", "animals/Brachiosaurus", "animals/Giraffe",
-	  "animals/Löwe", "animals/Tiger", "animals/Katze",
-	  "animals/Kakadu", "animals/Pinguin", "animals/Fledermaus",
-	  "animals/Panda", "animals/Eisbär",
-	  "animals/Schmetterling", "animals/Hummel",
-	  "animals/Delfin", "animals/Tigerhai", "animals/Fächerfisch",
-	  "animals/Leopard", "animals/Gepard", "animals/Pferd",
-	  "animals/Pottwal", "animals/Blauwal",
-	  "animals/Seewespe", "animals/Inlandtaipan", "animals/Steinfisch",
-	  "animals/Tsetsefliege", "animals/Raubwanze", "animals/Moskitos",
-	  "animals/Assel", "animals/Tausendfüßer", "animals/Hundertfüßer",
-	  "animals/Islandmuschel", "animals/Riesenschwamm", "animals/Grönlandhai",
-	  "animals/Fruchtfliege", "animals/Gastrotrichen", "animals/Eintagsfliege",
-	  "AnimalMaster"
+	  [
+		"AnimalMaster_bottom","animals/Elefant", "animals/Brachiosaurus", "animals/Giraffe",
+		"animals/Löwe", "animals/Tiger", "animals/Katze",
+		"animals/Kakadu", "animals/Pinguin", "animals/Fledermaus",
+		"animals/Panda", "animals/Eisbär",
+		"animals/Schmetterling", "animals/Hummel",
+		"animals/Delfin", "animals/Tigerhai", "animals/Fächerfisch",
+		"animals/Leopard", "animals/Gepard", "animals/Pferd",
+		"animals/Pottwal", "animals/Blauwal",
+		"animals/Seewespe", "animals/Inlandtaipan", "animals/Steinfisch",
+		"animals/Tsetsefliege", "animals/Raubwanze", "animals/Moskitos",
+		"animals/Assel", "animals/Tausendfüßer", "animals/Hundertfüßer",
+		"animals/Islandmuschel", "animals/Riesenschwamm", "animals/Grönlandhai",
+		"animals/Fruchtfliege", "animals/Gastrotrichen", "animals/Eintagsfliege",
+		"AnimalMaster"
+	  ]
 	],
 	[
-	  "DetektivAdler", "DetektivAdler_bottom",
-	  "Fälle/Fall1", "DiebOptionen/Fall1O1", "DiebOptionen/Fall1O2"
+	  [
+		"DetektivAdler", "DetektivAdler_bottom",
+	  	"Fälle/Fall1", "DiebOptionen/Fall1O1", "DiebOptionen/Fall1O2"
+	  ]
 	],
 	[
-	  "DetektivThunder.jpg", "DetektivThunder_bottom.jpg",
-	  "locations/Wache_0.png", "locations/Kunstgalerie.png", "locations/Kunstgalerie_Fingerabdruck_0.png"
+	  [
+  		"DetektivThunder.jpg", "DetektivThunder_bottom.jpg",
+	  	"locations/Wache_0.png", "locations/Kunstgalerie.png", "locations/Kunstgalerie_Fingerabdruck_0.png"
+	  ]
 	],
 	[
-	  "icon", "background", "enemy", "animal", "player"
+	  [
+		"icon", "background", "death_screen"
+	  ],
+	  [
+		"heart", "saturation"
+	  ],
+	  [
+		"furnace", "furnace_on"
+	  ]
 	]
   ],
   "sounds_base_dictionaries": [
-	"assets/sounds", "assets/sounds/animal_master", "assets/sounds/detective_eagle", "assets/sounds/detective_thunder"
+	"assets/sounds", "assets/sounds/animal_master", "assets/sounds/detective_eagle", "assets/sounds/detective_thunder", "assets/sounds/pixel_quest"
   ],
   "sounds": [
 	[],
@@ -88,13 +129,15 @@
 	  "phrases/001", "phrases/002", "phrases/003", "phrases/004",
 	  "phrases/005", "phrases/006", "phrases/007"
 	],
-	[]
+	[
+	  "eat"
+	]
   ],
   "data_base_dictionaries": [
-	"data/tts_games", "data/animal_master", "data/detective_eagle", "data/detective_thunder"
+	"data/tts_games", "data/animal_master", "data/detective_eagle", "data/detective_thunder", "data/pixel_quest"
   ],
   "data_file_types": [
-	"", "", ".json", ".json"
+	"", "", ".json", ".json", ".json"
   ],
   "data": [
 	[
@@ -109,9 +152,17 @@
 	[
 	  "translation_keys"
 	],
-	[]
+	[
+	  "translation_keys"
+	]
   ],
   "supported_java_versions": [
+	"21", "21.0", "21.0.0",
+	"21.0.1",
+	"21.0.2",
+	"21.0.3",
+	"21.0.4",
+	"21.0.5",
 	"22", "22.0", "22.0.0",
 	"22.0.1",
 	"22.0.2",

@@ -14,10 +14,10 @@ public class TTsGamesJSONFormat {
     private String language_files_base_dictionary;
     private String[] languages;
     private Map<String, String> language_files;
-    private String[] textures_base_dictionaries;
-    private String[] textures_file_types;
+    private String[][] textures_base_dictionaries;
+    private String[][] textures_file_types;
     private String no_texture_file;
-    private String[][] textures;
+    private String[][][] textures;
     private String[] sounds_base_dictionaries;
     private String[][] sounds;
     private String[] data_base_dictionaries;
@@ -43,16 +43,20 @@ public class TTsGamesJSONFormat {
     public ImageString getNoTextureFile() {
         return new ImageString(no_texture_file);
     }
-    public ImageString[][] getTextures() {
-        ImageString[][] newTextures = new ImageString[textures.length][];
+    public ImageString[][][] getTextures() {
+        ImageString[][][] newTextures = new ImageString[textures.length][][];
         for (int i = 0; i < textures.length; i++) {
-            newTextures[i] = new ImageString[textures[i].length];
+            newTextures[i] = new ImageString[textures[i].length][];
             for (int j = 0; j < textures[i].length; j++) {
-                newTextures[i][j] = new ImageString (textures_base_dictionaries[i] + "/" + textures[i][j] + textures_file_types[i]);
+                newTextures[i][j] = new ImageString[textures[i][j].length];
+                for (int k = 0; k < textures[i][j].length; k++) {
+                    newTextures[i][j][k] = new ImageString(textures_base_dictionaries[i][j] + "/" + textures[i][j][k] + textures_file_types[i][j]);
+                }
             }
         }
         return newTextures;
     }
+
     public SoundString[][] getSounds() {
         SoundString[][] newTextures = new SoundString[textures.length][];
         for (int i = 0; i < sounds.length; i++) {

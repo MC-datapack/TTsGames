@@ -16,7 +16,7 @@ public class WrongJavaVersion {
 
         TLabel text = new TLabel(WrongJava[1] + javaVersion);
 
-        WindowOperations(6, new WindowInformation(false, new Point(500, 500), new Dimension(300, 100), Textures[0][3],
+        WindowOperations(6, new WindowInformation(false, new Point(500, 500), new Dimension(300, 100), Textures[0][0][3],
                 WindowConstants.EXIT_ON_CLOSE), text);
     }
 }

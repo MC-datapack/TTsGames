@@ -1,21 +1,19 @@
 package dev.TTs.TTsGames.Games.PixelQuest.entities;
 
 import dev.TTs.TTsGames.Games.PixelQuest.item.Droppable;
+import dev.TTs.TTsGames.Games.PixelQuest.json.PixelQuestJsonReader;
+import dev.TTs.TTsGames.Games.PixelQuest.main.PixelQuestGame;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
-import static dev.TTs.TTsGames.Main.Textures;
-import static dev.TTs.TTsGames.Main.logger;
+public abstract class Mob extends GameObject implements Droppable {
+    protected final int speed;
+    protected int direction;
 
-public class Animal extends GameObject implements Droppable {
-    private int speed;
-    private int direction; // 0: up, 1: down, 2: left, 3: right
-
-    public Animal(int x, int y, int speed) {
+    public Mob(int x, int y, int speed) {
         super(x, y);
         this.speed = speed;
-        this.direction = 0; // Initial direction
+        this.direction = 0;
     }
 
     @Override
@@ -43,7 +41,7 @@ public class Animal extends GameObject implements Droppable {
                 }
             }
         }
-        // Change direction occasionally (simple AI behavior)
+        // Change the direction occasionally
         if (Math.random() < 0.02) {
             direction = (int) (Math.random() * 4);
         }
@@ -51,24 +49,16 @@ public class Animal extends GameObject implements Droppable {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Textures[4][3].toImage(), x, y, null);
+        g.drawImage(id().getEntityTexture().toImage(), x, y, null);
     }
 
     @Override
-    public void onCollision(GameObject other) {
-        if (canCollide() && other instanceof Player) {
+    public void onCollision(GameObject with) {
+        if (with instanceof Player) {
             dropItem();
-            // Additional collision handling logic, e.g., reduce health or change direction
-        } else if (canCollide() && (other instanceof Enemy || other instanceof Animal)) {
-            // Example: Change direction on collision with another enemy or animal
+            PixelQuestGame.game.removeGameObject(this);
+        } else if (with instanceof Mob) {
             direction = (int) (Math.random() * 4);
         }
-    }
-
-
-    @Override
-    public void dropItem() {
-        logger.info("Animal dropped an item!");
-        // Logic for dropping an item
     }
 }

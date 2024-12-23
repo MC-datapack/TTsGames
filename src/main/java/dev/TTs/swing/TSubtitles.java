@@ -19,7 +19,7 @@ public class TSubtitles extends TFrame {
         this.setSize(500, 140);
         this.setLocation(location);
         this.getContentPane().setBackground(Color.BLACK);
-        this.setIconImage(Textures[0][2].toImage());
+        this.setIconImage(Textures[0][0][2].toImage());
         this.setLayout(new BorderLayout());
         this.add(text);
     }

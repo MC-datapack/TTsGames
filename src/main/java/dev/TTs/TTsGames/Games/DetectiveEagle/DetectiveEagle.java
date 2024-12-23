@@ -32,8 +32,8 @@ public class DetectiveEagle {
             TButton answer20 = new TButton(ButtonsD[1]);
             TButton answer21 = new TButton(ButtonsD[2]);
             TLabel question3 = new TLabel(QuestionsD[3]);
-            TButton answer31 = new TButton(Textures[2][3].toIcon());
-            TButton answer32 = new TButton(Textures[2][4].toIcon());
+            TButton answer31 = new TButton(Textures[2][0][3].toIcon());
+            TButton answer32 = new TButton(Textures[2][0][4].toIcon());
 
             TButton[] doStandardButtonstuff =  {
                     start, answer01, answer02, answer03, answer11, answer12, answer13, answer20, answer21, answer31, answer32
@@ -56,35 +56,35 @@ public class DetectiveEagle {
                     start, answer20, answer01, answer11, answer12, answer13
             };
             for (Component component : setButtonBounds) {
-                component.setBounds(10, 45, 118, 30);
+                component.setBounds((int) (10 * de), (int) (45 * de), (int) (118 * de), (int) (30 * de));
             }
-            answer02.setBounds(135, 45, 118, 30);
-            answer03.setBounds(265, 45, 118, 30);
-            answer12.setBounds(135, 45, 118, 30);
-            answer13.setBounds(265, 45, 118, 30);
-            answer21.setBounds(135, 45, 118, 30);
-            answer31.setBounds(10, 45, 140, 140);
-            answer32.setBounds(165, 45, 140, 140);
+            answer02.setBounds((int) (135 * de), (int) (45 * de), (int) (118 * de), (int) (30 * de));
+            answer03.setBounds((int) (265 * de), (int) (45 * de), (int) (118 * de), (int) (30 * de));
+            answer12.setBounds((int) (135 * de), (int) (45 * de), (int) (118 * de), (int) (30 * de));
+            answer13.setBounds((int) (265 * de), (int) (45 * de), (int) (118 * de), (int) (30 * de));
+            answer21.setBounds((int) (135 * de), (int) (45 * de), (int) (118 * de), (int) (30 * de));
+            answer31.setBounds((int) (10 * de), (int) (45 * de), (int) (140 * de), (int) (140 * de));
+            answer32.setBounds((int) (165 * de), (int) (45 * de), (int) (140 * de), (int) (140 * de));
             Component[] setLabelBounds = {
                     erkl, question0, question1, question2, question3
             };
             for (Component component : setLabelBounds) {
-                component.setBounds(10, 10, 320, 30);
+                component.setBounds((int) (10 * de), (int) (10 * de), (int) (320 * de), (int) (30 * de));
             }
 
-            TImage Background = Textures[2][1].toTImage();
+            TImage Background = Textures[2][0][1].toTImage();
             Background.setLayout(new BorderLayout());
-            Background.setPreferredSize(new Dimension(420, 171));
-            Background.setBounds(0, 0, 420, 171);
+            Background.setPreferredSize(new Dimension((int) (420 * de), (int) (210 * de)));
+            Background.setBounds(0, 0, (int) (420 * de), (int) (210 * de));
 
-            TImage Fall1 = Textures[2][2].toTImage();
+            TImage Fall1 = Textures[2][0][2].toTImage();
             Fall1.setLayout(new BorderLayout());
-            Fall1.setPreferredSize(new Dimension(300, 171));
+            Fall1.setPreferredSize(new Dimension((int) (300 * de), (int) (210 * de)));
             Fall1.Show();
-            Fall1.setBounds(0, 0, 300, 171);
+            Fall1.setBounds(0, 0, (int) (300 * de), (int) (210 * de));
 
             TLayeredPane Pane = new TLayeredPane();
-            Pane.setPreferredSize(new Dimension(420, 171));
+            Pane.setPreferredSize(new Dimension((int) (420 * de), (int) (210 * de)));
 
             Component[] addToPane = {
                     erkl, start, question0, question1, question2, question3, answer20, answer21, answer31, answer01, answer02, answer03,
