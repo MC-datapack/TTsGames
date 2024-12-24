@@ -1,5 +1,7 @@
 package dev.TTs.TTsGames.Games.PixelQuest.item;
 
+import dev.TTs.TTsGames.Games.PixelQuest.util.Identifier;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +11,14 @@ import static dev.TTs.resources.Translations.ItemDescriptions;
 public sealed interface Item permits BasicItem, FoodItem {
     Map<String, Item> items = new HashMap<>();
     BasicItem toItem();
+
+    static BasicItem registerBasicItem(String name, Settings settings) {
+        return register(new BasicItem(new Identifier(name), settings));
+    }
+
+    static FoodItem registerFoodItem(String name, int saturation, Settings settings) {
+        return Item.register(new FoodItem(new Identifier(name), saturation, settings));
+    }
 
     static <T extends Item> T register(T item) {
         items.put(item.toItem().identifier().itemId(), item);
@@ -28,6 +38,7 @@ public sealed interface Item permits BasicItem, FoodItem {
         private Rarity rarity = Rarity.COMMON;
         private int stackLimit = 128;
         private String description = "";
+        private Category category = Category.MISC;
 
         public Settings weight(float weight) {
             this.weight = weight;
@@ -53,6 +64,11 @@ public sealed interface Item permits BasicItem, FoodItem {
             return this;
         }
 
+        public Settings category(Category category) {
+            this.category = category;
+            return this;
+        }
+
         public float getWeight() {
             return weight;
         }
@@ -69,9 +85,27 @@ public sealed interface Item permits BasicItem, FoodItem {
             return description;
         }
 
+        public Category getCategory() {
+            return category;
+        }
+
         @Override
         public String toString() {
-            return "[wight: " + weight + ", rarity: " + rarity + ", stack_limit: " + stackLimit + ", description: " + description + "]";
+            return "[wight: " + weight + ", rarity: " + rarity + ", stack_limit: " + stackLimit + ", description: " + description + ", category: " + category.getName() + "]";
+        }
+    }
+
+    enum Category {
+        MISC("Misc"), FOOD("Food");
+
+        String name;
+
+        Category(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
         }
     }
 }

@@ -1,0 +1,4 @@
+{
+  "jar-file": "https://example.com/path/to/file.jar",
+  "jdk-download": "https://example.com/path/to/java_installer.exe"
+}

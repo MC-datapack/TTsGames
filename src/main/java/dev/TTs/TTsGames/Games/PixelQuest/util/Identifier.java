@@ -6,7 +6,8 @@ import dev.TTs.resources.Json.Text;
 public record Identifier(String project, String name) {
 
     public Identifier(String name) {
-        this("pixel_quest", name);
+        this(name.contains(":") ? name.split(":")[0] : "pixel_quest",
+                name.contains(":") ? name.split(":")[1] : name);
     }
 
     public String getLootTablePath() {
