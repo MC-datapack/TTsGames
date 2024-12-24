@@ -1,6 +1,10 @@
 ![Icon](src/main/resources/assets/textures/TTsGames.jpg)
 # TTs Games
 
+## [TTs Launcher](https://github.com/MC-datapack/TTsLauncher)
+#### [Download](https://github.com/MC-datapack/TTsLauncher/releases)
+
+
 ### [Information Regarding Resources](RESOURCES.md)
 
 TTs Games is a small collection of self-made simple games without 3D rendering.
