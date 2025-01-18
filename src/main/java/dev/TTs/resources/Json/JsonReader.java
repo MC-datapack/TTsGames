@@ -78,12 +78,12 @@ public class JsonReader {
 
 
 
-    private <T> T ValuesStandard(String element, String path, Class<T> tClass) {
+    public  <T> T ValuesStandard(String element, String path, Class<T> tClass) {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(path);
              InputStreamReader reader = inputStream == null ? null : new InputStreamReader(inputStream)) {
 
             if (inputStream == null) {
-                logger.error("File not found: %s" + path);
+                logger.error("File not found: %s", path);
                 return null;
             }
 

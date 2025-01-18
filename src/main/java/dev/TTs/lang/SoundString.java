@@ -4,7 +4,6 @@ import dev.TTs.resources.Configs;
 import dev.TTs.resources.Json.Text;
 import dev.TTs.resources.Json.formats.SoundJSONFormat;
 import dev.TTs.swing.TSubtitles;
-import org.jetbrains.annotations.Nullable;
 
 import javax.sound.sampled.*;
 import java.awt.*;
@@ -59,7 +58,6 @@ public final class SoundString {
         return soundKey;
     }
 
-    @Nullable
     public URL toURL() {
         URL resource = SoundString.class.getResource(this.soundPath);
         if (resource == null) {
@@ -98,12 +96,10 @@ public final class SoundString {
         }
     }
 
-    @Nullable
     public Clip playSound() {
         return playSound(1.0f);
     }
 
-    @Nullable
     public Clip playSound(float VolumeMultiplier) {
         try {
             URL url = this.toURL();

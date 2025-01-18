@@ -1,0 +1,15 @@
+{
+  "name": "pixel_quest:stick",
+  "pattern": {
+    "0": "pixel_quest:stick",
+    "3": "pixel_quest:stick"
+  },
+  "output": {
+    "item": "pixel_quest:stick",
+    "count": {
+      "fixed": 4
+    },
+    "chance": 1.0,
+    "conditions": {}
+  }
+}

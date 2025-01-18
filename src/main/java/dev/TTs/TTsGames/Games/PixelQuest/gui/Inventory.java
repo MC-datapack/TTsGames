@@ -1,242 +1,322 @@
 package dev.TTs.TTsGames.Games.PixelQuest.gui;
 
-import dev.TTs.TTsGames.Games.PixelQuest.entities.ItemEntity;
-import dev.TTs.TTsGames.Games.PixelQuest.item.Item;
-import dev.TTs.TTsGames.Games.PixelQuest.item.ItemStack;
-import dev.TTs.TTsGames.Games.PixelQuest.item.Rarity;
-import dev.TTs.TTsGames.Games.PixelQuest.main.PixelQuestGame;
+import dev.TTs.TTsGames.Games.PixelQuest.item.*;
 
 import java.awt.*;
+import java.io.Serial;
+import java.io.Serializable;
 
-import static dev.TTs.TTsGames.Main.logger;
+import static dev.TTs.TTsGames.Games.PixelQuest.main.WorldSaving.serialVersion;
 
-@SuppressWarnings("unused")
-public abstract class Inventory {
-    protected ItemStack[] items;
-    protected final int maxSize;
-    protected final Point[] slotPositions;
-    private String tooltipTitle = null;
-    private String tooltipDescription = null;
-    private Point tooltipPosition = null;
-    private Rarity tooltipRarity = null;
-    public Rectangle[] bounds;
+/**
+ * Interface representing the inventory system.
+ */
+public interface Inventory extends Serializable {
+    @Serial
+    long serialVersionUID = serialVersion;
 
-    public Inventory(int maxSize) {
-        this.items = new ItemStack[maxSize];
-        this.maxSize = maxSize;
-        this.slotPositions = slotPositions();
-        this.bounds = new Rectangle[maxSize];
-        for (int i = 0; i < maxSize; i++) {
-            Point slotPosition = getSlotPosition(i);
-            if (slotPosition != null) {
-                bounds[i] = new Rectangle(slotPosition.x, slotPosition.y, 32, 32);
-            }
+    /**
+     * Returns the bounds of each slot.
+     * @return an array of Rectangles representing slot bounds.
+     */
+    Rectangle[] bounds();
+
+    /**
+     * Returns the positions of each slot.
+     * @return an array of Points representing slot positions.
+     */
+    Point[] slotPositions();
+
+    /**
+     * Draws a specific slot.
+     * @param g the graphics context.
+     * @param index the index of the slot to draw.
+     */
+    void drawSlot(Graphics g, int index);
+
+    /**
+     * Draws the entire inventory.
+     * @param g the graphics context.
+     */
+    void drawInventory(Graphics g);
+
+    /**
+     * Draws a basic slot.
+     * @param g the graphics context.
+     * @param index the index of the slot to draw.
+     */
+    void basicDrawSlot(Graphics g, int index);
+
+    /**
+     * Draws a tooltip for an item.
+     * @param g the graphics context.
+     * @param title the title of the item.
+     * @param description the description of the item.
+     * @param rarity the rarity of the item.
+     * @param x the x-coordinate of the tooltip.
+     * @param y the y-coordinate of the tooltip.
+     */
+    void drawTooltip(Graphics g, String title, String description, Rarity rarity, int x, int y);
+
+    /**
+     * Handles mouse movement over the inventory.
+     */
+    void handleMouseMoved();
+
+    /**
+     * Adds an item to the inventory as a new stack.
+     * @param item the item to add.
+     * @throws InventoryOutOfBoundsException if the inventory is full.
+     */
+    void addItemAsNewStack(ItemStack item) throws InventoryOutOfBoundsException;
+
+    /**
+     * Adds a specified count of an item to an existing stack.
+     * @param index the index of the stack.
+     * @param count the count to add.
+     * @throws InventoryOutOfBoundsException if the inventory is full.
+     * @throws ItemCountException if the stack is getting bigger than the limit.
+     */
+    void addItem(int index, int count) throws InventoryOutOfBoundsException, ItemCountException;
+
+    /**
+     * Adds an item to the inventory.
+     * @param item the item to add.
+     * @throws InventoryOutOfBoundsException if the inventory is full.
+     */
+    void addItem(ItemStack item) throws InventoryOutOfBoundsException;
+
+    /**
+     * Adds an item to existing stacks if possible.
+     * @param item the item to add.
+     * @return the remaining count of the item that couldn't be added.
+     */
+    int addToExistingStacks(ItemStack item);
+
+    /**
+     * Finds space in existing stacks for an item.
+     * @param item the item to find space for.
+     * @return the available space for the item.
+     */
+    int findSpaceInExistingStacks(ItemStack item);
+
+    /**
+     * Removes an item from the inventory.
+     * @param itemstack the item stack to remove.
+     */
+    void removeItem(ItemStack itemstack);
+
+    /**
+     * Removes an item from a specific slot.
+     * @param index the index of the slot.
+     */
+    void removeItem(int index);
+
+    /**
+     * Removes multiple items from the inventory.
+     * @param item the item to remove.
+     */
+    void removeItems(ItemStack item);
+
+    /**
+     * Removes multiple items from a specific slot.
+     * @param index the index of the slot.
+     */
+    void removeItems(int index);
+
+    /**
+     * Replaces an item in a specific slot.
+     * @param index the index of the slot.
+     * @param item the item to place in the slot.
+     */
+    void replaceSlot(int index, ItemStack item);
+
+    /**
+     * Formats the message for too many items.
+     * @return the formatted message.
+     */
+    String formatTooManyItems();
+
+    /**
+     * Returns all items in the inventory.
+     * @return an array of ItemStacks representing the items.
+     */
+    ItemStack[] getItems();
+
+    /**
+     * Returns the item stack at a specific slot.
+     * @param index the index of the slot.
+     * @return the ItemStack at the slot.
+     */
+    ItemStack getItemStack(int index);
+
+    /**
+     * Returns the item at a specific slot.
+     * @param index the index of the slot.
+     * @return the item at the slot.
+     */
+    Item getItem(int index);
+
+    /**
+     * Returns the currently selected item stack.
+     * @return the selected ItemStack.
+     */
+    ItemStack getSelectedStack();
+
+    /**
+     * Returns the index of the currently selected slot.
+     * @return the selected index.
+     */
+    int getSelectedIndex();
+
+    /**
+     * Drops the Stack of the index.
+     * @param index the index of the slot.
+     */
+    void dropStack(int index);
+
+    /**
+     * Drops the Stack of the index at a specific point.
+     * @param point the point to drop the stack at.
+     * @param index the index of the slot.
+     */
+    void dropStack(int index, Point point);
+
+    /**
+     * Drops the currently selected stack.
+     */
+    void dropSelectedStack();
+
+    /**
+     * Drops the currently selected stack at a specific point.
+     * @param point the point to drop the stack at.
+     */
+    void dropSelectedStack(Point point);
+
+    /**
+     * Drops all stacks at a specific point.
+     * @param point the point to drop the stack at.
+     */
+    void dropAll(Point point);
+
+    /**
+     * Returns the maximum size of the inventory.
+     * @return the maximum size.
+     */
+    int getMaxSize();
+
+    /**
+     * Returns the current filled size of the inventory.
+     * @return the current filled size.
+     */
+    int getCurrentFilledSize();
+
+    /**
+     * Returns the position of a specific slot.
+     * @param index the index of the slot.
+     * @return the position of the slot.
+     */
+    Point getSlotPosition(int index);
+
+    /**
+     * Checks the inventory for any issues.
+     */
+    void check();
+
+    /**
+     * Checks if a specific slot is empty.
+     * @param index the index of the slot.
+     * @return true if the slot is empty, false otherwise.
+     */
+    boolean isEmpty(int index);
+
+    /**
+     * Checks if the inventory is full.
+     * @return true if the inventory is full, false otherwise.
+     */
+    boolean isFull();
+
+    /**
+     * Sorts the inventory based on the specified sort type.
+     * @param sort the sort type.
+     * @throws UnsupportedOperationException if the sort type is not supported.
+     */
+    void sortInventory(SortType sort) throws UnsupportedOperationException;
+
+    /**
+     * Increases the size of the inventory.
+     * @param amount the amount to increase.
+     */
+    void increaseSize(int amount);
+
+    /**
+     * Decreases the size of the inventory.
+     * @param amount the amount to decrease.
+     */
+    void decreaseSize(int amount);
+
+    /**
+     * Increases the size of the inventory using a power-up item.
+     * @param added the power-up item.
+     */
+    void increaseSize(PowerUpItem added);
+
+    /**
+     * Decreases the size of the inventory using a power-up item.
+     * @param removed the power-up item.
+     */
+    void decreaseSize(PowerUpItem removed);
+
+    /**
+     * Swaps items between two slots.
+     * @param index1 the first slot index.
+     * @param index2 the second slot index.
+     */
+    default void swapItems(int index1, int index2) {
+        ItemStack stack1 = getItemStack(index1);
+        ItemStack stack2 = getItemStack(index2);
+        replaceSlot(index1, stack2);
+        replaceSlot(index2, stack1);
+    }
+
+    /**
+     * Moves items from one slot to another in the inventory.
+     * @param from the index of the source slot.
+     * @param to the index of the destination slot.
+     */
+    default void moveItems(int from, int to) {
+        if (getItemStack(to) != null) {
+            swapItems(from, to);
+            return;
         }
+        ItemStack fromStack = getItemStack(from);
+        replaceSlot(to, fromStack);
+        removeItems(from);
     }
 
-    public abstract Point[] slotPositions();
 
-    public void handleMouseMoved() {
-        for (int i = 0; i < maxSize; i++) {
-            Point slotPosition = getSlotPosition(i);
-            if (slotPosition != null) {
-                Rectangle slotBounds = new Rectangle(slotPosition.x, slotPosition.y, 32, 32);
-                if (slotBounds.contains(PixelQuestGame.game.mousePosition)) {
-                    ItemStack itemStack = getItemStack(i);
-                    if (itemStack != null) {
-                        tooltipTitle = itemStack.getItem().toItem().identifier().translatedItemName();
-                        tooltipDescription = itemStack.getItem().toItem().settings().getDescription();
-                        tooltipRarity = itemStack.getItem().toItem().settings().getRarity();
-                        tooltipPosition = PixelQuestGame.game.mousePosition;
-                        return;
-                    }
-                }
-            }
-        }
-        tooltipTitle = null;
-        tooltipDescription = null;
-        tooltipRarity = null;
-        tooltipPosition = null;
+    /**
+     * Re-adds an item to the inventory.
+     * @param index the index of the item.
+     */
+    default void readdItem(int index) {
+        ItemStack sel = getItemStack(index);
+        removeItems(index);
+        addItem(sel);
     }
 
-    public void paintInventory(Graphics g) {
-        for (int i = 0; i < maxSize; i++) {
-            ItemStack item = this.getItemStack(i);
-            Point slotPosition = this.getSlotPosition(i);
-            if (slotPosition != null) {
-                g.setColor(new Color(158, 158, 158));
-                g.fillRect(slotPosition.x, slotPosition.y, 32, 32);
-                g.setColor(new Color(92, 91, 91));
-                g.drawRect(slotPosition.x, slotPosition.y, 33, 33);
-                g.drawRect(slotPosition.x, slotPosition.y, 32, 32);
-                if (item != null) {
-                    g.drawImage(item.getItem().toItem().identifier().getItemTexture().toImage(), slotPosition.x, slotPosition.y, 32, 32, null);
-                    if (item.getCount() != 1) {
-                        int xC = item.getCount() > 99 ? 5 : 10;
-                        g.setColor(Color.BLACK);
-                        g.setFont(new Font("Arial", Font.BOLD, 16));
-                        g.drawString(String.valueOf(item.getCount()), slotPosition.x + xC, slotPosition.y + 32);
-                    }
-                }
-            }
-        }
-        if (tooltipTitle != null && tooltipDescription != null && tooltipPosition != null) {
-            drawTooltip(g, tooltipTitle, tooltipDescription, tooltipRarity, tooltipPosition.x, tooltipPosition.y);
-        }
+    /**
+     * Returns the current empty size of the inventory.
+     * @return the current empty size.
+     */
+    default int getCurrentEmptySize() {
+        return getMaxSize() - getCurrentFilledSize();
     }
 
-    private void drawTooltip(Graphics g, String title, String description, Rarity rarity, int x, int y) {
-        FontMetrics fm = g.getFontMetrics();
-        int titleWidth = fm.stringWidth(title);
-        int descWidth = fm.stringWidth(description);
-        int width = Math.max(titleWidth, descWidth) + 10;
-        int lines = description.isEmpty() ? 1 : 2;
-        int height = fm.getHeight() * lines + 2;
-
-        g.setColor(new Color(0, 0, 0));
-        g.fillRoundRect(x, y, width, height, 10, 10);
-        g.setColor(Color.WHITE);
-        g.drawRoundRect(x, y, width, height, 10, 10);
-        g.setColor(rarity.getColor());
-        g.drawString(title, x + 5, y + fm.getAscent() + 2);
-        if (!description.isEmpty()) {
-            g.setColor(Color.WHITE);
-            g.drawString(description, x + 5, y + fm.getAscent() * 2 + 5);
-        }
-    }
-
-    public void addItemAsNewStack(ItemStack item) throws InventoryOutOfBoundsException {
-        int i;
-        for (i = 0; i < items.length; i++) {
-            if (items[i] == null) {
-                items[i] = item;
-                return;
-            }
-        }
-        throw new InventoryOutOfBoundsException(formatTooManyItems());
-    }
-
-    public void addItem(ItemStack item) throws InventoryOutOfBoundsException {
-        if (items.length >= maxSize && findSpaceInExistingStacks(item) == 0) {
-            throw new InventoryOutOfBoundsException(formatTooManyItems());
-        }
-        int itemsToAdd = item.getCount();
-        itemsToAdd -= addToExistingStacks(item);
-
-        while (itemsToAdd > 0) {
-            int countToAdd = Math.min(item.getItem().toItem().settings().getStackLimit(), itemsToAdd);
-            addItemAsNewStack(new ItemStack(item.getItem(), countToAdd));
-            itemsToAdd -= countToAdd;
-        }
-    }
-
-    public String formatTooManyItems() {
-        StringBuilder build = new StringBuilder("Tried adding too many items:\n");
-        for (int i = 0; i < maxSize; i++) {
-            build.append(i).append(": ").append(items[i]).append("\n");
-        }
-        return build.toString();
-    }
-
-    protected int addToExistingStacks(ItemStack item) {
-        int remainingItems = item.getCount();
-        for (ItemStack existingItem : items) {
-            if (existingItem != null && existingItem.getItem().equals(item.getItem())) {
-                int availableSpace = item.getItem().toItem().settings().getStackLimit() - existingItem.getCount();
-                int addable = Math.min(availableSpace, remainingItems);
-                for (int i = 0; i < addable; i++) {
-                    existingItem.addItem();
-                }
-                remainingItems -= addable;
-                if (remainingItems <= 0) break;
-            }
-        }
-        return item.getCount() - remainingItems;
-    }
-
-    protected int findSpaceInExistingStacks(ItemStack item) {
-        int totalSpace = 0;
-        for (ItemStack existingItem : items) {
-            if (existingItem == null || existingItem.getItem().equals(item.getItem())) {
-                int availableSpace;
-                if (existingItem != null) {
-                    availableSpace = item.getItem().toItem().settings().getStackLimit() - existingItem.getCount();
-                } else {
-                    availableSpace = item.getItem().toItem().settings().getStackLimit();
-                }
-                totalSpace += availableSpace;
-            }
-        }
-        return totalSpace;
-    }
-
-    public void removeItem(ItemStack itemstack) {
-        if (itemstack.getCount() <= 1) {
-            for (int i = 0; i < items.length; i++) {
-                if (items[i] == itemstack) {
-                    items[i] = null;
-                }
-            }
-        } else {
-            itemstack.removeItem();
-        }
-    }
-
-    public void removeItem(int index) {
-        items[index] = null;
-    }
-
-    public ItemStack[] getItems() {
-        return items;
-    }
-
-    public ItemStack getItemStack(int index) {
-        if (index >= 0 && index < items.length) {
-            return items[index];
-        }
-        return null;
-    }
-
-    public Item getItem(int index) {
-        ItemStack itemStack = getItemStack(index);
-        return itemStack != null ? itemStack.getItem() : null;
-    }
-
-    public int getMaxSize() {
-        return maxSize;
-    }
-
-    public int getCurrentSize() {
-        return items.length;
-    }
-
-    public Point getSlotPosition(int index) {
-        if (index >= 0 && index < slotPositions.length) {
-            return slotPositions[index];
-        }
-        return null;
-    }
-
-    public void replaceSlot(int index, ItemStack item) {
-        if (index >= 0 && index < slotPositions.length) {
-            items[index] = item;
-        }
-    }
-
-    public void dropSelectedStack() {
-        for (int i = 0; i < maxSize; i++) {
-            if (bounds[i].contains(PixelQuestGame.game.mousePosition)) {
-                try {
-                    ItemStack selectedItemStack = items[i];
-                    if (selectedItemStack != null) {
-                        PixelQuestGame.game.addGameObject(new ItemEntity(selectedItemStack, PixelQuestGame.game.mousePosition));
-                        removeItem(i);
-                        break;
-                    }
-                } catch (IndexOutOfBoundsException e) {
-                    logger.warn("Failed to drop item at index %s" , i);
-                }
-            }
-        }
+    /**
+     * Enumeration for sorting types.
+     */
+    enum SortType {
+        ITEM_COUNT_ASCENDING, ITEM_COUNT_DESCENDING, ITEM_NAME_A_Z, ITEM_NAME_Z_A, RARITY_COMMON_EPIC, RARITY_EPIC_UNCOMMON
     }
 }

@@ -1,0 +1,12 @@
+{
+  "name": "pixel_quest:cooked_mutton",
+  "input": "pixel_quest:mutton",
+  "output": {
+    "item": "pixel_quest:cooked_mutton",
+    "count": {
+      "fixed": 1
+    },
+    "chance": 1.0,
+    "conditions": {}
+  }
+}

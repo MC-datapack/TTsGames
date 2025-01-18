@@ -1,16 +1,25 @@
 package dev.TTs.TTsGames.Games.PixelQuest.item;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class ItemStack {
+import static dev.TTs.TTsGames.Games.PixelQuest.main.WorldSaving.serialVersion;
+
+public class ItemStack implements Serializable {
+    @Serial
+    private static final long serialVersionUID = serialVersion;
+
     private final Item item;
     private int count;
-    private final int maxCount;
+    private transient int maxCount;
 
     public ItemStack(Item item, int count) {
         this.item = item;
         this.count = count;
-        this.maxCount = item.toItem().settings().getStackLimit();
+        this.maxCount = item.settings() == null ? 64 : item.settings().getStackLimit();
     }
 
     public ItemStack(Item item) {
@@ -48,7 +57,8 @@ public class ItemStack {
     }
 
     public float getWeight() {
-        return item.toItem().settings().getWeight() * count;
+        if (item.settings == null) return 0;
+        return item.settings().getWeight() * count;
     }
 
     @Override
@@ -66,5 +76,11 @@ public class ItemStack {
     @Override
     public int hashCode() {
         return Objects.hash(item);
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.readObject();
+        maxCount = item.settings().getStackLimit();
     }
 }

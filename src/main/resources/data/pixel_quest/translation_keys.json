@@ -2,9 +2,28 @@
   "values": [
 	"pixel_quest.health",
 	"pixel_quest.saturation",
-	"pixel_quest.weight"
+	"pixel_quest.weight",
+	"pixel_quest.set_keybind",
+	"pixel_quest.press_key",
+	"pixel_quest.setting.back_to_game",
+	"pixel_quest.save.error.wrong_version",
+	"pixel_quest.save",
+	"pixel_quest.save.for_older",
+	"pixel_quest.save.unknown_format",
+	"pixel_quest.restart"
   ],
   "item_descriptions": [
 	"pixel_quest.tooltip.smelt!"
+  ],
+  "key_bindings": [
+	"pixel_quest.keybind.up",
+	"pixel_quest.keybind.down",
+	"pixel_quest.keybind.left",
+	"pixel_quest.keybind.right",
+	"pixel_quest.keybind.eat",
+	"pixel_quest.keybind.inventory",
+	"pixel_quest.keybind.drop",
+	"pixel_quest.keybind.smelt",
+	"pixel_quest.keybind.select"
   ]
 }

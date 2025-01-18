@@ -2,41 +2,100 @@ package dev.TTs.TTsGames.Games.PixelQuest.item;
 
 import dev.TTs.TTsGames.Games.PixelQuest.util.Identifier;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import static dev.TTs.TTsGames.Games.PixelQuest.main.WorldSaving.serialVersion;
 import static dev.TTs.TTsGames.Main.logger;
 import static dev.TTs.resources.Translations.ItemDescriptions;
 
-public sealed interface Item permits BasicItem, FoodItem {
-    Map<String, Item> items = new HashMap<>();
-    BasicItem toItem();
+public class Item implements Serializable {
+    @Serial
+    private static final long serialVersionUID = serialVersion;
+    private static final Map<Identifier, Item> items = new HashMap<>();
 
-    static BasicItem registerBasicItem(String name, Settings settings) {
-        return register(new BasicItem(new Identifier(name), settings));
+    Identifier identifier;
+    Item.Settings settings;
+
+    public static Item registerItem(String name, Settings settings) {
+        return register(new Item(new Identifier(name), settings));
     }
 
-    static FoodItem registerFoodItem(String name, int saturation, Settings settings) {
+    public static FoodItem registerFoodItem(String name, int saturation, Settings settings) {
         return Item.register(new FoodItem(new Identifier(name), saturation, settings));
     }
 
-    static <T extends Item> T register(T item) {
-        items.put(item.toItem().identifier().itemId(), item);
+    public static WeaponItem registerWeapon(String name, int damage, Settings settings) {
+        return Item.register(new WeaponItem(new Identifier(name), damage, settings));
+    }
+
+    public static <T extends Item> T register(T item) {
+        items.put(item.identifier(), item);
         return item;
     }
 
-    static Item getItem(String name) {
-        Item item = items.get(name);
-        if (item == null) {
-            logger.error("Item not found: %s", name);
+    public static Item getItem(Identifier id) {
+        if (id != null) {
+            Item item = items.get(id);
+            if (item == null) {
+                logger.error("Item not found: %s", id);
+            }
+            return item;
+        } else {
+            return null;
         }
-        return item;
     }
 
-    class Settings {
+    @Serial
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.writeObject(identifier());
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        Identifier identifier = (Identifier) in.readObject();
+        Item item = getItem(identifier);
+        if (item == null) {
+            logger.error("Item not found during deserialization: %s", identifier);
+            this.identifier = null;
+            this.settings = null;
+        } else {
+            this.identifier = item.identifier;
+            this.settings = item.settings;
+        }
+    }
+
+    public Item(Identifier identifier, Item.Settings settings) {
+        this.identifier = identifier;
+        this.settings = settings;
+    }
+
+    public Identifier identifier() {
+        return identifier;
+    }
+
+    public Item.Settings settings() {
+        return settings;
+    }
+
+    @Override
+    public String toString() {
+        return "Item[" +
+                "identifier=" + identifier + ", " +
+                "settings=" + settings + ']';
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Item item)) return false;
+        return item.identifier == this.identifier;
+    }
+
+    public static class Settings {
         private float weight = 1.0F;
         private Rarity rarity = Rarity.COMMON;
-        private int stackLimit = 128;
+        private int stackLimit = 64;
         private String description = "";
         private Category category = Category.MISC;
 
@@ -91,14 +150,14 @@ public sealed interface Item permits BasicItem, FoodItem {
 
         @Override
         public String toString() {
-            return "[wight: " + weight + ", rarity: " + rarity + ", stack_limit: " + stackLimit + ", description: " + description + ", category: " + category.getName() + "]";
+            return "[weight: " + weight + ", rarity: " + rarity + ", stack_limit: " + stackLimit + ", description: " + description + ", category: " + category.getName() + "]";
         }
     }
 
-    enum Category {
-        MISC("Misc"), FOOD("Food");
+    public enum Category {
+        MISC("Misc"), FOOD("Food"), WOOD("Wood"), WEAPON("Weapon");
 
-        String name;
+        private final String name;
 
         Category(String name) {
             this.name = name;

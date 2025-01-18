@@ -2,6 +2,8 @@ package dev.TTs.resources;
 
 import dev.TTs.lang.Types;
 
+import java.awt.event.KeyEvent;
+
 public enum Configs {
     //Config
     LANGUAGE(Types.STRING, "language", "English"),
@@ -12,7 +14,20 @@ public enum Configs {
     DE_SIZE_MULTIPLIER(Types.FLOAT, "detective_eagle_size_multiplier", 1.0F),
     SUBTITLES(Types.BOOLEAN, "subtitles", false),
     //Statistics
-    AM_RECORD(Types.DOUBLE, "animal_master_time_record", -1.0);
+    AM_RECORD(Types.DOUBLE, "animal_master_time_record", -1.0),
+    //PixelQuest
+    V_SYNC(Types.BOOLEAN, "pixel_quest.vsync", true),
+    MOVE_UP(Types.INT, "pixel_quest.keybindings.move_up",KeyEvent.VK_W),
+    MOVE_DOWN(Types.INT, "pixel_quest.keybindings.move_down", KeyEvent.VK_S),
+    MOVE_LEFT(Types.INT, "pixel_quest.keybindings.move_left",KeyEvent.VK_A),
+    MOVE_RIGHT(Types.INT, "pixel_quest.keybindings.move_right", KeyEvent.VK_D),
+    EAT(Types.INT, "pixel_quest.keybindings.action_use",KeyEvent.VK_F),
+    SHOW_INVENTORY(Types.INT, "pixel_quest.keybindings.show_inventory", KeyEvent.VK_E),
+    ADD_ITEM(Types.INT, "pixel_quest.keybindings.add_item",KeyEvent.VK_L),
+    DAMAGE(Types.INT, "pixel_quest.keybindings.damage", KeyEvent.VK_M),
+    DROP_ITEM(Types.INT, "pixel_quest.keybindings.drop_item",KeyEvent.VK_Q),
+    TRANSFER_ITEM(Types.INT, "pixel_quest.keybindings.transfer_item", KeyEvent.VK_T),
+    SELECT(Types.INT, "pixel_quest.keybindings.select", KeyEvent.VK_X);
 
     private final Types type;
     private final String key;

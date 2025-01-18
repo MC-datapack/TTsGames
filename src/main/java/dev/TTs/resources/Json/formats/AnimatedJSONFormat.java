@@ -1,13 +1,10 @@
 package dev.TTs.resources.Json.formats;
 
 import dev.TTs.lang.ImageString;
-import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings({"unused", "MismatchedReadAndWriteOfArray"})
 public class AnimatedJSONFormat {
-    @Nullable
     private String base_path;
-    @Nullable
     private String file_format;
     private String[] paths;
     private int delay;

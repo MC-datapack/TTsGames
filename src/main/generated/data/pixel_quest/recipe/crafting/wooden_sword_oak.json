@@ -1,0 +1,17 @@
+{
+  "name": "pixel_quest:wooden_sword_oak",
+  "pattern": {
+    "0": "pixel_quest:oak_wood",
+    "1": "pixel_quest:oak_wood",
+    "3": "pixel_quest:stick",
+    "4": "pixel_quest:stick"
+  },
+  "output": {
+    "item": "pixel_quest:wooden_sword",
+    "count": {
+      "fixed": 1
+    },
+    "chance": 1.0,
+    "conditions": {}
+  }
+}

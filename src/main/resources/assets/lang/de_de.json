@@ -198,6 +198,12 @@
   "pixel_quest.weight": "Gewicht",
   "pixel_quest.death.enemy": "௹⨌{Username} wurde von einem Monster getötet",
   "pixel_quest.death.starve": "௹⨌{Username} verhungerte",
+  "pixel_quest.save.error.wrong_version": "Dieses Spiel wurde in einer neueren oder älteren Version erstellt. \nFas Spiel konnte nicht geladen werden. \nGespeicherte Version: %s, Version von dieser PixelQuest version: %s",
+  "pixel_quest.save": "Welt Abspeichern",
+  "pixel_quest.save.for_older": "Dieser Speicherstand wurde für eine ältere Version von PixelQuest erstellt.",
+  "pixel_quest.save.unknown_format": "Das Dateiformat ist unbekannt",
+  "pixel_quest.restart": "TTsGames neustarten",
+
   "pixel_quest.tooltip.smelt!": "Empfohlen ist dieses Item zu kochen, um ein besseres Essen zu erhalten.",
 
   "pixel_quest.item.fox": "Fuchsfleisch",
@@ -205,6 +211,19 @@
   "pixel_quest.item.mutton": "Hammelfleisch",
   "pixel_quest.item.cooked_mutton": "Gebratenes Hammelfleisch",
   "pixel_quest.item.wool": "Wolle",
+
+  "pixel_quest.setting.back_to_game": "Zurück zum Spiel",
+
+  "pixel_quest.set_keybind": "Drücken Sie eine beliebige Taste, um die Tastenbelegung festzulegen",
+  "pixel_quest.press_key": "Taste drücken für",
+  "pixel_quest.keybind.up": "Nach oben bewegen",
+  "pixel_quest.keybind.down":"Nach unten bewegen",
+  "pixel_quest.keybind.left": "Nach links bewegen",
+  "pixel_quest.keybind.right": "Nach rechts bewegen",
+  "pixel_quest.keybind.eat": "Essen",
+  "pixel_quest.keybind.inventory": "Inventar umschalten",
+  "pixel_quest.keybind.drop": "Drop",
+  "pixel_quest.keybind.smelt": "Item in benutzbares Objekt bewegen",
 
 
 

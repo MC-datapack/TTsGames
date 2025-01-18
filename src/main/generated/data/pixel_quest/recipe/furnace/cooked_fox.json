@@ -1,0 +1,12 @@
+{
+  "name": "pixel_quest:cooked_fox",
+  "input": "pixel_quest:fox",
+  "output": {
+    "item": "pixel_quest:cooked_fox",
+    "count": {
+      "fixed": 1
+    },
+    "chance": 1.0,
+    "conditions": {}
+  }
+}

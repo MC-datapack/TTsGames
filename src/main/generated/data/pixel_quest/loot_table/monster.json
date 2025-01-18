@@ -1,0 +1,18 @@
+{
+  "name": "pixel_quest:monster",
+  "tables": [
+    {
+      "item": "pixel_quest:stick",
+      "count": {
+        "uniform": {
+          "min": 2,
+          "max": 4
+        }
+      },
+      "chance": 1.0,
+      "conditions": {
+        "type": "pixel_quest:killed_by_player"
+      }
+    }
+  ]
+}

@@ -199,6 +199,12 @@
   "pixel_quest.weight": "Weight",
   "pixel_quest.death.enemy": "௹⨌{Username} was killed by a monster",
   "pixel_quest.death.starve": "௹⨌{Username} starved to death",
+  "pixel_quest.save.error.wrong_version": "This save is made for a newer or older version. \nUnable to load game. \nSaved version: %s, Version of this PixelQuest version: %s",
+  "pixel_quest.save": "Save World",
+  "pixel_quest.save.for_older": "This save was created for an older version of PixelQuest.",
+  "pixel_quest.save.unknown_format": "The save format is unknown.",
+  "pixel_quest.restart": "Restart TTsGames",
+
   "pixel_quest.tooltip.smelt!": "You can cook this item to get a better food.",
 
   "pixel_quest.item.fox": "Fox Meat",
@@ -206,6 +212,19 @@
   "pixel_quest.item.mutton": "Mutton",
   "pixel_quest.item.cooked_mutton": "Cooked Mutton",
   "pixel_quest.item.wool": "Wool",
+
+  "pixel_quest.setting.back_to_game": "Back to Game",
+
+  "pixel_quest.set_keybind": "Press any key to set the binding for",
+  "pixel_quest.press_key": "Press key for",
+  "pixel_quest.keybind.up": "Move up",
+  "pixel_quest.keybind.down":"Move down",
+  "pixel_quest.keybind.left": "Move left",
+  "pixel_quest.keybind.right": "Move right",
+  "pixel_quest.keybind.eat": "Eat",
+  "pixel_quest.keybind.inventory": "Toggle Inventory",
+  "pixel_quest.keybind.drop": "Drop",
+  "pixel_quest.keybind.smelt": "Transfer item to utility object",
 
 
 

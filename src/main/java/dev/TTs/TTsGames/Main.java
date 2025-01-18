@@ -1,5 +1,7 @@
 package dev.TTs.TTsGames;
 
+import dev.TTs.TTsGames.Games.PixelQuest.main.PixelQuestGame;
+import dev.TTs.lang.ImageString;
 import dev.TTs.lang.*;
 import dev.TTs.TTsGames.Games.DetectiveThunder.Close;
 import dev.TTs.resources.ConfigLoader;
@@ -13,6 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.net.*;
 import java.util.*;
 import java.util.Timer;
@@ -35,7 +38,7 @@ public class Main {
     public static boolean MainWindow = true, dev, setUsername, fAM = false, fAMReset = false, subtitles;
     public static float a, de;
 
-    public static Image noTexture;
+    public static BufferedImage noTexture;
     public static TFrame[] windows = new TFrame[8];
     public static Color[] buttonColors;
     public static Timer checkLoop;
@@ -43,6 +46,30 @@ public class Main {
     public static String javaVersion;
 
     public static void main(String[] args) {
+        load(args);
+        if (Objects.equals(Username, "௹⨌{UsernameDe}")) {
+            Username = "↺";
+        }
+
+        translations = new Translations();
+        logger.debug("Loaded translations: %s", translations.toString());
+
+        logger.info("TTs Games %s is starting", Versions[0]);
+        if (Array.dontContains(jsonReader.MainJSON.getSupportedJavaVersions(), javaVersion)) {
+            new WrongJavaVersion();
+            return;
+        }
+
+        new Window(false);
+        logger.debug("Opened Window");
+
+        checkLoop = timer(() -> {
+            if (started != null) logger.check("Check  Java version: %s Started: %s Version: %s", javaVersion, started, startedVersion);
+            else logger.check("Check  Java version: %s Started: nothing", javaVersion);
+        }, 1000,1000);
+    }
+
+    public static void load(String[] args) {
         javaVersion = System.getProperty("java.version");
 
         logger = new TTsLogger(System.getProperty("user.home") + "/AppData/Roaming/TTsGames/logs/",true);
@@ -71,31 +98,11 @@ public class Main {
         a = configLoader.get(Configs.AM_SIZE_MULTIPLIER);
         de = configLoader.get(Configs.DE_SIZE_MULTIPLIER);
         logger.debug("Loaded config");
-
-        if (Objects.equals(Username, "௹⨌{UsernameDe}")) {
-            Username = "↺";
-        }
-
-        translations = new Translations();
-        logger.debug("Loaded translations: %s", translations.toString());
-
-        logger.info("TTs Games %s is starting", Versions[0]);
-        if (Array.dontContains(jsonReader.MainJSON.getSupportedJavaVersions(), javaVersion)) {
-            new WrongJavaVersion();
-            return;
-        }
-
-        new Window(false);
-        logger.debug("Opened Window");
-
-        checkLoop = timer(() -> {
-            if (started != null) logger.check("Check  Java version: %s Started: %s Version: %s", javaVersion, started, startedVersion);
-            else logger.check("Check  Java version: %s Started: nothing", javaVersion);
-        }, 1000,1000);
     }
 
     public static void deMain(String[] args) {
         logger.error("Shutdown args: %s", Arrays.toString(args));
+        PixelQuestGame.shutdown();
         checkLoop.cancel();
         logger.debug("Shutting Down");
         Arrays.stream(windows)
@@ -139,7 +146,7 @@ public class Main {
                 public void windowClosing(WindowEvent e) {
                     switch (window) {
                         case 0 -> deMain(new String[0]);
-                        case 1, 2, 7 -> {
+                        case 1, 2 -> {
                             MainWindow = true;
                             windows[window].dispose();
                             started = null;
@@ -156,6 +163,13 @@ public class Main {
                             startedClose = false;
                         }
                         case 5 -> windows[window].dispose();
+                        case 7 -> {
+                            PixelQuestGame.game.stop();
+                            MainWindow = true;
+                            windows[window].dispose();
+                            started = null;
+                            logger.setInstance(Instance.TTS_GAMES);
+                        }
                     }
                 }
             });

@@ -1,0 +1,27 @@
+{
+  "name": "pixel_quest:fox",
+  "tables": [
+    {
+      "item": "pixel_quest:fox",
+      "count": {
+        "uniform": {
+          "min": 1,
+          "max": 5
+        }
+      },
+      "chance": 1.0,
+      "conditions": {}
+    },
+    {
+      "item": "pixel_quest:cooked_fox",
+      "count": {
+        "uniform": {
+          "min": 1,
+          "max": 3
+        }
+      },
+      "chance": 0.5,
+      "conditions": {}
+    }
+  ]
+}

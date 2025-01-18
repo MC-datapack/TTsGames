@@ -13,7 +13,7 @@ public class Translations {
                 Questions, AnswerButtons, Compliments, Insults, Results, Informations, OtherButtons,
                 Games, Settings, Credits, Statistics, WrongJava, TTsGames,
                 DetectiveEagle, QuestionsD, ButtonsD,
-                ButtonsDT, DetectiveThunder, PixelQuest, ItemDescriptions
+                ButtonsDT, DetectiveThunder, PixelQuest, ItemDescriptions, KeyBindingsTranslation
         });
     }
 
@@ -37,7 +37,8 @@ public class Translations {
             ButtonsDT  = jsonReader.DTTranslationKeys("buttons"),
             DetectiveThunder = jsonReader.DTTranslationKeys("other"),
             PixelQuest = jsonReader.PQTranslationKeys("values"),
-            ItemDescriptions = jsonReader.PQTranslationKeys("item_descriptions");
+            ItemDescriptions = jsonReader.PQTranslationKeys("item_descriptions"),
+            KeyBindingsTranslation = jsonReader.PQTranslationKeys("key_bindings");
 
     @Override
     public String toString() {

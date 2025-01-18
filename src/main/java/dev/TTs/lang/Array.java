@@ -11,6 +11,15 @@ public class Array {
         return false;
     }
 
+    public static boolean stringContainsAnyOf(String string, String[] array) {
+        for (String s : array) {
+            if (string.contains(s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean dontContains(String[] array, String target) {
         for (String s : array) {
             if (s.equals(target)) {

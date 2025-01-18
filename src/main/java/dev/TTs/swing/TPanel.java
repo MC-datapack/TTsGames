@@ -13,6 +13,10 @@ public class TPanel extends JPanel implements TContainer {
         super(flowLayout);
     }
 
+    public TPanel(BorderLayout borderLayout) {
+        super(borderLayout);
+    }
+
     public void setBorder(int top, int left, int bottom, int right) {
         this.setBorder(BorderFactory.createEmptyBorder(top, left, bottom, right));
     }

@@ -18,8 +18,8 @@
 	  "group": "2.0"
 	},
 	"pixel_quest": {
-	  "prerelease": "0.1.0",
-	  "group": "0.1.0"
+	  "prerelease": "0.2.0",
+	  "group": "0.2.0"
 	}
   },
   "config": {
@@ -112,7 +112,7 @@
 		"heart", "saturation"
 	  ],
 	  [
-		"furnace", "furnace_on"
+		"furnace", "furnace_on", "crafting_table"
 	  ]
 	]
   ],

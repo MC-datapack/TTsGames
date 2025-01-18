@@ -1,0 +1,7 @@
+{
+  "name": "pixel_quest:furnace_fuel",
+  "values": [
+    "#pixel_quest:wood",
+    "pixel_quest:wool"
+  ]
+}

@@ -62,7 +62,7 @@ public class Window {
             TLabel Credits1 = new TLabel(Credits[2]), Credits2 = new TLabel(Credits[3]), Credits3 = new TLabel(Credits[4]),
                     Credits4 = new TLabel(Credits[5]), Credits5 = new TLabel(Credits[6]);
             CreditBorder.setPreferredSize(new Dimension(350, 200));
-            CreditBorder.add(Credits1, Credits2, Credits3, Credits4, Credits5);
+            CreditBorder.addP(Credits1, Credits2, Credits3, Credits4, Credits5);
 
             TButton statistics = new TButton(Statistics[0]);
             TButton statisticsBack = new TButton(Statistics[1]);

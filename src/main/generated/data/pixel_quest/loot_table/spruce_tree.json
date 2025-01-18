@@ -1,0 +1,16 @@
+{
+  "name": "pixel_quest:spruce_tree",
+  "tables": [
+    {
+      "item": "pixel_quest:spruce_wood",
+      "count": {
+        "uniform": {
+          "min": 12,
+          "max": 24
+        }
+      },
+      "chance": 1.0,
+      "conditions": {}
+    }
+  ]
+}
