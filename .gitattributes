@@ -10,4 +10,4 @@
 # Binary files should be left untouched
 *.jar           binary
 
-.gradle.kts linguist-language=Kotlin
+*.gradle.kts linguist-language=Kotlin
