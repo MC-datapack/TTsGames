@@ -4,10 +4,10 @@ import java.util.Map;
 
 @SuppressWarnings({"unused", "MismatchedQueryAndUpdateOfCollection"})
 public class SoundJSONFormat {
-    private String base_dictionary;
+    private String base_path;
     private Map<String, String> files;
 
     public String getFiles(String language) {
-        return base_dictionary + "/" + files.get(language) + ".wav";
+        return base_path + "/" + files.get(language) + ".wav";
     }
 }

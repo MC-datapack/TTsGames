@@ -1,0 +1,25 @@
+{
+  "name": "pixel_quest:chests/mutton",
+  "tables": [
+    {
+      "item": "pixel_quest:mutton",
+      "count": {
+        "uniform": {
+          "min": 4,
+          "max": 8
+        }
+      },
+      "chance": 0.75
+    },
+    {
+      "item": "pixel_quest:cooked_mutton",
+      "count": {
+        "uniform": {
+          "min": 6,
+          "max": 12
+        }
+      },
+      "chance": 0.5
+    }
+  ]
+}

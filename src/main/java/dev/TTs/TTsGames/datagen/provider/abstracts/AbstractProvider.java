@@ -1,32 +1,43 @@
 package dev.TTs.TTsGames.datagen.provider.abstracts;
 
 import com.google.gson.Gson;
+import dev.TTs.lang.ErrorHandlingStrategy;
+import dev.TTs.lang.Logger;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
-
-import static dev.TTs.TTsGames.Main.logger;
 
 @SuppressWarnings("BooleanMethodIsAlwaysInverted")
 public abstract class AbstractProvider {
     protected final String basePath;
     protected Gson gson;
+    protected Logger logger;
+    protected ErrorHandlingStrategy errorStrategy;
 
-    public AbstractProvider(String basePath, Gson gson) {
+    public AbstractProvider(String basePath, Gson gson, Logger logger, ErrorHandlingStrategy errorStrategy) {
         this.basePath = basePath;
         this.gson = gson;
+        this.logger = logger;
+        this.errorStrategy = errorStrategy;
+        logger.debug("Starting AbstractProvider");
     }
 
     public abstract void generate();
     public abstract void run();
 
-    protected void write(String path, String json) {
+    protected void write(String mainPath, Object object) {
+        String path = basePath + "/" + mainPath;
+        if (!checkDictionary(path)) return;
+        String json = gson.toJson(object);
         try (FileWriter writer = new FileWriter(path)) {
+            logger.debug("Writing file at %s", path);
             writer.write(json);
         } catch (IOException e) {
-            logger.error("Error writing JSON to file: %s", e.getMessage());
+            switch (errorStrategy) {
+                case PRINT -> logger.error("Error writing JSON to file: %s", e.getMessage());
+                case THROW -> throw new RuntimeException(e.getMessage());
+            }
         }
     }
 
@@ -37,7 +48,10 @@ public abstract class AbstractProvider {
         if (!directory.exists()) {
             boolean dirsCreated = directory.mkdirs();
             if (!dirsCreated) {
-                logger.error("Failed to create directories: %s", directoryPath);
+                switch (errorStrategy) {
+                    case PRINT -> logger.error("Failed to create directories: %s", directoryPath);
+                    case THROW -> throw new RuntimeException("Failed to create directories: " + directoryPath);
+                }
                 return false;
             }
             return true;

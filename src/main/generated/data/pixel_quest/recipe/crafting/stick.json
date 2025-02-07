@@ -9,7 +9,6 @@
     "count": {
       "fixed": 4
     },
-    "chance": 1.0,
-    "conditions": {}
+    "chance": 1.0
   }
 }

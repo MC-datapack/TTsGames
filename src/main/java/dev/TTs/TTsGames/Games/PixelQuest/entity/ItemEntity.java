@@ -1,14 +1,14 @@
 package dev.TTs.TTsGames.Games.PixelQuest.entity;
 
 import dev.TTs.TTsGames.Games.PixelQuest.item.ItemStack;
-import dev.TTs.TTsGames.Games.PixelQuest.main.PixelQuestGame;
-import dev.TTs.TTsGames.Games.PixelQuest.util.Identifier;
+import dev.TTs.TTsGames.Games.PixelQuest.main.WorldSaving;
+import dev.TTs.util.Identifier;
 
 import java.awt.*;
 
 import static dev.TTs.TTsGames.Main.timer;
 
-public class ItemEntity extends GameObject {
+public class ItemEntity extends Entity {
     private final ItemStack stack;
 
     public ItemEntity(ItemStack stack, int x, int y) {
@@ -24,7 +24,7 @@ public class ItemEntity extends GameObject {
     @Override
     public void update() {
         if (stack == null) {
-            PixelQuestGame.game.removeGameObject(this);
+            WorldSaving.world.removeGameObject(this);
         }
     }
 
@@ -36,11 +36,14 @@ public class ItemEntity extends GameObject {
     }
 
     @Override
-    public void onCollision(GameObject with) {}
+    public void onCollision(Entity with) {}
+
+    @Override
+    public void dropItem() {}
 
     @Override
     public Identifier id() {
-        return new Identifier("item");
+        return Identifier.ofPixelQuest("item");
     }
 
     public ItemStack getStack() {

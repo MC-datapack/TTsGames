@@ -2,18 +2,17 @@ package dev.TTs.TTsGames.Games.PixelQuest.entity.mob;
 
 import dev.TTs.TTsGames.Games.PixelQuest.entity.DamageReason;
 import dev.TTs.TTsGames.Games.PixelQuest.entity.Damageable;
-import dev.TTs.TTsGames.Games.PixelQuest.entity.GameObject;
+import dev.TTs.TTsGames.Games.PixelQuest.entity.Entity;
 import dev.TTs.TTsGames.Games.PixelQuest.entity.Player;
-import dev.TTs.TTsGames.Games.PixelQuest.item.Droppable;
+import dev.TTs.TTsGames.Games.PixelQuest.item.WeaponItem;
 import dev.TTs.TTsGames.Games.PixelQuest.json.PixelQuestJsonReader;
-import dev.TTs.TTsGames.Games.PixelQuest.main.PixelQuestGame;
+import dev.TTs.TTsGames.Games.PixelQuest.main.WorldSaving;
 
 import java.awt.*;
-import java.util.List;
 
 import static dev.TTs.TTsGames.Main.timer;
 
-public abstract class Mob extends GameObject implements Droppable, Damageable {
+public abstract class Mob extends Entity implements Damageable {
     protected final int speed;
     protected int direction;
 
@@ -52,7 +51,7 @@ public abstract class Mob extends GameObject implements Droppable, Damageable {
     public void deathAction() {
         if (died()) {
             dropItem();
-            PixelQuestGame.game.removeGameObject(this);
+            WorldSaving.world.removeGameObject(this);
         }
     }
 
@@ -62,10 +61,10 @@ public abstract class Mob extends GameObject implements Droppable, Damageable {
     }
 
     @Override
-    public void onCollision(GameObject with) {
-        if (with instanceof Player) {
+    public void onCollision(Entity with) {
+        if (with instanceof Player player) {
             if (!died()) {
-                damage(1, DamageReason.PLAYER);
+                damage(player.inventory.getItem(36) instanceof WeaponItem weaponItem ? weaponItem.damage() : 1, DamageReason.PLAYER);
             }
         } else if (with instanceof Mob) {
             direction = (int) (Math.random() * 4);
@@ -74,7 +73,7 @@ public abstract class Mob extends GameObject implements Droppable, Damageable {
 
     @Override
     public void dropItem() {
-        PixelQuestGame.game.addMultipleGameObjects(List.of(PixelQuestJsonReader.readLootTable(this).dropAll(x, y, get())));
+        WorldSaving.world.addMultipleGameObjects(PixelQuestJsonReader.readLootTable(this).dropAll(x, y, this));
     }
 
     @Override
@@ -109,6 +108,4 @@ public abstract class Mob extends GameObject implements Droppable, Damageable {
     public DamageReason deathReason() {
         return damageReason;
     }
-
-    public abstract Damageable get();
 }

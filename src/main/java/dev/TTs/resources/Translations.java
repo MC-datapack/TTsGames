@@ -16,6 +16,14 @@ public class Translations {
                 ButtonsDT, DetectiveThunder, PixelQuest, ItemDescriptions, KeyBindingsTranslation
         });
     }
+    public void retranslate() {
+        Text.translatable(new String[][] {
+                Questions, AnswerButtons, Compliments, Insults, Results, Informations, OtherButtons,
+                Games, Settings, Credits, Statistics, WrongJava, TTsGames,
+                DetectiveEagle, QuestionsD, ButtonsD,
+                ButtonsDT, DetectiveThunder, PixelQuest, ItemDescriptions, KeyBindingsTranslation
+        });
+    }
 
     public static String[]
             Questions = jsonReader.AMTranslationKeys("questions"),

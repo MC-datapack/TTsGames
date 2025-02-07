@@ -1,9 +1,9 @@
 package dev.TTs.TTsGames.Games.PixelQuest.entity.mob;
 
 import dev.TTs.TTsGames.Games.PixelQuest.entity.DamageReason;
-import dev.TTs.TTsGames.Games.PixelQuest.entity.GameObject;
+import dev.TTs.TTsGames.Games.PixelQuest.entity.Entity;
 import dev.TTs.TTsGames.Games.PixelQuest.entity.Player;
-import dev.TTs.TTsGames.Games.PixelQuest.main.PixelQuestGame;
+import dev.TTs.TTsGames.Games.PixelQuest.main.WorldSaving;
 
 import java.awt.*;
 
@@ -21,8 +21,8 @@ public abstract class Enemy extends Mob {
     public void update() {
         tintColor = new Color(0,0,0,0);
         deathAction();
-        int dx = PixelQuestGame.game.player.getLocation().x - x;
-        int dy = PixelQuestGame.game.player.getLocation().y - y;
+        int dx = WorldSaving.world.player.getLocation().x - x;
+        int dy = WorldSaving.world.player.getLocation().y - y;
 
         int distance = (int) Math.sqrt(dx * dx + dy * dy);
 
@@ -31,16 +31,16 @@ public abstract class Enemy extends Mob {
         } else if (distance > speed) {
             x += (dx * speed) / distance; y += (dy * speed) / distance;
         } else {
-            x = PixelQuestGame.game.player.getLocation().x;
-            y = PixelQuestGame.game.player.getLocation().y;
+            x = WorldSaving.world.player.getLocation().x;
+            y = WorldSaving.world.player.getLocation().y;
         }
     }
 
     @Override
-    public void onCollision(GameObject with) {
+    public void onCollision(Entity with) {
         super.onCollision(with);
         if (with instanceof Player) {
-            PixelQuestGame.game.player.damage(damage, DamageReason.ENEMY);
+            WorldSaving.world.player.damage(damage, DamageReason.ENEMY);
         }
     }
 }

@@ -2,7 +2,7 @@ package dev.TTs.TTsGames.Games.PixelQuest.json;
 
 import dev.TTs.TTsGames.Games.PixelQuest.item.Item;
 import dev.TTs.TTsGames.Games.PixelQuest.item.ItemStack;
-import dev.TTs.TTsGames.Games.PixelQuest.util.Identifier;
+import dev.TTs.util.Identifier;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +25,7 @@ public class RecipeFormats {
         }
 
         public Item getInput() {
-            return Item.getItem(new Identifier(input));
+            return Item.getItem(Identifier.of(input));
         }
 
         public ItemStack getOutput() {
@@ -50,7 +50,7 @@ public class RecipeFormats {
         public Map<Integer, Item> getInput() {
             Map<Integer, Item> result = new HashMap<>();
             for (int i = 0; i < 9; i++) {
-                result.put(i, Item.getItem(pattern.get(i) != null ? new Identifier(pattern.get(i)) : null));
+                result.put(i, Item.getItem(pattern.get(i) != null ? Identifier.of(pattern.get(i)) : null));
             }
             return result;
         }

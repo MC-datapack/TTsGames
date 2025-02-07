@@ -1,0 +1,25 @@
+{
+  "name": "pixel_quest:tree/spruce",
+  "tables": [
+    {
+      "item": "pixel_quest:spruce_wood",
+      "count": {
+        "uniform": {
+          "min": 12,
+          "max": 24
+        }
+      },
+      "chance": 1.0
+    },
+    {
+      "item": "pixel_quest:stick",
+      "count": {
+        "uniform": {
+          "min": 2,
+          "max": 8
+        }
+      },
+      "chance": 1.0
+    }
+  ]
+}

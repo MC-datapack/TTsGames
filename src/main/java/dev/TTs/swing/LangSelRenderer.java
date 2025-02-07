@@ -9,13 +9,13 @@ public class LangSelRenderer extends JLabel implements ListCellRenderer<Object> 
 
     public LangSelRenderer() {
         setOpaque(true);
-        setFont(new Font("Pixel", Font.PLAIN, 14)); // Custom pixel art font
+        setFont(new Font("Pixel", Font.PLAIN, 14));
         this.SelectedColor = new Color(100, 100, 250);
         this.UnselectedColor = new Color(200, 200, 200, 150);
     }
     public LangSelRenderer(Color selectedColor, Color unselectedColor) {
         setOpaque(true);
-        setFont(new Font("Pixel", Font.PLAIN, 14)); // Custom pixel art font
+        setFont(new Font("Pixel", Font.PLAIN, 14));
         this.SelectedColor = selectedColor;
         this.UnselectedColor = unselectedColor;
     }

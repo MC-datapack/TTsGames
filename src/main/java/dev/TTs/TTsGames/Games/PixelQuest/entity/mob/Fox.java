@@ -1,9 +1,10 @@
 package dev.TTs.TTsGames.Games.PixelQuest.entity.mob;
 
 import dev.TTs.TTsGames.Games.PixelQuest.entity.Damageable;
-import dev.TTs.TTsGames.Games.PixelQuest.util.Identifier;
+import dev.TTs.util.Identifier;
 
 public class Fox extends Mob {
+
     public Fox() {
         this(0, 0, 0);
     }
@@ -14,11 +15,6 @@ public class Fox extends Mob {
 
     @Override
     public Identifier id() {
-        return new Identifier("fox");
-    }
-
-    @Override
-    public Damageable get() {
-        return this;
+        return Identifier.ofPixelQuest("fox");
     }
 }

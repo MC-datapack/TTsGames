@@ -3,8 +3,11 @@ package dev.TTs.TTsGames.Games.PixelQuest.gui;
 import dev.TTs.TTsGames.Games.PixelQuest.entity.ItemEntity;
 import dev.TTs.TTsGames.Games.PixelQuest.item.*;
 import dev.TTs.TTsGames.Games.PixelQuest.main.PixelQuestGame;
+import dev.TTs.TTsGames.Games.PixelQuest.main.WorldSaving;
 
 import java.awt.*;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -13,7 +16,10 @@ import java.util.Map;
 
 import static dev.TTs.TTsGames.Main.logger;
 
-public abstract class ArrayInventory implements Inventory {
+public abstract class ArrayInventory implements Inventory, Serializable {
+    @Serial
+    private static final long serialVersionUID = Inventory.serialVersionUID;
+
     protected ItemStack[] items;
     protected int maxSize;
     private transient String tooltipTitle = null;
@@ -325,7 +331,7 @@ public abstract class ArrayInventory implements Inventory {
                 try {
                     ItemStack selectedItemStack = items[i];
                     if (selectedItemStack != null) {
-                        PixelQuestGame.game.addGameObject(new ItemEntity(selectedItemStack, point));
+                        WorldSaving.world.addGameObject(new ItemEntity(selectedItemStack, point));
                         removeItem(i);
                         break;
                     }
@@ -406,7 +412,7 @@ public abstract class ArrayInventory implements Inventory {
             try {
                 ItemStack selectedItemStack = items[index];
                 if (selectedItemStack != null) {
-                    PixelQuestGame.game.addGameObject(new ItemEntity(selectedItemStack, point));
+                    WorldSaving.world.addGameObject(new ItemEntity(selectedItemStack, point));
                     removeItem(index);
                 }
             } catch (IndexOutOfBoundsException e) {

@@ -20,6 +20,7 @@ public class KeyBindings {
         keyBindings.put("DROP_ITEM", configLoader.get(Configs.DROP_ITEM));
         keyBindings.put("TRANSFER_ITEM", configLoader.get(Configs.TRANSFER_ITEM));
         keyBindings.put("SELECT", configLoader.get(Configs.SELECT));
+        keyBindings.put("SPRINT", configLoader.get(Configs.SPRINT));
     }
 
     public static void setKeyBinding(String action, int keyCode) {
@@ -34,6 +35,7 @@ public class KeyBindings {
             case "DROP_ITEM" -> configLoader.set(Configs.DROP_ITEM, keyCode);
             case "TRANSFER_ITEM" -> configLoader.set(Configs.TRANSFER_ITEM, keyCode);
             case "SELECT" -> configLoader.set(Configs.SELECT, keyCode);
+            case "SPRINT" -> configLoader.set(Configs.SPRINT, keyCode);
         }
     }
 

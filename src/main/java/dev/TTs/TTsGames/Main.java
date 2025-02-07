@@ -7,11 +7,11 @@ import dev.TTs.TTsGames.Games.DetectiveThunder.Close;
 import dev.TTs.resources.ConfigLoader;
 import dev.TTs.resources.Configs;
 import dev.TTs.resources.Json.JsonReader;
+import dev.TTs.resources.Json.Text;
 import dev.TTs.resources.Translations;
 import dev.TTs.swing.WindowInformation;
 import dev.TTs.swing.TFrame;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -24,7 +24,7 @@ import static dev.TTs.TTsGames.Games.DetectiveThunder.DetectiveThunder.startedCl
 
 @SuppressWarnings("CanBeFinal")
 public class Main {
-    public static TTsLogger logger;
+    public static Logger logger;
     public static Translations translations;
     public static ConfigLoader configLoader;
     public static JsonReader jsonReader;
@@ -73,8 +73,10 @@ public class Main {
         javaVersion = System.getProperty("java.version");
 
         logger = new TTsLogger(System.getProperty("user.home") + "/AppData/Roaming/TTsGames/logs/",true);
-        logger.error("Used Java version: %s args: %s", javaVersion, Arrays.toString(args));
-        logger.debug("Initialized Logger");
+        if (args.length == 0 || !Objects.equals(args[0], "noLog")) {
+            logger.error("Used Java version: %s args: %s", javaVersion, Arrays.toString(args));
+            logger.debug("Initialized Logger");
+        }
 
         jsonReader = new JsonReader("");
         Versions = jsonReader.MainJSON.getVersions();
@@ -84,8 +86,10 @@ public class Main {
         unerlaubteNamen = jsonReader.UnallowedUsernames();
         noTexture = jsonReader.MainJSON.getNoTextureFile().toImage();
         buttonColors = jsonReader.AMColors();
-        logger.unimportant(Arrays.toString(unerlaubteNamen));
-        logger.debug("Loaded JSON Files");
+        if (args.length == 0 || !Objects.equals(args[0], "noLog")) {
+            logger.unimportant(Arrays.toString(unerlaubteNamen));
+            logger.debug("Loaded JSON Files");
+        }
 
         configLoader = new ConfigLoader();
         volume = configLoader.get(Configs.VOLUME);
@@ -97,20 +101,39 @@ public class Main {
         AMTime[2] = configLoader.get(Configs.AM_RECORD);
         a = configLoader.get(Configs.AM_SIZE_MULTIPLIER);
         de = configLoader.get(Configs.DE_SIZE_MULTIPLIER);
-        logger.debug("Loaded config");
+        if (args.length == 0 || !Objects.equals(args[0], "noLog")) {
+            logger.debug("Loaded config");
+        }
     }
 
     public static void deMain(String[] args) {
-        logger.error("Shutdown args: %s", Arrays.toString(args));
+        if (args.length == 0 || !Objects.equals(args[0], "noLog"))
+            logger.error("Shutdown args: %s", Arrays.toString(args));
         PixelQuestGame.shutdown();
-        checkLoop.cancel();
-        logger.debug("Shutting Down");
+        if (checkLoop != null)
+            checkLoop.cancel();
+        if (args.length == 0 || !Objects.equals(args[0], "noLog"))
+            logger.debug("Shutting Down");
         Arrays.stream(windows)
                 .filter(Objects::nonNull)
-                .forEach(JFrame::dispose);
-        logger.debug("Closed Windows");
+                .forEach(TFrame::dispose);
+        if (args.length == 0 || !Objects.equals(args[0], "noLog"))
+            logger.debug("Closed Windows");
         logger.close();
         System.exit(ExitCodes.NO_ERROR);
+    }
+
+    @Buggy(reason = "Infinite Windows are created", fixVersion = "2.2", notFullFunction = true)
+    public static void langChange() {
+        logger.debug("Lang changed");
+        Text.langChanged();
+        translations.retranslate();
+        //Arrays.stream(windows)
+        //        .filter(Objects::nonNull)
+        //        .forEach(TFrame::dispose);
+        //windows = new TFrame[8];
+        //windows[0] = new TFrame("TTsGames " + Versions[1]);
+        //new Window(false);
     }
 
     public static Timer timer(Runnable task, long delay) {
@@ -139,6 +162,8 @@ public class Main {
         WindowOperations(window, information);
         windows[window].add(background);
     }
+
+    @SuppressWarnings("MagicConstant")
     public static void WindowOperations(int window, WindowInformation information) {
         if (information.defaultCloseOperation() == 0) {
             windows[window].addWindowListener(new WindowAdapter() {

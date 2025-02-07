@@ -8,8 +8,8 @@ import static dev.TTs.TTsGames.Main.*;
 
 @SuppressWarnings({"UnusedReturnValue", "unused"})
 public final class Text {
-    private static final Map<String, String> translations = jsonReader.readTranslationJsonFile(jsonReader.MainJSON.getLanguageFile(configLoader.get(Configs.LANGUAGE)));
-    private static final String USERNAME_PLACEHOLDER = "௹⨌{Username}";
+    private static Map<String, String> translations = jsonReader.readTranslationJsonFile(jsonReader.MainJSON.getLanguageFile(language));
+    public static final String USERNAME_PLACEHOLDER = "௹⨌{Username}";
 
     public static String translatable(String string) {
         String translation = translations.getOrDefault(string, string);
@@ -30,5 +30,10 @@ public final class Text {
             }
         }
         return string;
+    }
+
+    public static void langChanged() {
+        language = configLoader.get(Configs.LANGUAGE);
+        translations = jsonReader.readTranslationJsonFile(jsonReader.MainJSON.getLanguageFile(language));
     }
 }

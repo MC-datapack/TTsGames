@@ -10,10 +10,14 @@
 	"pixel_quest.save",
 	"pixel_quest.save.for_older",
 	"pixel_quest.save.unknown_format",
-	"pixel_quest.restart"
+	"pixel_quest.restart",
+	"pixel_quest.exit",
+	"pixel_quest.save.new_world",
+	"pixel_quest.save.new.enter_name",
+	"pixel_quest.save.new.seed"
   ],
   "item_descriptions": [
-	"pixel_quest.tooltip.smelt!"
+	"pixel_quest.tooltip.smelt!", "pixel_quest.tooltip.attack_with!"
   ],
   "key_bindings": [
 	"pixel_quest.keybind.up",
@@ -24,6 +28,7 @@
 	"pixel_quest.keybind.inventory",
 	"pixel_quest.keybind.drop",
 	"pixel_quest.keybind.smelt",
-	"pixel_quest.keybind.select"
+	"pixel_quest.keybind.select",
+	"pixel_quest.keybind.sprint"
   ]
 }

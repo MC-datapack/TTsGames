@@ -21,7 +21,7 @@ public class Settings extends TPanel {
     public final KeyBindingPanel keyBindingPanel;
 
     public Settings() {
-        setOpaqueF();
+        setOpaque(false);
 
         this.VSync = configLoader.get(Configs.V_SYNC);
 
@@ -34,7 +34,7 @@ public class Settings extends TPanel {
             PixelQuestGame.game.repaint();
         });
 
-        VSyncButton.setFocusableF();
+        VSyncButton.setFocusable(false);
         VSyncButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -54,13 +54,13 @@ public class Settings extends TPanel {
 
         SaveWorldButton = new TButton(PixelQuest[7]);
         SaveWorldButton.event(() -> {
-            if (WorldSaving.gameName != null && !WorldSaving.gameName.trim().isEmpty()) {
-                WorldSaving.saveGame();
-                PixelQuestGame.game.unloadGame();
+            if (WorldSaving.world.name != null && !WorldSaving.world.name.trim().isEmpty()) {
+                WorldSaving.unloadGame();
+                PixelQuestGame.game.showSettings = false;
             }
         });
 
-        SaveWorldButton.setFocusableF();
+        SaveWorldButton.setFocusable(false);
         SaveWorldButton.setPreferredSize(new Dimension(300, 30));
 
         BackToGameButton = new TButton(PixelQuest[5]);
@@ -71,11 +71,11 @@ public class Settings extends TPanel {
             PixelQuestGame.game.start();
             setVisible(false);
         });
-        BackToGameButton.setFocusableF();
+        BackToGameButton.setFocusable(false);
         BackToGameButton.setPreferredSize(new Dimension(300, 30));
 
         keyBindingPanel = new KeyBindingPanel();
-        keyBindingPanel.setFocusableF();
+        keyBindingPanel.setFocusable(false);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(keyBindingPanel);

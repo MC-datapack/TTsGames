@@ -1,0 +1,8 @@
+{
+  "name": "pixel_quest:swords",
+  "values": [
+    "pixel_quest:wooden_sword",
+    "pixel_quest:spruce_wood",
+    "pixel_quest:wool"
+  ]
+}

@@ -2,113 +2,147 @@ package dev.TTs.TTsGames.Games.PixelQuest.main;
 
 import dev.TTs.TTsGames.Games.PixelQuest.entity.*;
 import dev.TTs.TTsGames.Games.PixelQuest.entity.mob.*;
-import dev.TTs.TTsGames.Games.PixelQuest.entity.tree.OakTree;
-import dev.TTs.TTsGames.Games.PixelQuest.entity.tree.SpruceTree;
-import dev.TTs.TTsGames.Games.PixelQuest.entity.tree.Tree;
-import dev.TTs.TTsGames.Games.PixelQuest.usable.CraftingTable;
-import dev.TTs.TTsGames.Games.PixelQuest.usable.Furnace;
+import dev.TTs.TTsGames.Games.PixelQuest.entity.usable.Chest;
+import dev.TTs.TTsGames.Games.PixelQuest.json.PixelQuestJsonReader;
+import dev.TTs.TTsGames.Games.PixelQuest.world.World;
 
-import java.util.concurrent.ThreadLocalRandom;
+import java.awt.Point;
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-public class Spawning {
+import static dev.TTs.TTsGames.Games.PixelQuest.main.WorldSaving.serialVersion;
+
+public class Spawning implements Serializable {
+    @Serial
+    private static final long serialVersionUID = serialVersion;
+
     private static final int[] defaultSpeeds = {
             2, // Fox
             1, // Sheep
             2  // Enemy
     };
-
-    public static void initGameObjects() {
-        PixelQuestGame.game.addGameObject(new Furnace());
-        PixelQuestGame.game.addGameObject(new CraftingTable());
-        PixelQuestGame.game.addGameObject(new Fox(200, 200, defaultSpeeds[0]));
-        PixelQuestGame.game.addGameObject(new Sheep(500, 500, defaultSpeeds[1]));
-
-        // Initial tree spawning
-        checkAndSpawnTrees();
+    
+    private final World world;
+    private final Random rand;
+    
+    public Spawning(World world) {
+        this.world = world;
+        this.rand = new Random(world.seed.getJavaUtilRandomSeed());
     }
 
-    public static void gameObjectActions() {
-        for (GameObject gameObject : PixelQuestGame.game.getGameObjects()) {
-            if (gameObject instanceof Enemy enemy && DayTime.isDay()) {
-                enemy.damage(1);
-            }
-        }
+    private final List<Point> existingTreeLocations = new ArrayList<>();
+    private final List<Point> existingChestLocations = new ArrayList<>();
 
-        for (GameObject gameObject : PixelQuestGame.game.getGameObjects()) {
-            if (gameObject instanceof Mob || gameObject instanceof Tree) {
-                if (!isWithinRange(gameObject.x, gameObject.y, PixelQuestGame.game.player.x, PixelQuestGame.game.player.y, 4500)) {
-                    PixelQuestGame.game.getGameObjects().remove(gameObject);
+    public void initGameObjects() {
+        //world.addGameObject(new Furnace());
+        //world.addGameObject(new CraftingTable());
+        world.addGameObject(new Fox(200, 200, defaultSpeeds[0]));
+        world.addGameObject(new Sheep(500, 500, defaultSpeeds[1]));
+
+        checkAndSpawnTrees();
+        checkAndSpawnChests();
+    }
+
+    public void gameObjectActions() {
+        double randomCondition = world.dayTime.isNight() ? 0.00275 : 0.00025;
+        double maxMobs = world.dayTime.isNight() ? 50 : 25;
+        int mobs = 0;
+
+        for (Entity entity : world.getGameObjects()) {
+            if (entity instanceof Enemy damageable && world.dayTime.isDay()) {
+                damageable.damage(1);
+            }
+            if (entity instanceof Mob) {
+                mobs++;
+                if (!isWithinRange(entity.x, entity.y, world.player.x, world.player.y, 4500)) {
+                    world.getGameObjects().remove(entity);
                 }
             }
         }
 
-        double randomCondition = DayTime.isNight() ? 0.0125 : 0.001;
-        double maxMobs = DayTime.isNight() ? 50 : 25;
-
-        int mobs = 0;
-        for (GameObject gameObject : PixelQuestGame.game.getGameObjects()) {
-            if (gameObject instanceof Mob) {
-                mobs++;
-            }
-        }
-
-        if (Math.random() < randomCondition && mobs < maxMobs) {
-            PixelQuestGame.game.addGameObject(randomMob(
-                    PixelQuestGame.game.player.x - 500, PixelQuestGame.game.player.x + 500,
-                    PixelQuestGame.game.player.y - 500, PixelQuestGame.game.player.y + 500));
+        if (rand.nextDouble(1) < randomCondition && mobs < maxMobs) {
+            world.addGameObject(randomMob(
+                    world.player.x - 500, world.player.x + 500,
+                    world.player.y - 500, world.player.y + 500));
         }
 
         checkAndSpawnTrees();
+        checkAndSpawnChests();
     }
 
-    private static Mob randomMob(int minX, int maxX, int minY, int maxY) {
-        int mob = (int) (Math.random() * (DayTime.isDay() ? 2 : 6));
+    private Mob randomMob(int minX, int maxX, int minY, int maxY) {
+        int mob = rand.nextInt(world.dayTime.isDay() ? 2 : 6);
         return switch (mob) {
-            case 0 -> new Fox(ThreadLocalRandom.current().nextInt(minX, maxX), ThreadLocalRandom.current().nextInt(minY, maxY), defaultSpeeds[0]);
-            case 1 -> new Sheep(ThreadLocalRandom.current().nextInt(minX, maxX), ThreadLocalRandom.current().nextInt(minY, maxY), defaultSpeeds[1]);
-            case 2, 3, 4, 5 -> new Monster(ThreadLocalRandom.current().nextInt(minX, maxX), ThreadLocalRandom.current().nextInt(minY, maxY), defaultSpeeds[2]);
+            case 0 -> new Fox(rand.nextInt(minX, maxX), rand.nextInt(minY, maxY), defaultSpeeds[0]);
+            case 1 -> new Sheep(rand.nextInt(minX, maxX), rand.nextInt(minY, maxY), defaultSpeeds[1]);
+            case 2, 3, 4, 5 -> new Monster(rand.nextInt(minX, maxX), rand.nextInt(minY, maxY), defaultSpeeds[2]);
             default -> null;
         };
     }
 
-    private static void checkAndSpawnTrees() {
+    private void checkAndSpawnTrees() {
         int treeCount = 2;
         int oakToSpruceRatio = 5;
-        int playerX = PixelQuestGame.game.player.x;
-        int playerY = PixelQuestGame.game.player.y;
+        int playerX = world.player.x;
+        int playerY = world.player.y;
 
         for (int i = 0; i < treeCount; i++) {
-            int x = ThreadLocalRandom.current().nextInt(playerX - 1500, playerX + 1500);
-            int y = ThreadLocalRandom.current().nextInt(playerY - 1500, playerY + 1500);
+            int x = rand.nextInt(playerX - 1500, playerX + 1500);
+            int y = rand.nextInt(playerY - 1500, playerY + 1500);
 
-            // Ensure distance between trees and player
             if (isWithinRange(x, y, playerX, playerY, 1500) && isTreeNotNearby(x, y)) {
-                if (i % oakToSpruceRatio != 0) {
-                    PixelQuestGame.game.addGameObject(new OakTree(x, y));
-                } else {
-                    PixelQuestGame.game.addGameObject(new SpruceTree(x, y));
-                }
+                world.addGameObject(new Tree(x, y));
+                existingTreeLocations.add(new Point(x, y));
             }
         }
     }
 
-    private static boolean isWithinRange(int x, int y, int playerX, int playerY, int range) {
+    private boolean isTreeNotNearby(int x, int y) {
+        for (Point point : existingTreeLocations) {
+            int dx = x - point.x;
+            int dy = y - point.y;
+            int distance = (int) Math.sqrt(dx * dx + dy * dy);
+            if (distance < 800) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void checkAndSpawnChests() {
+        int chestCount = 2;
+        int playerX = world.player.x;
+        int playerY = world.player.y;
+
+        for (int i = 0; i < chestCount; i++) {
+            int x = rand.nextInt(playerX - 1500, playerX + 1500);
+            int y = rand.nextInt(playerY - 1500, playerY + 1500);
+
+            if (isWithinRange(x, y, playerX, playerY, 1500) && isChestNotNearby(x, y)) {
+                world.addGameObject(new Chest(x, y, PixelQuestJsonReader.getRandomChestLootTable()));
+                existingChestLocations.add(new Point(x, y));
+            }
+        }
+    }
+
+    private boolean isChestNotNearby(int x, int y) {
+        for (Point point : existingChestLocations) {
+            int dx = x - point.x;
+            int dy = y - point.y;
+            int distance = (int) Math.sqrt(dx * dx + dy * dy);
+            if (distance < 800) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isWithinRange(int x, int y, int playerX, int playerY, int range) {
         int dx = x - playerX;
         int dy = y - playerY;
         return (dx * dx + dy * dy) <= (range * range);
-    }
-
-    private static boolean isTreeNotNearby(int x, int y) {
-        for (GameObject gameObject : PixelQuestGame.game.getGameObjects()) {
-            if (gameObject instanceof Tree) {
-                int dx = x - gameObject.x;
-                int dy = y - gameObject.y;
-                int distance = (int) Math.sqrt(dx * dx + dy * dy);
-                if (distance < 800) {
-                    return false; // Tree is too close
-                }
-            }
-        }
-        return true; // No nearby tree
     }
 }

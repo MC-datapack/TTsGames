@@ -25,27 +25,6 @@ TTs Games is a small collection of self-made simple games without 3D rendering.
   - Images: [Copilot](https://copilot.microsoft.com/)
   - Sounds: [Elevenlabs](https://elevenlabs.io/)
 
-## Goals
-
- - Leave more Commands so that more people can understand my code
- - Thought as a project to train to code using **Java** (and maybe **Kotlin**)
-
-## Why Java?
-
-- Java has very optimized Extensions like [Gson](https://github.com/google/gson)
-- Java is a fast interpretive programming language
-  - I do not want to compile everything each time I want to test something (which can take very long)
-  - Interpretive programming languages like Python are much slower
-- Java is getting many updates over time
-  - The versions I am using are LTS versions [```Wikipedia Article```](https://en.wikipedia.org/wiki/Java_version_history#Release_table) but you can check the supported languages in the field "supported_java_versions" int [TTsGames.json](src/main/resources/TTsGames.json)
-- I have already been using Java in Minecraft Mods
-
-## Dependencies 
-
-- I try to use only a few dependencies and not thousands like many people
-- The only dependencies I use is [Gson](https://github.com/google/gson)
-- **Dependencies are automatically included in the jar file**
-
 ## Running TTs Games
 
 ### As Jar File
@@ -62,5 +41,28 @@ TTs Games is a normal Gradle Project using Gradle 8.10
 
 1. Download the Sources
 2. Import the project into your IDE
-3. Go to the file Main in src/main/java/dev/TTs/TTsGames
-4. Run this file
+3. Run options:
+- Main: ```gradlew run```
+- Datagen: ```gradlew runDatagen```
+- Analyze: ```gradlew analyze```
+
+## Goals
+
+ - Leave more Commands so that more people can understand my code
+ - Thought as a project to train to code using **Java**
+
+## Why Java?
+
+- Java has very optimized Extensions like [Gson](https://github.com/google/gson)
+- Java is a fast interpretive programming language
+  - I do not want to compile everything each time I want to test something (which can take very long)
+  - Interpretive programming languages like Python are much slower
+- Java is getting many updates over time
+  - The versions I am using are LTS versions [```Wikipedia Article```](https://en.wikipedia.org/wiki/Java_version_history#Release_table) but you can check the supported languages in the field "supported_java_versions" int [TTsGames.json](src/main/resources/TTsGames.json)
+- I have already been using Java in Minecraft Mods
+
+## Dependencies 
+
+- I try to use only a few dependencies and not thousands like many people
+- The only dependencies I use is [Gson](https://github.com/google/gson)
+- **Dependencies are automatically included in the jar file**

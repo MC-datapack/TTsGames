@@ -1,31 +1,26 @@
 package dev.TTs.TTsGames.Games.PixelQuest.main;
 
-import dev.TTs.TTsGames.Games.PixelQuest.entity.*;
+import dev.TTs.TTsGames.Games.PixelQuest.PixelQuest;
 import dev.TTs.TTsGames.Games.PixelQuest.item.Items;
-import dev.TTs.TTsGames.Games.PixelQuest.usable.CraftingTable;
-import dev.TTs.TTsGames.Games.PixelQuest.usable.Furnace;
+import dev.TTs.resources.Configs;
+import dev.TTs.resources.Translations;
 import dev.TTs.swing.*;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.DefaultMenuLayout;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.*;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
-import static dev.TTs.TTsGames.Games.PixelQuest.main.WorldSaving.serialVersion;
-import static dev.TTs.TTsGames.Main.logger;
+import static dev.TTs.TTsGames.Main.*;
 
 public class PixelQuestGame extends TPanel implements Runnable, Serializable {
-    public static final int width = 800, height = 800;
-    @Serial
-    private static final long serialVersionUID = serialVersion;
+    public static int width, height;
     public static PixelQuestGame game;
     public static Settings settings;
-    CopyOnWriteArrayList<GameObject> gameObjects;
-    public Player player;
-    private final Set<Integer> pressedKeys;
+    public final Set<Integer> pressedKeys;
     private boolean running;
     private Thread thread;
     public int fps;
@@ -36,10 +31,16 @@ public class PixelQuestGame extends TPanel implements Runnable, Serializable {
     public static boolean drop = false;
     private DefaultListModel<String> saveListModel;
     private JList<String> saveList;
-    private JPanel savePanel;
+    private TButton exit;
+    private TPanel savePanel;
     public boolean loadedGame;
+    BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+    Cursor invisibleCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImg, new Point(0, 0), "invisible cursor");
 
-    public PixelQuestGame(int refreshRate) {
+    public PixelQuestGame(int refreshRate, Rectangle screen, GraphicsDevice device) {
+        this.setBounds(screen);
+        width = screen.width;
+        height = screen.height + 50;
         File dict = new File(System.getProperty("user.home") + "/AppData/Roaming/TTsGames/PixelQuest/saves");
         if (!dict.exists()) {
             logger.info(dict.mkdirs() ? "Created dictionary" : "Failed to create dictionary or found dictionary");
@@ -48,45 +49,55 @@ public class PixelQuestGame extends TPanel implements Runnable, Serializable {
         }
         this.refreshRate = refreshRate == 0 ? 60 : refreshRate;
         Items.load();
-        gameObjects = new CopyOnWriteArrayList<>();
-        player = new Player(0, 0);
-        gameObjects.add(player);
         pressedKeys = new HashSet<>();
-        player.setPressedKeys(pressedKeys);
         settings = new Settings();
-        settings.setPreferredSize(new Dimension(300, 400)); // Ensure size is set
-        this.setLayout(null);
+        settings.setPreferredSize(new Dimension(300, 400));
+        setLayout(null);
         initSettingsComponents();
-        this.addKeyListener(new KeyAdapter() {
+        addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 pressedKeys.add(e.getKeyCode());
-                player.keyPressed(e);
-                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    toggleSettings();
+                if (loadedGame) {
+                    WorldSaving.world.player.keyPressed(e);
+                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        toggleSettings();
+                    }
+                }
+                if (e.getKeyCode() == KeyEvent.VK_F11) {
+                    configLoader.set(Configs.FULLSCREEN, !((Boolean) configLoader.get(Configs.FULLSCREEN)));
+                    windows[7].getContentPane().setCursor(Cursor.getDefaultCursor());
+                    windows[7].dispose();
+                    loadedGame = false;
+                    showSettings = false;
+                    running = false;
+                    new PixelQuest(new WindowInformation(false, new Point(windows[0].getX() - 300, windows[0].getY() - 300),
+                            new Dimension(1200, 1000), Textures[4][0][0], Translations.Games[3] + Versions[13]));
                 }
             }
             @Override
             public void keyReleased(KeyEvent e) {
-                pressedKeys.remove(e.getKeyCode());
-                player.keyReleased(e);
+                if (loadedGame) {
+                    pressedKeys.remove(e.getKeyCode());
+                    WorldSaving.world.player.keyReleased(e);
+                }
             }
         });
-        this.addMouseMotionListener(new MouseMotionAdapter() {
+        addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
-                player.inventory.handleMouseMoved();
-                mousePosition = e.getPoint();
+                if (WorldSaving.world != null && loadedGame) {
+                    WorldSaving.world.player.inventory.handleMouseMoved();
+                    mousePosition = e.getPoint();
+                }
             }
         });
-        this.addMouseListener(new MouseAdapter() {
+        addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 mouseClickPosition = e.getPoint();
             }
         });
-        setFocusable(true);
-        requestFocusInWindow();
         initSavePanel();
         displaySaveFrame();
     }
@@ -115,41 +126,44 @@ public class PixelQuestGame extends TPanel implements Runnable, Serializable {
         }
     }
 
-    private void initSavePanel() {
+    public void initSavePanel() {
         saveListModel = new DefaultListModel<>();
         saveList = new JList<>(saveListModel);
         saveList.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
-                String selectedSave = saveList.getSelectedValue();
-                WorldSaving.gameName = selectedSave;
-                if (selectedSave != null) {
-                    WorldSaving.loadGame(selectedSave);
-                    this.remove(savePanel);
-                    revalidate();
-                    repaint();
-                    start();
-                }
+                WorldSaving.loadGame(saveList.getSelectedValue());
+                this.remove(savePanel);
+                revalidate();
+                repaint();
+                start();
             }
         });
         TButton newGameButton = getTButton();
-        savePanel = new JPanel(new BorderLayout());
-        savePanel.add(new JScrollPane(saveList), BorderLayout.CENTER);
-        savePanel.add(newGameButton, BorderLayout.SOUTH);
-        savePanel.setSize(300, 400);
+        exit = new TButton(Translations.PixelQuest[11]);
+        exit.event(() -> windows[7].getWindowListeners()[0].windowClosing(new WindowEvent(windows[7], WindowEvent.WINDOW_CLOSING)));
+        exit.Hide();
+        savePanel = new TPanel();
+        savePanel.setLayout(null);
+        JScrollPane pane = new JScrollPane(saveList);
+        pane.setBounds(0, 40, 750, 760);
+        newGameButton.setBounds(0, 0, 325, 40);
+        exit.setBounds(325, 0, 325, 40);
+        savePanel.addP(pane, newGameButton, exit);
+        savePanel.setSize(800, 800);
         savePanel.setVisible(false);
+        savePanel.setBounds(50, 50, 800, 800);
         this.setLayout(null);
-        this.add(savePanel);
-        savePanel.setBounds(50, 50, 300, 400);
+        add(savePanel);
     }
 
     private TButton getTButton() {
-        TButton newGameButton = new TButton("Create New Game");
+        TButton newGameButton = new TButton(Translations.PixelQuest[12]);
         newGameButton.addActionListener(e -> {
-            String newGameName = JOptionPane.showInputDialog(this, "Enter name for new game:");
-            if (newGameName != null && !newGameName.trim().isEmpty()) {
+            String newGameName = JOptionPane.showInputDialog(this, Translations.PixelQuest[13]);
+            String newGameSeed = (String) JOptionPane.showInputDialog(this, Translations.PixelQuest[14], new Random().nextLong());
+            if (newGameName != null && newGameSeed != null && !newGameName.trim().isEmpty() && !newGameSeed.trim().isEmpty()) {
                 this.remove(savePanel);
-                createNewGame(newGameName);
-                WorldSaving.loadGame(newGameName);
+                WorldSaving.createNewWorld(newGameName, newGameSeed);
                 revalidate();
                 repaint();
                 start();
@@ -175,22 +189,13 @@ public class PixelQuestGame extends TPanel implements Runnable, Serializable {
             }
         }
         savePanel.setVisible(true);
-    }
-
-    public void createNewGame(String name) {
-        WorldSaving.gameName = name;
-        gameObjects.clear();
-        player = new Player(0, 0);
-        gameObjects.add(player);
-        Spawning.initGameObjects();
-        WorldSaving.saveGame(name);
+        exit.Show();
     }
 
     @Override
     public void run() {
         if (settings == null) {
             settings = new Settings();
-            Spawning.initGameObjects();
         }
         long lastUpdateTime = System.nanoTime();
         long lastRepaintTime = System.nanoTime();
@@ -198,40 +203,36 @@ public class PixelQuestGame extends TPanel implements Runnable, Serializable {
         double nsPerRepaint;
         long fpsLastTime = System.currentTimeMillis();
         int frames = 0;
-
         int i = 0;
-
         while (running) {
+            if (showSettings || WorldSaving.world.anyInventoryOpened()) windows[7].getContentPane().setCursor(Cursor.getDefaultCursor());
+            else windows[7].getContentPane().setCursor(invisibleCursor);
+
             if (settings.VSync) {
                 nsPerRepaint = 1000000000.0 / refreshRate;
             } else {
                 nsPerRepaint = 1000000000.0 / Double.MAX_VALUE;
             }
-
             long now = System.nanoTime();
-
             if ((now - lastUpdateTime) >= nsPerUpdate) {
-                update();
-                Spawning.gameObjectActions();
+                WorldSaving.world.update();
                 lastUpdateTime += (long) nsPerUpdate;
                 i++;
                 if (i > 1000) {
                     WorldSaving.saveGame();
+                    i = 0;
                 }
             }
-
             if ((now - lastRepaintTime) >= nsPerRepaint) {
                 repaint();
                 frames++;
                 lastRepaintTime += (long) nsPerRepaint;
             }
-
             if (System.currentTimeMillis() - fpsLastTime >= 1000) {
                 fps = frames;
                 frames = 0;
                 fpsLastTime += 1000;
             }
-
             try {
                 long sleepTime = Math.min((long) (lastUpdateTime + nsPerUpdate - System.nanoTime()),
                         (long) (lastRepaintTime + nsPerRepaint - System.nanoTime())) / 1000000;
@@ -263,88 +264,14 @@ public class PixelQuestGame extends TPanel implements Runnable, Serializable {
         } catch (InterruptedException e) {
             logger.error("Failed to stop: %s", e.getMessage());
         }
-    }
-
-    private void update() {
-        for (GameObject obj : gameObjects) {
-            obj.update();
-        }
-        drop = false;
-        checkCollisions();
-        DayTime.update();
-    }
-
-    private void checkCollisions() {
-        for (int i = 0; i < gameObjects.size(); i++) {
-            for (int j = i + 1; j < gameObjects.size(); j++) {
-                GameObject obj1 = gameObjects.get(i);
-                GameObject obj2 = gameObjects.get(j);
-                if (obj1.getBounds().intersects(obj2.getBounds())) {
-                    if (obj1.canCollide() && obj2.canCollide()) {
-                        obj1.onCollision(obj2);
-                        obj2.onCollision(obj1);
-                        obj1.registerCollision();
-                        obj2.registerCollision();
-                    }
-                }
-            }
-        }
-    }
-
-    public void addGameObject(GameObject gameObject) {
-        SwingUtilities.invokeLater(() -> gameObjects.add(gameObject));
-    }
-
-    public void addMultipleGameObjects(List<GameObject> gameObjects) {
-        SwingUtilities.invokeLater(() -> this.gameObjects.addAll(gameObjects));
-    }
-
-    public void removeGameObject(GameObject gameObject) {
-        logger.info("Attempting to remove GameObject");
-        SwingUtilities.invokeLater(() -> {
-            gameObjects.remove(gameObject);
-            logger.info("Removed GameObject: " + gameObject);
-        });
-    }
-
-    public CopyOnWriteArrayList<GameObject> getGameObjects() {
-        return gameObjects;
-    }
-
-    public static Furnace getFurnace() {
-        for (GameObject obj : game.gameObjects) {
-            if (obj instanceof Furnace furnace) {
-                return furnace;
-            }
-        }
-        return null;
-    }
-
-    public static CraftingTable getCraftingTable() {
-        for (GameObject obj : game.gameObjects) {
-            if (obj instanceof CraftingTable craftingTable) {
-                return craftingTable;
-            }
-        }
-        return null;
+        windows[7].getContentPane().setCursor(Cursor.getDefaultCursor());
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (loadedGame) {
-            Renderer.paint((Graphics2D) g);
+            Renderer.paint((Graphics2D) g, WorldSaving.world);
         }
-    }
-
-    public void unloadGame() {
-        loadedGame = false;
-        settings.Hide();
-        WorldSaving.saveGame(WorldSaving.gameName);
-        repaint();
-        revalidate();
-        stop();
-        initSavePanel();
-        displaySaveFrame();
     }
 }

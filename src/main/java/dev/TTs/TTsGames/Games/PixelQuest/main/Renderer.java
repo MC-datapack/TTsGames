@@ -1,7 +1,8 @@
 package dev.TTs.TTsGames.Games.PixelQuest.main;
 
-import dev.TTs.TTsGames.Games.PixelQuest.entity.GameObject;
+import dev.TTs.TTsGames.Games.PixelQuest.entity.Entity;
 import dev.TTs.TTsGames.Games.PixelQuest.entity.mob.Mob;
+import dev.TTs.TTsGames.Games.PixelQuest.world.World;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -17,11 +18,11 @@ public class Renderer {
         BufferedImage bg = new BufferedImage(PixelQuestGame.width, PixelQuestGame.height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = bg.createGraphics();
 
-        createStars(g, PixelQuestGame.width, PixelQuestGame.height, 4, 150,
+        createStars(g, PixelQuestGame.width, PixelQuestGame.height, 4, 300,
                 new Color(255, 255, 255), new Color(240, 240, 240), new Color(230, 230, 255));
-        createStars(g, PixelQuestGame.width, PixelQuestGame.height, 5, 25,
+        createStars(g, PixelQuestGame.width, PixelQuestGame.height, 5, 50,
                 new Color(0, 0, 255), new Color(80, 80 ,255), new Color(45, 45, 255), new Color(65, 65, 255), new Color(80, 80, 255));
-        createStars(g, PixelQuestGame.width, PixelQuestGame.height, 5, 10,
+        createStars(g, PixelQuestGame.width, PixelQuestGame.height, 5, 20,
                 new Color(255, 255, 0), new Color(255, 210, 0), new Color(255, 180, 0), new Color(255, 120, 0));
 
         g.dispose();
@@ -47,8 +48,8 @@ public class Renderer {
         }
     }
 
-    public static void paint(Graphics2D g) {
-        if (starryBackground == null) {
+    public static void paint(Graphics2D g, World world) {
+        if (starryBackground == null || starryBackground.getWidth() != PixelQuestGame.width) {
             starryBackground = createStarryBackground();
         }
 
@@ -64,8 +65,8 @@ public class Renderer {
             startY -= bgHeight;
         }
 
-        g.setColor(DayTime.dayColor());
-        g.fillRect(0, 0, PixelQuestGame.width, PixelQuestGame.height);
+        g.setColor(world.dayTime.dayColor());
+        g.fillRect(0, 0, bgWidth, bgHeight);
 
         for (int x = startX; x < PixelQuestGame.width; x += bgWidth) {
             for (int y = startY; y < PixelQuestGame.height; y += bgHeight) {
@@ -73,17 +74,19 @@ public class Renderer {
             }
         }
 
-        if (!PixelQuestGame.game.player.died()) {
-            for (GameObject obj : PixelQuestGame.game.getGameObjects()) {
-                int objX = (obj.x - CameraX) + 400;
-                int objY = (obj.y - CameraY) + 400;
+        if (!world.player.died()) {
+            for (Entity obj : world.getGameObjects()) {
+                int objX = (obj.x - CameraX) + PixelQuestGame.width / 2;
+                int objY = (obj.y - CameraY) + PixelQuestGame.height / 2;
                 obj.render(g, objX, objY);
             }
-            if (PixelQuestGame.getFurnace() != null) PixelQuestGame.getFurnace().render(g, 0, 0);
+            if (World.getFurnace() != null) World.getFurnace().render(g, 0, 0);
         } else {
             g.setColor(Color.RED);
             g.setFont(new Font("Arial", Font.BOLD, 35));
-            g.drawString(PixelQuestGame.game.player.deathMessage(), 100, 200);
+            if (world.player.deathMessage() != null) {
+                g.drawString(world.player.deathMessage(), 100, 200);
+            }
         }
 
         // Draw FPS and Mob Counter
@@ -91,7 +94,7 @@ public class Renderer {
         g.setFont(new Font("Arial", Font.PLAIN, 14));
         g.drawString("FPS: " + PixelQuestGame.game.fps, 10, 20);
         int mobs = 0;
-        for (GameObject gameObject : PixelQuestGame.game.getGameObjects()) if (gameObject instanceof Mob) mobs++;
-        g.drawString("Mobs: " + mobs, 10, 35);
+        for (Entity entity : world.getGameObjects()) if (entity instanceof Mob) mobs++;
+        g.drawString("Mobs: " + mobs + " | " + world.getGameObjects().size(), 10, 35);
     }
 }

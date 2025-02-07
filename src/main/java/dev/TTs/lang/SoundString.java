@@ -29,8 +29,9 @@ public final class SoundString {
         this.jsonPath = path;
         Timer Timer = new Timer();
         Timer.scheduleAtFixedRate(new TimerTask() {
-            @Override public void run() {
-                if (configLoader != null) {
+            @Override
+            public void run() {
+                if (translations != null) {
                     File defaultF = new File(format.getFiles("English"));
                     String Game;
                     switch (game) {

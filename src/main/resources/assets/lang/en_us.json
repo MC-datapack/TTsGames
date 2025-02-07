@@ -204,14 +204,23 @@
   "pixel_quest.save.for_older": "This save was created for an older version of PixelQuest.",
   "pixel_quest.save.unknown_format": "The save format is unknown.",
   "pixel_quest.restart": "Restart TTsGames",
+  "pixel_quest.exit": "Exit Game",
+  "pixel_quest.save.new_world": "Create new World",
+  "pixel_quest.save.new.enter_name":  "Name of the World:",
+  "pixel_quest.save.new.seed": "Seed of the World:",
 
   "pixel_quest.tooltip.smelt!": "You can cook this item to get a better food.",
+  "pixel_quest.tooltip.attack_with!": "Select this item to do more damage.",
 
   "pixel_quest.item.fox": "Fox Meat",
   "pixel_quest.item.cooked_fox": "Cooked Fox Meat",
   "pixel_quest.item.mutton": "Mutton",
   "pixel_quest.item.cooked_mutton": "Cooked Mutton",
   "pixel_quest.item.wool": "Wool",
+  "pixel_quest.item.stick": "Stick",
+  "pixel_quest.item.oak_wood": "Oak Wood",
+  "pixel_quest.item.spruce_wood": "Spruce Wood",
+  "pixel_quest.item.wooden_sword": "Wooden Sword",
 
   "pixel_quest.setting.back_to_game": "Back to Game",
 
@@ -225,6 +234,8 @@
   "pixel_quest.keybind.inventory": "Toggle Inventory",
   "pixel_quest.keybind.drop": "Drop",
   "pixel_quest.keybind.smelt": "Transfer item to utility object",
+  "pixel_quest.keybind.select": "Select",
+  "pixel_quest.keybind.sprint": "Sprint",
 
 
 

@@ -18,6 +18,7 @@ public class JsonReader {
     public final TTsGamesJSONFormat MainJSON;
     public final ColorJSONFormat colorJSON;
     ColorJSONFormat.ColorRepresentation[] colorReps;
+
     public JsonReader(String TTsGamesJsonPath) {
         MainJSON = readTTsJsonFile(TTsGamesJsonPath + "TTsGames.json");
         colorJSON = readColorJsonFile(MainJSON.getData()[1][0]);
@@ -67,10 +68,10 @@ public class JsonReader {
         Color[] colors = new Color[colorReps.length];
         for (int i = 0; i < colorReps.length; i++) {
             ColorJSONFormat.ColorRepresentation colorRep = colorReps[i];
-            if (colorRep.getR() == 0 && colorRep.getG() == 0 && colorRep.getB() == 0) {
+            if (colorRep.getR() == 0 && colorRep.getG() == 0 && colorRep.getB() == 0 && colorRep.getA() == 0) {
                 colors[i] = new Color(colorRep.getRGB());
             } else {
-                colors[i] = new Color(colorRep.getR(), colorRep.getG(), colorRep.getB());
+                colors[i] = new Color(colorRep.getR(), colorRep.getG(), colorRep.getB(), colorRep.getA());
             }
         }
         return colors;
@@ -105,7 +106,7 @@ public class JsonReader {
                 logger.error("File not found: %s", filePath); return null;
             } return gson.fromJson(reader, TTsGamesJSONFormat.class);
         } catch (IOException e) {
-            logger.error("Failed to read the Json File: %s", e); return null;
+            throw new TTsReadException(e);
         }
     }
 
@@ -115,7 +116,6 @@ public class JsonReader {
             if (inputStream == null) {
                 return null;
             }
-            logger.debug("Animation File found: %s", filePath);
             return gson.fromJson(reader, AnimatedJSONFormat.class);
         } catch (IOException e) {
             return null;

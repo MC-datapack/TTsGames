@@ -1,0 +1,25 @@
+{
+  "name": "pixel_quest:tree/oak",
+  "tables": [
+    {
+      "item": "pixel_quest:oak_wood",
+      "count": {
+        "uniform": {
+          "min": 8,
+          "max": 16
+        }
+      },
+      "chance": 1.0
+    },
+    {
+      "item": "pixel_quest:stick",
+      "count": {
+        "uniform": {
+          "min": 2,
+          "max": 8
+        }
+      },
+      "chance": 1.0
+    }
+  ]
+}

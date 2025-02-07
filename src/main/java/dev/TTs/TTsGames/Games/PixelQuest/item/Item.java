@@ -1,6 +1,6 @@
 package dev.TTs.TTsGames.Games.PixelQuest.item;
 
-import dev.TTs.TTsGames.Games.PixelQuest.util.Identifier;
+import dev.TTs.util.Identifier;
 
 import java.io.*;
 import java.util.HashMap;
@@ -19,15 +19,15 @@ public class Item implements Serializable {
     Item.Settings settings;
 
     public static Item registerItem(String name, Settings settings) {
-        return register(new Item(new Identifier(name), settings));
+        return register(new Item(Identifier.ofPixelQuest(name), settings));
     }
 
     public static FoodItem registerFoodItem(String name, int saturation, Settings settings) {
-        return Item.register(new FoodItem(new Identifier(name), saturation, settings));
+        return Item.register(new FoodItem(Identifier.ofPixelQuest(name), saturation, settings));
     }
 
     public static WeaponItem registerWeapon(String name, int damage, Settings settings) {
-        return Item.register(new WeaponItem(new Identifier(name), damage, settings));
+        return Item.register(new WeaponItem(Identifier.ofPixelQuest(name), damage, settings));
     }
 
     public static <T extends Item> T register(T item) {
@@ -39,7 +39,7 @@ public class Item implements Serializable {
         if (id != null) {
             Item item = items.get(id);
             if (item == null) {
-                logger.error("Item not found: %s", id);
+                logger.error("Items not found: %s", id);
             }
             return item;
         } else {
@@ -57,7 +57,7 @@ public class Item implements Serializable {
         Identifier identifier = (Identifier) in.readObject();
         Item item = getItem(identifier);
         if (item == null) {
-            logger.error("Item not found during deserialization: %s", identifier);
+            logger.error("Items not found during deserialization: %s", identifier);
             this.identifier = null;
             this.settings = null;
         } else {
@@ -81,7 +81,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "Item[" +
+        return "Items[" +
                 "identifier=" + identifier + ", " +
                 "settings=" + settings + ']';
     }

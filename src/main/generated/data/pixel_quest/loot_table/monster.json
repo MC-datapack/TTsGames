@@ -10,9 +10,11 @@
         }
       },
       "chance": 1.0,
-      "conditions": {
-        "type": "pixel_quest:killed_by_player"
-      }
+      "conditions": [
+        {
+          "type": "pixel_quest:killed_by_player"
+        }
+      ]
     }
   ]
 }

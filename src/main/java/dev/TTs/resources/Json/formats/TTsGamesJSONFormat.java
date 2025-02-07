@@ -12,7 +12,6 @@ public class TTsGamesJSONFormat {
     private Map<String, GameVersion> version;
     private Config config;
     private String language_files_base_dictionary;
-    private String[] languages;
     private Map<String, String> language_files;
     private String[][] textures_base_dictionaries;
     private String[][] textures_file_types;
@@ -35,10 +34,13 @@ public class TTsGamesJSONFormat {
         return version;
     }
     public String[] getLanguages() {
-        return languages;
+        return language_files.keySet().toArray(new String[0]);
     }
     public String getLanguageFile(String language) {
         return language_files_base_dictionary + "/" + language_files.get(language) + ".json";
+    }
+    public String getLanguageFiles(String language) {
+        return language_files.get(language);
     }
     public ImageString getNoTextureFile() {
         return new ImageString(no_texture_file);

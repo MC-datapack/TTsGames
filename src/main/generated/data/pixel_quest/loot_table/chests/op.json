@@ -1,0 +1,36 @@
+{
+  "name": "pixel_quest:chests/op",
+  "tables": [
+    {
+      "item": "pixel_quest:wooden_sword",
+      "count": {
+        "fixed": 1
+      },
+      "chance": 0.125
+    },
+    {
+      "item": "pixel_quest:spruce_wood",
+      "count": {
+        "fixed": 1
+      },
+      "chance": 0.125
+    },
+    {
+      "item": "pixel_quest:wool",
+      "count": {
+        "fixed": 1
+      },
+      "chance": 0.125
+    },
+    {
+      "item": "pixel_quest:spruce_wood",
+      "count": {
+        "uniform": {
+          "min": 10,
+          "max": 64
+        }
+      },
+      "chance": 1.0
+    }
+  ]
+}

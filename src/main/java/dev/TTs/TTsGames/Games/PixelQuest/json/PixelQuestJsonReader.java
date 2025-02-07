@@ -2,12 +2,14 @@ package dev.TTs.TTsGames.Games.PixelQuest.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dev.TTs.TTsGames.Games.PixelQuest.entity.GameObject;
+import dev.TTs.TTsGames.Games.PixelQuest.entity.Entity;
 import dev.TTs.TTsGames.Games.PixelQuest.item.Item;
 import dev.TTs.TTsGames.Games.PixelQuest.predicate.PredicateAdapter;
 import dev.TTs.TTsGames.Games.PixelQuest.predicate.Predicate;
-import dev.TTs.TTsGames.Games.PixelQuest.util.Identifier;
+import dev.TTs.TTsGames.Games.PixelQuest.util.TagType;
+import dev.TTs.util.Identifier;
 import dev.TTs.TTsGames.Games.PixelQuest.util.TagKey;
+import dev.TTs.util.RandomUtil;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -16,18 +18,49 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import static dev.TTs.TTsGames.Games.PixelQuest.util.TagType.ITEM;
 import static dev.TTs.TTsGames.Main.jsonReader;
 import static dev.TTs.TTsGames.Main.logger;
 
 public class PixelQuestJsonReader {
 
     private static final Gson gson = new GsonBuilder()
-            .registerTypeAdapter(Predicate.class, new PredicateAdapter())
+            .registerTypeHierarchyAdapter(Predicate[].class, new PredicateAdapter())
             .setPrettyPrinting()
             .create();
 
-    public static LootTableFormat readLootTable(GameObject mob) {
-        String lootTablePath = mob.id().getLootTablePath();
+    public static Identifier getRandomChestLootTable() {
+        File chestLootTableDict;
+        try {
+            chestLootTableDict = new File(PixelQuestJsonReader.class.getClassLoader().getResource("data/pixel_quest/loot_table/chests").toURI());
+        } catch (URISyntaxException | NullPointerException e) {
+            logger.error("Failed creating Chest Loot Table dict: %s", e);
+            return Identifier.of(null, null);
+        }
+        File[] files = chestLootTableDict.listFiles();
+
+        assert files != null;
+        List<File> fileList = new ArrayList<>(List.of(files));
+        fileList.removeIf(file -> !file.getName().endsWith("json") && !file.getName().endsWith("json5"));
+
+        List<Identifier> ids = new ArrayList<>();
+
+        fileList.forEach(file -> ids.add(name(file)));
+
+        return logger.debug(RandomUtil.getRandom(ids));
+    }
+
+    private static Identifier name(File file) {
+        return Identifier.of("pixel_quest", "chests/" + (file.getName().endsWith("json") ? file.getName().replace(".json", "") : file.getName().replace(".json5", "")));
+    }
+
+    public static LootTableFormat readLootTable(Entity mob) {
+        return readLootTable(mob.id());
+    }
+
+    public static LootTableFormat readLootTable(Identifier id) {
+        logger.debug("Id: %s", id);
+        String lootTablePath = id.getLootTablePath();
         try (InputStream inputStream = PixelQuestJsonReader.class.getClassLoader().getResourceAsStream(lootTablePath);
              InputStreamReader reader = inputStream == null ? null : new InputStreamReader(inputStream)) {
 
@@ -112,27 +145,26 @@ public class PixelQuestJsonReader {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T[] readTag(TagKey key) {
+    public static <T> T[] readTag(TagKey<T> key) {
         String[] raw = jsonReader.ValuesStandard("values", key.id().getTag(key.type()), String[].class);
         if (raw == null) return null;
 
         List<T> result = new ArrayList<>();
 
-        switch (key.type()) {
-            case ITEM -> {
-                for (String string : raw) {
-                    if (string.startsWith("#")) {
-                        String referenceName = string.substring(1);
-                        T[] referencedItems = readTagByName(key.type(), referenceName);
-                        if (referencedItems != null) {
-                            result.addAll(Arrays.asList(referencedItems));
-                        }
-                    } else {
-                        result.add((T) Item.getItem(new Identifier(string)));
+        if (key.type().equals(ITEM)) {
+            for (String string : raw) {
+                if (string.startsWith("#")) {
+                    String referenceName = string.substring(1);
+                    T[] referencedItems = readTagByName(key.type(), referenceName);
+                    if (referencedItems != null) {
+                        result.addAll(Arrays.asList(referencedItems));
                     }
+                } else {
+                    result.add((T) Item.getItem(Identifier.of(string)));
                 }
             }
-            default -> throw new IllegalArgumentException("Unsupported TagType: " + key.type());
+        } else {
+            throw new IllegalArgumentException("Unsupported TagType: " + key.type());
         }
 
         T[] array = (T[]) java.lang.reflect.Array.newInstance(key.type().getClazz(), result.size());
@@ -140,12 +172,12 @@ public class PixelQuestJsonReader {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T[] readTagByName(TagType type, String name) {
+    public static <T> T[] readTagByName(TagType<T> type, String name) {
         Identifier path = getPathByName(name);
         return readTag(TagKey.of(type, path));
     }
 
     public static Identifier getPathByName(String name) {
-        return new Identifier(name);
+        return Identifier.of(name);
     }
 }

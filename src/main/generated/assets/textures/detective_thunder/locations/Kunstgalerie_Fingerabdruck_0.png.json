@@ -1,0 +1,14 @@
+{
+  "name": "detective_thunder:locations/Kunstgalerie_Fingerabdruck_0.png",
+  "base_path": "assets/textures/detective_thunder/locations",
+  "file_format": ".png",
+  "paths": [
+    "Kunstgalerie_Fingerabdruck_0",
+    "Kunstgalerie_Fingerabdruck_1",
+    "Kunstgalerie_Fingerabdruck_2",
+    "Kunstgalerie_Fingerabdruck_3"
+  ],
+  "delay": 100,
+  "repeat": false,
+  "blend": true
+}

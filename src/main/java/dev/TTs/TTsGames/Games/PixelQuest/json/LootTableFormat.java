@@ -1,6 +1,6 @@
 package dev.TTs.TTsGames.Games.PixelQuest.json;
 
-import dev.TTs.TTsGames.Games.PixelQuest.entity.Damageable;
+import dev.TTs.TTsGames.Games.PixelQuest.entity.Entity;
 import dev.TTs.TTsGames.Games.PixelQuest.entity.ItemEntity;
 import dev.TTs.TTsGames.Games.PixelQuest.item.ItemStack;
 
@@ -16,7 +16,7 @@ public class LootTableFormat {
         this.tables = tables;
     }
 
-    public ItemStack getItemStack(int index, Damageable entity) {
+    public ItemStack getItemStack(int index, Entity entity) {
         return tables[index].getItemStack(entity);
     }
 
@@ -24,7 +24,7 @@ public class LootTableFormat {
         return tables[index].getItemStack();
     }
 
-    public ItemEntity drop(int index, int x, int y, Damageable entity) {
+    public ItemEntity drop(int index, int x, int y, Entity entity) {
         ItemStack itemStack = getItemStack(index, entity);
         if (itemStack != null) {
             return new ItemEntity(itemStack, x, y);
@@ -40,15 +40,15 @@ public class LootTableFormat {
         return null;
     }
 
-    public ItemEntity[] dropAll(int x, int y, Damageable entity) {
-        List<ItemEntity> items = new ArrayList<>();
+    public List<Entity> dropAll(int x, int y, Entity entity) {
+        List<Entity> items = new ArrayList<>();
         for (int i = 0; i < tables.length; i++) {
             ItemEntity itemEntity = drop(i, x, y, entity);
             if (itemEntity != null) {
                 items.add(itemEntity);
             }
         }
-        return items.toArray(new ItemEntity[0]);
+        return items;
     }
 
     public ItemEntity[] dropAll(int x, int y) {

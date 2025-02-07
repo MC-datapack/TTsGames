@@ -1,9 +1,10 @@
 package dev.TTs.TTsGames.Games.PixelQuest.entity.mob;
 
 import dev.TTs.TTsGames.Games.PixelQuest.entity.Damageable;
-import dev.TTs.TTsGames.Games.PixelQuest.util.Identifier;
+import dev.TTs.util.Identifier;
 
 public class Monster extends Enemy {
+
     public Monster() {
         this(0, 0, 0);
     }
@@ -13,11 +14,6 @@ public class Monster extends Enemy {
 
     @Override
     public Identifier id() {
-        return new Identifier("monster");
-    }
-
-    @Override
-    public Damageable get() {
-        return this;
+        return Identifier.ofPixelQuest("monster");
     }
 }

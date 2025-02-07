@@ -1,0 +1,74 @@
+plugins {
+    id 'java'
+}
+
+group = project.group.toString()
+version = project.version.toString()
+
+java {
+    withSourcesJar()
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(project.property('java_version').toString().toInteger()))
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = [project.property('java_dir').toString()]
+        }
+        resources {
+            srcDirs = [project.property('resource_dir').toString(), project.property('generated_resource_dir').toString()]
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.google.code.gson:gson:${project.property('gson_version')}"
+}
+
+tasks.processResources {
+    inputs.property 'version', project.property('version')
+
+    filesMatching(project.property('main_json').toString()) {
+        expand 'version': project.property('version')
+    }
+}
+
+tasks.register("run", JavaExec) {
+    group = 'TTsGames'
+    classpath = sourceSets.main.runtimeClasspath
+    main = "dev.TTs.TTsGames.Main"
+}
+
+tasks.register("runDatagen", JavaExec) {
+    group = 'TTsGames'
+    classpath = sourceSets.main.runtimeClasspath
+    main = "dev.TTs.TTsGames.datagen.Datagen"
+}
+
+tasks.register("analyze", JavaExec) {
+    group = 'TTsGames'
+    classpath = sourceSets.main.runtimeClasspath
+    main = "dev.TTs.TTsGames.Analyze"
+}
+
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes(
+                'Main-Class': project.property('main_class').toString()
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    from project.property('resource_dir').toString()
+    from project.property('generated_resource_dir').toString()
+}

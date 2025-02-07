@@ -9,8 +9,7 @@
           "max": 5
         }
       },
-      "chance": 1.0,
-      "conditions": {}
+      "chance": 1.0
     },
     {
       "item": "pixel_quest:cooked_fox",
@@ -20,8 +19,7 @@
           "max": 3
         }
       },
-      "chance": 0.5,
-      "conditions": {}
+      "chance": 0.5
     }
   ]
 }

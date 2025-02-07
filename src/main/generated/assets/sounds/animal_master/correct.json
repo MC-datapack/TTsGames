@@ -1,0 +1,8 @@
+{
+  "name": "animal_master:correct",
+  "base_path": "assets/sounds/animal_master",
+  "files": {
+    "Deutsch": "correct",
+    "English": "correct"
+  }
+}

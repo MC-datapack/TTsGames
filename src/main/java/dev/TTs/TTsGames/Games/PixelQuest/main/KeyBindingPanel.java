@@ -26,6 +26,7 @@ public class KeyBindingPanel extends TPanel {
         addKeyBindingButton(KeyBindingsTranslation[6], "DROP_ITEM");
         addKeyBindingButton(KeyBindingsTranslation[7], "TRANSFER_ITEM");
         addKeyBindingButton(KeyBindingsTranslation[8], "SELECT");
+        addKeyBindingButton(KeyBindingsTranslation[9], "SPRINT");
     }
 
     private void addKeyBindingButton(String label, String action) {

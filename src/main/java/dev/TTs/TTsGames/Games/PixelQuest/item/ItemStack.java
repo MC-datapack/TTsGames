@@ -1,12 +1,11 @@
 package dev.TTs.TTsGames.Games.PixelQuest.item;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.Serial;
-import java.io.Serializable;
+import java.io.*;
 import java.util.Objects;
 
 import static dev.TTs.TTsGames.Games.PixelQuest.main.WorldSaving.serialVersion;
+import static dev.TTs.TTsGames.Main.logger;
+import static dev.TTs.TTsGames.Main.timer;
 
 public class ItemStack implements Serializable {
     @Serial
@@ -41,7 +40,7 @@ public class ItemStack implements Serializable {
     public void addItems(int count) throws ItemCountException {
         this.count += count;
         if (this.count > maxCount) {
-            throw new ItemCountException("Item count higher than max count:", maxCount, this.count);
+            throw new ItemCountException("Items count higher than max count:", maxCount, this.count);
         }
     }
 
@@ -52,7 +51,7 @@ public class ItemStack implements Serializable {
     public void removeItems(int count) throws ItemCountException {
         this.count -= count;
         if (this.count < 1) {
-            throw new ItemCountException("Item count lower than one:", this.count);
+            throw new ItemCountException("Items count lower than one:", this.count);
         }
     }
 
@@ -63,7 +62,7 @@ public class ItemStack implements Serializable {
 
     @Override
     public String toString() {
-        return "Item: " + item + ", Count: " + count + ", Max Count: " + maxCount;
+        return "Items: " + item + ", Count: " + count + ", Max Count: " + maxCount;
     }
 
     @Override
@@ -80,7 +79,7 @@ public class ItemStack implements Serializable {
 
     @Serial
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
-        ois.readObject();
+        ois.defaultReadObject();
         maxCount = item.settings().getStackLimit();
     }
 }

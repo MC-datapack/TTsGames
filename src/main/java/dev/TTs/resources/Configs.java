@@ -3,6 +3,7 @@ package dev.TTs.resources;
 import dev.TTs.lang.Types;
 
 import java.awt.event.KeyEvent;
+import java.math.BigInteger;
 
 public enum Configs {
     //Config
@@ -16,6 +17,7 @@ public enum Configs {
     //Statistics
     AM_RECORD(Types.DOUBLE, "animal_master_time_record", -1.0),
     //PixelQuest
+    FULLSCREEN(Types.BOOLEAN, "pixel_quest.fullscreen", true),
     V_SYNC(Types.BOOLEAN, "pixel_quest.vsync", true),
     MOVE_UP(Types.INT, "pixel_quest.keybindings.move_up",KeyEvent.VK_W),
     MOVE_DOWN(Types.INT, "pixel_quest.keybindings.move_down", KeyEvent.VK_S),
@@ -27,7 +29,10 @@ public enum Configs {
     DAMAGE(Types.INT, "pixel_quest.keybindings.damage", KeyEvent.VK_M),
     DROP_ITEM(Types.INT, "pixel_quest.keybindings.drop_item",KeyEvent.VK_Q),
     TRANSFER_ITEM(Types.INT, "pixel_quest.keybindings.transfer_item", KeyEvent.VK_T),
-    SELECT(Types.INT, "pixel_quest.keybindings.select", KeyEvent.VK_X);
+    SELECT(Types.INT, "pixel_quest.keybindings.select", KeyEvent.VK_X),
+    SPRINT(Types.INT, "pixel_quest.keybindings.sprint", KeyEvent.VK_CONTROL);
+
+
 
     private final Types type;
     private final String key;
@@ -79,10 +84,19 @@ public enum Configs {
                     Byte.parseByte(value);
                     yield true;
                 }
-                default -> true;
+                case BIG_INTEGER -> {
+                    new BigInteger(value);
+                    yield true;
+                }
+                default -> value != null;
             };
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Name: %s, Type: %s", name(), type);
     }
 }

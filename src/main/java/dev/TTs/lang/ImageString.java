@@ -44,7 +44,7 @@ public final class ImageString implements Serializable {
 
     public BufferedImage toImage() {
         if (image == null) {
-            image = ImageCache.getImage(path);
+            image = ImageCaches.getImage(path);
         }
         return image;
     }
@@ -63,7 +63,7 @@ public final class ImageString implements Serializable {
     }
 
     public Icon toIcon() {
-        return ImageCache.getIcon(path);
+        return ImageCaches.getIcon(path);
     }
 
     public TImage toTImage() {
@@ -118,6 +118,6 @@ public final class ImageString implements Serializable {
             return this.toImage();
         }
 
-        return ImageCache.getTintedImage(this.path, tintColor, opacity);
+        return ImageCaches.getTintedImage(this.path, tintColor, opacity);
     }
 }

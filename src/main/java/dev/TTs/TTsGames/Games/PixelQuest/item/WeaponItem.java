@@ -1,6 +1,6 @@
 package dev.TTs.TTsGames.Games.PixelQuest.item;
 
-import dev.TTs.TTsGames.Games.PixelQuest.util.Identifier;
+import dev.TTs.util.Identifier;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -10,7 +10,7 @@ import java.io.Serial;
 import static dev.TTs.TTsGames.Main.logger;
 
 public class WeaponItem extends Item {
-    private final int damage;
+    private int damage;
 
     public WeaponItem(Identifier identifier, int damage, Settings settings) {
         super(identifier, settings);
@@ -39,12 +39,14 @@ public class WeaponItem extends Item {
         Identifier identifier = (Identifier) in.readObject();
         Item item = getItem(identifier);
         if (item == null) {
-            logger.error("Item not found during deserialization: %s", identifier);
+            logger.error("Items not found during deserialization: %s", identifier);
             this.identifier = null;
             this.settings = null;
-        } else {
-            this.identifier = item.identifier;
-            this.settings = item.settings;
+            this.damage = 0;
+        } else if (item instanceof WeaponItem weaponItem) {
+            this.identifier = weaponItem.identifier;
+            this.settings = weaponItem.settings;
+            this.damage = weaponItem.damage;
         }
     }
 }

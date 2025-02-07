@@ -1,0 +1,8 @@
+{
+  "name": "detective_thunder:phrases/003",
+  "base_path": "assets/sounds/detective_thunder/phrases",
+  "files": {
+    "Deutsch": "de_de/003",
+    "English": "en_us/003"
+  }
+}

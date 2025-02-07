@@ -5,7 +5,9 @@ import dev.TTs.TTsGames.Games.PixelQuest.item.Item;
 import dev.TTs.TTsGames.Games.PixelQuest.json.CountProvider;
 import dev.TTs.TTsGames.Games.PixelQuest.json.ItemStackFormat;
 import dev.TTs.TTsGames.Games.PixelQuest.json.RecipeFormats;
-import dev.TTs.TTsGames.Games.PixelQuest.util.Identifier;
+import dev.TTs.lang.ErrorHandlingStrategy;
+import dev.TTs.util.Identifier;
+import dev.TTs.lang.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,8 +18,8 @@ public abstract class AbstractRecipeProvider extends AbstractProvider {
     private final List<RecipeFormats.Furnace> furnaceRecipes;
     private final List<RecipeFormats.Crafting> craftingRecipes;
 
-    public AbstractRecipeProvider(String basePath, Gson gson) {
-        super(basePath, gson);
+    public AbstractRecipeProvider(String basePath, Gson gson, Logger logger, ErrorHandlingStrategy errorStrategy) {
+        super(basePath, gson, logger, errorStrategy);
         furnaceRecipes = new ArrayList<>();
         craftingRecipes = new ArrayList<>();
     }
@@ -33,21 +35,11 @@ public abstract class AbstractRecipeProvider extends AbstractProvider {
     @Override
     public void run() {
         for (RecipeFormats.Furnace furnaceRecipe : furnaceRecipes) {
-            String path = basePath + "/" + new Identifier(furnaceRecipe.getName()).furnaceRecipeName();
-            if (!checkDictionary(path)) continue;
-
-            String json = gson.toJson(furnaceRecipe);
-
-            write(path, json);
+            write(Identifier.of(furnaceRecipe.getName()).furnaceRecipeName(), furnaceRecipe);
         }
 
         for (RecipeFormats.Crafting craftingRecipe : craftingRecipes) {
-            String path = basePath + "/" + new Identifier(craftingRecipe.getName()).craftingRecipeName();
-            if (!checkDictionary(path)) continue;
-
-            String json = gson.toJson(craftingRecipe);
-
-            write(path, json);
+            write(Identifier.of(craftingRecipe.getName()).craftingRecipeName(), craftingRecipe);
         }
     }
 

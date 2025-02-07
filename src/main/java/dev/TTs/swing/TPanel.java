@@ -9,12 +9,8 @@ public class TPanel extends JPanel implements TContainer {
         super();
     }
 
-    public TPanel(FlowLayout flowLayout) {
-        super(flowLayout);
-    }
-
-    public TPanel(BorderLayout borderLayout) {
-        super(borderLayout);
+    public TPanel(LayoutManager layoutManager) {
+        super(layoutManager);
     }
 
     public void setBorder(int top, int left, int bottom, int right) {

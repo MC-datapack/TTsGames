@@ -1,5 +1,6 @@
 package dev.TTs.swing3d;
 
+import dev.TTs.swing.TFrame;
 import dev.TTs.swing.TPanel;
 
 import javax.swing.*;
@@ -33,12 +34,13 @@ public class Simple3DCube extends TPanel implements ActionListener, Object3D {
     double angleX = 0;
     double angleY = 0;
     double angleZ = 0;
+    int x, y, z;
     final Color[] faceColors;
 
     int width = 400;
     int height = 400;
 
-    public Simple3DCube() {
+    public Simple3DCube(int x, int y, int z) {
         timer = new Timer(30, this);
         faceColors = new Color[] {
                 new Color(255, 0, 0, 128),
@@ -48,36 +50,45 @@ public class Simple3DCube extends TPanel implements ActionListener, Object3D {
                 new Color(0, 255, 255, 128),
                 new Color(255, 0, 255, 128)
         };
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
-    public Simple3DCube(Color[] colors) {
+    public Simple3DCube(int x, int y, int z, Color[] colors) {
         timer = new Timer(30, this);
         timer.start();
         faceColors = colors;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        renderAtPosition(g, new Point3D(x, y, z));
+    }
 
-        int size = Math.min(width, height) / 4;
+    void renderAtPosition(Graphics g, Point3D pos) {
+        Graphics2D g2d = (Graphics2D) g.create();
+        g2d.translate(getWidth() / 2.0 + pos.x(), getHeight() / 2.0 + pos.y());
 
-        int[] xPoints = new int[8];
-        int[] yPoints = new int[8];
+        int size = Math.min(getWidth(), getHeight()) / 4;
+        int[][] transformedVertices = new int[VERTICES.length][2];
 
         for (int i = 0; i < VERTICES.length; i++) {
-            double[] rotated = rotate(VERTICES[i], angleX, angleY, angleZ);
-            xPoints[i] = (int) (width / 2.0 + rotated[0] * size);
-            yPoints[i] = (int) (height / 2.0 - rotated[1] * size);
+            double[] rotated = rotate(VERTICES[i][0], VERTICES[i][1], VERTICES[i][2], angleX, angleY, angleZ);
+            transformedVertices[i][0] = (int) (rotated[0] * size);
+            transformedVertices[i][1] = (int) (rotated[1] * size);
         }
 
+        // Draw faces
         for (int i = 0; i < FACES.length; i++) {
             int[] face = FACES[i];
             Polygon poly = new Polygon();
             for (int vertex : face) {
-                poly.addPoint(xPoints[vertex], yPoints[vertex]);
+                poly.addPoint(transformedVertices[vertex][0], transformedVertices[vertex][1]);
             }
             g2d.setColor(faceColors[i]);
             g2d.fillPolygon(poly);
@@ -85,8 +96,38 @@ public class Simple3DCube extends TPanel implements ActionListener, Object3D {
 
         g2d.setColor(Color.BLACK);
         for (int[] edge : EDGES) {
-            g2d.drawLine(xPoints[edge[0]], yPoints[edge[0]], xPoints[edge[1]], yPoints[edge[1]]);
+            g2d.drawLine(transformedVertices[edge[0]][0], transformedVertices[edge[0]][1], transformedVertices[edge[1]][0], transformedVertices[edge[1]][1]);
         }
+
+        g2d.dispose();
+    }
+
+    private double[] rotate(double x, double y, double z, double angleX, double angleY, double angleZ) {
+        double radX = Math.toRadians(angleX);
+        double radY = Math.toRadians(angleY);
+        double radZ = Math.toRadians(angleZ);
+
+        double cosX = Math.cos(radX);
+        double sinX = Math.sin(radX);
+        double cosY = Math.cos(radY);
+        double sinY = Math.sin(radY);
+        double cosZ = Math.cos(radZ);
+        double sinZ = Math.sin(radZ);
+
+        double newY = y * cosX - z * sinX;
+        double newZ = y * sinX + z * cosX;
+        y = newY;
+        z = newZ;
+
+        double newX = x * cosY + z * sinY;
+        newZ = -x * sinY + z * cosY;
+        x = newX;
+        z = newZ;
+
+        newX = x * cosZ - y * sinZ;
+        newY = x * sinZ + y * cosZ;
+
+        return new double[]{newX, newY, newZ};
     }
 
 

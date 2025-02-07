@@ -1,0 +1,8 @@
+{
+  "name": "pixel_quest:eat",
+  "base_path": "assets/sounds/pixel_quest",
+  "files": {
+    "Deutsch": "eat",
+    "English": "eat"
+  }
+}

@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @SuppressWarnings({"ResultOfMethodCallIgnored", "FieldCanBeLocal"})
-public final class TTsLogger implements Logging {
+public sealed class TTsLogger implements Logger permits DebugLogger {
     private final String logFilePath;
     private BufferedWriter bufferedWriter;
     private Instance instance = Instance.TTS_GAMES;
@@ -28,15 +28,15 @@ public final class TTsLogger implements Logging {
     }
 
     @Override
-    public void writeMessage(LogLevel level, Object message, Object... args) {
+    public <T> T writeMessage(LogLevel level, T message, Object... args) {
         if (!debug && level.getImportance() == 'A') {
-            return;
+            return message;
         }
         final String formattedMessage = formatMessage(level, String.valueOf(message), args);
         System.out.println(formattedMessage);
         if (bufferedWriter == null) {
             System.err.println(formatMessage(LogLevel.ERROR, "BufferedWriter not initialized."));
-            return;
+            return message;
         }
         try {
             bufferedWriter.write(formattedMessage + "\n");
@@ -44,11 +44,11 @@ public final class TTsLogger implements Logging {
         } catch (IOException e) {
             System.err.println(formatMessage(LogLevel.ERROR, "Error using Buffered Writer \"%s\" to write the message \"%s\": %s", bufferedWriter, formattedMessage, e));
         }
+        return  message;
     }
 
     @Override
     public void close() {
-        debug("Closing logger");
         try {
             if (bufferedWriter != null) {
                 bufferedWriter.close();
@@ -58,6 +58,11 @@ public final class TTsLogger implements Logging {
         } catch (IOException e) {
             error("Error closing BufferedWriter: %s", e);
         }
+    }
+
+    @Override
+    public void newLine() {
+        System.out.print('\n');
     }
 
     @Override

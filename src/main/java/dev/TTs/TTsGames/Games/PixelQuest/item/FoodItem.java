@@ -1,6 +1,6 @@
 package dev.TTs.TTsGames.Games.PixelQuest.item;
 
-import dev.TTs.TTsGames.Games.PixelQuest.util.Identifier;
+import dev.TTs.util.Identifier;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -10,7 +10,7 @@ import java.io.Serial;
 import static dev.TTs.TTsGames.Main.logger;
 
 public class FoodItem extends Item {
-    private final int saturation;
+    private int saturation;
 
     public FoodItem(Identifier identifier, int saturation, Settings settings) {
         super(identifier, settings);
@@ -30,8 +30,8 @@ public class FoodItem extends Item {
     }
 
     @Serial
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.writeObject(identifier());
+    private void writeObject(ObjectOutputStream ous) throws IOException {
+        ous.writeObject(identifier());
     }
 
     @Serial
@@ -39,12 +39,14 @@ public class FoodItem extends Item {
         Identifier identifier = (Identifier) in.readObject();
         Item item = getItem(identifier);
         if (item == null) {
-            logger.error("Item not found during deserialization: %s", identifier);
+            logger.error("Items not found during deserialization: %s", identifier);
             this.identifier = null;
             this.settings = null;
-        } else {
-            this.identifier = item.identifier;
-            this.settings = item.settings;
+            this.saturation = 0;
+        } else if (item instanceof FoodItem foodItem) {
+            this.identifier = foodItem.identifier;
+            this.settings = foodItem.settings;
+            this.saturation = foodItem.saturation;
         }
     }
 }

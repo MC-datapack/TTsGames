@@ -3,12 +3,17 @@ package dev.TTs.TTsGames.Games.PixelQuest.gui;
 import dev.TTs.TTsGames.Games.PixelQuest.item.ItemStack;
 
 import java.awt.*;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
 import static dev.TTs.TTsGames.Main.logger;
+import static dev.TTs.TTsGames.Main.timer;
 
-public class BasicArrayInventory extends ArrayInventory {
+public class BasicArrayInventory extends ArrayInventory implements Serializable {
+    @Serial
+    private static final long serialVersionUID = Inventory.serialVersionUID;
+
     public BasicArrayInventory(int maxSize) {
         super(maxSize);
     }
@@ -47,7 +52,7 @@ public class BasicArrayInventory extends ArrayInventory {
         try {
             super.addItemAsNewStack(item);
         } catch (InventoryOutOfBoundsException e) {
-            logger.error("Failed to add item as new Item stack: %s", e.getMessage());
+            logger.error("Failed to add item as new Items stack: %s", e.getMessage());
         }
     }
 
