@@ -32,7 +32,7 @@ public class PixelQuestJsonReader {
     public static Identifier getRandomChestLootTable() {
         File chestLootTableDict;
         try {
-            chestLootTableDict = new File(PixelQuestJsonReader.class.getClassLoader().getResource("data/pixel_quest/loot_table/chests").toURI());
+            chestLootTableDict = new File(PixelQuestJsonReader.class.getClassLoader().getResource("/data/pixel_quest/loot_table/chests").toURI());
         } catch (URISyntaxException | NullPointerException e) {
             logger.error("Failed creating Chest Loot Table dict: %s", e);
             return Identifier.of(null, null);

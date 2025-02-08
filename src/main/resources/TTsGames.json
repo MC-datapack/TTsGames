@@ -3,7 +3,7 @@
   "version": {
 	"tts_games": {
 	  "release": "${version}",
-	  "group": "2.2"
+	  "group": "2.3"
 	},
 	"animal_master": {
 	  "release": "7.0",
