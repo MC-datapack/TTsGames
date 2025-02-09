@@ -1,9 +1,10 @@
 {
   "latest": {
-    "release": "https://github.com/MC-datapack/TTsGames/releases/download/2.3/TTsGames-2.3.jar",
-    "pre-release": "https://github.com/MC-datapack/TTsGames/releases/download/2.3/TTsGames-2.3.jar"
+    "release": "https://github.com/MC-datapack/TTsGames/releases/download/2.4/TTsGames-2.4.jar",
+    "pre-release": "https://github.com/MC-datapack/TTsGames/releases/download/2.4/TTsGames-2.4.jar"
   },
   "versions": {
+    "2.4": "https://github.com/MC-datapack/TTsGames/releases/download/2.3/TTsGames-2.4.jar",
     "2.3": "https://github.com/MC-datapack/TTsGames/releases/download/2.3/TTsGames-2.3.jar",
     "2.2": "https://github.com/MC-datapack/TTsGames/releases/download/2.2/TTsGames-2.2.jar",
     "2.1": "https://github.com/MC-datapack/TTsGames/releases/download/2.1/TTsGames-2.0-2.1.jar",
